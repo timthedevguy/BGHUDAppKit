@@ -42,27 +42,8 @@ struct NSProgressIndicator_t {
 
 #pragma mark Drawing Functions
 
-/*-(void)drawRect:(NSRect)rect {
-
-	NSLog(@"Drawing");
+- (void)_drawThemeBackground {
 	
-	[super drawRect: rect];
-}*/
-
--(id)initWithCoder:(NSCoder *)aDecoder {
-	
-	self = [super initWithCoder: aDecoder];
-	
-	if(self) {
-		
-		[self setupGradient];
-	}
-	
-	return self;
-}
-
-- (void)_drawThemeBackground
-{
 	NSRect frame = [self bounds];
 	
 	//Adjust rect based on size
@@ -70,9 +51,9 @@ struct NSProgressIndicator_t {
 			
 		case NSRegularControlSize:
 			
-			frame.origin.x -= 1;
+			frame.origin.x += 2.5;
 			frame.origin.y += .5;
-			frame.size.width += 2;
+			frame.size.width -= 5;
 			frame.size.height -= 5;
 			break;
 		case NSSmallControlSize:
@@ -88,11 +69,44 @@ struct NSProgressIndicator_t {
 	
 	NSBezierPath *path = [NSBezierPath bezierPathWithRect: frame];
 	
+	//Draw border
 	[NSGraphicsContext saveGraphicsState];
 	[[self dropShadow] set];
 	[[self strokeColor] set];
 	[path stroke];
 	[NSGraphicsContext restoreGraphicsState];
+	
+	//Draw Fill
+	[[self fillGradient] drawInRect: NSInsetRect(frame, 0, 0) angle: 90];
+	
+	if(![self isIndeterminate]) {
+
+		frame.size.width = ((frame.size.width / ([self maxValue] - [self minValue])) * ([self doubleValue] - [self minValue]));
+		[[self highlightGradient] drawInRect: frame angle: 90];
+		
+	} else {
+		
+		//Setup Our Complex Path
+		//Adjust Frame width
+		frame.origin.x -= 40;
+		frame.size.width += 80;
+		
+		NSPoint position = NSMakePoint(frame.origin.x, frame.origin.y);
+		progressPath = [[NSBezierPath alloc] init];
+		
+		while(position.x <= (frame.origin.x + frame.size.width)) {
+			
+			[progressPath moveToPoint: NSMakePoint(position.x, position.y)];
+			[progressPath lineToPoint: NSMakePoint(position.x + frame.size.height, position.y)];
+			[progressPath lineToPoint: NSMakePoint(position.x + ((frame.size.height *2)), position.y + frame.size.height)];
+			[progressPath lineToPoint: NSMakePoint(position.x + (frame.size.height), position.y + frame.size.height)];
+			[progressPath closePath];
+			
+			position.x += ((frame.size.height *2));
+		}
+	}
+	
+	path = nil;
 }
 
 - (void)_drawThemeProgressArea:(BOOL)flag {
@@ -104,9 +118,9 @@ struct NSProgressIndicator_t {
 			
 		case NSRegularControlSize:
 			
-			frame.origin.x += 2;
+			frame.origin.x += 2.5;
 			frame.origin.y += .5;
-			frame.size.width -= 4;
+			frame.size.width -= 5;
 			frame.size.height -= 5;
 			break;
 		case NSSmallControlSize:
@@ -121,63 +135,30 @@ struct NSProgressIndicator_t {
 	
 	if([self isIndeterminate]) {
 		
-		//Adjust Frame to Draw in Based On Animation Index
-		frame.origin.x += -37 + ((struct NSProgressIndicator_t*)self)->_animationIndex;
-		frame.size.width += 32;
-		frame.origin.y += 1;
-		frame.size.height -= 2;
+		//Setup Cliping Rect
+		[NSBezierPath clipRect: NSInsetRect(frame, 1, 1)];
 		
-		//Fill with Gradient
-		NSBezierPath *path1 = [NSBezierPath bezierPathWithRect: frame];
-		[progressGradient drawInBezierPath: path1 angle: -45];
+		//Fill Background
+		[[self normalGradient] drawInRect: frame angle: 90];
+		
+		//Create XFormation
+		NSAffineTransform *trans = [NSAffineTransform transform];
+		[trans translateXBy: (-37 + ((struct NSProgressIndicator_t*)self)->_animationIndex) yBy: 0];
+		
+		//Apply XForm to path
+		NSBezierPath *newPath = [trans transformBezierPath: progressPath];
+		
+		//[[self highlightGradient] set];
+		//[newPath fill];
+		[[self highlightGradient] drawInBezierPath: newPath angle: 90];
+		
+		trans = nil;
+		newPath = nil;
+		
 	} else {
 		
+		
 	}
-	
-	//[super _drawThemeProgressArea: flag];
-}
-
--(void)setupGradient {
-	
-	//NSRect frame = [self bounds];
-	//frame.size.width += 100;
-	
-	NSMutableArray *colors = [[NSMutableArray alloc] initWithCapacity: 0];
-	
-	int segmentCount = ([self bounds].size.width /9);
-	float stopIncrement = (1.0 / segmentCount);
-	int currentSegment = 0;
-	BOOL useAlternate = NO;
-	
-	CGFloat test[segmentCount*2];
-	//CGFloat test[200];
-	
-	while(currentSegment < segmentCount) {
-		
-		test[currentSegment] = currentSegment * stopIncrement;
-		currentSegment++;
-		test[currentSegment] = currentSegment * stopIncrement;
-		
-		if(!useAlternate) {
-			
-			[colors addObject: [self indeterminateColor]];
-			[colors addObject: [self indeterminateColor]];
-			useAlternate = YES;
-		} else {
-			
-			[colors addObject: [self indeterminateAlternateColor]];
-			[colors addObject: [self indeterminateAlternateColor]];
-			useAlternate = NO;
-		}
-		
-		currentSegment++;
-	}
-	
-	progressGradient = [[NSGradient alloc] initWithColors: colors
-											  atLocations: test
-											   colorSpace: [NSColorSpace deviceRGBColorSpace]];
-	
-	[self _drawThemeBackground];
 }
 
 #pragma mark -
@@ -195,30 +176,10 @@ struct NSProgressIndicator_t {
 										 endingColor: [NSColor colorWithDeviceRed: 0.318 green: 0.318 blue: 0.318 alpha: [self alphaValue]]];
 }
 
--(NSGradient *)normalComplexGradient {
+-(NSGradient *)fillGradient {
 	
-	return [[NSGradient alloc] initWithColorsAndLocations: [NSColor colorWithDeviceRed: 0.324 green: 0.331 blue: 0.347 alpha: [self alphaValue]],
-			(CGFloat)0, [NSColor colorWithDeviceRed: 0.245 green: 0.253 blue: 0.269 alpha: [self alphaValue]], (CGFloat).5,
-			[NSColor colorWithDeviceRed: 0.206 green: 0.214 blue: 0.233 alpha: [self alphaValue]], (CGFloat).5,
-			[NSColor colorWithDeviceRed: 0.139 green: 0.147 blue: 0.167 alpha: [self alphaValue]], (CGFloat)1.0, nil];
-}
-
--(NSGradient *)highlightComplexGradient {
-	
-	return [[NSGradient alloc] initWithColorsAndLocations: [NSColor colorWithDeviceRed: 0.524 green: 0.531 blue: 0.547 alpha: [self alphaValue]],
-			(CGFloat)0, [NSColor colorWithDeviceRed: 0.445 green: 0.453 blue: 0.469 alpha: [self alphaValue]], (CGFloat).5,
-			[NSColor colorWithDeviceRed: 0.406 green: 0.414 blue: 0.433 alpha: [self alphaValue]], (CGFloat).5,
-			[NSColor colorWithDeviceRed: 0.339 green: 0.347 blue: 0.367 alpha: [self alphaValue]], (CGFloat)1.0, nil];
-}
-
--(NSColor *)indeterminateColor {
-	
-	return [NSColor colorWithDeviceRed: 0.451 green: 0.451 blue: 0.455 alpha: .5];
-}
-
--(NSColor *)indeterminateAlternateColor {
-	
-	return [NSColor colorWithDeviceRed: 0.218 green: 0.218 blue: 0.218 alpha: 1.0];
+	return [[NSGradient alloc] initWithStartingColor: [NSColor colorWithCalibratedRed: 0.125 green: 0.125 blue: 0.125 alpha: 1.0]
+										 endingColor: [NSColor colorWithCalibratedRed: 0.208 green: 0.208 blue: 0.208 alpha: 1.0]];
 }
 
 -(NSColor *)strokeColor {
@@ -233,13 +194,7 @@ struct NSProgressIndicator_t {
 
 -(float)alphaValue {
 	
-	if([self isHighlighted]) {
-		
-		return 1.0;
-	} else {
-		
-		return 0.6;
-	}
+	return 0.5;
 }
 
 -(NSShadow *)dropShadow {

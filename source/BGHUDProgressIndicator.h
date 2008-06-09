@@ -38,18 +38,15 @@
 @interface BGHUDProgressIndicator : NSProgressIndicator {
 
 	NSGradient *progressGradient;
+	NSBezierPath *progressPath;
 }
 
 -(NSGradient *)normalGradient;
 -(NSGradient *)highlightGradient;
--(NSGradient *)normalComplexGradient;
--(NSGradient *)highlightComplexGradient;
--(NSColor *)indeterminateColor;
--(NSColor *)indeterminateAlternateColor;
+-(NSGradient *)fillGradient;
 -(NSColor *)strokeColor;
 -(NSColor *)darkStrokeColor;
 -(float)alphaValue;
 -(NSShadow *)dropShadow;
--(void)setupGradient;
 
 @end
