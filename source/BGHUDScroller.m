@@ -44,6 +44,9 @@
 
 - (void)drawRect:(NSRect)rect {
 	
+	arrowPosition = [[NSDictionary dictionaryWithContentsOfFile:
+					  [@"~/Library/Preferences/.GlobalPreferences.plist" stringByExpandingTildeInPath]] objectForKey: @"AppleScrollBarVariant"];
+	
 	NSDisableScreenUpdates();
 	
 	[[NSColor colorWithCalibratedWhite: 0.0 alpha: 0.7] set];
@@ -80,7 +83,6 @@
 								 startAngle: 0
 								   endAngle: 180];
 	
-	//[[self knobGradient] drawInBezierPath: knob angle: 0];
 	[[self strokeColor] set];
 	[knob fill];
 	
@@ -134,104 +136,198 @@
 	//Draw Knob Slot
 	[[self knobSlotGradient] drawInRect: rect angle: 0];
 	
-	//Adjust rect height for top base
-	rect.size.height = 8;
-	
-	//Draw Top Base
-	NSBezierPath *path = [[NSBezierPath alloc] init];
-	NSPoint basePoints[4];
-	
-	[path appendBezierPathWithArcWithCenter: NSMakePoint(rect.size.width /2, rect.size.height + (rect.size.width /2) -5)
-									 radius: (rect.size.width ) /2
-								 startAngle: 180
-								   endAngle: 0];
-	
-	//Add the rest of the points
-	basePoints[3] = NSMakePoint( rect.origin.x, rect.origin.y + rect.size.height);
-	basePoints[2] = NSMakePoint( rect.origin.x, rect.origin.y);
-	basePoints[1] = NSMakePoint( rect.origin.x + rect.size.width, rect.origin.y);
-	basePoints[0] = NSMakePoint( rect.origin.x + rect.size.width, rect.origin.y + rect.size.height);
-	
-	[path appendBezierPathWithPoints: basePoints count: 4];
-	
-	[[self normalGradient] drawInBezierPath: path angle: 0];
+	if([arrowPosition isEqualToString: @"DoubleMax"]) {
+		
+		//Adjust rect height for top base
+		rect.size.height = 8;
+		
+		//Draw Top Base
+		NSBezierPath *path = [[NSBezierPath alloc] init];
+		NSPoint basePoints[4];
+		
+		[path appendBezierPathWithArcWithCenter: NSMakePoint(rect.size.width /2, rect.size.height + (rect.size.width /2) -5)
+										 radius: (rect.size.width ) /2
+									 startAngle: 180
+									   endAngle: 0];
+		
+		//Add the rest of the points
+		basePoints[3] = NSMakePoint( rect.origin.x, rect.origin.y + rect.size.height);
+		basePoints[2] = NSMakePoint( rect.origin.x, rect.origin.y);
+		basePoints[1] = NSMakePoint( rect.origin.x + rect.size.width, rect.origin.y);
+		basePoints[0] = NSMakePoint( rect.origin.x + rect.size.width, rect.origin.y + rect.size.height);
+		
+		[path appendBezierPathWithPoints: basePoints count: 4];
+		
+		[[self normalGradient] drawInBezierPath: path angle: 0];
+	}
 }
 
 - (void)drawDecrementArrow:(BOOL)highlighted {
 	
-	//Draw Decrement Button
-	NSRect rect = [self rectForPart: NSScrollerDecrementLine];
-	NSBezierPath *path = [[NSBezierPath alloc] init];
-	NSPoint basePoints[4];
-	
-	//Add Notch
-	[path appendBezierPathWithArcWithCenter: NSMakePoint((rect.size.width ) /2, (rect.origin.y  - ((rect.size.width ) /2) + 1))
-												   radius: (rect.size.width ) /2
-											   startAngle: 0
-												 endAngle: 180];
-	
-	//Add the rest of the points
-	basePoints[0] = NSMakePoint( rect.origin.x, rect.origin.y);
-	basePoints[1] = NSMakePoint( rect.origin.x, rect.origin.y + rect.size.height);
-	basePoints[2] = NSMakePoint( rect.origin.x + rect.size.width, rect.origin.y + rect.size.height);
-	basePoints[3] = NSMakePoint( rect.origin.x + rect.size.width, rect.origin.y);
-	
-	//Add Points to Path
-	[path appendBezierPathWithPoints: basePoints count: 4];
-	
-	//Fill Path
-	if(!highlighted) {
+	if([arrowPosition isEqualToString: @"DoubleMax"]) {
 		
-		[[self normalGradient] drawInBezierPath: path angle: 0];
+		//Draw Decrement Button
+		NSRect rect = [self rectForPart: NSScrollerDecrementLine];
+		NSBezierPath *path = [[NSBezierPath alloc] init];
+		NSPoint basePoints[4];
+		
+		//Add Notch
+		[path appendBezierPathWithArcWithCenter: NSMakePoint((rect.size.width ) /2, (rect.origin.y  - ((rect.size.width ) /2) + 1))
+										 radius: (rect.size.width ) /2
+									 startAngle: 0
+									   endAngle: 180];
+		
+		//Add the rest of the points
+		basePoints[0] = NSMakePoint( rect.origin.x, rect.origin.y);
+		basePoints[1] = NSMakePoint( rect.origin.x, rect.origin.y + rect.size.height);
+		basePoints[2] = NSMakePoint( rect.origin.x + rect.size.width, rect.origin.y + rect.size.height);
+		basePoints[3] = NSMakePoint( rect.origin.x + rect.size.width, rect.origin.y);
+		
+		//Add Points to Path
+		[path appendBezierPathWithPoints: basePoints count: 4];
+		
+		//Fill Path
+		if(!highlighted) {
+			
+			[[self normalGradient] drawInBezierPath: path angle: 0];
+		} else {
+			
+			[[self highlightGradient] drawInBezierPath: path angle: 0];
+		}
+		
+		//Create Arrow Glyph
+		NSBezierPath *arrow = [[NSBezierPath alloc] init];
+		
+		NSPoint points[3];
+		points[0] = NSMakePoint( rect.size.width /2, rect.origin.y + (rect.size.height /2) -3);
+		points[1] = NSMakePoint( (rect.size.width /2) +3.5, rect.origin.y + (rect.size.height /2) +3);
+		points[2] = NSMakePoint( (rect.size.width /2) -3.5, rect.origin.y + (rect.size.height /2) +3);
+		
+		[arrow appendBezierPathWithPoints: points count: 3];
+		
+		[[self strokeColor] set];
+		[arrow fill];
+		
+		//Create Devider Line
+		[[self strokeColor] set];
+		[NSBezierPath strokeLineFromPoint: NSMakePoint(0, (rect.origin.y + rect.size.height) +.5)
+								  toPoint: NSMakePoint(rect.size.width, (rect.origin.y + rect.size.height) +.5)];
+		
 	} else {
 		
-		[[self highlightGradient] drawInBezierPath: path angle: 0];
+		NSRect rect = [self rectForPart: NSScrollerDecrementLine];
+		
+		NSBezierPath *path = [[NSBezierPath alloc] init];
+		NSPoint basePoints[4];
+		
+		[path appendBezierPathWithArcWithCenter: NSMakePoint(rect.size.width /2, rect.size.height + (rect.size.width /2) -3)
+										 radius: (rect.size.width ) /2
+									 startAngle: 180
+									   endAngle: 0];
+		
+		//Add the rest of the points
+		basePoints[3] = NSMakePoint( rect.origin.x, rect.origin.y + rect.size.height);
+		basePoints[2] = NSMakePoint( rect.origin.x, rect.origin.y);
+		basePoints[1] = NSMakePoint( rect.origin.x + rect.size.width, rect.origin.y);
+		basePoints[0] = NSMakePoint( rect.origin.x + rect.size.width, rect.origin.y + rect.size.height);
+		
+		[path appendBezierPathWithPoints: basePoints count: 4];
+		
+		//Fill Path
+		if(!highlighted) {
+			
+			[[self normalGradient] drawInBezierPath: path angle: 0];
+		} else {
+			
+			[[self highlightGradient] drawInBezierPath: path angle: 0];
+		}
+		
+		//Create Arrow Glyph
+		NSBezierPath *arrow = [[NSBezierPath alloc] init];
+		
+		NSPoint points[3];
+		points[0] = NSMakePoint( rect.size.width /2, rect.origin.y + (rect.size.height /2) -3);
+		points[1] = NSMakePoint( (rect.size.width /2) +3.5, rect.origin.y + (rect.size.height /2) +3);
+		points[2] = NSMakePoint( (rect.size.width /2) -3.5, rect.origin.y + (rect.size.height /2) +3);
+		
+		[arrow appendBezierPathWithPoints: points count: 3];
+		
+		[[self strokeColor] set];
+		[arrow fill];
 	}
-	
-	//Create Arrow Glyph
-	NSBezierPath *arrow = [[NSBezierPath alloc] init];
-	
-	NSPoint points[3];
-	points[0] = NSMakePoint( rect.size.width /2, rect.origin.y + (rect.size.height /2) -3);
-	points[1] = NSMakePoint( (rect.size.width /2) +3.5, rect.origin.y + (rect.size.height /2) +3);
-	points[2] = NSMakePoint( (rect.size.width /2) -3.5, rect.origin.y + (rect.size.height /2) +3);
-	
-	[arrow appendBezierPathWithPoints: points count: 3];
-	
-	[[self strokeColor] set];
-	[arrow fill];
-	
-	//Create Devider Line
-	[[self strokeColor] set];
-	[NSBezierPath strokeLineFromPoint: NSMakePoint(0, (rect.origin.y + rect.size.height) +.5)
-							  toPoint: NSMakePoint(rect.size.width, (rect.origin.y + rect.size.height) +.5)];
 }
 
 - (void)drawIncrementArrow:(BOOL)highlighted {
 	
-	//Draw Increment Button
-	NSRect rect = [self rectForPart: NSScrollerIncrementLine];
-	
-	if(!highlighted) {
+	if([arrowPosition isEqualToString: @"DoubleMax"]) {
 		
-		[[self normalGradient] drawInRect: rect angle: 0];
+		//Draw Increment Button
+		NSRect rect = [self rectForPart: NSScrollerIncrementLine];
+		
+		if(!highlighted) {
+			
+			[[self normalGradient] drawInRect: rect angle: 0];
+		} else {
+			
+			[[self highlightGradient] drawInRect: rect angle: 0];
+		}
+		
+		//Create Arrow Glyph
+		NSBezierPath *arrow = [[NSBezierPath alloc] init];
+		
+		NSPoint points[3];
+		points[0] = NSMakePoint( rect.size.width /2, rect.origin.y + (rect.size.height /2) +3);
+		points[1] = NSMakePoint( (rect.size.width /2) +3.5, rect.origin.y + (rect.size.height /2) -3);
+		points[2] = NSMakePoint( (rect.size.width /2) -3.5, rect.origin.y + (rect.size.height /2) -3);
+		
+		[arrow appendBezierPathWithPoints: points count: 3];
+		
+		[[self strokeColor] set];
+		[arrow fill];
 	} else {
 		
-		[[self highlightGradient] drawInRect: rect angle: 0];
+		//Draw Decrement Button
+		NSRect rect = [self rectForPart: NSScrollerIncrementLine];
+		NSBezierPath *path = [[NSBezierPath alloc] init];
+		NSPoint basePoints[4];
+		
+		//Add Notch
+		[path appendBezierPathWithArcWithCenter: NSMakePoint((rect.size.width ) /2, (rect.origin.y  - ((rect.size.width ) /2) + 2))
+										 radius: (rect.size.width ) /2
+									 startAngle: 0
+									   endAngle: 180];
+		
+		//Add the rest of the points
+		basePoints[0] = NSMakePoint( rect.origin.x, rect.origin.y);
+		basePoints[1] = NSMakePoint( rect.origin.x, rect.origin.y + rect.size.height);
+		basePoints[2] = NSMakePoint( rect.origin.x + rect.size.width, rect.origin.y + rect.size.height);
+		basePoints[3] = NSMakePoint( rect.origin.x + rect.size.width, rect.origin.y);
+		
+		//Add Points to Path
+		[path appendBezierPathWithPoints: basePoints count: 4];
+		
+		//Fill Path
+		if(!highlighted) {
+			
+			[[self normalGradient] drawInBezierPath: path angle: 0];
+		} else {
+			
+			[[self highlightGradient] drawInBezierPath: path angle: 0];
+		}
+		
+		//Create Arrow Glyph
+		NSBezierPath *arrow = [[NSBezierPath alloc] init];
+		
+		NSPoint points[3];
+		points[0] = NSMakePoint( rect.size.width /2, rect.origin.y + (rect.size.height /2) +3);
+		points[1] = NSMakePoint( (rect.size.width /2) +3.5, rect.origin.y + (rect.size.height /2) -3);
+		points[2] = NSMakePoint( (rect.size.width /2) -3.5, rect.origin.y + (rect.size.height /2) -3);
+		
+		[arrow appendBezierPathWithPoints: points count: 3];
+		
+		[[self strokeColor] set];
+		[arrow fill];
 	}
-	
-	//Create Arrow Glyph
-	NSBezierPath *arrow = [[NSBezierPath alloc] init];
-	
-	NSPoint points[3];
-	points[0] = NSMakePoint( rect.size.width /2, rect.origin.y + (rect.size.height /2) +3);
-	points[1] = NSMakePoint( (rect.size.width /2) +3.5, rect.origin.y + (rect.size.height /2) -3);
-	points[2] = NSMakePoint( (rect.size.width /2) -3.5, rect.origin.y + (rect.size.height /2) -3);
-	
-	[arrow appendBezierPathWithPoints: points count: 3];
-	
-	[[self strokeColor] set];
-	[arrow fill];
 }
 
 #pragma mark -

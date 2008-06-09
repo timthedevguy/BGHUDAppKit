@@ -40,7 +40,8 @@
 
 
 @interface BGHUDScroller : NSScroller {
-
+	
+	NSString *arrowPosition;
 }
 
 - (void)drawDecrementArrow:(BOOL)highlighted;
