@@ -194,7 +194,7 @@ struct NSProgressIndicator_t {
 
 -(float)alphaValue {
 	
-	return 0.5;
+	return 1.0;
 }
 
 -(NSShadow *)dropShadow {
