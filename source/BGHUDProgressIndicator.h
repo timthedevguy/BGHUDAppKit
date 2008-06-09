@@ -1,8 +1,8 @@
 //
-//  BGHUDAppKit.h
+//  BGHUDProgressIndicator.h
 //  BGHUDAppKit
 //
-//  Created by BinaryGod on 5/25/08.
+//  Created by BinaryGod on 6/6/08.
 //
 //  Copyright (c) 2008, Tim Davis (BinaryMethod.com, binary.god@gmail.com)
 //  All rights reserved.
@@ -32,13 +32,24 @@
 //	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 //	POSSIBILITY OF SUCH DAMAGE.
 
-#import "BGHUDScroller.h"
-#import "BGHUDButtonCell.h"
-#import "BGHUDGradientButtonCell.h"
-#import "BGHUDSliderCell.h"
-#import "BGHUDScrollView.h"
-#import "BGHUDPopUpButtonCell.h"
-#import "BGHUDGradientPopUpButtonCell.h"
-#import "BGHUDTextFieldCell.h"
-#import "BGHUDGradientTextFieldCell.h"
-#import "BGHUDProgressIndicator.h"
+#import <Cocoa/Cocoa.h>
+
+
+@interface BGHUDProgressIndicator : NSProgressIndicator {
+
+	NSGradient *progressGradient;
+}
+
+-(NSGradient *)normalGradient;
+-(NSGradient *)highlightGradient;
+-(NSGradient *)normalComplexGradient;
+-(NSGradient *)highlightComplexGradient;
+-(NSColor *)indeterminateColor;
+-(NSColor *)indeterminateAlternateColor;
+-(NSColor *)strokeColor;
+-(NSColor *)darkStrokeColor;
+-(float)alphaValue;
+-(NSShadow *)dropShadow;
+-(void)setupGradient;
+
+@end

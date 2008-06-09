@@ -15,6 +15,8 @@
 		E74328FE0DF1BF8700380EA0 /* BGHUDPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E74328FC0DF1BF8700380EA0 /* BGHUDPopUpButtonCell.m */; };
 		E74C2CC40DF1120E00709944 /* BGHUDScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = E74C2CC20DF1120E00709944 /* BGHUDScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E74C2CC50DF1120E00709944 /* BGHUDScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74C2CC30DF1120E00709944 /* BGHUDScrollView.m */; };
+		E764865B0DFAFF1300A0347A /* BGHUDProgressIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = E76486590DFAFF1300A0347A /* BGHUDProgressIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E764865C0DFAFF1300A0347A /* BGHUDProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = E764865A0DFAFF1300A0347A /* BGHUDProgressIndicator.m */; };
 		E78ADFD20DEA2375005E2134 /* BGHUDScroller.h in Headers */ = {isa = PBXBuildFile; fileRef = E78ADFD00DEA2375005E2134 /* BGHUDScroller.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E78ADFD30DEA2375005E2134 /* BGHUDScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = E78ADFD10DEA2375005E2134 /* BGHUDScroller.m */; };
 		E78ADFDD0DEA2581005E2134 /* BGHUDAppKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E78ADFDC0DEA2581005E2134 /* BGHUDAppKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,6 +51,8 @@
 		E74328FC0DF1BF8700380EA0 /* BGHUDPopUpButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDPopUpButtonCell.m; path = source/BGHUDPopUpButtonCell.m; sourceTree = "<group>"; };
 		E74C2CC20DF1120E00709944 /* BGHUDScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDScrollView.h; path = source/BGHUDScrollView.h; sourceTree = "<group>"; };
 		E74C2CC30DF1120E00709944 /* BGHUDScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDScrollView.m; path = source/BGHUDScrollView.m; sourceTree = "<group>"; };
+		E76486590DFAFF1300A0347A /* BGHUDProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDProgressIndicator.h; path = source/BGHUDProgressIndicator.h; sourceTree = "<group>"; };
+		E764865A0DFAFF1300A0347A /* BGHUDProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDProgressIndicator.m; path = source/BGHUDProgressIndicator.m; sourceTree = "<group>"; };
 		E78ADFD00DEA2375005E2134 /* BGHUDScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDScroller.h; path = source/BGHUDScroller.h; sourceTree = "<group>"; };
 		E78ADFD10DEA2375005E2134 /* BGHUDScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDScroller.m; path = source/BGHUDScroller.m; sourceTree = "<group>"; };
 		E78ADFDC0DEA2581005E2134 /* BGHUDAppKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDAppKit.h; path = source/BGHUDAppKit.h; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E76486580DFAFEFC00A0347A /* BGHUDProgressIndicator */,
 				E7AF604E0DF8F60A00E4A60B /* BGHUDGradientTextFieldCell */,
 				E7CF49B80DF842A60021AB3C /* BGHUDGradientPopUpButtonCell */,
 				E7D8F4230DF596E3002B5C44 /* BGHUDGradientButtonCell */,
@@ -187,6 +192,15 @@
 				E74C2CC30DF1120E00709944 /* BGHUDScrollView.m */,
 			);
 			name = BGHUDScrollView;
+			sourceTree = "<group>";
+		};
+		E76486580DFAFEFC00A0347A /* BGHUDProgressIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				E76486590DFAFF1300A0347A /* BGHUDProgressIndicator.h */,
+				E764865A0DFAFF1300A0347A /* BGHUDProgressIndicator.m */,
+			);
+			name = BGHUDProgressIndicator;
 			sourceTree = "<group>";
 		};
 		E78ADFCF0DEA234F005E2134 /* BGHUDScroller */ = {
@@ -271,6 +285,7 @@
 				E7D8F4260DF596FC002B5C44 /* BGHUDGradientButtonCell.h in Headers */,
 				E7CF49BB0DF842C90021AB3C /* BGHUDGradientPopUpButtonCell.h in Headers */,
 				E7AF60510DF8F63500E4A60B /* BGHUDGradientTextFieldCell.h in Headers */,
+				E764865B0DFAFF1300A0347A /* BGHUDProgressIndicator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +358,7 @@
 				E7D8F4270DF596FC002B5C44 /* BGHUDGradientButtonCell.m in Sources */,
 				E7CF49BC0DF842C90021AB3C /* BGHUDGradientPopUpButtonCell.m in Sources */,
 				E7AF60520DF8F63500E4A60B /* BGHUDGradientTextFieldCell.m in Sources */,
+				E764865C0DFAFF1300A0347A /* BGHUDProgressIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
