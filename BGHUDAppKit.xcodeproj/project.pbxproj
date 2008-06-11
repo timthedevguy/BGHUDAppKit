@@ -24,6 +24,8 @@
 		E78ADFDD0DEA2581005E2134 /* BGHUDAppKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E78ADFDC0DEA2581005E2134 /* BGHUDAppKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E78AE04F0DEA2AF5005E2134 /* BGHUDButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E78AE04D0DEA2AF5005E2134 /* BGHUDButtonCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E78AE0500DEA2AF5005E2134 /* BGHUDButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E78AE04E0DEA2AF5005E2134 /* BGHUDButtonCell.m */; };
+		E79533560DFEB9F4000013DA /* BGHUDTokenFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E79533540DFEB9F4000013DA /* BGHUDTokenFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E79533570DFEB9F4000013DA /* BGHUDTokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E79533550DFEB9F4000013DA /* BGHUDTokenFieldCell.m */; };
 		E798BF770DF4DCAE00B9E231 /* BGHUDTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E798BF750DF4DCAE00B9E231 /* BGHUDTextFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E798BF780DF4DCAE00B9E231 /* BGHUDTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E798BF760DF4DCAE00B9E231 /* BGHUDTextFieldCell.m */; };
 		E7AF60510DF8F63500E4A60B /* BGHUDGradientTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7AF604F0DF8F63500E4A60B /* BGHUDGradientTextFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -62,6 +64,8 @@
 		E78ADFDC0DEA2581005E2134 /* BGHUDAppKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDAppKit.h; path = source/BGHUDAppKit.h; sourceTree = "<group>"; };
 		E78AE04D0DEA2AF5005E2134 /* BGHUDButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDButtonCell.h; path = source/BGHUDButtonCell.h; sourceTree = "<group>"; };
 		E78AE04E0DEA2AF5005E2134 /* BGHUDButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDButtonCell.m; path = source/BGHUDButtonCell.m; sourceTree = "<group>"; };
+		E79533540DFEB9F4000013DA /* BGHUDTokenFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDTokenFieldCell.h; path = source/BGHUDTokenFieldCell.h; sourceTree = "<group>"; };
+		E79533550DFEB9F4000013DA /* BGHUDTokenFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDTokenFieldCell.m; path = source/BGHUDTokenFieldCell.m; sourceTree = "<group>"; };
 		E798BF750DF4DCAE00B9E231 /* BGHUDTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDTextFieldCell.h; path = source/BGHUDTextFieldCell.h; sourceTree = "<group>"; };
 		E798BF760DF4DCAE00B9E231 /* BGHUDTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDTextFieldCell.m; path = source/BGHUDTextFieldCell.m; sourceTree = "<group>"; };
 		E7AF604F0DF8F63500E4A60B /* BGHUDGradientTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDGradientTextFieldCell.h; path = source/BGHUDGradientTextFieldCell.h; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E79533530DFEB9D9000013DA /* BGHUDTokenFieldCell */,
 				E74D5A070DFCEB1D0071623F /* BGHUDGradientProgressIndicator */,
 				E76486580DFAFEFC00A0347A /* BGHUDProgressIndicator */,
 				E7AF604E0DF8F60A00E4A60B /* BGHUDGradientTextFieldCell */,
@@ -235,6 +240,15 @@
 			name = BGHUDButtonCell;
 			sourceTree = "<group>";
 		};
+		E79533530DFEB9D9000013DA /* BGHUDTokenFieldCell */ = {
+			isa = PBXGroup;
+			children = (
+				E79533540DFEB9F4000013DA /* BGHUDTokenFieldCell.h */,
+				E79533550DFEB9F4000013DA /* BGHUDTokenFieldCell.m */,
+			);
+			name = BGHUDTokenFieldCell;
+			sourceTree = "<group>";
+		};
 		E798BF740DF4DC9800B9E231 /* BGHUDTextFieldCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +315,7 @@
 				E7AF60510DF8F63500E4A60B /* BGHUDGradientTextFieldCell.h in Headers */,
 				E764865B0DFAFF1300A0347A /* BGHUDProgressIndicator.h in Headers */,
 				E74D5A0A0DFCEB350071623F /* BGHUDGradientProgressIndicator.h in Headers */,
+				E79533560DFEB9F4000013DA /* BGHUDTokenFieldCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +390,7 @@
 				E7AF60520DF8F63500E4A60B /* BGHUDGradientTextFieldCell.m in Sources */,
 				E764865C0DFAFF1300A0347A /* BGHUDProgressIndicator.m in Sources */,
 				E74D5A0B0DFCEB350071623F /* BGHUDGradientProgressIndicator.m in Sources */,
+				E79533570DFEB9F4000013DA /* BGHUDTokenFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
