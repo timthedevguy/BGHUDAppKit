@@ -28,6 +28,10 @@
 		E79533570DFEB9F4000013DA /* BGHUDTokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E79533550DFEB9F4000013DA /* BGHUDTokenFieldCell.m */; };
 		E798BF770DF4DCAE00B9E231 /* BGHUDTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E798BF750DF4DCAE00B9E231 /* BGHUDTextFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E798BF780DF4DCAE00B9E231 /* BGHUDTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E798BF760DF4DCAE00B9E231 /* BGHUDTextFieldCell.m */; };
+		E7AC9E190E00A045001409AD /* NSTokenAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = E7AC9E170E00A045001409AD /* NSTokenAttachment.h */; };
+		E7AC9E1A0E00A045001409AD /* NSTokenAttachmentCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7AC9E180E00A045001409AD /* NSTokenAttachmentCell.h */; };
+		E7AC9E200E00A0C2001409AD /* BGHUDTokenAttachmentCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7AC9E1E0E00A0C2001409AD /* BGHUDTokenAttachmentCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E7AC9E210E00A0C2001409AD /* BGHUDTokenAttachmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7AC9E1F0E00A0C2001409AD /* BGHUDTokenAttachmentCell.m */; };
 		E7AF60510DF8F63500E4A60B /* BGHUDGradientTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7AF604F0DF8F63500E4A60B /* BGHUDGradientTextFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7AF60520DF8F63500E4A60B /* BGHUDGradientTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7AF60500DF8F63500E4A60B /* BGHUDGradientTextFieldCell.m */; };
 		E7CF49BB0DF842C90021AB3C /* BGHUDGradientPopUpButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7CF49B90DF842C90021AB3C /* BGHUDGradientPopUpButtonCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -68,6 +72,10 @@
 		E79533550DFEB9F4000013DA /* BGHUDTokenFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDTokenFieldCell.m; path = source/BGHUDTokenFieldCell.m; sourceTree = "<group>"; };
 		E798BF750DF4DCAE00B9E231 /* BGHUDTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDTextFieldCell.h; path = source/BGHUDTextFieldCell.h; sourceTree = "<group>"; };
 		E798BF760DF4DCAE00B9E231 /* BGHUDTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDTextFieldCell.m; path = source/BGHUDTextFieldCell.m; sourceTree = "<group>"; };
+		E7AC9E170E00A045001409AD /* NSTokenAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSTokenAttachment.h; path = source/NSTokenAttachment.h; sourceTree = "<group>"; };
+		E7AC9E180E00A045001409AD /* NSTokenAttachmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSTokenAttachmentCell.h; path = source/NSTokenAttachmentCell.h; sourceTree = "<group>"; };
+		E7AC9E1E0E00A0C2001409AD /* BGHUDTokenAttachmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDTokenAttachmentCell.h; path = source/BGHUDTokenAttachmentCell.h; sourceTree = "<group>"; };
+		E7AC9E1F0E00A0C2001409AD /* BGHUDTokenAttachmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDTokenAttachmentCell.m; path = source/BGHUDTokenAttachmentCell.m; sourceTree = "<group>"; };
 		E7AF604F0DF8F63500E4A60B /* BGHUDGradientTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDGradientTextFieldCell.h; path = source/BGHUDGradientTextFieldCell.h; sourceTree = "<group>"; };
 		E7AF60500DF8F63500E4A60B /* BGHUDGradientTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDGradientTextFieldCell.m; path = source/BGHUDGradientTextFieldCell.m; sourceTree = "<group>"; };
 		E7CF49B90DF842C90021AB3C /* BGHUDGradientPopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDGradientPopUpButtonCell.h; path = source/BGHUDGradientPopUpButtonCell.h; sourceTree = "<group>"; };
@@ -134,6 +142,8 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E7AC9E1D0E00A0A3001409AD /* BGHUDTokenAttachmentCell */,
+				E7877D080E00A01500002A63 /* Apple Classes */,
 				E79533530DFEB9D9000013DA /* BGHUDTokenFieldCell */,
 				E74D5A070DFCEB1D0071623F /* BGHUDGradientProgressIndicator */,
 				E76486580DFAFEFC00A0347A /* BGHUDProgressIndicator */,
@@ -222,6 +232,15 @@
 			name = BGHUDProgressIndicator;
 			sourceTree = "<group>";
 		};
+		E7877D080E00A01500002A63 /* Apple Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E7AC9E170E00A045001409AD /* NSTokenAttachment.h */,
+				E7AC9E180E00A045001409AD /* NSTokenAttachmentCell.h */,
+			);
+			name = "Apple Classes";
+			sourceTree = "<group>";
+		};
 		E78ADFCF0DEA234F005E2134 /* BGHUDScroller */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +275,15 @@
 				E798BF760DF4DCAE00B9E231 /* BGHUDTextFieldCell.m */,
 			);
 			name = BGHUDTextFieldCell;
+			sourceTree = "<group>";
+		};
+		E7AC9E1D0E00A0A3001409AD /* BGHUDTokenAttachmentCell */ = {
+			isa = PBXGroup;
+			children = (
+				E7AC9E1E0E00A0C2001409AD /* BGHUDTokenAttachmentCell.h */,
+				E7AC9E1F0E00A0C2001409AD /* BGHUDTokenAttachmentCell.m */,
+			);
+			name = BGHUDTokenAttachmentCell;
 			sourceTree = "<group>";
 		};
 		E7AF604E0DF8F60A00E4A60B /* BGHUDGradientTextFieldCell */ = {
@@ -316,6 +344,9 @@
 				E764865B0DFAFF1300A0347A /* BGHUDProgressIndicator.h in Headers */,
 				E74D5A0A0DFCEB350071623F /* BGHUDGradientProgressIndicator.h in Headers */,
 				E79533560DFEB9F4000013DA /* BGHUDTokenFieldCell.h in Headers */,
+				E7AC9E190E00A045001409AD /* NSTokenAttachment.h in Headers */,
+				E7AC9E1A0E00A045001409AD /* NSTokenAttachmentCell.h in Headers */,
+				E7AC9E200E00A0C2001409AD /* BGHUDTokenAttachmentCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +422,7 @@
 				E764865C0DFAFF1300A0347A /* BGHUDProgressIndicator.m in Sources */,
 				E74D5A0B0DFCEB350071623F /* BGHUDGradientProgressIndicator.m in Sources */,
 				E79533570DFEB9F4000013DA /* BGHUDTokenFieldCell.m in Sources */,
+				E7AC9E210E00A0C2001409AD /* BGHUDTokenAttachmentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

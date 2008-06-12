@@ -33,9 +33,16 @@
 //	POSSIBILITY OF SUCH DAMAGE.
 
 #import <Cocoa/Cocoa.h>
+#import "BGHUDTokenAttachmentCell.h"
+#import "NSTokenAttachmentCell.h"
 
 @interface BGHUDTokenFieldCell : NSTokenFieldCell {
 
+	BOOL fillsBackground;
 }
+
+-(NSColor *)strokeColor;
+-(NSColor *)fillColor;
+-(NSColor *)textColor;
 
 @end
