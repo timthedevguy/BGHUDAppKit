@@ -96,11 +96,11 @@
 	
 	[cell setRepresentedObject: fp12];
 	[cell setTextColor: [self tokenTextColor]];
+	[cell setAttachment: [fp8 attachment]];
 	[cell setTokenBorder: [self tokenBorder]];
 	[cell setTokenFillNormal: [self tokenFillNormal]];
 	[cell setTokenFillHighlight: [self tokenFillHighlight]];
-	
-	NSLog(@"Getting ready to return");
+	[cell setControlSize: [self controlSize]];
 	
 	return cell;
 }

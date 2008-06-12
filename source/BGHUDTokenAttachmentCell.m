@@ -59,9 +59,10 @@
 
 - (void)drawWithFrame:(struct _NSRect)fp8 inView:(id)fp24 {
 	
+	NSMutableAttributedString *newTitle = [[NSMutableAttributedString alloc] initWithAttributedString: [self attributedStringValue]];
+	NSRect textRect = fp8;
+	
 	if(![self isHighlighted]) {
-		
-		NSMutableAttributedString *newTitle = [[NSMutableAttributedString alloc] initWithAttributedString: [self attributedStringValue]];
 		
 		[newTitle beginEditing];
 		[newTitle addAttribute: NSForegroundColorAttributeName
@@ -72,7 +73,46 @@
 		[self setAttributedStringValue: newTitle];
 	}
 	
-	[super drawWithFrame: fp8 inView: fp24];
+	switch ([self controlSize]) {
+		
+		case NSSmallControlSize:
+			
+			fp8.size.height = 14;
+			
+			[newTitle beginEditing];
+			[newTitle addAttribute: NSFontAttributeName
+							 value: [NSFont controlContentFontOfSize: 10.0]
+							 range: NSMakeRange(0, [newTitle length])];
+			[newTitle endEditing];
+			
+			textRect.origin.y -= 2;
+			
+			break;
+			
+		case NSMiniControlSize:
+
+			fp8.size.height = 12;
+			
+			[newTitle beginEditing];
+			[newTitle addAttribute: NSFontAttributeName
+							 value: [NSFont controlContentFontOfSize: 8.0]
+							 range: NSMakeRange(0, [newTitle length])];
+			[newTitle endEditing];
+			
+			textRect.origin.y -= 3;
+			
+			break;
+	}
+	
+	[super drawTokenWithFrame: fp8 inView: fp24];
+	
+	if([self controlSize] == NSRegularControlSize) {
+		
+		[super drawInteriorWithFrame: fp8 inView: fp24];
+	} else {
+		
+		[newTitle drawInRect: textRect];
+	}
 }
 
 @end
