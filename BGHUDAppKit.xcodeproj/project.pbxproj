@@ -19,6 +19,8 @@
 		E74D5A0B0DFCEB350071623F /* BGHUDGradientProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = E74D5A090DFCEB350071623F /* BGHUDGradientProgressIndicator.m */; };
 		E764865B0DFAFF1300A0347A /* BGHUDProgressIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = E76486590DFAFF1300A0347A /* BGHUDProgressIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E764865C0DFAFF1300A0347A /* BGHUDProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = E764865A0DFAFF1300A0347A /* BGHUDProgressIndicator.m */; };
+		E771B6F10E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E771B6EF0E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E771B6F20E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E771B6F00E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.m */; };
 		E78ADFD20DEA2375005E2134 /* BGHUDScroller.h in Headers */ = {isa = PBXBuildFile; fileRef = E78ADFD00DEA2375005E2134 /* BGHUDScroller.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E78ADFD30DEA2375005E2134 /* BGHUDScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = E78ADFD10DEA2375005E2134 /* BGHUDScroller.m */; };
 		E78ADFDD0DEA2581005E2134 /* BGHUDAppKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E78ADFDC0DEA2581005E2134 /* BGHUDAppKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -63,6 +65,8 @@
 		E74D5A090DFCEB350071623F /* BGHUDGradientProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDGradientProgressIndicator.m; path = source/BGHUDGradientProgressIndicator.m; sourceTree = "<group>"; };
 		E76486590DFAFF1300A0347A /* BGHUDProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDProgressIndicator.h; path = source/BGHUDProgressIndicator.h; sourceTree = "<group>"; };
 		E764865A0DFAFF1300A0347A /* BGHUDProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDProgressIndicator.m; path = source/BGHUDProgressIndicator.m; sourceTree = "<group>"; };
+		E771B6EF0E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDGradientTokenFieldCell.h; path = source/BGHUDGradientTokenFieldCell.h; sourceTree = "<group>"; };
+		E771B6F00E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDGradientTokenFieldCell.m; path = source/BGHUDGradientTokenFieldCell.m; sourceTree = "<group>"; };
 		E78ADFD00DEA2375005E2134 /* BGHUDScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDScroller.h; path = source/BGHUDScroller.h; sourceTree = "<group>"; };
 		E78ADFD10DEA2375005E2134 /* BGHUDScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDScroller.m; path = source/BGHUDScroller.m; sourceTree = "<group>"; };
 		E78ADFDC0DEA2581005E2134 /* BGHUDAppKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDAppKit.h; path = source/BGHUDAppKit.h; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E771B6EE0E01AFC700070EF6 /* BGHUDGradientTokenFieldCell */,
 				E7AC9E1D0E00A0A3001409AD /* BGHUDTokenAttachmentCell */,
 				E7877D080E00A01500002A63 /* Apple Classes */,
 				E79533530DFEB9D9000013DA /* BGHUDTokenFieldCell */,
@@ -230,6 +235,15 @@
 				E764865A0DFAFF1300A0347A /* BGHUDProgressIndicator.m */,
 			);
 			name = BGHUDProgressIndicator;
+			sourceTree = "<group>";
+		};
+		E771B6EE0E01AFC700070EF6 /* BGHUDGradientTokenFieldCell */ = {
+			isa = PBXGroup;
+			children = (
+				E771B6EF0E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.h */,
+				E771B6F00E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.m */,
+			);
+			name = BGHUDGradientTokenFieldCell;
 			sourceTree = "<group>";
 		};
 		E7877D080E00A01500002A63 /* Apple Classes */ = {
@@ -347,6 +361,7 @@
 				E7AC9E190E00A045001409AD /* NSTokenAttachment.h in Headers */,
 				E7AC9E1A0E00A045001409AD /* NSTokenAttachmentCell.h in Headers */,
 				E7AC9E200E00A0C2001409AD /* BGHUDTokenAttachmentCell.h in Headers */,
+				E771B6F10E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +438,7 @@
 				E74D5A0B0DFCEB350071623F /* BGHUDGradientProgressIndicator.m in Sources */,
 				E79533570DFEB9F4000013DA /* BGHUDTokenFieldCell.m in Sources */,
 				E7AC9E210E00A0C2001409AD /* BGHUDTokenAttachmentCell.m in Sources */,
+				E771B6F20E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
