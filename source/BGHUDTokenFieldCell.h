@@ -44,5 +44,9 @@
 -(NSColor *)strokeColor;
 -(NSColor *)fillColor;
 -(NSColor *)textColor;
+-(NSColor *)tokenFillNormal;
+-(NSColor *)tokenFillHighlight;
+-(NSColor *)tokenBorder;
+-(NSColor *)tokenTextColor;
 
 @end

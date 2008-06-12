@@ -37,24 +37,7 @@
 
 @implementation BGHUDTokenFieldCell
 
-/*- (id)initTextCell:(NSString *)aString {
-	
-	self = [super initTextCell: aString];
-	
-	if(self) {
-		
-		[self setTextColor: [self textColor]];
-		
-		if([self drawsBackground]) {
-			
-			fillsBackground = YES;
-		}
-		
-		[self setDrawsBackground: NO];
-	}
-	
-	return self;
-}*/
+#pragma mark Drawing Functions
 
 - (id)initWithCoder:(NSCoder *) aDecoder {
 	
@@ -78,7 +61,7 @@
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
 	NSText *editor = [self _fieldEditor];
-	[editor setTextColor: [NSColor whiteColor]];
+	[editor setTextColor: [self textColor]];
 	
 	//Adjust Rect
 	cellFrame.origin.x += .5;
@@ -107,6 +90,24 @@
 	[super drawInteriorWithFrame: cellFrame inView: controlView];
 }
 
+- (id)setUpTokenAttachmentCell:(NSTokenAttachmentCell *)fp8 forRepresentedObject:(id)fp12 {
+	
+	BGHUDTokenAttachmentCell *cell = [[BGHUDTokenAttachmentCell alloc] initTextCell: [fp8 stringValue]];
+	
+	[cell setRepresentedObject: fp12];
+	[cell setTextColor: [self tokenTextColor]];
+	[cell setTokenBorder: [self tokenBorder]];
+	[cell setTokenFillNormal: [self tokenFillNormal]];
+	[cell setTokenFillHighlight: [self tokenFillHighlight]];
+	
+	NSLog(@"Getting ready to return");
+	
+	return cell;
+}
+
+#pragma mark -
+#pragma mark Helper Methods
+
 -(NSColor *)strokeColor {
 	
 	return [NSColor colorWithDeviceRed: 0.749 green: 0.761 blue: 0.788 alpha: 1.0];
@@ -122,16 +123,26 @@
 	return [NSColor whiteColor];
 }
 
-- (id)setUpTokenAttachmentCell:(NSTokenAttachmentCell *)fp8 forRepresentedObject:(id)fp12 {
-
-	BGHUDTokenAttachmentCell *cell = [[BGHUDTokenAttachmentCell alloc] initTextCell: [fp8 stringValue]];
+-(NSColor *)tokenFillNormal {
 	
-	[cell setRepresentedObject: fp12];
-	[cell setTextColor: [NSColor whiteColor]];
-	
-	NSLog(@"Getting ready to return");
-	
-	return cell;
+	return [NSColor colorWithDeviceRed: 0.249 green: 0.261 blue: 0.288 alpha: 1.0];
 }
+
+-(NSColor *)tokenFillHighlight {
+	
+	return [NSColor colorWithDeviceRed: 0.449 green: 0.461 blue: 0.488 alpha: 1.0];
+}
+
+-(NSColor *)tokenBorder {
+	
+	return [NSColor whiteColor];
+}
+
+-(NSColor *)tokenTextColor {
+	
+	return [NSColor whiteColor];
+}
+
+#pragma mark -
 
 @end
