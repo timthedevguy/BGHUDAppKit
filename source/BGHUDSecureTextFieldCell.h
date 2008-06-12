@@ -1,8 +1,8 @@
 //
-//  BGHUDAppKit.h
+//  BGHUDSecureTextFieldCell.h
 //  BGHUDAppKit
 //
-//  Created by BinaryGod on 5/25/08.
+//  Created by BinaryGod on 6/12/08.
 //
 //  Copyright (c) 2008, Tim Davis (BinaryMethod.com, binary.god@gmail.com)
 //  All rights reserved.
@@ -32,18 +32,16 @@
 //	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 //	POSSIBILITY OF SUCH DAMAGE.
 
-#import "BGHUDScroller.h"
-#import "BGHUDButtonCell.h"
-#import "BGHUDGradientButtonCell.h"
-#import "BGHUDSliderCell.h"
-#import "BGHUDScrollView.h"
-#import "BGHUDPopUpButtonCell.h"
-#import "BGHUDGradientPopUpButtonCell.h"
-#import "BGHUDTextFieldCell.h"
-#import "BGHUDGradientTextFieldCell.h"
-#import "BGHUDProgressIndicator.h"
-#import "BGHUDGradientProgressIndicator.h"
-#import "BGHUDTokenFieldCell.h"
-#import "BGHUDGradientTokenFieldCell.h"
-#import "BGHUDSecureTextFieldCell.h"
-#import "BGHUDGradientSecureTextFieldCell.h"
+#import <Cocoa/Cocoa.h>
+
+
+@interface BGHUDSecureTextFieldCell : NSSecureTextFieldCell {
+	
+	BOOL fillsBackground;
+}
+
+-(NSColor *)strokeColor;
+-(NSColor *)fillColor;
+-(NSColor *)textColor;
+
+@end

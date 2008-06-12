@@ -37,6 +37,8 @@
 
 @implementation BGHUDTextFieldCell
 
+#pragma mark Drawing Functions
+
 - (id)initTextCell:(NSString *)aString {
 
 	self = [super initTextCell: aString];
@@ -104,6 +106,9 @@
 	[super drawInteriorWithFrame: cellFrame inView: controlView];
 }
 
+#pragma mark -
+#pragma mark Helper Methods
+
 -(NSColor *)strokeColor {
 
 	return [NSColor colorWithDeviceRed: 0.749 green: 0.761 blue: 0.788 alpha: 1.0];
@@ -118,5 +123,7 @@
 	
 	return [NSColor whiteColor];
 }
+
+#pragma mark -
 
 @end

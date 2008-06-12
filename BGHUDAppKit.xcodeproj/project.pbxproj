@@ -21,6 +21,10 @@
 		E764865C0DFAFF1300A0347A /* BGHUDProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = E764865A0DFAFF1300A0347A /* BGHUDProgressIndicator.m */; };
 		E771B6F10E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E771B6EF0E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E771B6F20E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E771B6F00E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.m */; };
+		E771B6FB0E01B10300070EF6 /* BGHUDSecureTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E771B6F90E01B10300070EF6 /* BGHUDSecureTextFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E771B6FC0E01B10300070EF6 /* BGHUDSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E771B6FA0E01B10300070EF6 /* BGHUDSecureTextFieldCell.m */; };
+		E771B7350E01BC8400070EF6 /* BGHUDGradientSecureTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E771B7330E01BC8400070EF6 /* BGHUDGradientSecureTextFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E771B7360E01BC8400070EF6 /* BGHUDGradientSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E771B7340E01BC8400070EF6 /* BGHUDGradientSecureTextFieldCell.m */; };
 		E78ADFD20DEA2375005E2134 /* BGHUDScroller.h in Headers */ = {isa = PBXBuildFile; fileRef = E78ADFD00DEA2375005E2134 /* BGHUDScroller.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E78ADFD30DEA2375005E2134 /* BGHUDScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = E78ADFD10DEA2375005E2134 /* BGHUDScroller.m */; };
 		E78ADFDD0DEA2581005E2134 /* BGHUDAppKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E78ADFDC0DEA2581005E2134 /* BGHUDAppKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -30,8 +34,8 @@
 		E79533570DFEB9F4000013DA /* BGHUDTokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E79533550DFEB9F4000013DA /* BGHUDTokenFieldCell.m */; };
 		E798BF770DF4DCAE00B9E231 /* BGHUDTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E798BF750DF4DCAE00B9E231 /* BGHUDTextFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E798BF780DF4DCAE00B9E231 /* BGHUDTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E798BF760DF4DCAE00B9E231 /* BGHUDTextFieldCell.m */; };
-		E7AC9E190E00A045001409AD /* NSTokenAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = E7AC9E170E00A045001409AD /* NSTokenAttachment.h */; };
-		E7AC9E1A0E00A045001409AD /* NSTokenAttachmentCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7AC9E180E00A045001409AD /* NSTokenAttachmentCell.h */; };
+		E7AC9E190E00A045001409AD /* NSTokenAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = E7AC9E170E00A045001409AD /* NSTokenAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E7AC9E1A0E00A045001409AD /* NSTokenAttachmentCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7AC9E180E00A045001409AD /* NSTokenAttachmentCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7AC9E200E00A0C2001409AD /* BGHUDTokenAttachmentCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7AC9E1E0E00A0C2001409AD /* BGHUDTokenAttachmentCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7AC9E210E00A0C2001409AD /* BGHUDTokenAttachmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7AC9E1F0E00A0C2001409AD /* BGHUDTokenAttachmentCell.m */; };
 		E7AF60510DF8F63500E4A60B /* BGHUDGradientTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7AF604F0DF8F63500E4A60B /* BGHUDGradientTextFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -67,6 +71,10 @@
 		E764865A0DFAFF1300A0347A /* BGHUDProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDProgressIndicator.m; path = source/BGHUDProgressIndicator.m; sourceTree = "<group>"; };
 		E771B6EF0E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDGradientTokenFieldCell.h; path = source/BGHUDGradientTokenFieldCell.h; sourceTree = "<group>"; };
 		E771B6F00E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDGradientTokenFieldCell.m; path = source/BGHUDGradientTokenFieldCell.m; sourceTree = "<group>"; };
+		E771B6F90E01B10300070EF6 /* BGHUDSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDSecureTextFieldCell.h; path = source/BGHUDSecureTextFieldCell.h; sourceTree = "<group>"; };
+		E771B6FA0E01B10300070EF6 /* BGHUDSecureTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDSecureTextFieldCell.m; path = source/BGHUDSecureTextFieldCell.m; sourceTree = "<group>"; };
+		E771B7330E01BC8400070EF6 /* BGHUDGradientSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDGradientSecureTextFieldCell.h; path = source/BGHUDGradientSecureTextFieldCell.h; sourceTree = "<group>"; };
+		E771B7340E01BC8400070EF6 /* BGHUDGradientSecureTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDGradientSecureTextFieldCell.m; path = source/BGHUDGradientSecureTextFieldCell.m; sourceTree = "<group>"; };
 		E78ADFD00DEA2375005E2134 /* BGHUDScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDScroller.h; path = source/BGHUDScroller.h; sourceTree = "<group>"; };
 		E78ADFD10DEA2375005E2134 /* BGHUDScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDScroller.m; path = source/BGHUDScroller.m; sourceTree = "<group>"; };
 		E78ADFDC0DEA2581005E2134 /* BGHUDAppKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDAppKit.h; path = source/BGHUDAppKit.h; sourceTree = "<group>"; };
@@ -146,6 +154,8 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E771B72C0E01BBFD00070EF6 /* BGHUDGradientSecureTextFieldCell */,
+				E771B6F80E01B0EE00070EF6 /* BGHUDSecureTextFieldCell */,
 				E771B6EE0E01AFC700070EF6 /* BGHUDGradientTokenFieldCell */,
 				E7AC9E1D0E00A0A3001409AD /* BGHUDTokenAttachmentCell */,
 				E7877D080E00A01500002A63 /* Apple Classes */,
@@ -244,6 +254,24 @@
 				E771B6F00E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.m */,
 			);
 			name = BGHUDGradientTokenFieldCell;
+			sourceTree = "<group>";
+		};
+		E771B6F80E01B0EE00070EF6 /* BGHUDSecureTextFieldCell */ = {
+			isa = PBXGroup;
+			children = (
+				E771B6F90E01B10300070EF6 /* BGHUDSecureTextFieldCell.h */,
+				E771B6FA0E01B10300070EF6 /* BGHUDSecureTextFieldCell.m */,
+			);
+			name = BGHUDSecureTextFieldCell;
+			sourceTree = "<group>";
+		};
+		E771B72C0E01BBFD00070EF6 /* BGHUDGradientSecureTextFieldCell */ = {
+			isa = PBXGroup;
+			children = (
+				E771B7330E01BC8400070EF6 /* BGHUDGradientSecureTextFieldCell.h */,
+				E771B7340E01BC8400070EF6 /* BGHUDGradientSecureTextFieldCell.m */,
+			);
+			name = BGHUDGradientSecureTextFieldCell;
 			sourceTree = "<group>";
 		};
 		E7877D080E00A01500002A63 /* Apple Classes */ = {
@@ -362,6 +390,8 @@
 				E7AC9E1A0E00A045001409AD /* NSTokenAttachmentCell.h in Headers */,
 				E7AC9E200E00A0C2001409AD /* BGHUDTokenAttachmentCell.h in Headers */,
 				E771B6F10E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.h in Headers */,
+				E771B6FB0E01B10300070EF6 /* BGHUDSecureTextFieldCell.h in Headers */,
+				E771B7350E01BC8400070EF6 /* BGHUDGradientSecureTextFieldCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +469,8 @@
 				E79533570DFEB9F4000013DA /* BGHUDTokenFieldCell.m in Sources */,
 				E7AC9E210E00A0C2001409AD /* BGHUDTokenAttachmentCell.m in Sources */,
 				E771B6F20E01AFDC00070EF6 /* BGHUDGradientTokenFieldCell.m in Sources */,
+				E771B6FC0E01B10300070EF6 /* BGHUDSecureTextFieldCell.m in Sources */,
+				E771B7360E01BC8400070EF6 /* BGHUDGradientSecureTextFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
