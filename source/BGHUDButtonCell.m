@@ -110,6 +110,11 @@
 			
 			[self drawSmallSquareButtonInFrame: cellFrame];
 			break;
+			
+		case NSRoundedBezelStyle:
+			
+			[self drawRoundedButtonInFrame: cellFrame];
+			break;
 	}
 	
 	if([[_normalImage name] isEqualToString: @"NSSwitch"] ||
@@ -339,8 +344,6 @@
 }
 
 -(void)drawRoundRectButtonInFrame:(NSRect)frame {
-
-	//NSLog(@"ROUNDED");
 	
 	// Adjust Rect so stroke draws true
 	frame.origin.x += .5;
@@ -485,6 +488,88 @@
 	[[self strokeColor] set];
 	[path setLineWidth: 1.0];
 	[path stroke];
+	
+	path = nil;
+	
+	if([self imagePosition] != NSImageOnly) {
+		
+		[self drawTitle: [self attributedTitle] withFrame: frame inView: [self controlView]];
+	}
+	
+	if([self imagePosition] != NSNoImage) {
+		
+		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
+	}
+}
+
+-(void)drawRoundedButtonInFrame:(NSRect)frame {
+	
+	// Adjust Rect so stroke draws true
+	frame.origin.x += .5;
+	frame.origin.y += .5;
+	frame.size.height -= 1;
+	frame.size.width -= 1;
+	
+	//Adjust Rect based on ControlSize
+	switch ([self controlSize]) {
+			
+		case NSRegularControlSize:
+			
+			frame.origin.x += 4;
+			frame.origin.y += 4;
+			frame.size.width -= 8;
+			frame.size.height -= 7;
+			break;
+			
+		case NSSmallControlSize:
+			
+			frame.origin.x += 4;
+			frame.origin.y += 4;
+			frame.size.width -= 8;
+			frame.size.height -= 7;
+			break;
+			
+		case NSMiniControlSize:
+			
+			//frame.origin.x += 4;
+			frame.origin.y -= 1;
+			//frame.size.width -= 8;
+			frame.size.height += 3;
+			break;
+	}
+	
+	//Create Path
+	NSBezierPath *path = [[NSBezierPath alloc] init];
+	
+	[path appendBezierPathWithArcWithCenter: NSMakePoint(frame.origin.x + (frame.size.height /2), (frame.size.height /2) +.5+frame.origin.y)
+									 radius: (frame.size.height /2)
+								 startAngle: 90
+								   endAngle: 270];
+	
+	[path appendBezierPathWithArcWithCenter: NSMakePoint((frame.size.width + frame.origin.x) - (frame.size.height /2), (frame.size.height /2) +.5+frame.origin.y)
+									 radius: (frame.size.height /2)
+								 startAngle: 270
+								   endAngle: 90];
+	
+	[path closePath];
+	
+	if(([self showsStateBy] == 12 && [self highlightsBy] == 14) ||
+	   ([self showsStateBy] == 12 && [self highlightsBy] == 12)) {
+		
+		if([self state] == 1) {
+			
+			[[self solidHighlightColor] set];
+			[path fill];
+		} else {
+			
+			[[self solidNormalColor] set];
+			[path fill];
+		}
+	} else {
+		
+		[[self solidNormalColor] set];
+		[path fill];
+	}
 	
 	path = nil;
 	
@@ -758,6 +843,16 @@
 			(CGFloat)0, [NSColor colorWithDeviceRed: 0.445 green: 0.453 blue: 0.469 alpha: [self alphaValue]], (CGFloat).5,
 			[NSColor colorWithDeviceRed: 0.406 green: 0.414 blue: 0.433 alpha: [self alphaValue]], (CGFloat).5,
 			[NSColor colorWithDeviceRed: 0.339 green: 0.347 blue: 0.367 alpha: [self alphaValue]], (CGFloat)1.0, nil];
+}
+
+-(NSColor *)solidNormalColor {
+	
+	return [NSColor colorWithDeviceRed: 0.141 green: 0.141 blue: 0.141 alpha: [self alphaValue]];
+}
+
+-(NSColor *)solidHighlightColor {
+	
+	return [NSColor colorWithDeviceRed: 0.941 green: 0.941 blue: 0.941 alpha: [self alphaValue]];
 }
 
 -(NSColor *)strokeColor {

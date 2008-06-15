@@ -43,11 +43,14 @@
 -(void)drawTexturedRoundedButtonInFrame:(NSRect)frame;
 -(void)drawRoundRectButtonInFrame:(NSRect)frame;
 -(void)drawSmallSquareButtonInFrame:(NSRect)frame;
+-(void)drawRoundedButtonInFrame:(NSRect)frame;
 
 -(NSGradient *)normalGradient;
 -(NSGradient *)highlightGradient;
 -(NSGradient *)normalComplexGradient;
 -(NSGradient *)highlightComplexGradient;
+-(NSColor *)solidNormalColor;
+-(NSColor *)solidHighlightColor;
 -(NSColor *)strokeColor;
 -(NSColor *)darkStrokeColor;
 -(NSColor *)titleColor;
