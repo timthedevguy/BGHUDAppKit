@@ -44,8 +44,6 @@
 	self = [super initWithCoder: aDecoder];
 	
 	if(self) {
-		
-		[self setTextColor: [self textColor]];
 
 		if([self drawsBackground]) {
 			
@@ -60,87 +58,75 @@
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
-	NSText *editor = [self _fieldEditor];
-	[editor setTextColor: [self textColor]];
-	
-	//Adjust Rect
-	cellFrame.origin.x += .5;
-	cellFrame.origin.y += .5;
-	cellFrame.size.width -= 1;
-	cellFrame.size.height -= 1;
-	
-	//Draw Background
-	if(fillsBackground) {
+	if(themeManager) {
 		
-		[[self fillColor] set];
-		NSRectFill(cellFrame);
-	}
-	
-	NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect: cellFrame
-														 xRadius: 3
-														 yRadius: 3];
-	
-	if([self isBezeled] || [self isBordered]) {
+		NSText *editor = [self _fieldEditor];
+		[editor setTextColor: [themeManager textColor]];
 		
-		[[self strokeColor] set];
-		[path setLineWidth: 1.0];
-		[path stroke];
+		//Adjust Rect
+		cellFrame.origin.x += .5;
+		cellFrame.origin.y += .5;
+		cellFrame.size.width -= 1;
+		cellFrame.size.height -= 1;
+		
+		//Draw Background
+		if(fillsBackground) {
+			
+			[[themeManager textFillColor] set];
+			NSRectFill(cellFrame);
+		}
+		
+		NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect: cellFrame
+															 xRadius: 3
+															 yRadius: 3];
+		
+		if([self isBezeled] || [self isBordered]) {
+			
+			[[themeManager strokeColor] set];
+			[path setLineWidth: 1.0];
+			[path stroke];
+		}
+		
+		[super drawInteriorWithFrame: cellFrame inView: controlView];
+	} else {
+		
+		[super drawWithFrame: cellFrame inView: controlView];
 	}
-	
-	[super drawInteriorWithFrame: cellFrame inView: controlView];
 }
 
 - (id)setUpTokenAttachmentCell:(NSTokenAttachmentCell *)fp8 forRepresentedObject:(id)fp12 {
 	
-	BGHUDTokenAttachmentCell *cell = [[BGHUDTokenAttachmentCell alloc] initTextCell: [fp8 stringValue]];
-	
-	[cell setRepresentedObject: fp12];
-	[cell setTextColor: [self tokenTextColor]];
-	[cell setAttachment: [fp8 attachment]];
-	[cell setTokenBorder: [self tokenBorder]];
-	[cell setTokenFillNormal: [self tokenFillNormal]];
-	[cell setTokenFillHighlight: [self tokenFillHighlight]];
-	[cell setControlSize: [self controlSize]];
-	
-	return cell;
+	if(themeManager) {
+		
+		BGHUDTokenAttachmentCell *cell = [[BGHUDTokenAttachmentCell alloc] initTextCell: [fp8 stringValue]];
+		
+		[cell setRepresentedObject: fp12];
+		[cell setTextColor: [themeManager tokenTextColor]];
+		[cell setAttachment: [fp8 attachment]];
+		[cell setTokenBorder: [themeManager tokenBorder]];
+		[cell setTokenFillNormal: [themeManager tokenFillNormal]];
+		[cell setTokenFillHighlight: [themeManager tokenFillHighlight]];
+		[cell setControlSize: [self controlSize]];
+		
+		return [cell autorelease];
+	} else {
+		
+		return fp8;
+	}
 }
 
 #pragma mark -
 #pragma mark Helper Methods
 
--(NSColor *)strokeColor {
+-(void)setThemeManager:(BGThemeManager *)manager {
 	
-	return [NSColor colorWithDeviceRed: 0.749 green: 0.761 blue: 0.788 alpha: 1.0];
+	themeManager = [manager retain];
 }
 
--(NSColor *)fillColor {
+-(void)dealloc {
 	
-	return [NSColor colorWithDeviceRed: .224 green: .224 blue: .224 alpha: .95];
-}
-
--(NSColor *)textColor {
-	
-	return [NSColor whiteColor];
-}
-
--(NSColor *)tokenFillNormal {
-	
-	return [NSColor colorWithDeviceRed: 0.249 green: 0.261 blue: 0.288 alpha: 1.0];
-}
-
--(NSColor *)tokenFillHighlight {
-	
-	return [NSColor colorWithDeviceRed: 0.449 green: 0.461 blue: 0.488 alpha: 1.0];
-}
-
--(NSColor *)tokenBorder {
-	
-	return [NSColor whiteColor];
-}
-
--(NSColor *)tokenTextColor {
-	
-	return [NSColor whiteColor];
+	[themeManager release];
+	[super dealloc];
 }
 
 #pragma mark -

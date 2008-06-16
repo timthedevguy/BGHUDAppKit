@@ -1,8 +1,8 @@
 //
-//  BGHUDGradientSecureTextFieldCell.h
+//  BGThemeManager.h
 //  BGHUDAppKit
 //
-//  Created by BinaryGod on 6/12/08.
+//  Created by BinaryGod on 6/15/08.
 //
 //  Copyright (c) 2008, Tim Davis (BinaryMethod.com, binary.god@gmail.com)
 //  All rights reserved.
@@ -33,10 +33,49 @@
 //	POSSIBILITY OF SUCH DAMAGE.
 
 #import <Cocoa/Cocoa.h>
-#import "BGHUDSecureTextFieldCell.h"
 
-@interface BGHUDGradientSecureTextFieldCell : BGHUDSecureTextFieldCell {
+
+@interface BGThemeManager : NSObject {
 
 }
+
+//Scroller Theme
+-(NSColor *)scrollerStroke;
+-(NSGradient *)scrollerKnobGradient;
+-(NSGradient *)scrollerTrackGradient;
+-(NSGradient *)scrollerArrowNormalGradient;
+-(NSGradient *)scrollerArrowPushedGradient;
+-(float)scrollerAlphaValue;
+
+//Slider Theme
+-(NSColor *)sliderTrackColor;
+
+//Text Based Theme
+-(NSColor *)textFillColor;
+
+//Progress Theme
+-(NSGradient *)progressTrackGradient;
+
+//Token Theme
+-(NSColor *)tokenFillNormal;
+-(NSColor *)tokenFillHighlight;
+-(NSColor *)tokenBorder;
+-(NSColor *)tokenTextColor;
+
+//General Theme
+-(NSGradient *)normalGradient;
+-(NSGradient *)pushedGradient;
+-(NSGradient *)highlightGradient;
+-(NSGradient *)normalComplexGradient;
+-(NSGradient *)pushedComplexGradient;
+-(NSGradient *)highlightComplexGradient;
+-(NSColor *)normalSolidFill;
+-(NSColor *)pushedSolidFill;
+-(NSColor *)highlightSolidFill;
+-(NSColor *)strokeColor;
+-(NSColor *)darkStrokeColor;
+-(NSColor *)textColor;
+-(NSShadow *)dropShadow;
+-(float)alphaValue;
 
 @end

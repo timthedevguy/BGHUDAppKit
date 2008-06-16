@@ -44,167 +44,143 @@ struct NSProgressIndicator_t {
 
 - (void)_drawThemeBackground {
 	
-	NSRect frame = [self bounds];
-	
-	//Adjust rect based on size
-	switch ([self controlSize]) {
-			
-		case NSRegularControlSize:
-			
-			frame.origin.x += 2.5;
-			frame.origin.y += .5;
-			frame.size.width -= 5;
-			frame.size.height -= 5;
-			break;
-		case NSSmallControlSize:
-			
-			
-			break;
-		case NSMiniControlSize:
-			
-			
-			break;
-	}
-	
-	
-	NSBezierPath *path = [NSBezierPath bezierPathWithRect: frame];
-	
-	//Draw border
-	[NSGraphicsContext saveGraphicsState];
-	[[self dropShadow] set];
-	[[self strokeColor] set];
-	[path stroke];
-	[NSGraphicsContext restoreGraphicsState];
-	
-	//Draw Fill
-	[[self fillGradient] drawInRect: NSInsetRect(frame, 0, 0) angle: 90];
-	
-	if(![self isIndeterminate]) {
-
-		frame.size.width = ((frame.size.width / ([self maxValue] - [self minValue])) * ([self doubleValue] - [self minValue]));
-		[[self highlightGradient] drawInRect: frame angle: 90];
+	if(themeManager) {
 		
+		NSRect frame = [self bounds];
+		
+		//Adjust rect based on size
+		switch ([self controlSize]) {
+				
+			case NSRegularControlSize:
+				
+				frame.origin.x += 2.5;
+				frame.origin.y += .5;
+				frame.size.width -= 5;
+				frame.size.height -= 5;
+				break;
+			case NSSmallControlSize:
+				
+				
+				break;
+			case NSMiniControlSize:
+				
+				
+				break;
+		}
+		
+		
+		NSBezierPath *path = [NSBezierPath bezierPathWithRect: frame];
+		
+		//Draw border
+		[NSGraphicsContext saveGraphicsState];
+		[[themeManager dropShadow] set];
+		[[themeManager strokeColor] set];
+		[path stroke];
+		[NSGraphicsContext restoreGraphicsState];
+		
+		//Draw Fill
+		[[themeManager progressTrackGradient] drawInRect: NSInsetRect(frame, 0, 0) angle: 90];
+		
+		if(![self isIndeterminate]) {
+			
+			frame.size.width = ((frame.size.width / ([self maxValue] - [self minValue])) * ([self doubleValue] - [self minValue]));
+			[[themeManager highlightGradient] drawInRect: frame angle: 90];
+			
+		} else {
+			
+			//Setup Our Complex Path
+			//Adjust Frame width
+			frame.origin.x -= 40;
+			frame.size.width += 80;
+			
+			NSPoint position = NSMakePoint(frame.origin.x, frame.origin.y);
+			
+			if(progressPath) {[progressPath release];}
+			progressPath = [[NSBezierPath alloc] init];
+			
+			while(position.x <= (frame.origin.x + frame.size.width)) {
+				
+				[progressPath moveToPoint: NSMakePoint(position.x, position.y)];
+				[progressPath lineToPoint: NSMakePoint(position.x + frame.size.height, position.y)];
+				[progressPath lineToPoint: NSMakePoint(position.x + ((frame.size.height *2)), position.y + frame.size.height)];
+				[progressPath lineToPoint: NSMakePoint(position.x + (frame.size.height), position.y + frame.size.height)];
+				[progressPath closePath];
+				
+				position.x += ((frame.size.height *2));
+			}
+		}
 	} else {
 		
-		//Setup Our Complex Path
-		//Adjust Frame width
-		frame.origin.x -= 40;
-		frame.size.width += 80;
-		
-		NSPoint position = NSMakePoint(frame.origin.x, frame.origin.y);
-		progressPath = [[NSBezierPath alloc] init];
-		
-		while(position.x <= (frame.origin.x + frame.size.width)) {
-			
-			[progressPath moveToPoint: NSMakePoint(position.x, position.y)];
-			[progressPath lineToPoint: NSMakePoint(position.x + frame.size.height, position.y)];
-			[progressPath lineToPoint: NSMakePoint(position.x + ((frame.size.height *2)), position.y + frame.size.height)];
-			[progressPath lineToPoint: NSMakePoint(position.x + (frame.size.height), position.y + frame.size.height)];
-			[progressPath closePath];
-			
-			position.x += ((frame.size.height *2));
-		}
+		[super _drawThemeBackground];
 	}
-	
-	path = nil;
 }
 
 - (void)_drawThemeProgressArea:(BOOL)flag {
 	
-	NSRect frame = [self bounds];
-	
-	//Adjust rect based on size
-	switch ([self controlSize]) {
+	if(themeManager) {
+		
+		NSRect frame = [self bounds];
+		
+		//Adjust rect based on size
+		switch ([self controlSize]) {
+				
+			case NSRegularControlSize:
+				
+				frame.origin.x += 2.5;
+				frame.origin.y += .5;
+				frame.size.width -= 5;
+				frame.size.height -= 5;
+				break;
+			case NSSmallControlSize:
+				
+				
+				break;
+			case NSMiniControlSize:
+				
+				
+				break;
+		}
+		
+		if([self isIndeterminate]) {
 			
-		case NSRegularControlSize:
+			//Setup Cliping Rect
+			[NSBezierPath clipRect: NSInsetRect(frame, 1, 1)];
 			
-			frame.origin.x += 2.5;
-			frame.origin.y += .5;
-			frame.size.width -= 5;
-			frame.size.height -= 5;
-			break;
-		case NSSmallControlSize:
+			//Fill Background
+			[[themeManager normalGradient] drawInRect: frame angle: 90];
+			
+			//Create XFormation
+			NSAffineTransform *trans = [NSAffineTransform transform];
+			[trans translateXBy: (-37 + ((struct NSProgressIndicator_t*)self)->_animationIndex) yBy: 0];
+			
+			//Apply XForm to path
+			NSBezierPath *newPath = [trans transformBezierPath: progressPath];
+			
+			[[themeManager highlightGradient] drawInBezierPath: newPath angle: 90];
+			
+		} else {
 			
 			
-			break;
-		case NSMiniControlSize:
-			
-			
-			break;
-	}
-	
-	if([self isIndeterminate]) {
-		
-		//Setup Cliping Rect
-		[NSBezierPath clipRect: NSInsetRect(frame, 1, 1)];
-		
-		//Fill Background
-		[[self normalGradient] drawInRect: frame angle: 90];
-		
-		//Create XFormation
-		NSAffineTransform *trans = [NSAffineTransform transform];
-		[trans translateXBy: (-37 + ((struct NSProgressIndicator_t*)self)->_animationIndex) yBy: 0];
-		
-		//Apply XForm to path
-		NSBezierPath *newPath = [trans transformBezierPath: progressPath];
-		
-		//[[self highlightGradient] set];
-		//[newPath fill];
-		[[self highlightGradient] drawInBezierPath: newPath angle: 90];
-		
-		trans = nil;
-		newPath = nil;
-		
+		}
 	} else {
 		
-		
+		[super _drawThemeProgressArea: flag];
 	}
 }
 
 #pragma mark -
 #pragma mark Helper Methods
 
--(NSGradient *)normalGradient {
+-(void)setThemeManager:(BGThemeManager *)manager {
 	
-	return [[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.251 green: 0.251 blue: 0.255 alpha: [self alphaValue]]
-										 endingColor: [NSColor colorWithDeviceRed: 0.118 green: 0.118 blue: 0.118 alpha: [self alphaValue]]];
+	themeManager = [manager retain];
 }
 
--(NSGradient *)highlightGradient {
+-(void)dealloc {
 	
-	return [[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.451 green: 0.451 blue: 0.455 alpha: [self alphaValue]]
-										 endingColor: [NSColor colorWithDeviceRed: 0.318 green: 0.318 blue: 0.318 alpha: [self alphaValue]]];
-}
-
--(NSGradient *)fillGradient {
-	
-	return [[NSGradient alloc] initWithStartingColor: [NSColor colorWithCalibratedRed: 0.125 green: 0.125 blue: 0.125 alpha: 1.0]
-										 endingColor: [NSColor colorWithCalibratedRed: 0.208 green: 0.208 blue: 0.208 alpha: 1.0]];
-}
-
--(NSColor *)strokeColor {
-	
-	return [NSColor colorWithDeviceRed: 0.749 green: 0.761 blue: 0.788 alpha: 1.0];
-}
-
--(NSColor *)darkStrokeColor {
-	
-	return [NSColor colorWithDeviceRed: 0.141 green: 0.141 blue: 0.141 alpha: 0.5];
-}
-
--(float)alphaValue {
-	
-	return 1.0;
-}
-
--(NSShadow *)dropShadow {
-	
-	NSShadow *shadow = [[NSShadow alloc] init];
-	[shadow setShadowColor: [NSColor blackColor]];
-	[shadow setShadowBlurRadius: 2];
-	[shadow setShadowOffset: NSMakeSize( 0, -1)];
-	
-	return shadow;
+	[themeManager release];
+	[progressPath release];
+	[super dealloc];
 }
 
 #pragma mark -

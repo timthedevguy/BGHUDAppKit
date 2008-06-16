@@ -41,37 +41,47 @@
 
 - (void)drawBarInside:(NSRect)aRect flipped:(BOOL)flipped {
 	
-	if([self sliderType] == NSLinearSlider) {
+	if(themeManager) {
 		
-		if(![self isVertical]) {
+		if([self sliderType] == NSLinearSlider) {
 			
-			[self drawHorizontalBarInFrame: aRect];
+			if(![self isVertical]) {
+				
+				[self drawHorizontalBarInFrame: aRect];
+			} else {
+				
+				[self drawVerticalBarInFrame: aRect];
+			}
 		} else {
 			
-			[self drawVerticalBarInFrame: aRect];
+			//Placeholder for when I figure out how to draw NSCircularSlider
 		}
 	} else {
 		
-		//Placeholder for when I figure out how to draw NSCircularSlider
+		[super drawBarInside: aRect flipped: flipped];
 	}
 }
 
 - (void)drawKnob:(NSRect)aRect {
 	
-	//if(aRect.origin.y < 0) aRect.origin.y = 0;
-	
-	if([self sliderType] == NSLinearSlider) {
+	if(themeManager) {
 		
-		if(![self isVertical]) {
+		if([self sliderType] == NSLinearSlider) {
 			
-			[self drawHorizontalKnobInFrame: aRect];
+			if(![self isVertical]) {
+				
+				[self drawHorizontalKnobInFrame: aRect];
+			} else {
+				
+				[self drawVerticalKnobInFrame: aRect];
+			}
 		} else {
 			
-			[self drawVerticalKnobInFrame: aRect];
+			//Place holder for when I figure out how to draw NSCircularSlider
 		}
 	} else {
 		
-		//Place holder for when I figure out how to draw NSCircularSlider
+		[super drawKnob: aRect];
 	}
 }
 
@@ -147,13 +157,11 @@
 	//Draw Bar
 	NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect: frame xRadius: 2 yRadius: 2];
 	
-	[[self barFillColor] set];
+	[[themeManager sliderTrackColor] set];
 	[path fill];
 	
-	[[self strokeColor] set];
+	[[themeManager strokeColor] set];
 	[path stroke];
-	
-	path = nil;
 }
 
 -(void)drawVerticalBarInFrame:(NSRect)frame {
@@ -229,13 +237,11 @@
 	//Draw Bar
 	NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect: frame xRadius: 2 yRadius: 2];
 	
-	[[self barFillColor] set];
+	[[themeManager sliderTrackColor] set];
 	[path fill];
 	
-	[[self strokeColor] set];
+	[[themeManager strokeColor] set];
 	[path stroke];
-	
-	path = nil;
 }
 
 -(void)drawHorizontalKnobInFrame:(NSRect)frame {
@@ -367,20 +373,20 @@
 	//[path stroke] leaves ghost lines when the knob is moved.
 	
 	//Draw Base Layer
-	[[self strokeColor] set];
+	[[themeManager strokeColor] set];
 	[pathOuter fill];
 	
 	//Draw Inner Layer
 	if([self isHighlighted]) {
 		
-		[[self highlightGradient] drawInBezierPath: pathInner angle: gradientAngle];
+		[[themeManager highlightGradient] drawInBezierPath: pathInner angle: gradientAngle];
 	} else {
 		
-		[[self normalGradient] drawInBezierPath: pathInner angle: gradientAngle];
+		[[themeManager normalGradient] drawInBezierPath: pathInner angle: gradientAngle];
 	}
 	
-	pathOuter = nil;
-	pathInner = nil;
+	[pathOuter release];
+	[pathInner release];
 }
 
 -(void)drawVerticalKnobInFrame:(NSRect)frame {
@@ -511,63 +517,47 @@
 	//[path stroke] leaves ghost lines when the knob is moved.
 	
 	//Draw Base Layer
-	[[self strokeColor] set];
+	[[themeManager strokeColor] set];
 	[pathOuter fill];
 	
 	//Draw Inner Layer
 	if([self isHighlighted]) {
 		
-		[[self highlightGradient] drawInBezierPath: pathInner angle: gradientAngle];
+		[[themeManager highlightGradient] drawInBezierPath: pathInner angle: gradientAngle];
 	} else {
 		
-		[[self normalGradient] drawInBezierPath: pathInner angle: gradientAngle];
+		[[themeManager normalGradient] drawInBezierPath: pathInner angle: gradientAngle];
 	}
 	
-	pathOuter = nil;
-	pathInner = nil;
+	[pathOuter release];
+	[pathInner release];
 }
 
 #pragma mark -
 #pragma mark Helper Methods
 
--(NSGradient *)normalGradient {
+-(void)setThemeManager:(BGThemeManager *)manager {
 	
-	return [[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.251 green: 0.251 blue: 0.255 alpha: [self alphaValue]]
-										 endingColor: [NSColor colorWithDeviceRed: 0.118 green: 0.118 blue: 0.118 alpha: [self alphaValue]]];
+	themeManager = [manager retain];
 }
 
--(NSGradient *)highlightGradient {
-	
-	return [[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.351 green: 0.351 blue: 0.355 alpha: [self alphaValue]]
-										 endingColor: [NSColor colorWithDeviceRed: 0.218 green: 0.218 blue: 0.218 alpha: [self alphaValue]]];
-}
+-(void)dealloc {
 
--(NSColor *)barFillColor {
-	
-	return [NSColor colorWithDeviceRed: 0.318 green: 0.318 blue: 0.318 alpha: .6];
-}
-
--(NSColor *)strokeColor {
-	
-	return [NSColor colorWithDeviceRed: 0.749 green: 0.761 blue: 0.788 alpha: 1.0];
-}
-
--(float)alphaValue {
-	
-	if([self isHighlighted]) {
-		
-		return 1.0;
-	} else {
-		
-		return 0.6;
-	}
+	[themeManager release];
+	[super dealloc];
 }
 
 #pragma mark -
 
-- (BOOL)_usesCustomTrackImage
-{
-	return YES;
+- (BOOL)_usesCustomTrackImage {
+	
+	if(themeManager) {
+		
+		return YES;
+	} else {
+		
+		return NO;
+	}
 }
 
 @end

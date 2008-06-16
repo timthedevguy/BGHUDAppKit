@@ -34,9 +34,13 @@
 
 #import <Cocoa/Cocoa.h>
 #import "BGHUDScroller.h"
+#import "BGThemeManager.h"
 
 @interface BGHUDScrollView : NSScrollView {
 	
+	IBOutlet BGThemeManager *themeManager;
 }
+
+-(void)setThemeManager:(BGThemeManager *)manager;
 
 @end

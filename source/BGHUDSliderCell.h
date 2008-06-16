@@ -33,10 +33,11 @@
 //	POSSIBILITY OF SUCH DAMAGE.
 
 #import <Cocoa/Cocoa.h>
-
+#import "BGThemeManager.h"
 
 @interface BGHUDSliderCell : NSSliderCell {
 
+	IBOutlet BGThemeManager *themeManager;
 }
 
 -(void)drawHorizontalBarInFrame:(NSRect)frame;
@@ -44,10 +45,6 @@
 -(void)drawHorizontalKnobInFrame:(NSRect)frame;
 -(void)drawVerticalKnobInFrame:(NSRect)frame;
 
--(NSGradient *)normalGradient;
--(NSGradient *)highlightGradient;
--(NSColor *)barFillColor;
--(NSColor *)strokeColor;
--(float)alphaValue;
+-(void)setThemeManager:(BGThemeManager *)manager;
 
 @end

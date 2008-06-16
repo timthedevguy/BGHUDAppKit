@@ -45,9 +45,8 @@
 	
 		BGHUDScroller *scrollBar = [[BGHUDScroller alloc] init];
 		[self setVerticalScroller: scrollBar];
-		
+		[scrollBar release];
 		[self setDrawsBackground: NO];
-		//[self setBorderType: NSNoBorder];
 	}
 	
 	return self;
@@ -61,12 +60,30 @@
 		
 		BGHUDScroller *scrollBar = [[BGHUDScroller alloc] init];
 		[self setVerticalScroller: scrollBar];
-		
+		[scrollBar release];
 		[self setDrawsBackground: NO];
-		//[self setBorderType: NSNoBorder];
 	}
 	
 	return self;
+}
+
+-(void)awakeFromNib {
+	
+	if(themeManager) {
+		
+		[[self verticalScroller] setThemeManager: themeManager];
+	}
+}
+
+-(void)setThemeManager:(BGThemeManager *)manager {
+	
+	themeManager = [manager retain];
+}
+
+-(void)dealloc {
+	
+	[themeManager release];
+	[super dealloc];
 }
 
 @end

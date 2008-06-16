@@ -77,130 +77,68 @@
 
 - (void) drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
-	// Make sure our own height is right, and not using
-	// a NSMatrix parents height.
-	cellFrame.size.height = [self cellSize].height;
-	
-	/*NSBezierPath *path = [NSBezierPath bezierPathWithRect: cellFrame];
-	[[NSColor redColor] set];
-	[path stroke];*/
-	
-	// Adjust frame to account for drop shadow
-	cellFrame.origin.x += 3;
-	cellFrame.size.width -= 6;
-	cellFrame.size.height -= 3;
-	
-	/*NSBezierPath *path1 = [NSBezierPath bezierPathWithRect: cellFrame];
-	[[NSColor greenColor] set];
-	[path1 stroke];*/
-	
-	switch ([self bezelStyle]) {
-			
-		case NSTexturedRoundedBezelStyle:
-			
-			[self drawTexturedRoundedButtonInFrame: cellFrame];
-			break;
-			
-		case NSRoundRectBezelStyle:
-			
-			[self drawRoundRectButtonInFrame: cellFrame];
-			break;
-			
-		case NSSmallSquareBezelStyle:
-			
-			[self drawSmallSquareButtonInFrame: cellFrame];
-			break;
-			
-		case NSRoundedBezelStyle:
-			
-			[self drawRoundedButtonInFrame: cellFrame];
-			break;
-	}
-	
-	if([[_normalImage name] isEqualToString: @"NSSwitch"] ||
-	   [[_normalImage name] isEqualToString: @"NSRadioButton"]) {
+	if(themeManager) {
 		
-		if([self imagePosition] != NSNoImage) {
-			
-			[self drawImage: [self image] withFrame: cellFrame inView: [self controlView]];
+		// Make sure our own height is right, and not using
+		// a NSMatrix parents height.
+		cellFrame.size.height = [self cellSize].height;
+		
+		// Adjust frame to account for drop shadow
+		cellFrame.origin.x += 3;
+		cellFrame.size.width -= 6;
+		cellFrame.size.height -= 3;
+		
+		switch ([self bezelStyle]) {
+				
+			case NSTexturedRoundedBezelStyle:
+				
+				[self drawTexturedRoundedButtonInFrame: cellFrame];
+				break;
+				
+			case NSRoundRectBezelStyle:
+				
+				[self drawRoundRectButtonInFrame: cellFrame];
+				break;
+				
+			case NSSmallSquareBezelStyle:
+				
+				[self drawSmallSquareButtonInFrame: cellFrame];
+				break;
+				
+			case NSRoundedBezelStyle:
+				
+				[self drawRoundedButtonInFrame: cellFrame];
+				break;
 		}
+		
+		if([[_normalImage name] isEqualToString: @"NSSwitch"] ||
+		   [[_normalImage name] isEqualToString: @"NSRadioButton"]) {
+			
+			if([self imagePosition] != NSNoImage) {
+				
+				[self drawImage: [self image] withFrame: cellFrame inView: [self controlView]];
+			}
+		}
+	} else {
+		
+		[super drawWithFrame: cellFrame inView: controlView];
 	}
 }
 
 - (NSRect)drawTitle:(NSAttributedString *)title withFrame:(NSRect)frame inView:(NSView *)controlView {
 	
-	NSMutableAttributedString *newTitle = [[NSMutableAttributedString alloc] initWithAttributedString: title];
-	
-	//Setup per State and Highlight Settings
-	if([self showsStateBy] == 0 && [self highlightsBy] == 1) {
+	if(themeManager) {
 		
-		if([self isHighlighted]) {
-			
-			if([self alternateTitle]) {
-				
-				[newTitle setAttributedString: [self attributedAlternateTitle]];
-			}
-		}
-	}
-	
-	if([self showsStateBy] == 1 && [self highlightsBy] == 3) {
-		
-		if([self state] == 1) {
-			
-			if([self alternateTitle]) {
-				
-				[newTitle setAttributedString: [self attributedAlternateTitle]];
-			}
-		}
-	}
-	
-	[newTitle beginEditing];
-	
-	[newTitle removeAttribute: NSShadowAttributeName range: NSMakeRange(0, [newTitle length])];
-	[newTitle addAttribute: NSForegroundColorAttributeName value: [NSColor whiteColor] range: NSMakeRange(0, [newTitle length])];
-	
-	[newTitle endEditing];
-	
-	//[self setAttributedTitle: newTitle];
-	
-	NSRect textRect = frame;
-	
-	// Adjust Text Rect based on control type and size
-	if([[_normalImage name] isEqualToString: @"NSSwitch"] ||
-	   [[_normalImage name] isEqualToString: @"NSRadioButton"]) {
-		
-	} else {
-		
-		textRect.origin.x += 5;
-		textRect.size.width -= 10;
-		textRect.size.height -= 2;
-	}
-	
-	//Make the super class do the drawing
-	[super drawTitle: newTitle withFrame: textRect inView: controlView];
-	
-	return textRect;
-}
-
-- (void)drawImage:(NSImage *)image withFrame:(NSRect)frame inView:(NSView *)controlView {
-	
-	//Ugly hack to determine if this is a Check or Radio button.
-	if([[_normalImage name] isEqualToString: @"NSSwitch"]) {
-		
-		[self drawCheckInFrame: frame isRadio: NO];		
-	} else if([[_normalImage name] isEqualToString: @"NSRadioButton"]) {
-		
-		[self drawCheckInFrame: frame isRadio: YES];
-	} else {
+		NSMutableAttributedString *newTitle = [[NSMutableAttributedString alloc] initWithAttributedString: title];
 		
 		//Setup per State and Highlight Settings
 		if([self showsStateBy] == 0 && [self highlightsBy] == 1) {
 			
 			if([self isHighlighted]) {
 				
-				if([self alternateImage]) {
+				if([self alternateTitle]) {
 					
-					image = [self alternateImage];
+					[newTitle setAttributedString: [self attributedAlternateTitle]];
 				}
 			}
 		}
@@ -209,57 +147,132 @@
 			
 			if([self state] == 1) {
 				
-				if([self alternateImage]) {
+				if([self alternateTitle]) {
 					
-					image = [self alternateImage];
+					[newTitle setAttributedString: [self attributedAlternateTitle]];
 				}
 			}
 		}
 		
-		NSRect imageRect = frame;
-		imageRect.size.height = [image size].height;
-		imageRect.size.width = [image size].width;
-		imageRect.origin.y += (frame.size.height /2) - (imageRect.size.height /2);
+		[newTitle beginEditing];
 		
-		//Setup Position
-		switch ([self imagePosition]) {
-				
-			case NSImageLeft:
-				
-				imageRect.origin.x += 5;
-				break;
-				
-			case NSImageOnly:
-				
-				imageRect.origin.x += (frame.size.width /2) - (imageRect.size.width /2);
-				break;
-				
-			case NSImageRight:
-				
-				imageRect.origin.x = ((frame.origin.x + frame.size.width) - imageRect.size.width) - 5;
-				break;
-				
-			case NSImageBelow:
-				
-				break;
-				
-			case NSImageAbove:
-				
-				break;
-				
-			case NSImageOverlaps:
-				
-				break;
-				
-			default:
-				
-				imageRect.origin.x += 5;
-				break;
+		[newTitle removeAttribute: NSShadowAttributeName
+							range: NSMakeRange(0, [newTitle length])];
+		
+		[newTitle addAttribute: NSForegroundColorAttributeName
+						 value: [themeManager textColor]
+						 range: NSMakeRange(0, [newTitle length])];
+		
+		[newTitle endEditing];
+		
+		NSRect textRect = frame;
+		
+		// Adjust Text Rect based on control type and size
+		if([[_normalImage name] isEqualToString: @"NSSwitch"] ||
+		   [[_normalImage name] isEqualToString: @"NSRadioButton"]) {
+			
+		} else {
+			
+			textRect.origin.x += 5;
+			textRect.size.width -= 10;
+			textRect.size.height -= 2;
 		}
 		
-		[image setFlipped: YES];
-		[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [self alphaValue]];
+		//Make the super class do the drawing
+		[super drawTitle: newTitle withFrame: textRect inView: controlView];
 		
+		[newTitle release];
+		
+		return textRect;
+	} else {
+		
+		return [super drawTitle: title withFrame: frame inView: controlView];
+	}
+}
+
+- (void)drawImage:(NSImage *)image withFrame:(NSRect)frame inView:(NSView *)controlView {
+	
+	if(themeManager) {
+		
+		//Ugly hack to determine if this is a Check or Radio button.
+		if([[_normalImage name] isEqualToString: @"NSSwitch"]) {
+			
+			[self drawCheckInFrame: frame isRadio: NO];		
+		} else if([[_normalImage name] isEqualToString: @"NSRadioButton"]) {
+			
+			[self drawCheckInFrame: frame isRadio: YES];
+		} else {
+			
+			//Setup per State and Highlight Settings
+			if([self showsStateBy] == 0 && [self highlightsBy] == 1) {
+				
+				if([self isHighlighted]) {
+					
+					if([self alternateImage]) {
+						
+						image = [self alternateImage];
+					}
+				}
+			}
+			
+			if([self showsStateBy] == 1 && [self highlightsBy] == 3) {
+				
+				if([self state] == 1) {
+					
+					if([self alternateImage]) {
+						
+						image = [self alternateImage];
+					}
+				}
+			}
+			
+			NSRect imageRect = frame;
+			imageRect.size.height = [image size].height;
+			imageRect.size.width = [image size].width;
+			imageRect.origin.y += (frame.size.height /2) - (imageRect.size.height /2);
+			
+			//Setup Position
+			switch ([self imagePosition]) {
+					
+				case NSImageLeft:
+					
+					imageRect.origin.x += 5;
+					break;
+					
+				case NSImageOnly:
+					
+					imageRect.origin.x += (frame.size.width /2) - (imageRect.size.width /2);
+					break;
+					
+				case NSImageRight:
+					
+					imageRect.origin.x = ((frame.origin.x + frame.size.width) - imageRect.size.width) - 5;
+					break;
+					
+				case NSImageBelow:
+					
+					break;
+					
+				case NSImageAbove:
+					
+					break;
+					
+				case NSImageOverlaps:
+					
+					break;
+					
+				default:
+					
+					imageRect.origin.x += 5;
+					break;
+			}
+			
+			[image setFlipped: YES];
+			[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [themeManager alphaValue]];
+		}
+	} else {
+		
+		[super drawImage: image withFrame: frame inView: controlView];
 	}
 }
 
@@ -299,10 +312,10 @@
 	//Save Graphics State
 	[NSGraphicsContext saveGraphicsState];
 	
-	[[self dropShadow] set];
+	[[themeManager dropShadow] set];
 	
 	//Draw Dark Border
-	[[NSColor colorWithDeviceRed: 0.141 green: 0.141 blue: 0.141 alpha: 0.5] set];
+	[[themeManager darkStrokeColor] set];
 	[path setLineWidth: 1.0];
 	[path stroke];
 	
@@ -315,22 +328,29 @@
 		
 		if([self state] == 1) {
 			
-			[[self highlightGradient] drawInBezierPath: path angle: 90];
+			[[themeManager highlightGradient] drawInBezierPath: path angle: 90];
 		} else {
 			
-			[[self normalGradient] drawInBezierPath: path angle: 90];
+			[[themeManager normalGradient] drawInBezierPath: path angle: 90];
 		}
 	} else {
 		
-		[[self normalGradient] drawInBezierPath: path angle: 90];
+		if([self isHighlighted]) {
+			
+			[[themeManager pushedGradient] drawInBezierPath: path angle: 90];
+		} else {
+			
+			[[themeManager normalGradient] drawInBezierPath: path angle: 90];
+		}
 	}
 	
 	//Draw Border
-	[[self strokeColor] set];
+	[[themeManager strokeColor] set];
 	[path setLineWidth: 1.0];
 	[path stroke];
 	
-	path = nil;
+	//path = nil;
+	[path release];
 	
 	if([self imagePosition] != NSImageOnly) {
 	 
@@ -388,8 +408,8 @@
 	[NSGraphicsContext saveGraphicsState];
 	
 	//Draw dark border color
-	[[self dropShadow] set];
-	[[self darkStrokeColor] set];
+	[[themeManager dropShadow] set];
+	[[themeManager darkStrokeColor] set];
 	[path stroke];
 	
 	[NSGraphicsContext restoreGraphicsState];
@@ -399,22 +419,29 @@
 		
 		if([self state] == 1) {
 			
-			[[self highlightGradient] drawInBezierPath: path angle: 90];
+			[[themeManager highlightGradient] drawInBezierPath: path angle: 90];
 		} else {
 			
-			[[self normalGradient] drawInBezierPath: path angle: 90];
+			[[themeManager normalGradient] drawInBezierPath: path angle: 90];
 		}
 	} else {
 		
-		[[self normalGradient] drawInBezierPath: path angle: 90];
+		if([self isHighlighted]) {
+			
+			[[themeManager pushedGradient] drawInBezierPath: path angle: 90];
+		} else {
+			
+			[[themeManager normalGradient] drawInBezierPath: path angle: 90];
+		}
 	}
 	
 	//Draw Border
-	[[self strokeColor] set];
+	[[themeManager strokeColor] set];
 	[path setLineWidth: 1.0];
 	[path stroke];
 	
-	path = nil;
+	//path = nil;
+	[path release];
 	
 	if([self imagePosition] != NSImageOnly) {
 		
@@ -461,8 +488,8 @@
 	
 	[NSGraphicsContext saveGraphicsState];
 	
-	[[self dropShadow] set];
-	[[self darkStrokeColor] set];
+	[[themeManager dropShadow] set];
+	[[themeManager darkStrokeColor] set];
 	[path setLineWidth: 1.0];
 	[path stroke];
 	
@@ -474,22 +501,29 @@
 		
 		if([self state] == 1) {
 			
-			[[self highlightComplexGradient] drawInBezierPath: path angle: 90];
+			[[themeManager highlightComplexGradient] drawInBezierPath: path angle: 90];
 		} else {
 			
-			[[self normalComplexGradient] drawInBezierPath: path angle: 90];
+			[[themeManager normalComplexGradient] drawInBezierPath: path angle: 90];
 		}
 	} else {
 		
-		[[self normalComplexGradient] drawInBezierPath: path angle: 90];
+		if([self isHighlighted]) {
+			
+			[[themeManager pushedComplexGradient] drawInBezierPath: path angle: 90];
+		} else {
+			
+			[[themeManager normalComplexGradient] drawInBezierPath: path angle: 90];
+		}
 	}
 	
 	//Draw Border
-	[[self strokeColor] set];
+	[[themeManager strokeColor] set];
 	[path setLineWidth: 1.0];
 	[path stroke];
 	
-	path = nil;
+	//path = nil;
+	[path release];
 	
 	if([self imagePosition] != NSImageOnly) {
 		
@@ -558,20 +592,28 @@
 		
 		if([self state] == 1) {
 			
-			[[self solidHighlightColor] set];
+			[[themeManager highlightSolidFill] set];
 			[path fill];
 		} else {
 			
-			[[self solidNormalColor] set];
+			[[themeManager normalSolidFill] set];
 			[path fill];
 		}
 	} else {
 		
-		[[self solidNormalColor] set];
-		[path fill];
+		if([self isHighlighted]) {
+			
+			[[themeManager pushedSolidFill] set];
+			[path fill];
+		} else {
+			
+			[[themeManager normalSolidFill] set];
+			[path fill];
+		}
 	}
 	
-	path = nil;
+	//path = nil;
+	[path release];
 	
 	if([self imagePosition] != NSImageOnly) {
 		
@@ -713,24 +755,26 @@
 	
 	[NSGraphicsContext saveGraphicsState];
 	//Draw Shadow
-	[[self dropShadow] set];
-	[[self darkStrokeColor] set];
+	[[themeManager dropShadow] set];
+	[[themeManager darkStrokeColor] set];
 	[path stroke];
 	[NSGraphicsContext restoreGraphicsState];
 	
 	// Determine Fill Color and Alpha Values
 	if([self isHighlighted]) {
 		
-		[[self highlightGradient] drawInBezierPath: path angle: 90];
+		[[themeManager highlightGradient] drawInBezierPath: path angle: 90];
 	} else {
 		
-		[[self normalGradient] drawInBezierPath: path angle: 90];
+		[[themeManager normalGradient] drawInBezierPath: path angle: 90];
 	}
 	
 	// Outline the path
-	[[self strokeColor] set];
+	[[themeManager strokeColor] set];
 	[path setLineWidth: 1.0];
 	[path stroke];
+	
+	[path release];
 	
 	// Draw Glyphs for On/Off/Mixed States
 	switch ([self state]) {
@@ -745,10 +789,12 @@
 			
 			[path appendBezierPathWithPoints: pointsMixed count: 2];
 			
-			[[self strokeColor] set];
+			[[themeManager strokeColor] set];
 			[path setLineWidth: 2.0];
 			[path stroke];
 			
+			[path release];
+			 
 			break;
 			
 		case NSOnState:
@@ -778,8 +824,11 @@
 				
 				path = [[NSBezierPath alloc] init];
 				[path appendBezierPathWithOvalInRect: innerRect];
-				[[self strokeColor] set];
+				
+				[[themeManager strokeColor] set];
 				[path fill];
+				
+				[path release];
 			} else {
 				
 				path = [[NSBezierPath alloc] init];
@@ -792,7 +841,7 @@
 				
 				[path appendBezierPathWithPoints: pointsOn count: 4];
 				
-				[[self strokeColor] set];
+				[[themeManager strokeColor] set];
 				if([self controlSize] == NSMiniControlSize) {
 					
 					[path setLineWidth: 1.5];
@@ -802,12 +851,12 @@
 				}
 				
 				[path stroke];
+				
+				[path release];
 			}
 			
 			break;
 	}
-	
-	path = nil;
 	
 	if([self imagePosition] != NSImageOnly) {
 		[self drawTitle: [self attributedTitle] withFrame: textRect inView: [self controlView]];
@@ -817,78 +866,15 @@
 #pragma mark -
 #pragma mark Helper Methods
 
--(NSGradient *)normalGradient {
+-(void)setThemeManager:(BGThemeManager *)manager {
 	
-	return [[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.251 green: 0.251 blue: 0.255 alpha: [self alphaValue]]
-										 endingColor: [NSColor colorWithDeviceRed: 0.118 green: 0.118 blue: 0.118 alpha: [self alphaValue]]];
+	themeManager = [manager retain];
 }
 
--(NSGradient *)highlightGradient {
+-(void)dealloc {
 	
-	return [[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.451 green: 0.451 blue: 0.455 alpha: [self alphaValue]]
-										 endingColor: [NSColor colorWithDeviceRed: 0.318 green: 0.318 blue: 0.318 alpha: [self alphaValue]]];
-}
-
--(NSGradient *)normalComplexGradient {
-	
-	return [[NSGradient alloc] initWithColorsAndLocations: [NSColor colorWithDeviceRed: 0.324 green: 0.331 blue: 0.347 alpha: [self alphaValue]],
-			(CGFloat)0, [NSColor colorWithDeviceRed: 0.245 green: 0.253 blue: 0.269 alpha: [self alphaValue]], (CGFloat).5,
-			[NSColor colorWithDeviceRed: 0.206 green: 0.214 blue: 0.233 alpha: [self alphaValue]], (CGFloat).5,
-			[NSColor colorWithDeviceRed: 0.139 green: 0.147 blue: 0.167 alpha: [self alphaValue]], (CGFloat)1.0, nil];
-}
-
--(NSGradient *)highlightComplexGradient {
-	
-	return [[NSGradient alloc] initWithColorsAndLocations: [NSColor colorWithDeviceRed: 0.524 green: 0.531 blue: 0.547 alpha: [self alphaValue]],
-			(CGFloat)0, [NSColor colorWithDeviceRed: 0.445 green: 0.453 blue: 0.469 alpha: [self alphaValue]], (CGFloat).5,
-			[NSColor colorWithDeviceRed: 0.406 green: 0.414 blue: 0.433 alpha: [self alphaValue]], (CGFloat).5,
-			[NSColor colorWithDeviceRed: 0.339 green: 0.347 blue: 0.367 alpha: [self alphaValue]], (CGFloat)1.0, nil];
-}
-
--(NSColor *)solidNormalColor {
-	
-	return [NSColor colorWithDeviceRed: 0.141 green: 0.141 blue: 0.141 alpha: [self alphaValue]];
-}
-
--(NSColor *)solidHighlightColor {
-	
-	return [NSColor colorWithDeviceRed: 0.941 green: 0.941 blue: 0.941 alpha: [self alphaValue]];
-}
-
--(NSColor *)strokeColor {
-	
-	return [NSColor colorWithDeviceRed: 0.749 green: 0.761 blue: 0.788 alpha: 1.0];
-}
-
--(NSColor *)darkStrokeColor {
-
-	return [NSColor colorWithDeviceRed: 0.141 green: 0.141 blue: 0.141 alpha: 0.5];
-}
-
--(NSColor *)titleColor {
-
-	return [NSColor whiteColor];
-}
-
--(float)alphaValue {
-	
-	if([self isHighlighted]) {
-		
-		return 1.0;
-	} else {
-		
-		return 0.6;
-	}
-}
-
--(NSShadow *)dropShadow {
-
-	NSShadow *shadow = [[NSShadow alloc] init];
-	[shadow setShadowColor: [NSColor blackColor]];
-	[shadow setShadowBlurRadius: 2];
-	[shadow setShadowOffset: NSMakeSize( 0, -1)];
-	
-	return shadow;
+	[themeManager release];
+	[super dealloc];
 }
 
 #pragma mark -

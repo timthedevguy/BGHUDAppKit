@@ -33,10 +33,11 @@
 //	POSSIBILITY OF SUCH DAMAGE.
 
 #import <Cocoa/Cocoa.h>
-
+#import "BGThemeManager.h"
 
 @interface BGHUDButtonCell : NSButtonCell {
 
+	IBOutlet BGThemeManager *themeManager;
 }
 
 -(void)drawCheckInFrame:(NSRect)frame isRadio:(BOOL)radio;
@@ -45,16 +46,6 @@
 -(void)drawSmallSquareButtonInFrame:(NSRect)frame;
 -(void)drawRoundedButtonInFrame:(NSRect)frame;
 
--(NSGradient *)normalGradient;
--(NSGradient *)highlightGradient;
--(NSGradient *)normalComplexGradient;
--(NSGradient *)highlightComplexGradient;
--(NSColor *)solidNormalColor;
--(NSColor *)solidHighlightColor;
--(NSColor *)strokeColor;
--(NSColor *)darkStrokeColor;
--(NSColor *)titleColor;
--(float)alphaValue;
--(NSShadow *)dropShadow;
+-(void)setThemeManager:(BGThemeManager *)manager;
 
 @end

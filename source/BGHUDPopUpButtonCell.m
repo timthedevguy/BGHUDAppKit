@@ -76,105 +76,111 @@
 }
 
 - (void) drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+	
+	if(themeManager) {
 		
-	// Adjust frame to account for drop shadow
-	cellFrame.origin.x += 3;
-	cellFrame.size.width -= 6;
-	cellFrame.size.height -= 3;
-	
-	NSRect frame = cellFrame;
-	
-	//Adjust frame by .5 so lines draw true
-	frame.origin.x += .5;
-	frame.origin.y += .5;
-	frame.size.height = [self cellSize].height;
-	
-	//Make Adjustments to Frame based on Cell Size
-	switch ([self controlSize]) {
+		// Adjust frame to account for drop shadow
+		cellFrame.origin.x += 3;
+		cellFrame.size.width -= 6;
+		cellFrame.size.height -= 3;
 		
-		case NSRegularControlSize:
-			
-			frame.origin.x += 3;
-			frame.size.width -= 7;
-			frame.origin.y += 2;
-			frame.size.height -= 7;
-			break;
-			
-		case NSSmallControlSize:
-			
-			frame.origin.y += 1;
-			frame.size.height -= 5;
-			frame.origin.x += 3;
-			frame.size.width -= 6;
-			break;
-			
-		case NSMiniControlSize:
-			
-			frame.origin.x += 1;
-			frame.size.width -= 2;
-			frame.size.height -= 1;
-			break;
+		NSRect frame = cellFrame;
+		
+		//Adjust frame by .5 so lines draw true
+		frame.origin.x += .5;
+		frame.origin.y += .5;
+		frame.size.height = [self cellSize].height;
+		
+		//Make Adjustments to Frame based on Cell Size
+		switch ([self controlSize]) {
+				
+			case NSRegularControlSize:
+				
+				frame.origin.x += 3;
+				frame.size.width -= 7;
+				frame.origin.y += 2;
+				frame.size.height -= 7;
+				break;
+				
+			case NSSmallControlSize:
+				
+				frame.origin.y += 1;
+				frame.size.height -= 5;
+				frame.origin.x += 3;
+				frame.size.width -= 6;
+				break;
+				
+			case NSMiniControlSize:
+				
+				frame.origin.x += 1;
+				frame.size.width -= 2;
+				frame.size.height -= 1;
+				break;
+		}
+		
+		NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect: frame
+															 xRadius: 4
+															 yRadius: 4];
+		
+		[NSGraphicsContext saveGraphicsState];
+		[[themeManager dropShadow] set];
+		[[themeManager darkStrokeColor] set];
+		[path stroke];
+		[NSGraphicsContext restoreGraphicsState];
+		
+		[[themeManager normalGradient] drawInBezierPath: path angle: 90];
+		
+		[[themeManager strokeColor] set];
+		[path setLineWidth: 1.0 ];
+		[path stroke];
+		
+		//Draw the arrows
+		[self drawArrowsInRect: frame];
+		
+		//Adjust rect for title drawing
+		switch ([self controlSize]) {
+				
+			case NSRegularControlSize:
+				
+				frame.origin.x += 8;
+				frame.origin.y += 1;
+				frame.size.width -= 29;
+				break;
+				
+			case NSSmallControlSize:
+				
+				frame.origin.x += 8;
+				frame.origin.y += 2;
+				frame.size.width -= 29;
+				break;
+				
+			case NSMiniControlSize:
+				
+				frame.origin.x += 8;
+				frame.origin.y += .5;
+				frame.size.width -= 26;
+				break;
+		}
+		
+		NSMutableAttributedString *aTitle = [[NSMutableAttributedString alloc] initWithAttributedString: [self attributedTitle]];
+		
+		[aTitle beginEditing];
+		
+		[aTitle removeAttribute: NSForegroundColorAttributeName range: NSMakeRange(0, [aTitle length])];
+		
+		[aTitle addAttribute: NSForegroundColorAttributeName
+					   value: [themeManager textColor]
+					   range: NSMakeRange(0, [aTitle length])];
+		
+		[aTitle endEditing];
+		
+		[super drawTitle: aTitle withFrame: frame inView: controlView];
+		
+		[aTitle release];
+	} else {
+		
+		[super drawWithFrame: cellFrame inView: controlView];
 	}
-	
-	NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect: frame
-														 xRadius: 4
-														 yRadius: 4];
-	
-	[NSGraphicsContext saveGraphicsState];
-	[[self dropShadow] set];
-	[[self darkStrokeColor] set];
-	[path stroke];
-	[NSGraphicsContext restoreGraphicsState];
-	
-	[[self normalGradient] drawInBezierPath: path angle: 90];
-	
-	[[self strokeColor] set];
-	[path setLineWidth: 1.0 ];
-	[path stroke];
-	
-	//Draw the arrows
-	[self drawArrowsInRect: frame];
-	
-	//Adjust rect for title drawing
-	switch ([self controlSize]) {
-			
-		case NSRegularControlSize:
-			
-			frame.origin.x += 8;
-			frame.origin.y += 1;
-			frame.size.width -= 29;
-			break;
-			
-		case NSSmallControlSize:
-			
-			frame.origin.x += 8;
-			frame.origin.y += 2;
-			frame.size.width -= 29;
-			break;
-			
-		case NSMiniControlSize:
-			
-			frame.origin.x += 8;
-			frame.origin.y += .5;
-			frame.size.width -= 26;
-			break;
-	}
-	
-	NSMutableAttributedString *aTitle = [[NSMutableAttributedString alloc] initWithAttributedString: [self attributedTitle]];
-	
-	[aTitle beginEditing];
-	
-	[aTitle removeAttribute: NSForegroundColorAttributeName range: NSMakeRange(0, [aTitle length])];
-	
-	[aTitle addAttribute: NSForegroundColorAttributeName
-					  value: [NSColor whiteColor]// [self titleColor]
-					  range: NSMakeRange(0, [aTitle length])];
-	
-	[aTitle endEditing];
-	
-	[super drawTitle: aTitle withFrame: frame inView: controlView];
-	
-	path = nil;
 }
 
 - (void)drawArrowsInRect:(NSRect) frame {
@@ -234,10 +240,10 @@
 		
 		[arrow appendBezierPathWithPoints: points count: 3];
 		
-		[[self strokeColor] set];
+		[[themeManager strokeColor] set];
 		[arrow fill];
 		
-		arrow = nil;
+		[arrow release];
 		
 	} else {
 	
@@ -251,7 +257,7 @@
 		
 		[topArrow appendBezierPathWithPoints: topPoints count: 3];
 		
-		[[self strokeColor] set];
+		[[themeManager strokeColor] set];
 		[topArrow fill];
 		
 		NSBezierPath *bottomArrow = [[NSBezierPath alloc] init];
@@ -264,57 +270,26 @@
 		
 		[bottomArrow appendBezierPathWithPoints: bottomPoints count: 3];
 		
-		[[self strokeColor] set];
+		[[themeManager strokeColor] set];
 		[bottomArrow fill];
 		
-		topArrow = nil;
-		bottomArrow = nil;
+		[topArrow release];
+		[bottomArrow release];
 	}
 }
 
 #pragma mark -
 #pragma mark Helper Methods
 
--(NSGradient *)normalGradient {
+-(void)setThemeManager:(BGThemeManager *)manager {
 	
-	return [[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.251 green: 0.251 blue: 0.255 alpha: [self alphaValue]]
-										 endingColor: [NSColor colorWithDeviceRed: 0.118 green: 0.118 blue: 0.118 alpha: [self alphaValue]]];
+	themeManager = [manager retain];
 }
 
--(NSColor *)strokeColor {
+-(void)dealloc {
 	
-	return [NSColor colorWithDeviceRed: 0.749 green: 0.761 blue: 0.788 alpha: 1.0];
-}
-
--(NSColor *)darkStrokeColor {
-	
-	return [NSColor colorWithDeviceRed: 0.141 green: 0.141 blue: 0.141 alpha: 0.5];
-}
-
--(NSColor *)titleColor {
-	
-	return [NSColor whiteColor];
-}
-
--(float)alphaValue {
-	
-	if([self isHighlighted]) {
-		
-		return 1.0;
-	} else {
-		
-		return 0.6;
-	}
-}
-
--(NSShadow *)dropShadow {
-	
-	NSShadow *shadow = [[NSShadow alloc] init];
-	[shadow setShadowColor: [NSColor blackColor]];
-	[shadow setShadowBlurRadius: 2];
-	[shadow setShadowOffset: NSMakeSize( 0, -1)];
-	
-	return shadow;
+	[themeManager release];
+	[super dealloc];
 }
 
 #pragma mark -

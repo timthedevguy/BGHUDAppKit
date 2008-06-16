@@ -113,6 +113,8 @@
 		
 		[newTitle drawInRect: textRect];
 	}
+	
+	[newTitle release];
 }
 
 @end

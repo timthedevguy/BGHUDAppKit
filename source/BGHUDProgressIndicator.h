@@ -33,20 +33,14 @@
 //	POSSIBILITY OF SUCH DAMAGE.
 
 #import <Cocoa/Cocoa.h>
-
+#import "BGThemeManager.h"
 
 @interface BGHUDProgressIndicator : NSProgressIndicator {
 
-	NSGradient *progressGradient;
 	NSBezierPath *progressPath;
+	IBOutlet BGThemeManager *themeManager;
 }
 
--(NSGradient *)normalGradient;
--(NSGradient *)highlightGradient;
--(NSGradient *)fillGradient;
--(NSColor *)strokeColor;
--(NSColor *)darkStrokeColor;
--(float)alphaValue;
--(NSShadow *)dropShadow;
+-(void)setThemeManager:(BGThemeManager *)manager;
 
 @end

@@ -1,8 +1,8 @@
 //
-//  BGHUDGradientTokenFieldCell.h
+//  BGGradientTheme.h
 //  BGHUDAppKit
 //
-//  Created by BinaryGod on 6/12/08.
+//  Created by BinaryGod on 6/15/08.
 //
 //  Copyright (c) 2008, Tim Davis (BinaryMethod.com, binary.god@gmail.com)
 //  All rights reserved.
@@ -33,9 +33,9 @@
 //	POSSIBILITY OF SUCH DAMAGE.
 
 #import <Cocoa/Cocoa.h>
-#import "BGHUDTokenFieldCell.h"
+#import "BGThemeManager.h"
 
-@interface BGHUDGradientTokenFieldCell : BGHUDTokenFieldCell {
+@interface BGGradientTheme : BGThemeManager {
 
 }
 

@@ -37,21 +37,17 @@
 // transparent drawing issues.  Your awesome man!!!
 
 #import <Cocoa/Cocoa.h>
-
+#import "BGThemeManager.h"
 
 @interface BGHUDScroller : NSScroller {
 	
 	NSString *arrowPosition;
+	IBOutlet BGThemeManager *themeManager;
 }
 
 - (void)drawDecrementArrow:(BOOL)highlighted;
 - (void)drawIncrementArrow:(BOOL)highlighted;
 
--(NSGradient *)knobGradient;
--(NSGradient *)knobSlotGradient;
--(NSGradient *)normalGradient;
--(NSGradient *)highlightGradient;
--(NSColor *)strokeColor;
--(float)alphaValue;
+-(void)setThemeManager:(BGThemeManager *)manager;
 
 @end

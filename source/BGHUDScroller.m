@@ -44,121 +44,150 @@
 
 - (void)drawRect:(NSRect)rect {
 	
-	arrowPosition = [[NSDictionary dictionaryWithContentsOfFile:
-					  [@"~/Library/Preferences/.GlobalPreferences.plist" stringByExpandingTildeInPath]] objectForKey: @"AppleScrollBarVariant"];
-	
-	NSDisableScreenUpdates();
-	
-	[[NSColor colorWithCalibratedWhite: 0.0 alpha: 0.7] set];
-    NSRectFill([self bounds]);
-    
-	// Draw knob-slot.
-	[self drawKnobSlotInRect: [self bounds] highlight: YES];
-	
-    // Draw knob
-    [self drawKnob];
-    
-    // Draw arrows
-    [self drawArrow: NSScrollerIncrementArrow highlight: ([self hitPart] == NSScrollerIncrementLine)];
-    [self drawArrow: NSScrollerDecrementArrow highlight: ([self hitPart] == NSScrollerDecrementLine)];
-	
-	[[self window] invalidateShadow];
-	
-	NSEnableScreenUpdates();
+	if(themeManager) {
+		
+		arrowPosition = [[NSDictionary dictionaryWithContentsOfFile:
+						  [@"~/Library/Preferences/.GlobalPreferences.plist" stringByExpandingTildeInPath]] objectForKey: @"AppleScrollBarVariant"];
+		
+		NSDisableScreenUpdates();
+		
+		[[NSColor colorWithCalibratedWhite: 0.0 alpha: 0.7] set];
+		NSRectFill([self bounds]);
+		
+		// Draw knob-slot.
+		[self drawKnobSlotInRect: [self bounds] highlight: YES];
+		
+		// Draw knob
+		[self drawKnob];
+		
+		// Draw arrows
+		[self drawArrow: NSScrollerIncrementArrow highlight: ([self hitPart] == NSScrollerIncrementLine)];
+		[self drawArrow: NSScrollerDecrementArrow highlight: ([self hitPart] == NSScrollerDecrementLine)];
+		
+		[[self window] invalidateShadow];
+		
+		NSEnableScreenUpdates();
+	} else {
+		
+		[super drawRect: rect];
+	}
 }
 
--(void)drawKnob {
+- (void)drawKnob {
 	
-	//Draw Knob
-	NSBezierPath *knob = [[NSBezierPath alloc] init];
-	NSRect knobRect = [self rectForPart: NSScrollerKnob];
-	
-	[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.width - .5) /2), (knobRect.origin.y + ((knobRect.size.width -2) /2)))
-									 radius: (knobRect.size.width -2) /2
-								 startAngle: 180
-								   endAngle: 0];
-	
-	[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.width - .5) /2), ((knobRect.origin.y + knobRect.size.height) - ((knobRect.size.width -2) /2)))
-									 radius: (knobRect.size.width -2) /2
-								 startAngle: 0
-								   endAngle: 180];
-	
-	[[self strokeColor] set];
-	[knob fill];
-	
-	knobRect.origin.x += 1;
-	knobRect.origin.y += 1;
-	knobRect.size.width -= 2;
-	knobRect.size.height -= 2;
-	
-	knob = [[NSBezierPath alloc] init];
-	
-	[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.width - .5) /2), (knobRect.origin.y + ((knobRect.size.width -2) /2)))
-									 radius: (knobRect.size.width -2) /2
-								 startAngle: 180
-								   endAngle: 0];
-	
-	[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.width - .5) /2), ((knobRect.origin.y + knobRect.size.height) - ((knobRect.size.width -2) /2)))
-									 radius: (knobRect.size.width -2) /2
-								 startAngle: 0
-								   endAngle: 180];
-	
-	[[self knobGradient] drawInBezierPath: knob angle: 0];
+	if(themeManager) {
+		
+		//Draw Knob
+		NSBezierPath *knob = [[NSBezierPath alloc] init];
+		NSRect knobRect = [self rectForPart: NSScrollerKnob];
+		
+		[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.width - .5) /2), (knobRect.origin.y + ((knobRect.size.width -2) /2)))
+										 radius: (knobRect.size.width -2) /2
+									 startAngle: 180
+									   endAngle: 0];
+		
+		[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.width - .5) /2), ((knobRect.origin.y + knobRect.size.height) - ((knobRect.size.width -2) /2)))
+										 radius: (knobRect.size.width -2) /2
+									 startAngle: 0
+									   endAngle: 180];
+		
+		[[themeManager scrollerStroke] set];
+		[knob fill];
+		
+		knobRect.origin.x += 1;
+		knobRect.origin.y += 1;
+		knobRect.size.width -= 2;
+		knobRect.size.height -= 2;
+		
+		[knob release];
+		knob = [[NSBezierPath alloc] init];
+		
+		[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.width - .5) /2), (knobRect.origin.y + ((knobRect.size.width -2) /2)))
+										 radius: (knobRect.size.width -2) /2
+									 startAngle: 180
+									   endAngle: 0];
+		
+		[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.width - .5) /2), ((knobRect.origin.y + knobRect.size.height) - ((knobRect.size.width -2) /2)))
+										 radius: (knobRect.size.width -2) /2
+									 startAngle: 0
+									   endAngle: 180];
+		
+		[[themeManager scrollerKnobGradient] drawInBezierPath: knob angle: 0];
+		
+		[knob release];
+	} else {
+		
+		[super drawKnob];
+	}
 }
 
 - (void)drawArrow:(NSScrollerArrow)arrow highlightPart:(int)part {
 	
-	if(arrow == NSScrollerDecrementArrow) {
+	if(themeManager) {
 		
-		if(part == -1 || part == 0) {
+		if(arrow == NSScrollerDecrementArrow) {
 			
-			[self drawDecrementArrow: NO];
-		} else {
-			
-			[self drawDecrementArrow: YES];
+			if(part == -1 || part == 0) {
+				
+				[self drawDecrementArrow: NO];
+			} else {
+				
+				[self drawDecrementArrow: YES];
+			}
 		}
-	}
-	
-	if(arrow == NSScrollerIncrementArrow) {
 		
-		if(part == 1 || part == -1) {
+		if(arrow == NSScrollerIncrementArrow) {
 			
-			[self drawIncrementArrow: NO];
-		} else {
-			
-			[self drawIncrementArrow: YES];
+			if(part == 1 || part == -1) {
+				
+				[self drawIncrementArrow: NO];
+			} else {
+				
+				[self drawIncrementArrow: YES];
+			}
 		}
+	} else {
+		
+		//[super drawArrow: arrow highlight: part];
 	}
 }
 
 - (void)drawKnobSlotInRect:(NSRect)rect highlight:(BOOL)highlight {
 	
-	//Draw Knob Slot
-	[[self knobSlotGradient] drawInRect: rect angle: 0];
-	
-	if([arrowPosition isEqualToString: @"DoubleMax"]) {
+	if(themeManager) {
 		
-		//Adjust rect height for top base
-		rect.size.height = 8;
+		//Draw Knob Slot
+		[[themeManager scrollerTrackGradient] drawInRect: rect angle: 0];
 		
-		//Draw Top Base
-		NSBezierPath *path = [[NSBezierPath alloc] init];
-		NSPoint basePoints[4];
+		if([arrowPosition isEqualToString: @"DoubleMax"]) {
+			
+			//Adjust rect height for top base
+			rect.size.height = 8;
+			
+			//Draw Top Base
+			NSBezierPath *path = [[NSBezierPath alloc] init];
+			NSPoint basePoints[4];
+			
+			[path appendBezierPathWithArcWithCenter: NSMakePoint(rect.size.width /2, rect.size.height + (rect.size.width /2) -5)
+											 radius: (rect.size.width ) /2
+										 startAngle: 180
+										   endAngle: 0];
+			
+			//Add the rest of the points
+			basePoints[3] = NSMakePoint( rect.origin.x, rect.origin.y + rect.size.height);
+			basePoints[2] = NSMakePoint( rect.origin.x, rect.origin.y);
+			basePoints[1] = NSMakePoint( rect.origin.x + rect.size.width, rect.origin.y);
+			basePoints[0] = NSMakePoint( rect.origin.x + rect.size.width, rect.origin.y + rect.size.height);
+			
+			[path appendBezierPathWithPoints: basePoints count: 4];
+			
+			[[themeManager scrollerArrowNormalGradient] drawInBezierPath: path angle: 0];
+			
+			[path release];
+		}
+	} else {
 		
-		[path appendBezierPathWithArcWithCenter: NSMakePoint(rect.size.width /2, rect.size.height + (rect.size.width /2) -5)
-										 radius: (rect.size.width ) /2
-									 startAngle: 180
-									   endAngle: 0];
-		
-		//Add the rest of the points
-		basePoints[3] = NSMakePoint( rect.origin.x, rect.origin.y + rect.size.height);
-		basePoints[2] = NSMakePoint( rect.origin.x, rect.origin.y);
-		basePoints[1] = NSMakePoint( rect.origin.x + rect.size.width, rect.origin.y);
-		basePoints[0] = NSMakePoint( rect.origin.x + rect.size.width, rect.origin.y + rect.size.height);
-		
-		[path appendBezierPathWithPoints: basePoints count: 4];
-		
-		[[self normalGradient] drawInBezierPath: path angle: 0];
+		[super drawKnobSlotInRect: rect highlight: highlight];
 	}
 }
 
@@ -189,10 +218,10 @@
 		//Fill Path
 		if(!highlighted) {
 			
-			[[self normalGradient] drawInBezierPath: path angle: 0];
+			[[themeManager scrollerArrowNormalGradient] drawInBezierPath: path angle: 0];
 		} else {
 			
-			[[self highlightGradient] drawInBezierPath: path angle: 0];
+			[[themeManager scrollerArrowPushedGradient] drawInBezierPath: path angle: 0];
 		}
 		
 		//Create Arrow Glyph
@@ -205,13 +234,17 @@
 		
 		[arrow appendBezierPathWithPoints: points count: 3];
 		
-		[[self strokeColor] set];
+		[[themeManager scrollerStroke] set];
 		[arrow fill];
 		
 		//Create Devider Line
-		[[self strokeColor] set];
+		[[themeManager scrollerStroke] set];
+		
 		[NSBezierPath strokeLineFromPoint: NSMakePoint(0, (rect.origin.y + rect.size.height) +.5)
 								  toPoint: NSMakePoint(rect.size.width, (rect.origin.y + rect.size.height) +.5)];
+		
+		[path release];
+		[arrow release];
 		
 	} else {
 		
@@ -236,10 +269,10 @@
 		//Fill Path
 		if(!highlighted) {
 			
-			[[self normalGradient] drawInBezierPath: path angle: 0];
+			[[themeManager scrollerArrowNormalGradient] drawInBezierPath: path angle: 0];
 		} else {
 			
-			[[self highlightGradient] drawInBezierPath: path angle: 0];
+			[[themeManager scrollerArrowPushedGradient] drawInBezierPath: path angle: 0];
 		}
 		
 		//Create Arrow Glyph
@@ -252,8 +285,11 @@
 		
 		[arrow appendBezierPathWithPoints: points count: 3];
 		
-		[[self strokeColor] set];
+		[[themeManager scrollerStroke] set];
 		[arrow fill];
+		
+		[path release];
+		[arrow release];
 	}
 }
 
@@ -266,10 +302,10 @@
 		
 		if(!highlighted) {
 			
-			[[self normalGradient] drawInRect: rect angle: 0];
+			[[themeManager scrollerArrowNormalGradient] drawInRect: rect angle: 0];
 		} else {
 			
-			[[self highlightGradient] drawInRect: rect angle: 0];
+			[[themeManager scrollerArrowPushedGradient] drawInRect: rect angle: 0];
 		}
 		
 		//Create Arrow Glyph
@@ -282,8 +318,10 @@
 		
 		[arrow appendBezierPathWithPoints: points count: 3];
 		
-		[[self strokeColor] set];
+		[[themeManager scrollerStroke] set];
 		[arrow fill];
+		
+		[arrow release];
 	} else {
 		
 		//Draw Decrement Button
@@ -309,10 +347,10 @@
 		//Fill Path
 		if(!highlighted) {
 			
-			[[self normalGradient] drawInBezierPath: path angle: 0];
+			[[themeManager scrollerArrowNormalGradient] drawInBezierPath: path angle: 0];
 		} else {
 			
-			[[self highlightGradient] drawInBezierPath: path angle: 0];
+			[[themeManager scrollerArrowPushedGradient] drawInBezierPath: path angle: 0];
 		}
 		
 		//Create Arrow Glyph
@@ -325,46 +363,26 @@
 		
 		[arrow appendBezierPathWithPoints: points count: 3];
 		
-		[[self strokeColor] set];
+		[[themeManager scrollerStroke] set];
 		[arrow fill];
+		
+		[path release];
+		[arrow release];
 	}
+}
+
+-(void)dealloc {
+
+	[themeManager release];
+	[super dealloc];
 }
 
 #pragma mark -
 #pragma mark Helper Methods
 
--(NSGradient *)knobGradient {
-	
-	return [[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.631 green: 0.639 blue: 0.655 alpha: 1.0]
-										 endingColor: [NSColor colorWithDeviceRed: 0.439 green: 0.447 blue: 0.471 alpha: 1.0]];
-}
+-(void)setThemeManager:(BGThemeManager *)manager {
 
--(NSGradient *)knobSlotGradient {
-	
-	return [[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.137 green: 0.137 blue: 0.137 alpha: .75]
-										 endingColor: [NSColor colorWithDeviceRed: 0.278 green: 0.278 blue: 0.278 alpha: .75]];
-}
-
--(NSGradient *)normalGradient {
-	
-	return [[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.251 green: 0.251 blue: 0.255 alpha: [self alphaValue]]
-										 endingColor: [NSColor colorWithDeviceRed: 0.118 green: 0.118 blue: 0.118 alpha: [self alphaValue]]];
-}
-
--(NSGradient *)highlightGradient {
-	
-	return [[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.451 green: 0.451 blue: 0.455 alpha: [self alphaValue]]
-										 endingColor: [NSColor colorWithDeviceRed: 0.318 green: 0.318 blue: 0.318 alpha: [self alphaValue]]];
-}
-
--(NSColor *)strokeColor {
-	
-	return [NSColor colorWithDeviceRed: 0.749 green: 0.761 blue: 0.788 alpha: 1.0];
-}
-
--(float)alphaValue {
-	
-	return 0.5;
+	themeManager = [manager retain];
 }
 
 #pragma mark -

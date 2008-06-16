@@ -35,18 +35,14 @@
 #import <Cocoa/Cocoa.h>
 #import "BGHUDTokenAttachmentCell.h"
 #import "NSTokenAttachmentCell.h"
+#import "BGThemeManager.h"
 
 @interface BGHUDTokenFieldCell : NSTokenFieldCell {
 
 	BOOL fillsBackground;
+	IBOutlet BGThemeManager *themeManager;
 }
 
--(NSColor *)strokeColor;
--(NSColor *)fillColor;
--(NSColor *)textColor;
--(NSColor *)tokenFillNormal;
--(NSColor *)tokenFillHighlight;
--(NSColor *)tokenBorder;
--(NSColor *)tokenTextColor;
+-(void)setThemeManager:(BGThemeManager *)manager;
 
 @end

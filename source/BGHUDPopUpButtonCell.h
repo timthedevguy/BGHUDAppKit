@@ -33,19 +33,15 @@
 //	POSSIBILITY OF SUCH DAMAGE.
 
 #import <Cocoa/Cocoa.h>
-
+#import "BGThemeManager.h"
 
 @interface BGHUDPopUpButtonCell : NSPopUpButtonCell {
 
+	IBOutlet BGThemeManager *themeManager;
 }
 
 - (void)drawArrowsInRect:(NSRect) frame;
 
--(NSGradient *)normalGradient;
--(NSColor *)strokeColor;
--(NSColor *)darkStrokeColor;
--(NSColor *)titleColor;
--(float)alphaValue;
--(NSShadow *)dropShadow;
+-(void)setThemeManager:(BGThemeManager *)manager;
 
 @end

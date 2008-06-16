@@ -33,15 +33,14 @@
 //	POSSIBILITY OF SUCH DAMAGE.
 
 #import <Cocoa/Cocoa.h>
-
+#import "BGThemeManager.h"
 
 @interface BGHUDSecureTextFieldCell : NSSecureTextFieldCell {
 	
 	BOOL fillsBackground;
+	IBOutlet BGThemeManager *themeManager;
 }
 
--(NSColor *)strokeColor;
--(NSColor *)fillColor;
--(NSColor *)textColor;
+-(void)setThemeManager:(BGThemeManager *)manager;
 
 @end

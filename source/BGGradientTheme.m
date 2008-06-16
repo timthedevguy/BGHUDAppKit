@@ -1,8 +1,8 @@
 //
-//  BGHUDGradientTokenFieldCell.m
+//  BGGradientTheme.m
 //  BGHUDAppKit
 //
-//  Created by BinaryGod on 6/12/08.
+//  Created by BinaryGod on 6/15/08.
 //
 //  Copyright (c) 2008, Tim Davis (BinaryMethod.com, binary.god@gmail.com)
 //  All rights reserved.
@@ -32,14 +32,43 @@
 //	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 //	POSSIBILITY OF SUCH DAMAGE.
 
-#import "BGHUDGradientTokenFieldCell.h"
+#import "BGGradientTheme.h"
 
 
-@implementation BGHUDGradientTokenFieldCell
+@implementation BGGradientTheme
+
+-(NSGradient *)normalGradient {
+	
+	return [[[NSGradient alloc] initWithColorsAndLocations: [NSColor colorWithDeviceRed: 0.324 green: 0.331 blue: 0.347 alpha: [self alphaValue]],
+			 (CGFloat)0, [NSColor colorWithDeviceRed: 0.245 green: 0.253 blue: 0.269 alpha: [self alphaValue]], (CGFloat).5,
+			 [NSColor colorWithDeviceRed: 0.206 green: 0.214 blue: 0.233 alpha: [self alphaValue]], (CGFloat).5,
+			 [NSColor colorWithDeviceRed: 0.139 green: 0.147 blue: 0.167 alpha: [self alphaValue]], (CGFloat)1.0, nil] autorelease];
+}
+
+-(NSGradient *)pushedGradient {
+	
+	return [[[NSGradient alloc] initWithColorsAndLocations: [NSColor colorWithDeviceRed: 0.524 green: 0.531 blue: 0.547 alpha: [self alphaValue]],
+			 (CGFloat)0, [NSColor colorWithDeviceRed: 0.445 green: 0.453 blue: 0.469 alpha: [self alphaValue]], (CGFloat).5,
+			 [NSColor colorWithDeviceRed: 0.406 green: 0.414 blue: 0.433 alpha: [self alphaValue]], (CGFloat).5,
+			 [NSColor colorWithDeviceRed: 0.339 green: 0.347 blue: 0.367 alpha: [self alphaValue]], (CGFloat)1.0, nil] autorelease];
+}
+
+-(NSGradient *)highlightGradient {
+	
+	return [[[NSGradient alloc] initWithColorsAndLocations: [NSColor colorWithDeviceRed: 0.524 green: 0.531 blue: 0.547 alpha: [self alphaValue]],
+			 (CGFloat)0, [NSColor colorWithDeviceRed: 0.445 green: 0.453 blue: 0.469 alpha: [self alphaValue]], (CGFloat).5,
+			 [NSColor colorWithDeviceRed: 0.406 green: 0.414 blue: 0.433 alpha: [self alphaValue]], (CGFloat).5,
+			 [NSColor colorWithDeviceRed: 0.339 green: 0.347 blue: 0.367 alpha: [self alphaValue]], (CGFloat)1.0, nil] autorelease];
+}
 
 -(NSColor *)strokeColor {
 	
 	return [NSColor colorWithDeviceRed: 0.749 green: 0.761 blue: 0.788 alpha: 0.7];
+}
+
+-(float)alphaValue {
+	
+	return 0.7;
 }
 
 @end
