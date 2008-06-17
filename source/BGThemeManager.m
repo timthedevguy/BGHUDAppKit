@@ -122,6 +122,49 @@
 }
 
 #pragma mark -
+#pragma mark Table Theme
+
+-(NSColor *)cellHighlightColor {
+	
+	return [NSColor colorWithDeviceRed: 0.549 green: 0.561 blue: 0.588 alpha: 1];
+}
+
+-(NSArray *)cellAlternatingRowColors {
+	
+	return [NSArray arrayWithObjects:
+			[NSColor colorWithCalibratedWhite: 0.16 alpha: 0.86], 
+			[NSColor colorWithCalibratedWhite: 0.15 alpha: 0.8], 
+			nil];
+}
+
+-(NSColor *)cellSelectedTextColor {
+	
+	return [NSColor blackColor];
+}
+
+-(NSColor *)tableBackgroundColor {
+	
+	return [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: .00];
+}
+
+-(NSColor *)tableHeaderCellBorderColor {
+
+	return [NSColor colorWithDeviceRed: 0.349 green: 0.361 blue: 0.388 alpha: 1.0];
+}
+
+-(NSGradient *)tableHeaderCellNormalFill {
+	
+	return [[[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.251 green: 0.251 blue: 0.255 alpha: 1.0]
+										  endingColor: [NSColor colorWithDeviceRed: 0.118 green: 0.118 blue: 0.118 alpha: 1.0]] autorelease];
+}
+
+-(NSGradient *)tableHeaderCellPushedFill {
+	
+	return [[[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.451 green: 0.451 blue: 0.455 alpha: 1.0]
+										  endingColor: [NSColor colorWithDeviceRed: 0.318 green: 0.318 blue: 0.318 alpha: 1.0]] autorelease];
+}
+
+#pragma mark -
 #pragma mark General Theme
 
 -(NSGradient *)normalGradient {

@@ -36,6 +36,10 @@
 		E7AC9E1A0E00A045001409AD /* NSTokenAttachmentCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7AC9E180E00A045001409AD /* NSTokenAttachmentCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7AC9E200E00A0C2001409AD /* BGHUDTokenAttachmentCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7AC9E1E0E00A0C2001409AD /* BGHUDTokenAttachmentCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7AC9E210E00A0C2001409AD /* BGHUDTokenAttachmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7AC9E1F0E00A0C2001409AD /* BGHUDTokenAttachmentCell.m */; };
+		E7CD07920E07E65600792C16 /* BGHUDTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = E7CD07900E07E65600792C16 /* BGHUDTableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E7CD07930E07E65600792C16 /* BGHUDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CD07910E07E65600792C16 /* BGHUDTableView.m */; };
+		E7CD086F0E07F61300792C16 /* BGHUDTableViewHeaderCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7CD086D0E07F61300792C16 /* BGHUDTableViewHeaderCell.h */; };
+		E7CD08700E07F61300792C16 /* BGHUDTableViewHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CD086E0E07F61300792C16 /* BGHUDTableViewHeaderCell.m */; };
 		E7CF49EB0DF84E5E0021AB3C /* README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7CF49E70DF84E5E0021AB3C /* README.rtf */; };
 		E7CF49EC0DF84E5E0021AB3C /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7CF49E80DF84E5E0021AB3C /* License.rtf */; };
 		E7CF49ED0DF84E5E0021AB3C /* USAGE.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7CF49E90DF84E5E0021AB3C /* USAGE.rtf */; };
@@ -78,6 +82,10 @@
 		E7AC9E180E00A045001409AD /* NSTokenAttachmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSTokenAttachmentCell.h; path = source/NSTokenAttachmentCell.h; sourceTree = "<group>"; };
 		E7AC9E1E0E00A0C2001409AD /* BGHUDTokenAttachmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDTokenAttachmentCell.h; path = source/BGHUDTokenAttachmentCell.h; sourceTree = "<group>"; };
 		E7AC9E1F0E00A0C2001409AD /* BGHUDTokenAttachmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDTokenAttachmentCell.m; path = source/BGHUDTokenAttachmentCell.m; sourceTree = "<group>"; };
+		E7CD07900E07E65600792C16 /* BGHUDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDTableView.h; path = source/BGHUDTableView.h; sourceTree = "<group>"; };
+		E7CD07910E07E65600792C16 /* BGHUDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDTableView.m; path = source/BGHUDTableView.m; sourceTree = "<group>"; };
+		E7CD086D0E07F61300792C16 /* BGHUDTableViewHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDTableViewHeaderCell.h; path = source/BGHUDTableViewHeaderCell.h; sourceTree = "<group>"; };
+		E7CD086E0E07F61300792C16 /* BGHUDTableViewHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDTableViewHeaderCell.m; path = source/BGHUDTableViewHeaderCell.m; sourceTree = "<group>"; };
 		E7CF49E70DF84E5E0021AB3C /* README.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
 		E7CF49E80DF84E5E0021AB3C /* License.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = License.rtf; sourceTree = "<group>"; };
 		E7CF49E90DF84E5E0021AB3C /* USAGE.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = USAGE.rtf; sourceTree = "<group>"; };
@@ -138,6 +146,7 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E7CD078F0E07E64300792C16 /* BGHUDTableView */,
 				E77FE3350E0602F3004B97C2 /* Themes */,
 				E77FE3320E06027D004B97C2 /* BGThemeManager */,
 				E771B6F80E01B0EE00070EF6 /* BGHUDSecureTextFieldCell */,
@@ -299,6 +308,17 @@
 			name = BGHUDTokenAttachmentCell;
 			sourceTree = "<group>";
 		};
+		E7CD078F0E07E64300792C16 /* BGHUDTableView */ = {
+			isa = PBXGroup;
+			children = (
+				E7CD07900E07E65600792C16 /* BGHUDTableView.h */,
+				E7CD07910E07E65600792C16 /* BGHUDTableView.m */,
+				E7CD086D0E07F61300792C16 /* BGHUDTableViewHeaderCell.h */,
+				E7CD086E0E07F61300792C16 /* BGHUDTableViewHeaderCell.m */,
+			);
+			name = BGHUDTableView;
+			sourceTree = "<group>";
+		};
 		E7CF49E50DF84E520021AB3C /* READMEs */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +352,8 @@
 				E771B6FB0E01B10300070EF6 /* BGHUDSecureTextFieldCell.h in Headers */,
 				E77FE3300E060233004B97C2 /* BGThemeManager.h in Headers */,
 				E77FE3380E06030A004B97C2 /* BGGradientTheme.h in Headers */,
+				E7CD07920E07E65600792C16 /* BGHUDTableView.h in Headers */,
+				E7CD086F0E07F61300792C16 /* BGHUDTableViewHeaderCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +429,8 @@
 				E771B6FC0E01B10300070EF6 /* BGHUDSecureTextFieldCell.m in Sources */,
 				E77FE3310E060233004B97C2 /* BGThemeManager.m in Sources */,
 				E77FE3390E06030A004B97C2 /* BGGradientTheme.m in Sources */,
+				E7CD07930E07E65600792C16 /* BGHUDTableView.m in Sources */,
+				E7CD08700E07F61300792C16 /* BGHUDTableViewHeaderCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

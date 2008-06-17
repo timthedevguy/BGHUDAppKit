@@ -74,12 +74,14 @@ struct NSProgressIndicator_t {
 		//Draw border
 		[NSGraphicsContext saveGraphicsState];
 		[[themeManager dropShadow] set];
-		[[themeManager strokeColor] set];
+		[[themeManager darkStrokeColor] set];
 		[path stroke];
 		[NSGraphicsContext restoreGraphicsState];
 		
 		//Draw Fill
 		[[themeManager progressTrackGradient] drawInRect: NSInsetRect(frame, 0, 0) angle: 90];
+		[[themeManager strokeColor] set];
+		[path stroke];
 		
 		if(![self isIndeterminate]) {
 			
