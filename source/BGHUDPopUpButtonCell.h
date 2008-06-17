@@ -34,6 +34,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "BGThemeManager.h"
+#import "BGGradientTheme.h"
 
 @interface BGHUDPopUpButtonCell : NSPopUpButtonCell {
 

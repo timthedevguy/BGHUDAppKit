@@ -45,6 +45,9 @@
 	
 	if(self) {
 		
+		themeManager = [[BGGradientTheme alloc] init];
+		[self setTextColor: [themeManager textColor]];
+		
 		if([self drawsBackground]) {
 			
 			fillsBackground = YES;
@@ -61,6 +64,9 @@
 	self = [super initWithCoder: aDecoder];
 	
 	if(self) {
+		
+		themeManager = [[BGGradientTheme alloc] init];
+		[self setTextColor: [themeManager textColor]];
 		
 		if([self drawsBackground]) {
 			
@@ -124,13 +130,5 @@
 }
 
 #pragma mark -
-
--(void)awakeFromNib {
-
-	if(themeManager) {
-		
-		[self setTextColor: [themeManager textColor]];
-	}
-}
 
 @end

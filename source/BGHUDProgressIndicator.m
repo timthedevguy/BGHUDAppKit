@@ -42,6 +42,18 @@ struct NSProgressIndicator_t {
 
 #pragma mark Drawing Functions
 
+-(id)initWithCoder:(NSCoder *)aDecoder {
+	
+	self = [super initWithCoder: aDecoder];
+	
+	if(self) {
+		
+		themeManager = [[BGGradientTheme alloc] init];
+	}
+	
+	return self;
+}
+
 - (void)_drawThemeBackground {
 	
 	if(themeManager) {

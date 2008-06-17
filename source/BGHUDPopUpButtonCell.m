@@ -34,7 +34,6 @@
 
 #import "BGHUDPopUpButtonCell.h"
 
-
 @implementation BGHUDPopUpButtonCell
 
 #pragma mark Drawing Functions
@@ -52,6 +51,8 @@
 		frame.size.height += 3;
 		
 		[[self controlView] setFrame: frame];
+		
+		themeManager = [[BGGradientTheme alloc] init];
 	}
 	
 	return self;
@@ -70,6 +71,8 @@
 		frame.size.height += 3;
 		
 		[[self controlView] setFrame: frame];
+		
+		themeManager = [[BGGradientTheme alloc] init];
 	}
 	
 	return self;

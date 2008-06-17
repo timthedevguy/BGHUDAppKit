@@ -42,6 +42,18 @@
 
 #pragma mark Drawing Functions
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+	
+	self = [super initWithCoder: aDecoder];
+	
+	if(self) {
+		
+		themeManager = [[BGGradientTheme alloc] init];
+	}
+	
+	return self;
+}
+
 - (void)drawRect:(NSRect)rect {
 	
 	if(themeManager) {

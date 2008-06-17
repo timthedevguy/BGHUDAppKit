@@ -45,6 +45,8 @@
 	
 	if(self) {
 		
+		themeManager = [[BGGradientTheme alloc] init];
+		[self setBackgroundColor: [themeManager tableBackgroundColor]];
 		[self setFocusRingType: NSFocusRingTypeNone];
 		
 		//Setup Header Cells
@@ -58,6 +60,7 @@
 			//Create new cell and set it's props to that of old cell
 			BGHUDTableViewHeaderCell *newHeader = [[BGHUDTableViewHeaderCell alloc] init];
 			[newHeader setStringValue: [[aColumn headerCell] stringValue]];
+			[newHeader setThemeManager: themeManager];
 			[newHeader setFont: [[aColumn headerCell] font]];
 			
 			[aColumn setHeaderCell: newHeader];
@@ -115,24 +118,6 @@
 
 #pragma mark -
 #pragma mark Helper Methods
-
--(void)awakeFromNib {
-
-	if(themeManager) {
-		
-		[self setBackgroundColor: [themeManager tableBackgroundColor]];
-		
-		NSEnumerator*   aEnumerator;
-		NSTableColumn*  aColumn;
-		
-		aEnumerator = [[self tableColumns] objectEnumerator];
-		
-		while (aColumn = [aEnumerator nextObject]) {
-			
-			[[aColumn headerCell] setThemeManager: themeManager];
-		}
-	}
-}
 
 -(void)setThemeManager:(BGThemeManager *)manager {
 	

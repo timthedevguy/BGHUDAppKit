@@ -45,6 +45,8 @@
 	
 	if(self) {
 
+		themeManager = [[BGGradientTheme alloc] init];
+		
 		if([self drawsBackground]) {
 			
 			fillsBackground = YES;

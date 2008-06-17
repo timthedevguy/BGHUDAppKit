@@ -35,6 +35,7 @@
 #import <Cocoa/Cocoa.h>
 #import "BGHUDScroller.h"
 #import "BGThemeManager.h"
+#import "BGGradientTheme.h"
 
 @interface BGHUDScrollView : NSScrollView {
 	

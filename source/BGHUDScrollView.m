@@ -43,7 +43,9 @@
 	
 	if(self) {
 	
+		themeManager = [[BGGradientTheme alloc] init];
 		BGHUDScroller *scrollBar = [[BGHUDScroller alloc] init];
+		[scrollBar setThemeManager: themeManager];
 		[self setVerticalScroller: scrollBar];
 		[scrollBar release];
 		[self setDrawsBackground: NO];
@@ -58,7 +60,9 @@
 	
 	if(self) {
 		
+		themeManager = [[BGGradientTheme alloc] init];
 		BGHUDScroller *scrollBar = [[BGHUDScroller alloc] init];
+		[scrollBar setThemeManager: themeManager];
 		[self setVerticalScroller: scrollBar];
 		[scrollBar release];
 		[self setDrawsBackground: NO];
@@ -67,17 +71,10 @@
 	return self;
 }
 
--(void)awakeFromNib {
-	
-	if(themeManager) {
-		
-		[[self verticalScroller] setThemeManager: themeManager];
-	}
-}
-
 -(void)setThemeManager:(BGThemeManager *)manager {
 	
 	themeManager = [manager retain];
+	[[self verticalScroller] setThemeManager: themeManager];
 }
 
 -(void)dealloc {

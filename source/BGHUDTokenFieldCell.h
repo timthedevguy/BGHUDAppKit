@@ -36,6 +36,7 @@
 #import "BGHUDTokenAttachmentCell.h"
 #import "NSTokenAttachmentCell.h"
 #import "BGThemeManager.h"
+#import "BGGradientTheme.h"
 
 @interface BGHUDTokenFieldCell : NSTokenFieldCell {
 

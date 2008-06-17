@@ -39,6 +39,18 @@
 
 #pragma mark Drawing Functions
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+	
+	self = [super initWithCoder: aDecoder];
+	
+	if(self) {
+		
+		themeManager = [[BGGradientTheme alloc] init];
+	}
+	
+	return self;
+}
+
 - (void)drawBarInside:(NSRect)aRect flipped:(BOOL)flipped {
 	
 	if(themeManager) {
