@@ -44,10 +44,17 @@
 	if(self) {
 	
 		themeManager = [[BGGradientTheme alloc] init];
-		BGHUDScroller *scrollBar = [[BGHUDScroller alloc] init];
-		[scrollBar setThemeManager: themeManager];
-		[self setVerticalScroller: scrollBar];
-		[scrollBar release];
+		
+		BGHUDScroller *verticalScroller = [[BGHUDScroller alloc] init];
+		[verticalScroller setThemeManager: themeManager];
+		[self setVerticalScroller: verticalScroller];
+		[verticalScroller release];
+		
+		BGHUDScroller *horizontalScroller = [[BGHUDScroller alloc] init];
+		[horizontalScroller setThemeManager: themeManager];
+		[self setHorizontalScroller: horizontalScroller];
+		[horizontalScroller release];
+		
 		[self setDrawsBackground: NO];
 	}
 	
@@ -61,10 +68,17 @@
 	if(self) {
 		
 		themeManager = [[BGGradientTheme alloc] init];
-		BGHUDScroller *scrollBar = [[BGHUDScroller alloc] init];
-		[scrollBar setThemeManager: themeManager];
-		[self setVerticalScroller: scrollBar];
-		[scrollBar release];
+		
+		BGHUDScroller *verticalScroller = [[BGHUDScroller alloc] init];
+		[verticalScroller setThemeManager: themeManager];
+		[self setVerticalScroller: verticalScroller];
+		[verticalScroller release];
+		
+		BGHUDScroller *horizontalScroller = [[BGHUDScroller alloc] init];
+		[horizontalScroller setThemeManager: themeManager];
+		[self setHorizontalScroller: horizontalScroller];
+		[horizontalScroller release];
+		
 		[self setDrawsBackground: NO];
 	}
 	
