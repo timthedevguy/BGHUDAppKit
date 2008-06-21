@@ -1,8 +1,8 @@
 //
-//  BGHUDTableView.m
+//  BGHUDOutlineView.m
 //  BGHUDAppKit
 //
-//  Created by BinaryGod on 6/17/08.
+//  Created by BinaryGod on 6/20/08.
 //
 //  Copyright (c) 2008, Tim Davis (BinaryMethod.com, binary.god@gmail.com)
 //  All rights reserved.
@@ -32,10 +32,10 @@
 //	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 //	POSSIBILITY OF SUCH DAMAGE.
 
-#import "BGHUDTableView.h"
+#import "BGHUDOutlineView.h"
 
 
-@implementation BGHUDTableView
+@implementation BGHUDOutlineView
 
 #pragma mark Drawing Functions
 

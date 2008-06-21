@@ -44,6 +44,8 @@
 		E7CF49EC0DF84E5E0021AB3C /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7CF49E80DF84E5E0021AB3C /* License.rtf */; };
 		E7CF49ED0DF84E5E0021AB3C /* USAGE.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7CF49E90DF84E5E0021AB3C /* USAGE.rtf */; };
 		E7CF49EE0DF84E5E0021AB3C /* CONTRIB.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7CF49EA0DF84E5E0021AB3C /* CONTRIB.rtf */; };
+		E7D9FD0E0E0C976F0043E27B /* BGHUDOutlineView.h in Headers */ = {isa = PBXBuildFile; fileRef = E7D9FD0C0E0C976F0043E27B /* BGHUDOutlineView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E7D9FD0F0E0C976F0043E27B /* BGHUDOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D9FD0D0E0C976F0043E27B /* BGHUDOutlineView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +92,8 @@
 		E7CF49E80DF84E5E0021AB3C /* License.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = License.rtf; sourceTree = "<group>"; };
 		E7CF49E90DF84E5E0021AB3C /* USAGE.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = USAGE.rtf; sourceTree = "<group>"; };
 		E7CF49EA0DF84E5E0021AB3C /* CONTRIB.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = CONTRIB.rtf; sourceTree = "<group>"; };
+		E7D9FD0C0E0C976F0043E27B /* BGHUDOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDOutlineView.h; path = source/BGHUDOutlineView.h; sourceTree = "<group>"; };
+		E7D9FD0D0E0C976F0043E27B /* BGHUDOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDOutlineView.m; path = source/BGHUDOutlineView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +150,7 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E7D9FD0B0E0C975E0043E27B /* BGHUDOutlineView */,
 				E7CD078F0E07E64300792C16 /* BGHUDTableView */,
 				E77FE3350E0602F3004B97C2 /* Themes */,
 				E77FE3320E06027D004B97C2 /* BGThemeManager */,
@@ -330,6 +335,15 @@
 			name = READMEs;
 			sourceTree = "<group>";
 		};
+		E7D9FD0B0E0C975E0043E27B /* BGHUDOutlineView */ = {
+			isa = PBXGroup;
+			children = (
+				E7D9FD0C0E0C976F0043E27B /* BGHUDOutlineView.h */,
+				E7D9FD0D0E0C976F0043E27B /* BGHUDOutlineView.m */,
+			);
+			name = BGHUDOutlineView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -354,6 +368,7 @@
 				E77FE3380E06030A004B97C2 /* BGGradientTheme.h in Headers */,
 				E7CD07920E07E65600792C16 /* BGHUDTableView.h in Headers */,
 				E7CD086F0E07F61300792C16 /* BGHUDTableViewHeaderCell.h in Headers */,
+				E7D9FD0E0E0C976F0043E27B /* BGHUDOutlineView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +446,7 @@
 				E77FE3390E06030A004B97C2 /* BGGradientTheme.m in Sources */,
 				E7CD07930E07E65600792C16 /* BGHUDTableView.m in Sources */,
 				E7CD08700E07F61300792C16 /* BGHUDTableViewHeaderCell.m in Sources */,
+				E7D9FD0F0E0C976F0043E27B /* BGHUDOutlineView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
