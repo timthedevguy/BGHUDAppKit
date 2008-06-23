@@ -58,8 +58,7 @@
 	
 	if(themeManager) {
 		
-		arrowPosition = [[NSDictionary dictionaryWithContentsOfFile:
-						  [@"~/Library/Preferences/.GlobalPreferences.plist" stringByExpandingTildeInPath]] objectForKey: @"AppleScrollBarVariant"];
+		arrowPosition = [[[NSUserDefaults standardUserDefaults] persistentDomainForName:NSGlobalDomain] valueForKey:@"AppleScrollBarVariant"];
 		
 		if([self bounds].size.width > [self bounds].size.height) {
 			
