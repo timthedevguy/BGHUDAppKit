@@ -38,7 +38,7 @@
 		E7AC9E210E00A0C2001409AD /* BGHUDTokenAttachmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7AC9E1F0E00A0C2001409AD /* BGHUDTokenAttachmentCell.m */; };
 		E7CD07920E07E65600792C16 /* BGHUDTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = E7CD07900E07E65600792C16 /* BGHUDTableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7CD07930E07E65600792C16 /* BGHUDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CD07910E07E65600792C16 /* BGHUDTableView.m */; };
-		E7CD086F0E07F61300792C16 /* BGHUDTableViewHeaderCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7CD086D0E07F61300792C16 /* BGHUDTableViewHeaderCell.h */; };
+		E7CD086F0E07F61300792C16 /* BGHUDTableViewHeaderCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7CD086D0E07F61300792C16 /* BGHUDTableViewHeaderCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7CD08700E07F61300792C16 /* BGHUDTableViewHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CD086E0E07F61300792C16 /* BGHUDTableViewHeaderCell.m */; };
 		E7CF49EB0DF84E5E0021AB3C /* README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7CF49E70DF84E5E0021AB3C /* README.rtf */; };
 		E7CF49EC0DF84E5E0021AB3C /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7CF49E80DF84E5E0021AB3C /* License.rtf */; };
