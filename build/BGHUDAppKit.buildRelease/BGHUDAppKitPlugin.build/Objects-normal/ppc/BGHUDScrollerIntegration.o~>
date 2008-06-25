@@ -1,0 +1,2 @@
+/Users/binarygod/Development/Resources/Frameworks/BGHUDAppKit7/BGHUDAppKit/BGHUDScrollerIntegration.m:10:38: error: BGHUDAppKit/BGHUDScroller.h: No such file or directory
+/Users/binarygod/Development/Resources/Frameworks/BGHUDAppKit7/BGHUDAppKit/BGHUDScrollerIntegration.m:14: error: cannot find interface declaration for 'BGHUDScroller'
