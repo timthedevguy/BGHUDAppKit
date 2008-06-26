@@ -166,9 +166,17 @@
 		[newTitle removeAttribute: NSShadowAttributeName
 							range: NSMakeRange(0, [newTitle length])];
 		
-		[newTitle addAttribute: NSForegroundColorAttributeName
-						 value: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]
-						 range: NSMakeRange(0, [newTitle length])];
+		if([self isEnabled]) {
+			
+			[newTitle addAttribute: NSForegroundColorAttributeName
+							 value: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]
+							 range: NSMakeRange(0, [newTitle length])];
+		} else {
+			
+			[newTitle addAttribute: NSForegroundColorAttributeName
+							 value: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]
+							 range: NSMakeRange(0, [newTitle length])];
+		}
 		
 		[newTitle endEditing];
 		
@@ -256,7 +264,14 @@
 		}
 		
 		[image setFlipped: YES];
-		[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
+		
+		if([self isEnabled]) {
+			
+			[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
+		} else {
+			[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue]];
+		}
+			
 	}
 }
 
@@ -297,7 +312,10 @@
 	//Save Graphics State
 	[NSGraphicsContext saveGraphicsState];
 	
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
+	if([self isEnabled]) {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
+	}
 	
 	//Draw Dark Border
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] darkStrokeColor] set];
@@ -307,30 +325,43 @@
 	//Restore Graphics State
 	[NSGraphicsContext restoreGraphicsState];
 	
-	//Draw Background
-	if(([self showsStateBy] == 12 && [self highlightsBy] == 14) ||
-	   ([self showsStateBy] == 12 && [self highlightsBy] == 12)) {
+	if([self isEnabled]) {
 		
-		if([self state] == 1) {
+		//Draw Background
+		if(([self showsStateBy] == 12 && [self highlightsBy] == 14) ||
+		   ([self showsStateBy] == 12 && [self highlightsBy] == 12)) {
 			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInBezierPath: path angle: 90];
+			if([self state] == 1) {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInBezierPath: path angle: 90];
+			} else {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
+			}
 		} else {
 			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
+			if([self isHighlighted]) {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedGradient] drawInBezierPath: path angle: 90];
+			} else {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
+			}
 		}
 	} else {
 		
-		if([self isHighlighted]) {
-			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedGradient] drawInBezierPath: path angle: 90];
-		} else {
-			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
-		}
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledNormalGradient] drawInBezierPath: path angle: 90];
 	}
 	
 	//Draw Border
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+	if([self isEnabled]) {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+	} else {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+	}
+		
 	[path setLineWidth: 1.0];
 	[path stroke];
 	
@@ -391,35 +422,49 @@
 	[NSGraphicsContext saveGraphicsState];
 	
 	//Draw dark border color
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
+	if([self isEnabled]) {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
+	}
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] darkStrokeColor] set];
 	[path stroke];
 	
 	[NSGraphicsContext restoreGraphicsState];
 	
-	if(([self showsStateBy] == 12 && [self highlightsBy] == 14) ||
-	   ([self showsStateBy] == 12 && [self highlightsBy] == 12)) {
+	if([self isEnabled]) {
 		
-		if([self state] == 1) {
+		if(([self showsStateBy] == 12 && [self highlightsBy] == 14) ||
+		   ([self showsStateBy] == 12 && [self highlightsBy] == 12)) {
 			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInBezierPath: path angle: 90];
+			if([self state] == 1) {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInBezierPath: path angle: 90];
+			} else {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
+			}
 		} else {
 			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
+			if([self isHighlighted]) {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedGradient] drawInBezierPath: path angle: 90];
+			} else {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
+			}
 		}
 	} else {
 		
-		if([self isHighlighted]) {
-			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedGradient] drawInBezierPath: path angle: 90];
-		} else {
-			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
-		}
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledNormalGradient] drawInBezierPath: path angle: 90];
 	}
 	
-	//Draw Border
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+	if([self isEnabled]) {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+	} else {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+	}
 	[path setLineWidth: 1.0];
 	[path stroke];
 	
@@ -454,7 +499,10 @@
 	
 	[NSGraphicsContext saveGraphicsState];
 	
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
+	if([self isEnabled]) {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
+	}
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] darkStrokeColor] set];
 	[path setLineWidth: 1.0];
 	[path stroke];
@@ -462,29 +510,41 @@
 	[NSGraphicsContext restoreGraphicsState];
 	
 	//Draw Background
-	if(([self showsStateBy] == 12 && [self highlightsBy] == 14) ||
-	   ([self showsStateBy] == 12 && [self highlightsBy] == 12)) {
+	if([self isEnabled]) {
 		
-		if([self state] == 1) {
+		if(([self showsStateBy] == 12 && [self highlightsBy] == 14) ||
+		   ([self showsStateBy] == 12 && [self highlightsBy] == 12)) {
 			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightComplexGradient] drawInBezierPath: path angle: 90];
+			if([self state] == 1) {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightComplexGradient] drawInBezierPath: path angle: 90];
+			} else {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalComplexGradient] drawInBezierPath: path angle: 90];
+			}
 		} else {
 			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalComplexGradient] drawInBezierPath: path angle: 90];
+			if([self isHighlighted]) {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedComplexGradient] drawInBezierPath: path angle: 90];
+			} else {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalComplexGradient] drawInBezierPath: path angle: 90];
+			}
 		}
 	} else {
 		
-		if([self isHighlighted]) {
-			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedComplexGradient] drawInBezierPath: path angle: 90];
-		} else {
-			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalComplexGradient] drawInBezierPath: path angle: 90];
-		}
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledNormalComplexGradient] drawInBezierPath: path angle: 90];
 	}
 	
 	//Draw Border
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+	if([self isEnabled]) {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+	} else {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+	}
 	[path setLineWidth: 1.0];
 	[path stroke];
 	
@@ -560,29 +620,35 @@
 	
 	[path closePath];
 	
-	if(([self showsStateBy] == 12 && [self highlightsBy] == 14) ||
-	   ([self showsStateBy] == 12 && [self highlightsBy] == 12)) {
+	if([self isEnabled]) {
 		
-		if([self state] == 1) {
+		if(([self showsStateBy] == 12 && [self highlightsBy] == 14) ||
+		   ([self showsStateBy] == 12 && [self highlightsBy] == 12)) {
 			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightSolidFill] set];
-			[path fill];
+			if([self state] == 1) {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightSolidFill] set];
+				[path fill];
+			} else {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalSolidFill] set];
+				[path fill];
+			}
 		} else {
 			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalSolidFill] set];
-			[path fill];
+			if([self isHighlighted]) {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedSolidFill] set];
+				[path fill];
+			} else {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalSolidFill] set];
+				[path fill];
+			}
 		}
 	} else {
 		
-		if([self isHighlighted]) {
-			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedSolidFill] set];
-			[path fill];
-		} else {
-			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalSolidFill] set];
-			[path fill];
-		}
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledNormalSolidFill] set];
 	}
 	
 	[path release];
@@ -647,6 +713,7 @@
 				textRect.size.width -= (innerRect.origin.x + innerRect.size.width + 5) ;
 				textRect.origin.x = innerRect.origin.x + innerRect.size.width + 5;
 				
+				textRect.origin.y -= 2;
 			} else if([self controlSize] == NSSmallControlSize) {
 				
 				innerRect.origin.x += 3;
@@ -728,23 +795,40 @@
 	}
 	
 	[NSGraphicsContext saveGraphicsState];
+	
 	//Draw Shadow
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
+	if([self isEnabled]) {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
+	}
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] darkStrokeColor] set];
 	[path stroke];
+	
 	[NSGraphicsContext restoreGraphicsState];
 	
 	// Determine Fill Color and Alpha Values
-	if([self isHighlighted]) {
+	if([self isEnabled]) {
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInBezierPath: path angle: 90];
+		if([self isHighlighted]) {
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInBezierPath: path angle: 90];
+		} else {
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
+		}
 	} else {
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledNormalGradient] drawInBezierPath: path angle: 90];
 	}
 	
-	// Outline the path
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+	// Draw Border
+	if([self isEnabled]) {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+	} else {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+	}
 	[path setLineWidth: 1.0];
 	[path stroke];
 	
@@ -763,7 +847,14 @@
 			
 			[path appendBezierPathWithPoints: pointsMixed count: 2];
 			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+			if([self isEnabled]) {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+			} else {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+			}
+			
 			[path setLineWidth: 2.0];
 			[path stroke];
 			
@@ -799,7 +890,13 @@
 				path = [[NSBezierPath alloc] init];
 				[path appendBezierPathWithOvalInRect: innerRect];
 				
-				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+				if([self isEnabled]) {
+					
+					[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+				} else {
+					
+					[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+				}
 				[path fill];
 				
 				[path release];
@@ -815,7 +912,14 @@
 				
 				[path appendBezierPathWithPoints: pointsOn count: 4];
 				
-				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+				if([self isEnabled]) {
+					
+					[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+				} else {
+					
+					[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+				}
+				
 				if([self controlSize] == NSMiniControlSize) {
 					
 					[path setLineWidth: 1.5];
@@ -836,7 +940,7 @@
 		
 		if([self attributedTitle]) {
 			
-			[self drawTitle: [self attributedTitle] withFrame: frame inView: [self controlView]];
+			[self drawTitle: [self attributedTitle] withFrame: textRect inView: [self controlView]];
 		}
 	}
 }

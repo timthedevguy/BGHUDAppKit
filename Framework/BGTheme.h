@@ -73,20 +73,26 @@
 
 //General Theme
 -(NSGradient *)normalGradient;					//Gradient used to draw normal background
+-(NSGradient *)disabledNormalGradient;			//Gradient used for disabled background
 -(NSGradient *)pushedGradient;					//Gradient used to draw pushed background
 -(NSGradient *)highlightGradient;				//Gradient used to draw highlight background
 -(NSGradient *)normalComplexGradient;			//Gradient used to draw normal 4 tone gradient
+-(NSGradient *)disabledNormalComplexGradient;	//Gradient used to draw disabled 4 tone gradient
 -(NSGradient *)pushedComplexGradient;			//Gradient used to draw pushed 4 tone gradient
 -(NSGradient *)highlightComplexGradient;		//Gradient used to draw highlight 4 tone gradient
 -(NSColor *)normalSolidFill;					//Solid color used to draw normal background
+-(NSColor *)disabledNormalSolidFill;			//Solid color used to draw disabled background
 -(NSColor *)pushedSolidFill;					//Solid color used to draw pushed background
 -(NSColor *)highlightSolidFill;					//Solid color used to draw highlight background
 -(NSColor *)strokeColor;						//Color used to draw border
+-(NSColor *)disableStrokeColor;					//Color used for disabled border
 -(NSColor *)darkStrokeColor;					//Color used to draw dark shadow border
 -(NSColor *)textColor;							//Color used to draw text
+-(NSColor *)disabledTextColor;					//Color used to draw disabled text
 -(NSShadow *)dropShadow;						//Drop shadow used on all controls
 -(float)alphaValue;								//Alpha value that is an optional paremeter, used only
-//if you want certain colors to be draw with the same
-//alpha value.
+												//if you want certain colors to be draw with the same
+												//alpha value.
+-(float)disabledAlphaValue;						//Same as above but the disabled varient
 
 @end

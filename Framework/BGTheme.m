@@ -180,6 +180,12 @@
 										  endingColor: [NSColor colorWithDeviceRed: 0.118 green: 0.118 blue: 0.118 alpha: [self alphaValue]]] autorelease];
 }
 
+-(NSGradient *)disabledNormalGradient {
+	
+	return [[[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.251 green: 0.251 blue: 0.255 alpha: [self disabledAlphaValue]]
+										  endingColor: [NSColor colorWithDeviceRed: 0.118 green: 0.118 blue: 0.118 alpha: [self disabledAlphaValue]]] autorelease];
+}
+
 -(NSGradient *)pushedGradient {
 	
 	return [[[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.451 green: 0.451 blue: 0.455 alpha: [self alphaValue]]
@@ -198,6 +204,14 @@
 			 (CGFloat)0, [NSColor colorWithDeviceRed: 0.245 green: 0.253 blue: 0.269 alpha: [self alphaValue]], (CGFloat).5,
 			 [NSColor colorWithDeviceRed: 0.206 green: 0.214 blue: 0.233 alpha: [self alphaValue]], (CGFloat).5,
 			 [NSColor colorWithDeviceRed: 0.139 green: 0.147 blue: 0.167 alpha: [self alphaValue]], (CGFloat)1.0, nil] autorelease];
+}
+
+-(NSGradient *)disabledNormalComplexGradient {
+	
+	return [[[NSGradient alloc] initWithColorsAndLocations: [NSColor colorWithDeviceRed: 0.324 green: 0.331 blue: 0.347 alpha: [self disabledAlphaValue]],
+			 (CGFloat)0, [NSColor colorWithDeviceRed: 0.245 green: 0.253 blue: 0.269 alpha: [self disabledAlphaValue]], (CGFloat).5,
+			 [NSColor colorWithDeviceRed: 0.206 green: 0.214 blue: 0.233 alpha: [self disabledAlphaValue]], (CGFloat).5,
+			 [NSColor colorWithDeviceRed: 0.139 green: 0.147 blue: 0.167 alpha: [self disabledAlphaValue]], (CGFloat)1.0, nil] autorelease];
 }
 
 -(NSGradient *)pushedComplexGradient {
@@ -221,6 +235,11 @@
 	return [NSColor colorWithDeviceRed: 0.141 green: 0.141 blue: 0.141 alpha: [self alphaValue]];
 }
 
+-(NSColor *)disabledNormalSolidFill {
+	
+	return [NSColor colorWithDeviceRed: 0.141 green: 0.141 blue: 0.141 alpha: [self disabledAlphaValue]];
+}
+
 -(NSColor *)pushedSolidFill {
 	
 	return [NSColor colorWithDeviceRed: 0.941 green: 0.941 blue: 0.941 alpha: [self alphaValue]];
@@ -236,6 +255,11 @@
 	return [NSColor colorWithDeviceRed: 0.749 green: 0.761 blue: 0.788 alpha: 1.0];
 }
 
+-(NSColor *)disableStrokeColor {
+	
+	return [NSColor colorWithDeviceRed: 0.749 green: 0.761 blue: 0.788 alpha: [self alphaValue]];
+}
+
 -(NSColor *)darkStrokeColor {
 	
 	return [NSColor colorWithDeviceRed: 0.141 green: 0.141 blue: 0.141 alpha: 0.5];
@@ -244,6 +268,11 @@
 -(NSColor *)textColor {
 	
 	return [NSColor whiteColor];
+}
+
+-(NSColor *)disabledTextColor {
+	
+	return [NSColor colorWithDeviceRed: 1 green: 1 blue: 1 alpha: [self disabledAlphaValue]];
 }
 
 -(NSShadow *)dropShadow {
@@ -259,6 +288,11 @@
 -(float)alphaValue {
 	
 	return 0.6;
+}
+
+-(float)disabledAlphaValue {
+	
+	return 0.2;
 }
 
 #pragma mark -
