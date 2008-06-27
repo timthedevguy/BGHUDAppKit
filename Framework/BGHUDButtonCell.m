@@ -64,6 +64,7 @@
 			
 			self.themeKey = [aDecoder decodeObjectForKey: @"themeKey"];
 		} else {
+			
 			self.themeKey = @"gradientTheme";
 		}
 	}
@@ -73,6 +74,7 @@
 
 -(void)encodeWithCoder: (NSCoder *)coder {
 
+	//[coder encodeObject: self.themeKey forKey: @"themeKey"];
 	[super encodeWithCoder: coder];
 	
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];

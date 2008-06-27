@@ -16,7 +16,7 @@
 - (void)ibPopulateKeyPaths:(NSMutableDictionary *)keyPaths {
 	
     [super ibPopulateKeyPaths:keyPaths];
-    [[keyPaths objectForKey: IBAttributeKeyPaths] addObjectsFromArray: [NSArray arrayWithObjects: themeKey, nil]];
+    [[keyPaths objectForKey: IBAttributeKeyPaths] addObjectsFromArray: [NSArray arrayWithObjects: @"themeKey", nil]];
 }
 
 - (void)ibPopulateAttributeInspectorClasses:(NSMutableArray *)classes {
