@@ -17,9 +17,9 @@
 
 - (NSArray*)requiredFrameworks {
 	
-    NSBundle *frameworkBundle = [NSBundle bundleWithIdentifier: @"com.yourcompany.BGHUDAppKit"];
+    NSBundle *frameworkBundle = [NSBundle bundleWithIdentifier: @"com.binarymethod.BGHUDAppKit"];
 	
-    return [NSArray arrayWithObject:frameworkBundle];
+    return [NSArray arrayWithObject: frameworkBundle];
 }
 
 -(NSString *)label {
