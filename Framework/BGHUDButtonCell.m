@@ -752,16 +752,18 @@
 			
 			if([self controlSize] == NSRegularControlSize) {
 				
-				innerRect.origin.x = (frame.size.width - innerRect.size.width) +.5;
+				innerRect.origin.x = (frame.size.width - innerRect.size.width -1.5) ;//+.5;
 				
 				textRect.origin.x += 2;
 				textRect.size.width = innerRect.origin.x - textRect.origin.x -5;
+				textRect.origin.y -= 2;
 			} else if([self controlSize] == NSSmallControlSize) {
 				
-				innerRect.origin.x = frame.size.width - innerRect.size.width -.5;
+				innerRect.origin.x = frame.size.width - innerRect.size.width -1.5;
 				
 				textRect.origin.x += 2;
 				textRect.size.width = innerRect.origin.x - textRect.origin.x -5;
+				textRect.origin.y -= 1;
 			} else {
 				
 				innerRect.origin.x = frame.size.width - innerRect.size.width -1.5;
