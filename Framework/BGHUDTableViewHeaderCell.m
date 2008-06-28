@@ -64,6 +64,12 @@
     [super drawInteriorWithFrame:rect inView:view];
 }
 
+/*- (void)drawWithFrame:(NSRect)frame inView:(NSView*)view {
+	
+	[[NSColor redColor] set];
+	NSRectFill(frame);
+}*/
+
 #pragma mark -
 #pragma mark Helper Methods
 

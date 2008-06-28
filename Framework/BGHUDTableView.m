@@ -48,27 +48,27 @@
 	if(self) {
 		
 		self.themeKey = @"gradientTheme";
-	}
-	
-	[self setBackgroundColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableBackgroundColor]];
-	[self setFocusRingType: NSFocusRingTypeNone];
-	
-	//Setup Header Cells
-	NSEnumerator*   aEnumerator;
-	NSTableColumn*  aColumn;
-	
-	aEnumerator = [[self tableColumns] objectEnumerator];
-	
-	while (aColumn = [aEnumerator nextObject]) {
 		
-		//Create new cell and set it's props to that of old cell
-		BGHUDTableViewHeaderCell *newHeader = [[BGHUDTableViewHeaderCell alloc] init];
-		[newHeader setStringValue: [[aColumn headerCell] stringValue]];
-		[newHeader setThemeKey: self.themeKey];
-		[newHeader setFont: [[aColumn headerCell] font]];
+		[self setBackgroundColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableBackgroundColor]];
+		[self setFocusRingType: NSFocusRingTypeNone];
 		
-		[aColumn setHeaderCell: newHeader];
-		[newHeader release];
+		//Setup Header Cells
+		NSEnumerator*   aEnumerator;
+		NSTableColumn*  aColumn;
+		
+		aEnumerator = [[self tableColumns] objectEnumerator];
+		
+		while (aColumn = [aEnumerator nextObject]) {
+			
+			//Create new cell and set it's props to that of old cell
+			BGHUDTableViewHeaderCell *newHeader = [[BGHUDTableViewHeaderCell alloc] init];
+			[newHeader setStringValue: [[aColumn headerCell] stringValue]];
+			[newHeader setThemeKey: self.themeKey];
+			[newHeader setFont: [[aColumn headerCell] font]];
+			
+			[aColumn setHeaderCell: newHeader];
+			[newHeader release];
+		}
 	}
 	
 	return self;
