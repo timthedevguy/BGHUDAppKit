@@ -63,6 +63,7 @@
 		E7894E4D0E12AC2600D28139 /* BGHUDScrollView.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E7894E4C0E12AC2600D28139 /* BGHUDScrollView.classdescription */; };
 		E7894E4F0E12AC3F00D28139 /* BGHUDScrollViewIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = E7894E4E0E12AC3F00D28139 /* BGHUDScrollViewIntegration.m */; };
 		E7894F140E12B92E00D28139 /* textview.png in Resources */ = {isa = PBXBuildFile; fileRef = E7894F130E12B92E00D28139 /* textview.png */; };
+		E79388030E17280400026DD6 /* Theming.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7B8A3480E172733006AC84C /* Theming.rtf */; };
 		E7981E660E128FF90081E937 /* BGHUDProgressIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = E7981E640E128FF90081E937 /* BGHUDProgressIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7981E670E128FF90081E937 /* BGHUDProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = E7981E650E128FF90081E937 /* BGHUDProgressIndicator.m */; };
 		E7981E6C0E12C9290081E937 /* BGHUDProgressIndicator.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E7981E6B0E12C9290081E937 /* BGHUDProgressIndicator.classdescription */; };
@@ -128,6 +129,7 @@
 			dstPath = Docs;
 			dstSubfolderSpec = 1;
 			files = (
+				E79388030E17280400026DD6 /* Theming.rtf in CopyFiles */,
 				E7E6382D0E12E1300034DC7E /* README.rtf in CopyFiles */,
 				E7E6382C0E12E1300034DC7E /* License.rtf in CopyFiles */,
 				E7E6382B0E12E1300034DC7E /* CONTRIB.rtf in CopyFiles */,
