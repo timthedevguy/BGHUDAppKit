@@ -89,12 +89,12 @@
 		E79C25D10E109BB500742AF4 /* BGHUDTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C25CF0E109BB500742AF4 /* BGHUDTextFieldCell.m */; };
 		E79C25D30E109BD000742AF4 /* BGHUDTextFieldCell.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E79C25D20E109BD000742AF4 /* BGHUDTextFieldCell.classdescription */; };
 		E79C25D90E109C1800742AF4 /* BGHUDTextFieldCellIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C25D80E109C1800742AF4 /* BGHUDTextFieldCellIntegration.m */; };
+		E7B8A3490E172733006AC84C /* Theming.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7B8A3480E172733006AC84C /* Theming.rtf */; };
 		E7E638080E12DF220034DC7E /* BGHUDOutlineViewIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E638070E12DF220034DC7E /* BGHUDOutlineViewIntegration.m */; };
 		E7E6380B0E12E0350034DC7E /* outlineview.png in Resources */ = {isa = PBXBuildFile; fileRef = E7E6380A0E12E0350034DC7E /* outlineview.png */; };
-		E7E6382B0E12E1300034DC7E /* CONTRIB.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7E638270E12E1300034DC7E /* CONTRIB.rtf */; };
-		E7E6382C0E12E1300034DC7E /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7E638280E12E1300034DC7E /* License.rtf */; };
-		E7E6382D0E12E1300034DC7E /* README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7E638290E12E1300034DC7E /* README.rtf */; };
-		E7E6382E0E12E1300034DC7E /* USAGE.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7E6382A0E12E1300034DC7E /* USAGE.rtf */; };
+		E7E6382B0E12E1300034DC7E /* CONTRIB.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7E638270E12E1300034DC7E /* CONTRIB.rtf */; };
+		E7E6382C0E12E1300034DC7E /* License.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7E638280E12E1300034DC7E /* License.rtf */; };
+		E7E6382D0E12E1300034DC7E /* README.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7E638290E12E1300034DC7E /* README.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +120,21 @@
 			remoteInfo = BGHUDAppKit;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E7B8A3040E171698006AC84C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Docs;
+			dstSubfolderSpec = 1;
+			files = (
+				E7E6382D0E12E1300034DC7E /* README.rtf in CopyFiles */,
+				E7E6382C0E12E1300034DC7E /* License.rtf in CopyFiles */,
+				E7E6382B0E12E1300034DC7E /* CONTRIB.rtf in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0259C576FE90428111CA0C5A /* BGHUDAppKitPlugin.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = BGHUDAppKitPlugin.m; sourceTree = "<group>"; };
@@ -197,12 +212,12 @@
 		E79C25CF0E109BB500742AF4 /* BGHUDTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDTextFieldCell.m; path = Framework/BGHUDTextFieldCell.m; sourceTree = "<group>"; };
 		E79C25D20E109BD000742AF4 /* BGHUDTextFieldCell.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDTextFieldCell.classdescription; sourceTree = "<group>"; };
 		E79C25D80E109C1800742AF4 /* BGHUDTextFieldCellIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDTextFieldCellIntegration.m; sourceTree = "<group>"; };
+		E7B8A3480E172733006AC84C /* Theming.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Theming.rtf; sourceTree = "<group>"; };
 		E7E638070E12DF220034DC7E /* BGHUDOutlineViewIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDOutlineViewIntegration.m; sourceTree = "<group>"; };
 		E7E6380A0E12E0350034DC7E /* outlineview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = outlineview.png; path = "Inspector Images/outlineview.png"; sourceTree = "<group>"; };
 		E7E638270E12E1300034DC7E /* CONTRIB.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = CONTRIB.rtf; sourceTree = "<group>"; };
 		E7E638280E12E1300034DC7E /* License.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = License.rtf; sourceTree = "<group>"; };
 		E7E638290E12E1300034DC7E /* README.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
-		E7E6382A0E12E1300034DC7E /* USAGE.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = USAGE.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -507,10 +522,10 @@
 		E7E6381A0E12E0E50034DC7E /* ReadMe */ = {
 			isa = PBXGroup;
 			children = (
+				E7B8A3480E172733006AC84C /* Theming.rtf */,
 				E7E638270E12E1300034DC7E /* CONTRIB.rtf */,
 				E7E638280E12E1300034DC7E /* License.rtf */,
 				E7E638290E12E1300034DC7E /* README.rtf */,
-				E7E6382A0E12E1300034DC7E /* USAGE.rtf */,
 			);
 			name = ReadMe;
 			sourceTree = "<group>";
@@ -555,6 +570,7 @@
 				53DF68F9067E5B5A0090B5B0 /* Resources */,
 				53DF68FA067E5B5A0090B5B0 /* Sources */,
 				53DF68FB067E5B5A0090B5B0 /* Frameworks */,
+				E7B8A3040E171698006AC84C /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -609,10 +625,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7E6382B0E12E1300034DC7E /* CONTRIB.rtf in Resources */,
-				E7E6382C0E12E1300034DC7E /* License.rtf in Resources */,
-				E7E6382D0E12E1300034DC7E /* README.rtf in Resources */,
-				E7E6382E0E12E1300034DC7E /* USAGE.rtf in Resources */,
+				E7B8A3490E172733006AC84C /* Theming.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

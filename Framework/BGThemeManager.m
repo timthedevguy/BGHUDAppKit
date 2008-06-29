@@ -38,7 +38,7 @@
 @implementation BGThemeManager
 
 static BGThemeManager *keyedManager = nil;
-static NSMutableDictionary *themes = nil;
+//static NSMutableDictionary *themes = nil;
 
 + (BGThemeManager *)keyedManager;
 {
@@ -59,15 +59,20 @@ static NSMutableDictionary *themes = nil;
         if (keyedManager == nil) {
 			
             keyedManager = [super allocWithZone: zone];
-			themes = [[NSMutableDictionary alloc] initWithCapacity: 2];
-
-			[themes setObject: [[BGTheme alloc] init] forKey: @"flatTheme"];
-			[themes setObject: [[BGGradientTheme alloc] init] forKey: @"gradientTheme"];
+			
+			[keyedManager initDefaultThemes];
 
             return keyedManager;  // assignment and return on first allocation
         }
     }
     return nil; //on subsequent allocation attempts return nil
+}
+
+-(void)initDefaultThemes {
+	
+	themes = [[NSMutableDictionary alloc] initWithCapacity: 2];
+	[themes setObject: [[BGTheme alloc] init] forKey: @"flatTheme"];
+	[themes setObject: [[BGGradientTheme alloc] init] forKey: @"gradientTheme"];
 }
 
 - (BGTheme *)themeForKey:(NSString *)key {

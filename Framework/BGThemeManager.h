@@ -38,9 +38,11 @@
 
 @interface BGThemeManager : NSObject {
 
+	NSMutableDictionary *themes;
 }
 
 + (BGThemeManager *)keyedManager;
+-(void)initDefaultThemes;
 - (BGTheme *)themeForKey:(NSString *)key;
 - (void)setTheme:(BGTheme *)theme forKey:(NSString *)key;
 
