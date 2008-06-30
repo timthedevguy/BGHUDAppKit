@@ -46,9 +46,27 @@
 	return [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor];
 }
 
-- (void)_drawThemeContents:(struct _NSRect)fp8 highlighted:(BOOL)fp24 inView:(id)fp28 {
+- (void)_drawThemeContents:(NSRect)frame highlighted:(BOOL)flag inView:(id)view {
 
-	NSLog(@"Drawing Theme Stuff");
+	//Draw base layer
+	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellBorderColor] set];
+	NSRectFill(frame);
+	
+	//Adjust fill layer
+	frame.origin.x += 1;
+	frame.size.width -= 1;
+	frame.origin.y +=1;
+	frame.size.height -= 2;
+	
+	if(flag) {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellSelectedFill] drawInRect: frame angle: 90];
+	}
+	
+	//Adjust so text aligns correctly
+	//frame.origin.x -= 2;
+	frame.size.width += 1;
+	frame.size.height += 2;
 }
 
 - (void)drawWithFrame:(NSRect)frame inView:(NSView*)view {

@@ -171,6 +171,12 @@
 										  endingColor: [NSColor colorWithDeviceRed: 0.318 green: 0.318 blue: 0.318 alpha: 1.0]] autorelease];
 }
 
+-(NSGradient *)tableHeaderCellSelectedFill {
+	
+	return [[[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.651 green: 0.651 blue: 0.655 alpha: 1.0]
+										  endingColor: [NSColor colorWithDeviceRed: 0.518 green: 0.518 blue: 0.518 alpha: 1.0]] autorelease];
+}
+
 #pragma mark -
 #pragma mark General Theme
 

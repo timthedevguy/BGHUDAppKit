@@ -70,6 +70,7 @@
 -(NSColor *)tableHeaderCellBorderColor;			//Color used to draw border in column headers
 -(NSGradient *)tableHeaderCellNormalFill;		//Gradient used to draw normal column header
 -(NSGradient *)tableHeaderCellPushedFill;		//Gradient used to draw pushed column header
+-(NSGradient *)tableHeaderCellSelectedFill;		//Gradient used to draw selected column header
 
 //General Theme
 -(NSGradient *)normalGradient;					//Gradient used to draw normal background
