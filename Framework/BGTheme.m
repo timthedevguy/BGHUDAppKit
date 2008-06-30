@@ -149,6 +149,11 @@
 	return [NSColor blackColor];
 }
 
+-(NSColor *)cellEditingFillColor {
+	
+	return [NSColor colorWithDeviceRed: 0.141 green: 0.141 blue: 0.141 alpha: [self alphaValue]];
+}
+
 -(NSColor *)tableBackgroundColor {
 	
 	return [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: .00];

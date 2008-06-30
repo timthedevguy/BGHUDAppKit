@@ -133,6 +133,9 @@
 	
     [super _sendDelegateWillDisplayCell:cell forColumn:column row:row];
 	
+	[[self currentEditor] setBackgroundColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] cellEditingFillColor]];
+	[[self currentEditor] setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+	
 	if([[self selectedRowIndexes] containsIndex: row]) {
 		
 		if([cell respondsToSelector: @selector(setTextColor:)]) {

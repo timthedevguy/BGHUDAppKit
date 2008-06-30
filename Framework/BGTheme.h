@@ -66,6 +66,7 @@
 -(NSColor *)cellHighlightColor;					//Color used to highlight selected row
 -(NSArray *)cellAlternatingRowColors;			//NSArray with 2 Colors used to draw alternating rows
 -(NSColor *)cellSelectedTextColor;				//Color used to draw text when row selected
+-(NSColor *)cellEditingFillColor;				//Color used to draw background of editing cell
 -(NSColor *)tableBackgroundColor;				//Color used to fill table background
 -(NSColor *)tableHeaderCellBorderColor;			//Color used to draw border in column headers
 -(NSGradient *)tableHeaderCellNormalFill;		//Gradient used to draw normal column header

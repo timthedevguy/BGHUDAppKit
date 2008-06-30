@@ -69,6 +69,8 @@
 			[aColumn setHeaderCell: newHeader];
 			[newHeader release];
 		}
+		
+		[[self currentEditor] setBackgroundColor: [NSColor redColor]];
 	}
 	
 	return self;
@@ -133,6 +135,9 @@
 	
     [super _sendDelegateWillDisplayCell: cell forColumn: column row: row];
 	
+	[[self currentEditor] setBackgroundColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] cellEditingFillColor]];
+	[[self currentEditor] setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+	
 	if([[self selectedRowIndexes] containsIndex: row]) {
 		
 		if([cell respondsToSelector: @selector(setTextColor:)]) {
@@ -150,6 +155,25 @@
 	
 	[self setCornerView: [[BGHUDTableCornerView alloc] initWithThemeKey: self.themeKey]];
 }
+
+/*- (void)textDidBeginEditing:(NSNotification *)fp8 {
+
+	NSTextView *test = [fp8 object];
+	
+	[test setBackgroundColor: [NSColor blueColor]];
+}*/
+
+/*- (void)_startEditingColumn:(int)fp8 row:(int)fp12 event:(id)fp16 {
+
+	NSLog(@"This: %@", fp16);
+}*/
+
+/*- (BOOL)textShouldBeginEditing:(id)fp8 {
+	
+	NSLog(@"This: %@", fp8);
+	
+	return [super textShouldBeginEditing: fp8];
+}*/
 
 #pragma mark -
 #pragma mark Helper Methods
