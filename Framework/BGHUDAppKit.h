@@ -45,3 +45,4 @@
 #import "BGHUDOutlineView.h"
 #import "BGHUDTableView.h"
 #import "BGThemeManager.h"
+#import "BGHUDTableCornerView.h"

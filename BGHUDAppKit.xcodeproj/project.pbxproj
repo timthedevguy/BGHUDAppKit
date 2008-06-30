@@ -37,6 +37,8 @@
 		E706FE7B0E12DE180017E470 /* BGHUDOutlineView.h in Headers */ = {isa = PBXBuildFile; fileRef = E706FE790E12DE180017E470 /* BGHUDOutlineView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E706FE7C0E12DE180017E470 /* BGHUDOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = E706FE7A0E12DE180017E470 /* BGHUDOutlineView.m */; };
 		E706FE830E12DEFA0017E470 /* BGHUDOutlineView.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E706FE820E12DEFA0017E470 /* BGHUDOutlineView.classdescription */; };
+		E70CE5010E188A61000139C1 /* BGHUDTableCornerView.h in Headers */ = {isa = PBXBuildFile; fileRef = E70CE4FF0E188A61000139C1 /* BGHUDTableCornerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E70CE5020E188A61000139C1 /* BGHUDTableCornerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E70CE5000E188A61000139C1 /* BGHUDTableCornerView.m */; };
 		E71317DD0E10667D00885A23 /* BGGradientTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = E71317D40E10667D00885A23 /* BGGradientTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E71317DE0E10667D00885A23 /* BGGradientTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = E71317D50E10667D00885A23 /* BGGradientTheme.m */; };
 		E71317DF0E10667D00885A23 /* BGHUDAppKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E71317D60E10667D00885A23 /* BGHUDAppKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -162,6 +164,8 @@
 		E706FE790E12DE180017E470 /* BGHUDOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDOutlineView.h; path = Framework/BGHUDOutlineView.h; sourceTree = "<group>"; };
 		E706FE7A0E12DE180017E470 /* BGHUDOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDOutlineView.m; path = Framework/BGHUDOutlineView.m; sourceTree = "<group>"; };
 		E706FE820E12DEFA0017E470 /* BGHUDOutlineView.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDOutlineView.classdescription; sourceTree = "<group>"; };
+		E70CE4FF0E188A61000139C1 /* BGHUDTableCornerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDTableCornerView.h; path = Framework/BGHUDTableCornerView.h; sourceTree = "<group>"; };
+		E70CE5000E188A61000139C1 /* BGHUDTableCornerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDTableCornerView.m; path = Framework/BGHUDTableCornerView.m; sourceTree = "<group>"; };
 		E71317D40E10667D00885A23 /* BGGradientTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGGradientTheme.h; path = Framework/BGGradientTheme.h; sourceTree = "<group>"; };
 		E71317D50E10667D00885A23 /* BGGradientTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGGradientTheme.m; path = Framework/BGGradientTheme.m; sourceTree = "<group>"; };
 		E71317D60E10667D00885A23 /* BGHUDAppKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDAppKit.h; path = Framework/BGHUDAppKit.h; sourceTree = "<group>"; };
@@ -495,6 +499,8 @@
 				E7981EF20E12D6AA0081E937 /* BGHUDTableView.m */,
 				E7981EF30E12D6AA0081E937 /* BGHUDTableViewHeaderCell.h */,
 				E7981EF40E12D6AA0081E937 /* BGHUDTableViewHeaderCell.m */,
+				E70CE4FF0E188A61000139C1 /* BGHUDTableCornerView.h */,
+				E70CE5000E188A61000139C1 /* BGHUDTableCornerView.m */,
 			);
 			name = BGHUDTableView;
 			sourceTree = "<group>";
@@ -558,6 +564,7 @@
 				E7981EF50E12D6AA0081E937 /* BGHUDTableView.h in Headers */,
 				E7981EF70E12D6AA0081E937 /* BGHUDTableViewHeaderCell.h in Headers */,
 				E706FE7B0E12DE180017E470 /* BGHUDOutlineView.h in Headers */,
+				E70CE5010E188A61000139C1 /* BGHUDTableCornerView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,6 +701,7 @@
 				E7981EF60E12D6AA0081E937 /* BGHUDTableView.m in Sources */,
 				E7981EF80E12D6AA0081E937 /* BGHUDTableViewHeaderCell.m in Sources */,
 				E706FE7C0E12DE180017E470 /* BGHUDOutlineView.m in Sources */,
+				E70CE5020E188A61000139C1 /* BGHUDTableCornerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

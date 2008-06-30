@@ -131,7 +131,7 @@
 
 - (void)_sendDelegateWillDisplayCell:(id)cell forColumn:(id)column row:(int)row {
 	
-    [super _sendDelegateWillDisplayCell:cell forColumn:column row:row];
+    [super _sendDelegateWillDisplayCell: cell forColumn: column row: row];
 	
 	if([[self selectedRowIndexes] containsIndex: row]) {
 		
@@ -144,6 +144,11 @@
 			[cell setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
 		}
 	}
+}
+
+-(void)awakeFromNib {
+	
+	[self setCornerView: [[BGHUDTableCornerView alloc] initWithThemeKey: self.themeKey]];
 }
 
 #pragma mark -

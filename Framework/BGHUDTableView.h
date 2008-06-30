@@ -35,6 +35,7 @@
 #import <Cocoa/Cocoa.h>
 #import "BGThemeManager.h"
 #import "BGHUDTableViewHeaderCell.h"
+#import "BGHUDTableCornerView.h"
 
 @interface BGHUDTableView : NSTableView {
 

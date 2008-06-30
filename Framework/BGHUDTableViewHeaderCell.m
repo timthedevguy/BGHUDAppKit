@@ -46,29 +46,38 @@
 	return [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor];
 }
 
-- (void)_drawThemeContents:(struct _NSRect)rect highlighted:(BOOL)highlighted inView:(id)view
-{
-	if([self isHighlighted]) {
-		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellPushedFill] drawInRect: rect angle: 90];
-	} else {
-		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellNormalFill] drawInRect: rect angle: 90];
-	}
-	
-    [[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellBorderColor] set];
-    NSFrameRect(rect);
-	
-	//Adjust so text aligns correctly
-	rect.origin.y += 1;
-    [super drawInteriorWithFrame:rect inView:view];
+- (void)_drawThemeContents:(struct _NSRect)fp8 highlighted:(BOOL)fp24 inView:(id)fp28 {
+
+	NSLog(@"Drawing Theme Stuff");
 }
 
-/*- (void)drawWithFrame:(NSRect)frame inView:(NSView*)view {
+- (void)drawWithFrame:(NSRect)frame inView:(NSView*)view {
 	
-	[[NSColor redColor] set];
+	//Draw base layer
+	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellBorderColor] set];
 	NSRectFill(frame);
-}*/
+	
+	//Adjust fill layer
+	frame.origin.x += 1;
+	frame.size.width -= 1;
+	frame.origin.y +=1;
+	frame.size.height -= 2;
+	
+	if([self isHighlighted]) {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellPushedFill] drawInRect: frame angle: 90];
+	} else {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellNormalFill] drawInRect: frame angle: 90];
+	}
+	
+	//Adjust so text aligns correctly
+	//frame.origin.x -= 2;
+	frame.size.width += 1;
+	frame.size.height += 2;
+	
+	[super drawInteriorWithFrame: frame inView: view];
+}
 
 #pragma mark -
 #pragma mark Helper Methods
