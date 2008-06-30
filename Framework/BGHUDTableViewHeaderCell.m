@@ -67,6 +67,8 @@
 	//frame.origin.x -= 2;
 	frame.size.width += 1;
 	frame.size.height += 2;
+	
+	[super drawInteriorWithFrame: frame inView: view];
 }
 
 - (void)drawWithFrame:(NSRect)frame inView:(NSView*)view {
