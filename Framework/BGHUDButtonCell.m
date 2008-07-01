@@ -191,89 +191,95 @@
 }
 
 - (void)drawImage:(NSImage *)image withFrame:(NSRect)frame inView:(NSView *)controlView {
-	
-	//Ugly hack to determine if this is a Check or Radio button.
-	if([[_normalImage name] isEqualToString: @"NSSwitch"]) {
+
+	if([image isTemplate]) {
 		
-		[self drawCheckInFrame: frame isRadio: NO];		
-	} else if([[_normalImage name] isEqualToString: @"NSRadioButton"]) {
-		
-		[self drawCheckInFrame: frame isRadio: YES];
+		[super drawImage: image withFrame: frame inView: controlView];
 	} else {
 		
-		//Setup per State and Highlight Settings
-		if([self showsStateBy] == 0 && [self highlightsBy] == 1) {
+		//Ugly hack to determine if this is a Check or Radio button.
+		if([[_normalImage name] isEqualToString: @"NSSwitch"]) {
 			
-			if([self isHighlighted]) {
-				
-				if([self alternateImage]) {
-					
-					image = [self alternateImage];
-				}
-			}
-		}
-		
-		if([self showsStateBy] == 1 && [self highlightsBy] == 3) {
+			[self drawCheckInFrame: frame isRadio: NO];		
+		} else if([[_normalImage name] isEqualToString: @"NSRadioButton"]) {
 			
-			if([self state] == 1) {
-				
-				if([self alternateImage]) {
-					
-					image = [self alternateImage];
-				}
-			}
-		}
-		
-		NSRect imageRect = frame;
-		imageRect.size.height = [image size].height;
-		imageRect.size.width = [image size].width;
-		imageRect.origin.y += (frame.size.height /2) - (imageRect.size.height /2);
-		
-		//Setup Position
-		switch ([self imagePosition]) {
-				
-			case NSImageLeft:
-				
-				imageRect.origin.x += 5;
-				break;
-				
-			case NSImageOnly:
-				
-				imageRect.origin.x += (frame.size.width /2) - (imageRect.size.width /2);
-				break;
-				
-			case NSImageRight:
-				
-				imageRect.origin.x = ((frame.origin.x + frame.size.width) - imageRect.size.width) - 5;
-				break;
-				
-			case NSImageBelow:
-				
-				break;
-				
-			case NSImageAbove:
-				
-				break;
-				
-			case NSImageOverlaps:
-				
-				break;
-				
-			default:
-				
-				imageRect.origin.x += 5;
-				break;
-		}
-		
-		[image setFlipped: YES];
-		
-		if([self isEnabled]) {
-			
-			[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
+			[self drawCheckInFrame: frame isRadio: YES];
 		} else {
-			[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue]];
-		}
 			
+			//Setup per State and Highlight Settings
+			if([self showsStateBy] == 0 && [self highlightsBy] == 1) {
+				
+				if([self isHighlighted]) {
+					
+					if([self alternateImage]) {
+						
+						image = [self alternateImage];
+					}
+				}
+			}
+			
+			if([self showsStateBy] == 1 && [self highlightsBy] == 3) {
+				
+				if([self state] == 1) {
+					
+					if([self alternateImage]) {
+						
+						image = [self alternateImage];
+					}
+				}
+			}
+			
+			NSRect imageRect = frame;
+			imageRect.size.height = [image size].height;
+			imageRect.size.width = [image size].width;
+			imageRect.origin.y += (frame.size.height /2) - (imageRect.size.height /2);
+			
+			//Setup Position
+			switch ([self imagePosition]) {
+					
+				case NSImageLeft:
+					
+					imageRect.origin.x += 5;
+					break;
+					
+				case NSImageOnly:
+					
+					imageRect.origin.x += (frame.size.width /2) - (imageRect.size.width /2);
+					break;
+					
+				case NSImageRight:
+					
+					imageRect.origin.x = ((frame.origin.x + frame.size.width) - imageRect.size.width) - 5;
+					break;
+					
+				case NSImageBelow:
+					
+					break;
+					
+				case NSImageAbove:
+					
+					break;
+					
+				case NSImageOverlaps:
+					
+					break;
+					
+				default:
+					
+					imageRect.origin.x += 5;
+					break;
+			}
+			
+			[image setFlipped: YES];
+			
+			if([self isEnabled]) {
+				
+				[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
+			} else {
+				[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue]];
+			}
+			
+		}
 	}
 }
 
