@@ -48,6 +48,10 @@
 		E71317E30E10667D00885A23 /* BGTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = E71317DA0E10667D00885A23 /* BGTheme.m */; };
 		E71317E40E10667D00885A23 /* BGThemeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E71317DB0E10667D00885A23 /* BGThemeManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E71317E50E10667D00885A23 /* BGThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71317DC0E10667D00885A23 /* BGThemeManager.m */; };
+		E7649D0E0E1AC55B001F7E20 /* BGHUDSegmentedCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7649D0C0E1AC55B001F7E20 /* BGHUDSegmentedCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E7649D0F0E1AC55B001F7E20 /* BGHUDSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7649D0D0E1AC55B001F7E20 /* BGHUDSegmentedCell.m */; };
+		E7649D140E1AC719001F7E20 /* BGHUDSegmentedCell.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E7649D130E1AC719001F7E20 /* BGHUDSegmentedCell.classdescription */; };
+		E7649D170E1AC74F001F7E20 /* BGHUDSegementedCellIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = E7649D160E1AC74F001F7E20 /* BGHUDSegementedCellIntegration.m */; };
 		E7894D850E12978C00D28139 /* BGHUDPopUpButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7894D830E12978C00D28139 /* BGHUDPopUpButtonCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7894D860E12978C00D28139 /* BGHUDPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7894D840E12978C00D28139 /* BGHUDPopUpButtonCell.m */; };
 		E7894D900E12993F00D28139 /* BGHUDPopUpButtonCell.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E7894D8F0E12993F00D28139 /* BGHUDPopUpButtonCell.classdescription */; };
@@ -65,6 +69,10 @@
 		E7894E4D0E12AC2600D28139 /* BGHUDScrollView.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E7894E4C0E12AC2600D28139 /* BGHUDScrollView.classdescription */; };
 		E7894E4F0E12AC3F00D28139 /* BGHUDScrollViewIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = E7894E4E0E12AC3F00D28139 /* BGHUDScrollViewIntegration.m */; };
 		E7894F140E12B92E00D28139 /* textview.png in Resources */ = {isa = PBXBuildFile; fileRef = E7894F130E12B92E00D28139 /* textview.png */; };
+		E78DB0330E34E3C100AF4E06 /* BGHUDSearchFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E78DB0310E34E3C100AF4E06 /* BGHUDSearchFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E78DB0340E34E3C100AF4E06 /* BGHUDSearchFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E78DB0320E34E3C100AF4E06 /* BGHUDSearchFieldCell.m */; };
+		E78DB0440E34E48200AF4E06 /* BGHUDSearchFieldCell.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E78DB0430E34E48200AF4E06 /* BGHUDSearchFieldCell.classdescription */; };
+		E78DB0460E34E4A300AF4E06 /* BGHUDSearchFieldCellIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = E78DB0450E34E4A300AF4E06 /* BGHUDSearchFieldCellIntegration.m */; };
 		E79388030E17280400026DD6 /* Theming.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7B8A3480E172733006AC84C /* Theming.rtf */; };
 		E7981E660E128FF90081E937 /* BGHUDProgressIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = E7981E640E128FF90081E937 /* BGHUDProgressIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7981E670E128FF90081E937 /* BGHUDProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = E7981E650E128FF90081E937 /* BGHUDProgressIndicator.m */; };
@@ -175,6 +183,10 @@
 		E71317DA0E10667D00885A23 /* BGTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGTheme.m; path = Framework/BGTheme.m; sourceTree = "<group>"; };
 		E71317DB0E10667D00885A23 /* BGThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGThemeManager.h; path = Framework/BGThemeManager.h; sourceTree = "<group>"; };
 		E71317DC0E10667D00885A23 /* BGThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGThemeManager.m; path = Framework/BGThemeManager.m; sourceTree = "<group>"; };
+		E7649D0C0E1AC55B001F7E20 /* BGHUDSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDSegmentedCell.h; path = Framework/BGHUDSegmentedCell.h; sourceTree = "<group>"; };
+		E7649D0D0E1AC55B001F7E20 /* BGHUDSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDSegmentedCell.m; path = Framework/BGHUDSegmentedCell.m; sourceTree = "<group>"; };
+		E7649D130E1AC719001F7E20 /* BGHUDSegmentedCell.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDSegmentedCell.classdescription; sourceTree = "<group>"; };
+		E7649D160E1AC74F001F7E20 /* BGHUDSegementedCellIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDSegementedCellIntegration.m; sourceTree = "<group>"; };
 		E7894D830E12978C00D28139 /* BGHUDPopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDPopUpButtonCell.h; path = Framework/BGHUDPopUpButtonCell.h; sourceTree = "<group>"; };
 		E7894D840E12978C00D28139 /* BGHUDPopUpButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDPopUpButtonCell.m; path = Framework/BGHUDPopUpButtonCell.m; sourceTree = "<group>"; };
 		E7894D8F0E12993F00D28139 /* BGHUDPopUpButtonCell.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDPopUpButtonCell.classdescription; sourceTree = "<group>"; };
@@ -192,6 +204,10 @@
 		E7894E4C0E12AC2600D28139 /* BGHUDScrollView.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDScrollView.classdescription; sourceTree = "<group>"; };
 		E7894E4E0E12AC3F00D28139 /* BGHUDScrollViewIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDScrollViewIntegration.m; sourceTree = "<group>"; };
 		E7894F130E12B92E00D28139 /* textview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = textview.png; path = "Inspector Images/textview.png"; sourceTree = "<group>"; };
+		E78DB0310E34E3C100AF4E06 /* BGHUDSearchFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDSearchFieldCell.h; path = Framework/BGHUDSearchFieldCell.h; sourceTree = "<group>"; };
+		E78DB0320E34E3C100AF4E06 /* BGHUDSearchFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDSearchFieldCell.m; path = Framework/BGHUDSearchFieldCell.m; sourceTree = "<group>"; };
+		E78DB0430E34E48200AF4E06 /* BGHUDSearchFieldCell.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDSearchFieldCell.classdescription; sourceTree = "<group>"; };
+		E78DB0450E34E4A300AF4E06 /* BGHUDSearchFieldCellIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDSearchFieldCellIntegration.m; sourceTree = "<group>"; };
 		E7981E640E128FF90081E937 /* BGHUDProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDProgressIndicator.h; path = Framework/BGHUDProgressIndicator.h; sourceTree = "<group>"; };
 		E7981E650E128FF90081E937 /* BGHUDProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDProgressIndicator.m; path = Framework/BGHUDProgressIndicator.m; sourceTree = "<group>"; };
 		E7981E6B0E12C9290081E937 /* BGHUDProgressIndicator.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDProgressIndicator.classdescription; sourceTree = "<group>"; };
@@ -345,6 +361,8 @@
 				E7981EE00E12D4B00081E937 /* BGHUDTokenFieldCellIntegration.m */,
 				E7981F030E12D8890081E937 /* BGHUDTableViewIntegration.m */,
 				E7E638070E12DF220034DC7E /* BGHUDOutlineViewIntegration.m */,
+				E7649D160E1AC74F001F7E20 /* BGHUDSegementedCellIntegration.m */,
+				E78DB0450E34E4A300AF4E06 /* BGHUDSearchFieldCellIntegration.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -363,6 +381,8 @@
 				E7981EDD0E12D48D0081E937 /* BGHUDTokenFieldCell.classdescription */,
 				E7981F010E12D8740081E937 /* BGHUDTableView.classdescription */,
 				E706FE820E12DEFA0017E470 /* BGHUDOutlineView.classdescription */,
+				E7649D130E1AC719001F7E20 /* BGHUDSegmentedCell.classdescription */,
+				E78DB0430E34E48200AF4E06 /* BGHUDSearchFieldCell.classdescription */,
 			);
 			name = "Class Descriptions";
 			sourceTree = "<group>";
@@ -390,7 +410,9 @@
 				E7981E630E128FDC0081E937 /* BGHUDProgressIndicator */,
 				E7894E2D0E12A7D200D28139 /* BGHUDScroller */,
 				E7894E3A0E12A9C800D28139 /* BGHUDScrollView */,
+				E78DB0300E34E3AD00AF4E06 /* BGHUDSearchFieldCell */,
 				E7981EAE0E12CEF50081E937 /* BGHUDSecureTextFieldCell */,
+				E7649D0B0E1AC542001F7E20 /* BGHUDSegmentedCell */,
 				E7894DBF0E12A01800D28139 /* BGHUDSliderCell */,
 				E7981EF00E12D68E0081E937 /* BGHUDTableView */,
 				E79C25CD0E109B9200742AF4 /* BGHUDTextFieldCell */,
@@ -415,6 +437,15 @@
 				E706FE7A0E12DE180017E470 /* BGHUDOutlineView.m */,
 			);
 			name = BGHUDOutlineView;
+			sourceTree = "<group>";
+		};
+		E7649D0B0E1AC542001F7E20 /* BGHUDSegmentedCell */ = {
+			isa = PBXGroup;
+			children = (
+				E7649D0C0E1AC55B001F7E20 /* BGHUDSegmentedCell.h */,
+				E7649D0D0E1AC55B001F7E20 /* BGHUDSegmentedCell.m */,
+			);
+			name = BGHUDSegmentedCell;
 			sourceTree = "<group>";
 		};
 		E7894D820E12976900D28139 /* BGHUDPopUpButtonCell */ = {
@@ -451,6 +482,15 @@
 				E7894E3C0E12A9E700D28139 /* BGHUDScrollView.m */,
 			);
 			name = BGHUDScrollView;
+			sourceTree = "<group>";
+		};
+		E78DB0300E34E3AD00AF4E06 /* BGHUDSearchFieldCell */ = {
+			isa = PBXGroup;
+			children = (
+				E78DB0310E34E3C100AF4E06 /* BGHUDSearchFieldCell.h */,
+				E78DB0320E34E3C100AF4E06 /* BGHUDSearchFieldCell.m */,
+			);
+			name = BGHUDSearchFieldCell;
 			sourceTree = "<group>";
 		};
 		E7981E630E128FDC0081E937 /* BGHUDProgressIndicator */ = {
@@ -565,6 +605,8 @@
 				E7981EF70E12D6AA0081E937 /* BGHUDTableViewHeaderCell.h in Headers */,
 				E706FE7B0E12DE180017E470 /* BGHUDOutlineView.h in Headers */,
 				E70CE5010E188A61000139C1 /* BGHUDTableCornerView.h in Headers */,
+				E7649D0E0E1AC55B001F7E20 /* BGHUDSegmentedCell.h in Headers */,
+				E78DB0330E34E3C100AF4E06 /* BGHUDSearchFieldCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,6 +701,8 @@
 				E706FE6A0E12DD690017E470 /* tableview.png in Resources */,
 				E706FE830E12DEFA0017E470 /* BGHUDOutlineView.classdescription in Resources */,
 				E7E6380B0E12E0350034DC7E /* outlineview.png in Resources */,
+				E7649D140E1AC719001F7E20 /* BGHUDSegmentedCell.classdescription in Resources */,
+				E78DB0440E34E48200AF4E06 /* BGHUDSearchFieldCell.classdescription in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,6 +746,8 @@
 				E7981EF80E12D6AA0081E937 /* BGHUDTableViewHeaderCell.m in Sources */,
 				E706FE7C0E12DE180017E470 /* BGHUDOutlineView.m in Sources */,
 				E70CE5020E188A61000139C1 /* BGHUDTableCornerView.m in Sources */,
+				E7649D0F0E1AC55B001F7E20 /* BGHUDSegmentedCell.m in Sources */,
+				E78DB0340E34E3C100AF4E06 /* BGHUDSearchFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,6 +768,8 @@
 				E7981EE10E12D4B00081E937 /* BGHUDTokenFieldCellIntegration.m in Sources */,
 				E7981F040E12D8890081E937 /* BGHUDTableViewIntegration.m in Sources */,
 				E7E638080E12DF220034DC7E /* BGHUDOutlineViewIntegration.m in Sources */,
+				E7649D170E1AC74F001F7E20 /* BGHUDSegementedCellIntegration.m in Sources */,
+				E78DB0460E34E4A300AF4E06 /* BGHUDSearchFieldCellIntegration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

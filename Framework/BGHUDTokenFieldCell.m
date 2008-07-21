@@ -107,16 +107,33 @@
 	cellFrame.size.width -= 1;
 	cellFrame.size.height -= 1;
 	
+	//Create Path
+	NSBezierPath *path = [[NSBezierPath alloc] init];
+	
+	if([self bezelStyle] == NSTextFieldRoundedBezel) {
+		
+		[path appendBezierPathWithArcWithCenter: NSMakePoint(cellFrame.origin.x + (cellFrame.size.height /2), cellFrame.origin.y + (cellFrame.size.height /2))
+										 radius: cellFrame.size.height /2
+									 startAngle: 90
+									   endAngle: 270];
+		
+		[path appendBezierPathWithArcWithCenter: NSMakePoint(cellFrame.origin.x + (cellFrame.size.width - (cellFrame.size.height /2)), cellFrame.origin.y + (cellFrame.size.height /2))
+										 radius: cellFrame.size.height /2
+									 startAngle: 270
+									   endAngle: 90];
+		
+		[path closePath];
+	} else {
+		
+		[path appendBezierPathWithRoundedRect: cellFrame xRadius: 3.0 yRadius: 3.0];
+	}
+	
 	//Draw Background
 	if(fillsBackground) {
 		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] textFillColor] set];
-		NSRectFill(cellFrame);
+		[path fill];
 	}
-	
-	NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect: cellFrame
-														 xRadius: 3
-														 yRadius: 3];
 	
 	if([self isBezeled] || [self isBordered]) {
 		
