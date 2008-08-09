@@ -267,6 +267,48 @@
 						<nil key="subtitle"/>
 						<int key="animationScalingMode">0</int>
 					</object>
+					<object class="IBLibraryObjectTemplate" id="479843656">
+						<reference key="NSNextResponder" ref="1000"/>
+						<int key="NSvFlags">268</int>
+						<object class="NSMutableArray" key="NSSubviews">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="NSColorWell" id="122733477">
+								<reference key="NSNextResponder" ref="479843656"/>
+								<int key="NSvFlags">268</int>
+								<object class="NSMutableSet" key="NSDragTypes">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<object class="NSArray" key="set.sortedObjects">
+										<bool key="EncodedWithXMLCoder">YES</bool>
+										<string>NSColor pasteboard type</string>
+									</object>
+								</object>
+								<string key="NSFrame">{{18, 28}, {44, 23}}</string>
+								<reference key="NSSuperview" ref="479843656"/>
+								<bool key="NSEnabled">YES</bool>
+								<bool key="NSIsBordered">YES</bool>
+								<object class="NSColor" key="NSColor" id="391821370">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MSAxIDEAA</bytes>
+								</object>
+							</object>
+						</object>
+						<string key="NSFrame">{{274, 309}, {80, 80}}</string>
+						<reference key="NSSuperview" ref="1000"/>
+						<string key="label">HUD ColorWell</string>
+						<string key="identifier">31E98374-01CA-4CC8-BD91-24BFC7AD55DE</string>
+						<string key="briefDescription">Standard HUD ColorWell</string>
+						<object class="NSAttributedString" key="fullDescription">
+							<string key="NSString">This is a standard HUD ColorWell.</string>
+							<reference key="NSAttributes" ref="864247538"/>
+						</object>
+						<string type="base64-UTF8" key="initialCategoryPath">Vmlld3MgJiBDZWxscy9JbnB1dHMgJiBWYWx1ZXM</string>
+						<nil key="draggableView"/>
+						<nil key="draggedView"/>
+						<nil key="representedObject"/>
+						<nil key="filterableNames"/>
+						<nil key="subtitle"/>
+						<int key="animationScalingMode">0</int>
+					</object>
 					<object class="NSTextField" id="881041054">
 						<reference key="NSNextResponder" ref="1000"/>
 						<int key="NSvFlags">268</int>
@@ -2082,6 +2124,22 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 							<int key="NSMaximumRecents">255</int>
 						</object>
 					</object>
+					<object class="NSColorWell" id="905698286">
+						<reference key="NSNextResponder" ref="1000"/>
+						<int key="NSvFlags">268</int>
+						<object class="NSMutableSet" key="NSDragTypes">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="NSArray" key="set.sortedObjects">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<string>NSColor pasteboard type</string>
+							</object>
+						</object>
+						<string key="NSFrame">{{287, 225}, {44, 23}}</string>
+						<reference key="NSSuperview" ref="1000"/>
+						<bool key="NSEnabled">YES</bool>
+						<bool key="NSIsBordered">YES</bool>
+						<reference key="NSColor" ref="391821370"/>
+					</object>
 				</object>
 				<string key="NSFrameSize">{714, 585}</string>
 				<reference key="NSSuperview"/>
@@ -2363,6 +2421,22 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					</object>
 					<int key="connectionID">261</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">draggedView</string>
+						<reference key="source" ref="479843656"/>
+						<reference key="destination" ref="905698286"/>
+					</object>
+					<int key="connectionID">267</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">representedObject</string>
+						<reference key="source" ref="479843656"/>
+						<reference key="destination" ref="905698286"/>
+					</object>
+					<int key="connectionID">268</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2432,6 +2506,8 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 							<reference ref="249898594"/>
 							<reference ref="522558340"/>
 							<reference ref="57266592"/>
+							<reference ref="479843656"/>
+							<reference ref="905698286"/>
 						</object>
 						<reference key="parent" ref="1014"/>
 						<string key="objectName">Library Objects</string>
@@ -3221,6 +3297,25 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<reference key="object" ref="425912104"/>
 						<reference key="parent" ref="161897131"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">262</int>
+						<reference key="object" ref="479843656"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="122733477"/>
+						</object>
+						<reference key="parent" ref="1000"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">265</int>
+						<reference key="object" ref="122733477"/>
+						<reference key="parent" ref="479843656"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">266</int>
+						<reference key="object" ref="905698286"/>
+						<reference key="parent" ref="1000"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -3362,6 +3457,13 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>26.IBPluginDependency</string>
 					<string>26.notes</string>
 					<string>26.showNotes</string>
+					<string>262.IBPluginDependency</string>
+					<string>262.notes</string>
+					<string>262.showNotes</string>
+					<string>265.CustomClassName</string>
+					<string>265.IBPluginDependency</string>
+					<string>266.CustomClassName</string>
+					<string>266.IBPluginDependency</string>
 					<string>27.CustomClassName</string>
 					<string>27.IBPluginDependency</string>
 					<string>43.IBPluginDependency</string>
@@ -3712,6 +3814,24 @@ cyBvdXRsZXRzIGFyZSBvcHRpb25hbC4</string>
 						<reference key="NSAttributes" ref="260214456"/>
 					</object>
 					<reference ref="9"/>
+					<string>com.apple.InterfaceBuilderKit</string>
+					<object class="NSAttributedString">
+						<string type="base64-UTF8" key="NSString">VGhpcyBzYW1wbGUgaXMgc2V0IHVwIHNvIHRoYXQgdGhlIHNtYWxsZXIgYnV0dG9uIGFwcGVhcnMgaW4g
+dGhlIGxpYnJhcnkgd2luZG93LiBXaGVuIHRoZSBzbWFsbGVyIGJ1dHRvbiBpcyBkcmFnZ2VkIG91dCwg
+aXQgd2lsbCBhbmltYXRlIHRvIHRoZSBsYXJnZXIgYnV0dG9uLiBXaGVuIHRoZSBsYXJnZSBidXR0b24g
+aXMgZGVwb3NpdGVkIGludG8gdGhlIGFwcGxpY2F0aW9uLCBpdCB3aWxsIGRlcG9zaXQgYSBidXR0b24g
+Y2VsbC4KClRoZSBhbmltYXRpb24gaXMgYWNoaWV2ZWQgYnkgY29ubmVjdGluZyB0aGUgdGVtcGxhdGUg
+dmlldydzIGRyYWdnZWRWaWV3IG91dGxldC4KCkRlcG9zaXRpbmcgdGhlIGJ1dHRvbiBjZWxsIGluc3Rl
+YWQgb2YgdGhlIGJ1dHRvbiBpcyBhY2hpZXZlZCBieSBjb25uZWN0aW5nIHRoZSByZXByZXNlbnRlZE9i
+amVjdCBvdXRsZXQgb2YgdGhlIHRlbXBsYXRlIHZpZXcuCgpBbGwgb2YgdGhlIHRlbXBsYXRlIHZpZXcn
+cyBvdXRsZXRzIGFyZSBvcHRpb25hbC4</string>
+						<reference key="NSAttributes" ref="260214456"/>
+					</object>
+					<reference ref="9"/>
+					<string>BGHUDColorWell</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>BGHUDColorWell</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>BGHUDButtonCell</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilderKit</string>
@@ -3798,7 +3918,7 @@ cyBvdXRsZXRzIGFyZSBvcHRpb25hbC4</string>
 						<reference key="NSAttributes" ref="260214456"/>
 					</object>
 					<reference ref="9"/>
-					<string>{{406, 107}, {714, 585}}</string>
+					<string>{{573, 356}, {714, 585}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSMutableArray">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3860,7 +3980,7 @@ cyBvdXRsZXRzIGFyZSBvcHRpb25hbC4</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">261</int>
+			<int key="maxID">268</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
