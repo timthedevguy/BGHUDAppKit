@@ -1,8 +1,8 @@
 //
-//  BGHUDAppKit.h
+//  BGHUDLabel.h
 //  BGHUDAppKit
 //
-//  Created by BinaryGod on 5/25/08.
+//  Created by BinaryGod on 8/23/08.
 //
 //  Copyright (c) 2008, Tim Davis (BinaryMethod.com, binary.god@gmail.com)
 //  All rights reserved.
@@ -32,21 +32,14 @@
 //	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 //	POSSIBILITY OF SUCH DAMAGE.
 
-
-#import "BGHUDScroller.h"
-#import "BGHUDButtonCell.h"
-#import "BGHUDSliderCell.h"
-#import "BGHUDScrollView.h"
-#import "BGHUDPopUpButtonCell.h"
-#import "BGHUDTextFieldCell.h"
-#import "BGHUDProgressIndicator.h"
-#import "BGHUDTokenFieldCell.h"
-#import "BGHUDSecureTextFieldCell.h"
-#import "BGHUDOutlineView.h"
-#import "BGHUDTableView.h"
+#import <Cocoa/Cocoa.h>
 #import "BGThemeManager.h"
-#import "BGHUDTableCornerView.h"
-#import "BGHUDSearchFieldCell.h"
-#import "BGHUDSegmentedCell.h"
-#import "BGHUDColorWell.h"
-#import "BGHUDLabel.h"
+
+@interface BGHUDLabel : NSTextField {
+
+	NSString *themeKey;
+}
+
+@property (retain) NSString *themeKey;
+
+@end

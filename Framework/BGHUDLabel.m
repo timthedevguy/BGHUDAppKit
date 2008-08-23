@@ -1,8 +1,8 @@
 //
-//  BGHUDAppKit.h
+//  BGHUDLabel.m
 //  BGHUDAppKit
 //
-//  Created by BinaryGod on 5/25/08.
+//  Created by BinaryGod on 8/23/08.
 //
 //  Copyright (c) 2008, Tim Davis (BinaryMethod.com, binary.god@gmail.com)
 //  All rights reserved.
@@ -32,21 +32,56 @@
 //	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 //	POSSIBILITY OF SUCH DAMAGE.
 
-
-#import "BGHUDScroller.h"
-#import "BGHUDButtonCell.h"
-#import "BGHUDSliderCell.h"
-#import "BGHUDScrollView.h"
-#import "BGHUDPopUpButtonCell.h"
-#import "BGHUDTextFieldCell.h"
-#import "BGHUDProgressIndicator.h"
-#import "BGHUDTokenFieldCell.h"
-#import "BGHUDSecureTextFieldCell.h"
-#import "BGHUDOutlineView.h"
-#import "BGHUDTableView.h"
-#import "BGThemeManager.h"
-#import "BGHUDTableCornerView.h"
-#import "BGHUDSearchFieldCell.h"
-#import "BGHUDSegmentedCell.h"
-#import "BGHUDColorWell.h"
 #import "BGHUDLabel.h"
+
+
+@implementation BGHUDLabel
+
+@synthesize themeKey;
+
+-(id)init {
+	
+	self = [super init];
+	
+	if(self) {
+		
+		self.themeKey = @"gradientTheme";
+		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+		[self setBordered: NO];
+		[self setBezeled: NO];
+		[self setEditable: NO];
+		[self setSelectable: NO];
+	}
+	
+	return self;
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder {
+	
+	self = [super initWithCoder: aDecoder];
+	
+	if(self) {
+		
+		if([aDecoder containsValueForKey: @"themeKey"]) {
+			
+			self.themeKey = [aDecoder decodeObjectForKey: @"themeKey"];
+		} else {
+			
+			self.themeKey = @"gradientTheme";
+		}
+		
+		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+	}
+	
+	return self;
+}
+
+-(void)encodeWithCoder: (NSCoder *)coder {
+	
+	[super encodeWithCoder: coder];
+	
+	[coder encodeObject: self.themeKey forKey: @"themeKey"];
+}
+
+
+@end

@@ -107,6 +107,10 @@
 		E79C25D30E109BD000742AF4 /* BGHUDTextFieldCell.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E79C25D20E109BD000742AF4 /* BGHUDTextFieldCell.classdescription */; };
 		E79C25D90E109C1800742AF4 /* BGHUDTextFieldCellIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C25D80E109C1800742AF4 /* BGHUDTextFieldCellIntegration.m */; };
 		E7B8A3490E172733006AC84C /* Theming.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7B8A3480E172733006AC84C /* Theming.rtf */; };
+		E7DAC6580E60726700549353 /* BGHUDLabel.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E7DAC6570E60726700549353 /* BGHUDLabel.classdescription */; };
+		E7DAC65D0E60729B00549353 /* BGHUDLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = E7DAC65B0E60729B00549353 /* BGHUDLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E7DAC65E0E60729B00549353 /* BGHUDLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DAC65C0E60729B00549353 /* BGHUDLabel.m */; };
+		E7DAC6630E60740400549353 /* BGHUDLabelIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DAC6620E60740400549353 /* BGHUDLabelIntegration.m */; };
 		E7E638080E12DF220034DC7E /* BGHUDOutlineViewIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E638070E12DF220034DC7E /* BGHUDOutlineViewIntegration.m */; };
 		E7E6380B0E12E0350034DC7E /* outlineview.png in Resources */ = {isa = PBXBuildFile; fileRef = E7E6380A0E12E0350034DC7E /* outlineview.png */; };
 		E7E6382B0E12E1300034DC7E /* CONTRIB.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7E638270E12E1300034DC7E /* CONTRIB.rtf */; };
@@ -248,6 +252,10 @@
 		E79C25D20E109BD000742AF4 /* BGHUDTextFieldCell.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDTextFieldCell.classdescription; sourceTree = "<group>"; };
 		E79C25D80E109C1800742AF4 /* BGHUDTextFieldCellIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDTextFieldCellIntegration.m; sourceTree = "<group>"; };
 		E7B8A3480E172733006AC84C /* Theming.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Theming.rtf; sourceTree = "<group>"; };
+		E7DAC6570E60726700549353 /* BGHUDLabel.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDLabel.classdescription; sourceTree = "<group>"; };
+		E7DAC65B0E60729B00549353 /* BGHUDLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDLabel.h; path = Framework/BGHUDLabel.h; sourceTree = "<group>"; };
+		E7DAC65C0E60729B00549353 /* BGHUDLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDLabel.m; path = Framework/BGHUDLabel.m; sourceTree = "<group>"; };
+		E7DAC6620E60740400549353 /* BGHUDLabelIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDLabelIntegration.m; sourceTree = "<group>"; };
 		E7E638070E12DF220034DC7E /* BGHUDOutlineViewIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDOutlineViewIntegration.m; sourceTree = "<group>"; };
 		E7E6380A0E12E0350034DC7E /* outlineview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = outlineview.png; path = "Inspector Images/outlineview.png"; sourceTree = "<group>"; };
 		E7E638270E12E1300034DC7E /* CONTRIB.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = CONTRIB.rtf; sourceTree = "<group>"; };
@@ -378,6 +386,7 @@
 				E7649D160E1AC74F001F7E20 /* BGHUDSegementedCellIntegration.m */,
 				E78DB0450E34E4A300AF4E06 /* BGHUDSearchFieldCellIntegration.m */,
 				E7631DA30E4DEA370092074F /* BGHUDColorWellIntegration.m */,
+				E7DAC6620E60740400549353 /* BGHUDLabelIntegration.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -399,6 +408,7 @@
 				E7649D130E1AC719001F7E20 /* BGHUDSegmentedCell.classdescription */,
 				E78DB0430E34E48200AF4E06 /* BGHUDSearchFieldCell.classdescription */,
 				E7631D7B0E4DE7980092074F /* BGHUDColorWell.classdescription */,
+				E7DAC6570E60726700549353 /* BGHUDLabel.classdescription */,
 			);
 			name = "Class Descriptions";
 			sourceTree = "<group>";
@@ -424,6 +434,7 @@
 				E79C25890E1095AA00742AF4 /* Themeing */,
 				C0894DA40C32F4C100401507 /* BGHUDButtonCell */,
 				E7631D730E4DE6740092074F /* BGHUDColorWell */,
+				E7DAC6590E60727500549353 /* BGHUDLabel */,
 				E706FE780E12DE010017E470 /* BGHUDOutlineView */,
 				E7894D820E12976900D28139 /* BGHUDPopUpButtonCell */,
 				E7981E630E128FDC0081E937 /* BGHUDProgressIndicator */,
@@ -595,6 +606,15 @@
 			name = BGHUDTextFieldCell;
 			sourceTree = "<group>";
 		};
+		E7DAC6590E60727500549353 /* BGHUDLabel */ = {
+			isa = PBXGroup;
+			children = (
+				E7DAC65B0E60729B00549353 /* BGHUDLabel.h */,
+				E7DAC65C0E60729B00549353 /* BGHUDLabel.m */,
+			);
+			name = BGHUDLabel;
+			sourceTree = "<group>";
+		};
 		E7E6381A0E12E0E50034DC7E /* ReadMe */ = {
 			isa = PBXGroup;
 			children = (
@@ -636,6 +656,7 @@
 				E7649D0E0E1AC55B001F7E20 /* BGHUDSegmentedCell.h in Headers */,
 				E78DB0330E34E3C100AF4E06 /* BGHUDSearchFieldCell.h in Headers */,
 				E7631D760E4DE6940092074F /* BGHUDColorWell.h in Headers */,
+				E7DAC65D0E60729B00549353 /* BGHUDLabel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,6 +755,7 @@
 				E78DB0440E34E48200AF4E06 /* BGHUDSearchFieldCell.classdescription in Resources */,
 				E7631D7C0E4DE7980092074F /* BGHUDColorWell.classdescription in Resources */,
 				E7631DD50E4DEFDB0092074F /* BGHUDColorWellInspector.xib in Resources */,
+				E7DAC6580E60726700549353 /* BGHUDLabel.classdescription in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,6 +802,7 @@
 				E7649D0F0E1AC55B001F7E20 /* BGHUDSegmentedCell.m in Sources */,
 				E78DB0340E34E3C100AF4E06 /* BGHUDSearchFieldCell.m in Sources */,
 				E7631D770E4DE6940092074F /* BGHUDColorWell.m in Sources */,
+				E7DAC65E0E60729B00549353 /* BGHUDLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,6 +827,7 @@
 				E78DB0460E34E4A300AF4E06 /* BGHUDSearchFieldCellIntegration.m in Sources */,
 				E7631DA40E4DEA370092074F /* BGHUDColorWellIntegration.m in Sources */,
 				E7631DE60E4DF1930092074F /* BGHUDColorWellInspector.m in Sources */,
+				E7DAC6630E60740400549353 /* BGHUDLabelIntegration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
