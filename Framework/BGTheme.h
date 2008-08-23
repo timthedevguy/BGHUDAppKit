@@ -49,6 +49,7 @@
 
 //Slider Theme
 -(NSColor *)sliderTrackColor;					//Color used to draw slider track
+-(NSColor *)disabledSliderTrackColor;			//Color used to draw disabled slider track
 
 //Text Based Theme
 -(NSColor *)textFillColor;						//Color of background if drawbackground set to ON
@@ -87,7 +88,7 @@
 -(NSColor *)pushedSolidFill;					//Solid color used to draw pushed background
 -(NSColor *)highlightSolidFill;					//Solid color used to draw highlight background
 -(NSColor *)strokeColor;						//Color used to draw border
--(NSColor *)disableStrokeColor;					//Color used for disabled border
+-(NSColor *)disabledStrokeColor;				//Color used for disabled border
 -(NSColor *)darkStrokeColor;					//Color used to draw dark shadow border
 -(NSColor *)textColor;							//Color used to draw text
 -(NSColor *)disabledTextColor;					//Color used to draw disabled text

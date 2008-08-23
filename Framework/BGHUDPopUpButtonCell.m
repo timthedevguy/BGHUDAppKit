@@ -76,7 +76,7 @@
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
-- (void) drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
 	NSRect frame = cellFrame;
 	
@@ -122,9 +122,18 @@
 	[path stroke];
 	[NSGraphicsContext restoreGraphicsState];
 	
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
+	if([self isEnabled]) {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+	} else {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledNormalGradient] drawInBezierPath: path angle: 90];
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
+	}
 	
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
 	[path setLineWidth: 1.0 ];
 	[path stroke];
 	
@@ -165,9 +174,17 @@
 		
 		[aTitle removeAttribute: NSForegroundColorAttributeName range: NSMakeRange(0, [aTitle length])];
 		
-		[aTitle addAttribute: NSForegroundColorAttributeName
-					   value: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]
-					   range: NSMakeRange(0, [aTitle length])];
+		if([self isEnabled]){
+			
+			[aTitle addAttribute: NSForegroundColorAttributeName
+						   value: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]
+						   range: NSMakeRange(0, [aTitle length])];
+		} else {
+			
+			[aTitle addAttribute: NSForegroundColorAttributeName
+						   value: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]
+						   range: NSMakeRange(0, [aTitle length])];
+		}
 		
 		[aTitle endEditing];
 		
@@ -234,7 +251,12 @@
 		
 		[arrow appendBezierPathWithPoints: points count: 3];
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+		if([self isEnabled]) {
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+		} else {
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
+		}
+		
 		[arrow fill];
 		
 		[arrow release];
@@ -251,7 +273,11 @@
 		
 		[topArrow appendBezierPathWithPoints: topPoints count: 3];
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+		if([self isEnabled]) {
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+		} else {
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
+		}
 		[topArrow fill];
 		
 		NSBezierPath *bottomArrow = [[NSBezierPath alloc] init];
@@ -264,7 +290,11 @@
 		
 		[bottomArrow appendBezierPathWithPoints: bottomPoints count: 3];
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+		if([self isEnabled]) {
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+		} else {
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
+		}
 		[bottomArrow fill];
 		
 		[topArrow release];

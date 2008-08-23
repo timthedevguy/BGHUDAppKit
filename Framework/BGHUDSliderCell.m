@@ -39,7 +39,7 @@
 
 @synthesize themeKey;
 
-#pragma mark Drawing Functions
+#pragma mark Init/Dealloc
 
 -(id)init {
 	
@@ -77,6 +77,14 @@
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
+-(void)dealloc {
+	
+	[super dealloc];
+}
+
+#pragma mark -
+#pragma mark Drawing Methods
+
 - (void)drawBarInside:(NSRect)aRect flipped:(BOOL)flipped {
 	
 	if([self sliderType] == NSLinearSlider) {
@@ -111,7 +119,7 @@
 	}
 }
 
--(void)drawHorizontalBarInFrame:(NSRect)frame {
+- (void)drawHorizontalBarInFrame:(NSRect)frame {
 	
 	// Adjust frame based on ControlSize
 	switch ([self controlSize]) {
@@ -186,14 +194,24 @@
 	//Draw Bar
 	NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect: frame xRadius: 2 yRadius: 2];
 	
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] sliderTrackColor] set];
-	[path fill];
-	
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
-	[path stroke];
+	if([self isEnabled]) {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] sliderTrackColor] set];
+		[path fill];
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+		[path stroke];
+	} else {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledSliderTrackColor] set];
+		[path fill];
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
+		[path stroke];
+	}
 }
 
--(void)drawVerticalBarInFrame:(NSRect)frame {
+- (void)drawVerticalBarInFrame:(NSRect)frame {
 	
 	//Vertical Scroller
 	switch ([self controlSize]) {
@@ -276,7 +294,7 @@
 	[path stroke];
 }
 
--(void)drawHorizontalKnobInFrame:(NSRect)frame {
+- (void)drawHorizontalKnobInFrame:(NSRect)frame {
 	
 	switch ([self controlSize]) {
 			
@@ -295,7 +313,7 @@
 			} else {
 				
 				frame.origin.x += 3;
-				frame.origin.y += 2;
+				frame.origin.y += 3;
 				frame.size.height = 15;
 				frame.size.width = 15;
 			}
@@ -405,23 +423,36 @@
 	//[path stroke] leaves ghost lines when the knob is moved.
 	
 	//Draw Base Layer
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
-	[pathOuter fill];
-	
-	//Draw Inner Layer
-	if([self isHighlighted]) {
+	if([self isEnabled]) {
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInBezierPath: pathInner angle: gradientAngle];
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+		[pathOuter fill];
 	} else {
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: pathInner angle: gradientAngle];
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
+		[pathOuter fill];
+	}
+	
+	//Draw Inner Layer
+	if([self isEnabled]) {
+		
+		if([self isHighlighted]) {
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInBezierPath: pathInner angle: gradientAngle];
+		} else {
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: pathInner angle: gradientAngle];
+		}
+	} else {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledNormalGradient] drawInBezierPath: pathInner angle: gradientAngle];
 	}
 	
 	[pathOuter release];
 	[pathInner release];
 }
 
--(void)drawVerticalKnobInFrame:(NSRect)frame {
+- (void)drawVerticalKnobInFrame:(NSRect)frame {
 	
 	switch ([self controlSize]) {
 			
@@ -566,18 +597,13 @@
 }
 
 #pragma mark -
-#pragma mark Helper Methods
-
--(void)dealloc {
-
-	[super dealloc];
-}
-
-#pragma mark -
+#pragma mark Overridden Methods
 
 - (BOOL)_usesCustomTrackImage {
 	
 	return YES;
 }
+
+#pragma mark -
 
 @end

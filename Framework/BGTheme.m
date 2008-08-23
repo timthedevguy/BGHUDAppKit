@@ -85,7 +85,12 @@
 
 -(NSColor *)sliderTrackColor {
 	
-	return [NSColor colorWithDeviceRed: 0.318 green: 0.318 blue: 0.318 alpha: .6];
+	return [NSColor colorWithDeviceRed: 0.318 green: 0.318 blue: 0.318 alpha: [self alphaValue]];
+}
+
+-(NSColor *)disabledSliderTrackColor {
+	
+	return [NSColor colorWithDeviceRed: 0.318 green: 0.318 blue: 0.318 alpha: [self disabledAlphaValue]];
 }
 
 #pragma mark -
@@ -266,9 +271,9 @@
 	return [NSColor colorWithDeviceRed: 0.749 green: 0.761 blue: 0.788 alpha: 1.0];
 }
 
--(NSColor *)disableStrokeColor {
+-(NSColor *)disabledStrokeColor {
 	
-	return [NSColor colorWithDeviceRed: 0.749 green: 0.761 blue: 0.788 alpha: [self alphaValue]];
+	return [NSColor colorWithDeviceRed: 0.749 green: 0.761 blue: 0.788 alpha: [self disabledAlphaValue]];
 }
 
 -(NSColor *)darkStrokeColor {
