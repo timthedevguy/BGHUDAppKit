@@ -91,7 +91,14 @@
 
 - (void)drawRect:(NSRect) rect {
 
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInRect: rect angle: 270];
+	if([self isActive]) {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInRect: rect angle: 270];
+	} else {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInRect: rect angle: 270];
+	}
+	
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
 	NSFrameRect(rect);
 	
