@@ -127,8 +127,14 @@
 }
 
 - (id)_highlightColorForCell:(id)cell {
-	
-	return [[[BGThemeManager keyedManager] themeForKey: self.themeKey] cellHighlightColor];
+
+	if([self selectionHighlightStyle] == 1) {
+		
+		return nil;
+	} else {
+		
+		return [[[BGThemeManager keyedManager] themeForKey: self.themeKey] cellHighlightColor];
+	}
 }
 
 - (void)_sendDelegateWillDisplayCell:(id)cell forColumn:(id)column row:(int)row {
@@ -151,29 +157,31 @@
 	}
 }
 
+- (void)_manuallyDrawSourceListHighlightInRect:(NSRect)rect isButtedUpRow:(BOOL)flag {
+
+	if ([NSApp isActive]) {
+
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInRect: rect angle: 90];
+    } else {
+
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInRect: rect angle: 90];
+    }
+	
+	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+	
+	rect = NSInsetRect(rect, 0.5, 0.5);
+	[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMinX(rect), NSMaxY(rect)) toPoint: NSMakePoint(NSMaxX(rect), NSMaxY(rect))];
+}
+
+- (BOOL)_manuallyDrawSourceListHighlight {
+	
+	return YES;
+}
+
 -(void)awakeFromNib {
 	
 	[self setCornerView: [[BGHUDTableCornerView alloc] initWithThemeKey: self.themeKey]];
 }
-
-/*- (void)textDidBeginEditing:(NSNotification *)fp8 {
-
-	NSTextView *test = [fp8 object];
-	
-	[test setBackgroundColor: [NSColor blueColor]];
-}*/
-
-/*- (void)_startEditingColumn:(int)fp8 row:(int)fp12 event:(id)fp16 {
-
-	NSLog(@"This: %@", fp16);
-}*/
-
-/*- (BOOL)textShouldBeginEditing:(id)fp8 {
-	
-	NSLog(@"This: %@", fp8);
-	
-	return [super textShouldBeginEditing: fp8];
-}*/
 
 #pragma mark -
 #pragma mark Helper Methods

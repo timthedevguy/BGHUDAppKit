@@ -38,7 +38,6 @@
 @implementation BGThemeManager
 
 static BGThemeManager *keyedManager = nil;
-//static NSMutableDictionary *themes = nil;
 
 + (BGThemeManager *)keyedManager;
 {
@@ -46,7 +45,7 @@ static BGThemeManager *keyedManager = nil;
 		
         if (keyedManager == nil) {
 			
-            [[self alloc] init]; // assignment not done here
+            [[self alloc] init];
         }
     }
     return keyedManager;
@@ -62,26 +61,33 @@ static BGThemeManager *keyedManager = nil;
 			
 			[keyedManager initDefaultThemes];
 
-            return keyedManager;  // assignment and return on first allocation
+            return keyedManager;
         }
     }
-    return nil; //on subsequent allocation attempts return nil
+	
+    return nil;
 }
 
 -(void)initDefaultThemes {
 	
+	//Init our Dictionary for 2 defaults
 	themes = [[NSMutableDictionary alloc] initWithCapacity: 2];
+	
+	//Add the default Flat and Gradient themes
 	[themes setObject: [[BGTheme alloc] init] forKey: @"flatTheme"];
 	[themes setObject: [[BGGradientTheme alloc] init] forKey: @"gradientTheme"];
 }
 
 - (BGTheme *)themeForKey:(NSString *)key {
-
+	
+	//Make sure the key exists before we try to
+	//return it
 	if([themes objectForKey: key]) {
 		
 		return [themes objectForKey: key];
 	} else {
 		
+		//Return the default gradient key
 		return [themes objectForKey: @"gradientTheme"];
 	}
 }
