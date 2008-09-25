@@ -1,11 +1,9 @@
 //
-//  BGHUDButtonCell.h
+//  BGHUDGeometry.h
 //  BGHUDAppKit
 //
-//  Created by BinaryGod on 5/25/08.
-//
-//  Copyright (c) 2008, Tim Davis (BinaryMethod.com, binary.god@gmail.com)
-//  All rights reserved.
+//  Created by BinaryGod on 9/25/08.
+//  Copyright 2008 none. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification,
 //  are permitted provided that the following conditions are met:
@@ -32,21 +30,13 @@
 //	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 //	POSSIBILITY OF SUCH DAMAGE.
 
-#import <Cocoa/Cocoa.h>
-#import "BGThemeManager.h"
-#import "BGHUDGeometry.h"
+#import <Foundation/NSGeometry.h>
 
-@interface BGHUDButtonCell : NSButtonCell {
 
-	NSString *themeKey;
+NS_INLINE CGFloat BGCenterX(NSRect aRect) {
+	return (aRect.size.width / 2);
 }
 
-@property (retain) NSString *themeKey;
-
--(void)drawCheckInFrame:(NSRect)frame isRadio:(BOOL)radio;
--(void)drawTexturedRoundedButtonInFrame:(NSRect)frame;
--(void)drawRoundRectButtonInFrame:(NSRect)frame;
--(void)drawSmallSquareButtonInFrame:(NSRect)frame;
--(void)drawRoundedButtonInFrame:(NSRect)frame;
-
-@end
+NS_INLINE CGFloat BGCenterY(NSRect aRect) {
+	return (aRect.size.height / 2);
+}

@@ -107,6 +107,7 @@
 		E79C25D30E109BD000742AF4 /* BGHUDTextFieldCell.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E79C25D20E109BD000742AF4 /* BGHUDTextFieldCell.classdescription */; };
 		E79C25D90E109C1800742AF4 /* BGHUDTextFieldCellIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C25D80E109C1800742AF4 /* BGHUDTextFieldCellIntegration.m */; };
 		E7B8A3490E172733006AC84C /* Theming.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7B8A3480E172733006AC84C /* Theming.rtf */; };
+		E7C104960E8C476D00A96E1A /* BGHUDGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = E7C104940E8C476D00A96E1A /* BGHUDGeometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7DAC6580E60726700549353 /* BGHUDLabel.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E7DAC6570E60726700549353 /* BGHUDLabel.classdescription */; };
 		E7DAC65D0E60729B00549353 /* BGHUDLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = E7DAC65B0E60729B00549353 /* BGHUDLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7DAC65E0E60729B00549353 /* BGHUDLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DAC65C0E60729B00549353 /* BGHUDLabel.m */; };
@@ -252,6 +253,7 @@
 		E79C25D20E109BD000742AF4 /* BGHUDTextFieldCell.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDTextFieldCell.classdescription; sourceTree = "<group>"; };
 		E79C25D80E109C1800742AF4 /* BGHUDTextFieldCellIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDTextFieldCellIntegration.m; sourceTree = "<group>"; };
 		E7B8A3480E172733006AC84C /* Theming.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Theming.rtf; sourceTree = "<group>"; };
+		E7C104940E8C476D00A96E1A /* BGHUDGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGHUDGeometry.h; sourceTree = "<group>"; };
 		E7DAC6570E60726700549353 /* BGHUDLabel.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDLabel.classdescription; sourceTree = "<group>"; };
 		E7DAC65B0E60729B00549353 /* BGHUDLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDLabel.h; path = Framework/BGHUDLabel.h; sourceTree = "<group>"; };
 		E7DAC65C0E60729B00549353 /* BGHUDLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDLabel.m; path = Framework/BGHUDLabel.m; sourceTree = "<group>"; };
@@ -447,6 +449,7 @@
 				E7981EF00E12D68E0081E937 /* BGHUDTableView */,
 				E79C25CD0E109B9200742AF4 /* BGHUDTextFieldCell */,
 				E7981EC90E12D3070081E937 /* BGHUDTokenFieldCell */,
+				E7C104940E8C476D00A96E1A /* BGHUDGeometry.h */,
 			);
 			name = Framework;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 				E78DB0330E34E3C100AF4E06 /* BGHUDSearchFieldCell.h in Headers */,
 				E7631D760E4DE6940092074F /* BGHUDColorWell.h in Headers */,
 				E7DAC65D0E60729B00549353 /* BGHUDLabel.h in Headers */,
+				E7C104960E8C476D00A96E1A /* BGHUDGeometry.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

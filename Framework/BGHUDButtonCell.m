@@ -40,10 +40,9 @@
 #pragma mark Draw Functions
 
 @synthesize themeKey;
-@synthesize boundsAdjusted;
 
 -(id)init {
-
+	
 	self = [super init];
 	
 	if(self) {
@@ -73,7 +72,7 @@
 }
 
 -(void)encodeWithCoder: (NSCoder *)coder {
-
+	
 	[super encodeWithCoder: coder];
 	
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
@@ -126,6 +125,7 @@
 	if([[_normalImage name] isEqualToString: @"NSSwitch"] ||
 	   [[_normalImage name] isEqualToString: @"NSRadioButton"]) {
 		
+		//We aren't going to do anything here
 	} else {
 		
 		textRect.origin.x += 5;
@@ -133,9 +133,10 @@
 		textRect.size.height -= 2;
 	}
 	
-	NSMutableAttributedString *newTitle = [[NSMutableAttributedString alloc] initWithAttributedString: title];
+	NSMutableAttributedString *newTitle = [title mutableCopy];
 	
-	//Setup per State and Highlight Settings
+	//If button is set to show alternate title then
+	//display alternate title
 	if([self showsStateBy] == 0 && [self highlightsBy] == 1) {
 		
 		if([self isHighlighted]) {
@@ -147,6 +148,8 @@
 		}
 	}
 	
+	//If button is set to show alternate title then
+	//display alternate title
 	if([self showsStateBy] == 1 && [self highlightsBy] == 3) {
 		
 		if([self state] == 1) {
@@ -167,6 +170,7 @@
 		[newTitle removeAttribute: NSShadowAttributeName
 							range: NSMakeRange(0, [newTitle length])];
 		
+		//Set text color based on button enabled state.
 		if([self isEnabled]) {
 			
 			[newTitle addAttribute: NSForegroundColorAttributeName
@@ -190,13 +194,16 @@
 }
 
 - (void)drawImage:(NSImage *)image withFrame:(NSRect)frame inView:(NSView *)controlView {
-
+	
 	if([image isTemplate]) {
 		
 		[super drawImage: image withFrame: frame inView: controlView];
 	} else {
 		
 		//Ugly hack to determine if this is a Check or Radio button.
+		//Apple uses Images for the check and radio buttons, this is
+		//a very ugly hack to detect which one is being used so that
+		//I can draw the correct one.
 		if([[_normalImage name] isEqualToString: @"NSSwitch"]) {
 			
 			[self drawCheckInFrame: frame isRadio: NO];		
@@ -228,6 +235,7 @@
 				}
 			}
 			
+			//Calculate Image Position
 			NSRect imageRect = frame;
 			imageRect.size.height = [image size].height;
 			imageRect.size.width = [image size].width;
@@ -271,6 +279,7 @@
 			
 			[image setFlipped: YES];
 			
+			//Draw the image based on enabled state
 			if([self isEnabled]) {
 				
 				[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
@@ -284,14 +293,16 @@
 
 -(void)drawTexturedRoundedButtonInFrame:(NSRect)frame {
 	
-	//Adjust Rect so strokes true and
+	//Adjust Rect so strokes are true and
 	//shadows are visible
 	frame.origin.x += 1.5;
 	frame.origin.y += 0.5;
 	frame.size.width -= 3;
 	frame.size.height -= 4;
 	
-	//Adjust Rect based on ControlSize
+	//Adjust Rect based on ControlSize so that
+	//my controls match as closely to apples
+	//as possible.
 	switch ([self controlSize]) {
 			
 		case NSRegularControlSize:
@@ -368,7 +379,7 @@
 		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
 	}
-		
+	
 	[path setLineWidth: 1.0];
 	[path stroke];
 	
@@ -388,11 +399,14 @@
 
 -(void)drawRoundRectButtonInFrame:(NSRect)frame {
 	
-	// Adjust Rect so stroke draws true
+	//Adjust Rect so strokes are true and
+	//shadows are visible
 	frame.origin.x += 1.5;
 	frame.size.width -= 3;
 	
-	//Adjust Rect based on ControlSize
+	//Adjust Rect based on ControlSize so that
+	//my controls match as closely to apples
+	//as possible.
 	switch ([self controlSize]) {
 			
 		case NSRegularControlSize:
@@ -415,15 +429,15 @@
 	//Create Path
 	NSBezierPath *path = [[NSBezierPath alloc] init];
 	
-	[path appendBezierPathWithArcWithCenter: NSMakePoint(frame.origin.x + (frame.size.height /2), (frame.size.height /2) +.5+frame.origin.y)
-										   radius: (frame.size.height /2)
-									   startAngle: 90
-										 endAngle: 270];
+	[path appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(frame) + BGCenterY(frame), NSMidY(frame) + 0.5)
+									 radius: BGCenterY(frame)
+								 startAngle: 90
+								   endAngle: 270];
 	
-	[path appendBezierPathWithArcWithCenter: NSMakePoint((frame.size.width + frame.origin.x) - (frame.size.height /2), (frame.size.height /2) +.5+frame.origin.y)
-										   radius: (frame.size.height /2)
-									   startAngle: 270
-										 endAngle: 90];
+	[path appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(frame) - BGCenterY(frame), NSMidY(frame) + 0.5)
+									 radius: BGCenterY(frame)
+								 startAngle: 270
+								   endAngle: 90];
 	
 	[path closePath];
 	[NSGraphicsContext saveGraphicsState];
@@ -475,7 +489,6 @@
 	[path setLineWidth: 1.0];
 	[path stroke];
 	
-	//path = nil;
 	[path release];
 	
 	if([self imagePosition] != NSImageOnly) {
@@ -493,8 +506,9 @@
 }
 
 -(void)drawSmallSquareButtonInFrame:(NSRect)frame {
-
-	//Adjust rect so stroke is true
+	
+	//Adjust Rect so strokes are true and
+	//shadows are visible
 	frame.origin.x += 1.5;
 	frame.origin.y += 0.5;
 	frame.size.width -= 3;
@@ -510,6 +524,7 @@
 		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
 	}
+	
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] darkStrokeColor] set];
 	[path setLineWidth: 1.0];
 	[path stroke];
@@ -555,7 +570,6 @@
 	[path setLineWidth: 1.0];
 	[path stroke];
 	
-	//path = nil;
 	[path release];
 	
 	if([self imagePosition] != NSImageOnly) {
@@ -573,13 +587,16 @@
 	
 	NSRect textFrame;
 	
-	// Adjust Rect so stroke draws true
+	//Adjust Rect so strokes are true and
+	//shadows are visible
 	frame.origin.x += .5;
 	frame.origin.y += .5;
 	frame.size.height -= 1;
 	frame.size.width -= 1;
 	
-	//Adjust Rect based on ControlSize
+	//Adjust Rect based on ControlSize so that
+	//my controls match as closely to apples
+	//as possible.
 	switch ([self controlSize]) {
 			
 		case NSRegularControlSize:
@@ -615,14 +632,14 @@
 	//Create Path
 	NSBezierPath *path = [[NSBezierPath alloc] init];
 	
-	[path appendBezierPathWithArcWithCenter: NSMakePoint(frame.origin.x + (frame.size.height /2), (frame.size.height /2) +.5+frame.origin.y)
-									 radius: (frame.size.height /2)
+	[path appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(frame) + BGCenterY(frame), NSMidY(frame) + 0.5)
+									 radius: BGCenterY(frame)
 								 startAngle: 90
 								   endAngle: 270];
 	
-	[path appendBezierPathWithArcWithCenter: NSMakePoint((frame.size.width + frame.origin.x) - (frame.size.height /2), (frame.size.height /2) +.5+frame.origin.y)
-									 radius: (frame.size.height /2)
-								 startAngle: 270
+	[path appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(frame) - BGCenterY(frame), NSMidY(frame) + 0.5)
+									 radius: BGCenterY(frame) 
+								 startAngle: 270 
 								   endAngle: 90];
 	
 	[path closePath];
@@ -661,7 +678,7 @@
 	[path release];
 	
 	if([self imagePosition] != NSImageOnly) {
-			
+		
 		[self drawTitle: [self attributedTitle] withFrame: textFrame inView: [self controlView]];
 	}
 	
@@ -676,8 +693,8 @@
 	//Adjust by .5 so lines draw true
 	frame.origin.x += .5;
 	frame.origin.y += .5;
-	frame.origin.y += (([[self controlView] bounds].size.height /2) - (frame.size.height /2));
-
+	frame.origin.y += (BGCenterY([[self controlView] bounds]) - BGCenterY(frame));
+	
 	// Create Check Rect
 	NSRect innerRect = frame;
 	NSRect textRect = frame;
@@ -689,11 +706,13 @@
 		innerRect.size.height = 12;
 		innerRect.size.width = 13;
 		innerRect.origin.y += 2;
+		
 	} else if([self controlSize] == NSSmallControlSize) {
 		
 		innerRect.size.height = 10;
 		innerRect.size.width = 11;
 		innerRect.origin.y += 3;
+		
 	} else {
 		
 		innerRect.size.height = 8;
@@ -702,7 +721,7 @@
 	}
 	
 	if(radio) {
-	
+		
 		innerRect.size.height = innerRect.size.width;
 	}
 	
@@ -716,24 +735,22 @@
 			if([self controlSize] == NSRegularControlSize) {
 				
 				innerRect.origin.x += 2;
-
-				textRect.size.width -= (innerRect.origin.x + innerRect.size.width + 5) ;
-				textRect.origin.x = innerRect.origin.x + innerRect.size.width + 5;
-				
+				textRect.size.width -= (NSMaxX(innerRect) + 5);
+				textRect.origin.x = (NSMaxX(innerRect) + 5);
 				textRect.origin.y -= 2;
+				
 			} else if([self controlSize] == NSSmallControlSize) {
 				
 				innerRect.origin.x += 3;
-				
-				textRect.size.width -= (innerRect.origin.x + innerRect.size.width + 6) ;
-				textRect.origin.x = innerRect.origin.x + innerRect.size.width + 6;
+				textRect.size.width -= (NSMaxX(innerRect) + 6);
+				textRect.origin.x = (NSMaxX(innerRect) + 6);
 				textRect.origin.y -= 1;
+				
 			} else {
 				
 				innerRect.origin.x += 4;
-				
-				textRect.size.width -= (innerRect.origin.x + innerRect.size.width + 4) ;
-				textRect.origin.x = innerRect.origin.x + innerRect.size.width + 4;
+				textRect.size.width -= (NSMaxX(innerRect) + 4);
+				textRect.origin.x = (NSMaxX(innerRect) + 4);
 			}
 			
 			break;
@@ -750,31 +767,30 @@
 				innerRect.origin.x += .5;
 			}
 			
-			innerRect.origin.x += (frame.size.width /2) - (innerRect.size.width /2);
+			innerRect.origin.x += BGCenterX(frame) - BGCenterX(innerRect);
 			break;
 			
 		case NSImageRight:
 			
 			if([self controlSize] == NSRegularControlSize) {
 				
-				innerRect.origin.x = (frame.size.width - innerRect.size.width -1.5) ;//+.5;
-				
+				innerRect.origin.x = (NSWidth(frame) - NSWidth(innerRect) - 1.5) ;
 				textRect.origin.x += 2;
-				textRect.size.width = innerRect.origin.x - textRect.origin.x -5;
+				textRect.size.width = (NSMinX(innerRect) - NSMinX(textRect) - 5);
 				textRect.origin.y -= 2;
+				
 			} else if([self controlSize] == NSSmallControlSize) {
 				
-				innerRect.origin.x = frame.size.width - innerRect.size.width -1.5;
-				
+				innerRect.origin.x = (NSWidth(frame) - NSWidth(innerRect) - 1.5);
 				textRect.origin.x += 2;
-				textRect.size.width = innerRect.origin.x - textRect.origin.x -5;
+				textRect.size.width = (NSMinX(innerRect) - NSMinX(textRect) - 5);
 				textRect.origin.y -= 1;
+				
 			} else {
 				
-				innerRect.origin.x = frame.size.width - innerRect.size.width -1.5;
-				
+				innerRect.origin.x = (NSWidth(frame) - NSWidth(innerRect) - 1.5);
 				textRect.origin.x += 2;
-				textRect.size.width = innerRect.origin.x - textRect.origin.x -5;
+				textRect.size.width = (NSMinX(innerRect) - NSMinX(textRect) - 5);
 			}
 			
 			break;
@@ -851,8 +867,8 @@
 			path = [[NSBezierPath alloc] init];
 			NSPoint pointsMixed[2];
 			
-			pointsMixed[0] = NSMakePoint(innerRect.origin.x + 3, innerRect.origin.y + (innerRect.size.height / 2));
-			pointsMixed[1] = NSMakePoint(innerRect.origin.x + innerRect.size.width - 3, innerRect.origin.y + (innerRect.size.height /2));
+			pointsMixed[0] = NSMakePoint(NSMinX(innerRect) + 3, NSMidY(innerRect));
+			pointsMixed[1] = NSMakePoint(NSMaxX(innerRect) - 3, NSMidY(innerRect));
 			
 			[path appendBezierPathWithPoints: pointsMixed count: 2];
 			
@@ -868,11 +884,11 @@
 			[path stroke];
 			
 			[path release];
-			 
+			
 			break;
 			
 		case NSOnState:
-
+			
 			if(radio) {
 				
 				if([self controlSize] == NSRegularControlSize) {
@@ -881,12 +897,14 @@
 					innerRect.origin.y += 4;
 					innerRect.size.width -= 8;
 					innerRect.size.height -= 8;
+					
 				} else if([self controlSize] == NSSmallControlSize) {
 					
 					innerRect.origin.x += 3.5;
 					innerRect.origin.y += 3.5;
 					innerRect.size.width -= 7;
 					innerRect.size.height -= 7;
+					
 				} else {
 					
 					innerRect.origin.x += 3;
@@ -914,10 +932,10 @@
 				path = [[NSBezierPath alloc] init];
 				NSPoint pointsOn[4];
 				
-				pointsOn[0] = NSMakePoint(innerRect.origin.x + 3, innerRect.origin.y + (innerRect.size.height /2) - 2);
-				pointsOn[1] = NSMakePoint(innerRect.origin.x + (innerRect.size.width / 2), innerRect.origin.y + (innerRect.size.height / 2) + 2);
-				pointsOn[2] = NSMakePoint(innerRect.origin.x + (innerRect.size.width / 2), innerRect.origin.y + (innerRect.size.height / 2) + 2);
-				pointsOn[3] = NSMakePoint(innerRect.origin.x + innerRect.size.width - 1, innerRect.origin.y -2);
+				pointsOn[0] = NSMakePoint(NSMinX(innerRect) + 3, NSMidY(innerRect) - 2);
+				pointsOn[1] = NSMakePoint(NSMidX(innerRect), NSMidY(innerRect) + 2);
+				pointsOn[2] = NSMakePoint(NSMidX(innerRect), NSMidY(innerRect) + 2);
+				pointsOn[3] = NSMakePoint(NSMinX(innerRect) + NSWidth(innerRect) - 1, NSMinY(innerRect) - 2);
 				
 				[path appendBezierPathWithPoints: pointsOn count: 4];
 				
@@ -960,8 +978,8 @@
 -(void)dealloc {
 	
 	/*if(themeManager) {
-	[themeManager release];
-	}*/
+	 [themeManager release];
+	 }*/
 	[super dealloc];
 }
 
