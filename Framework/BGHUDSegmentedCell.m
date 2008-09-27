@@ -129,6 +129,7 @@
 			
 		case NSSegmentStyleTexturedRounded:
 			
+			//If this is the first segment, draw rounded corners
 			if(segment == 0) {
 				
 				fillPath = [[NSBezierPath alloc] init];
@@ -141,11 +142,12 @@
 				joinRect.size.width -= 4;
 				
 				[fillPath appendBezierPathWithRect: joinRect];
-				
+			
+			//If this is the last segment, draw rounded corners
 			} else if (segment == ([self segmentCount] -1)) {
 				
 				fillPath = [[NSBezierPath alloc] init];
-				
+				fillRect.size.width -= 3;
 				[fillPath appendBezierPathWithRoundedRect: fillRect xRadius: 3 yRadius: 3];
 				
 				//Setup our joining rect
@@ -182,47 +184,33 @@
 		[NSBezierPath strokeLineFromPoint: NSMakePoint(fillRect.origin.x + fillRect.size.width , fillRect.origin.y)
 								  toPoint: NSMakePoint(fillRect.origin.x + fillRect.size.width, fillRect.origin.y + fillRect.size.height)];
 	}
+	
+	[self drawTextInSegment: segment inFrame: fillRect];
 }
 
--(NSRect)rectForSegment:(int)segment inFrame:(NSRect)frame {
+-(void)drawTextInSegment:(int)segment inFrame:(NSRect)frame {
 
-	//Setup base values
-	float x = frame.origin.x + .5;
-	float y = frame.origin.y + .5;
-	float w = [self widthForSegment: segment] + .5;
-	float h = frame.size.height - 1;
+	if([self labelForSegment: segment] != nil) {
 	
-	int segCount = 0;
-	
-	while (segCount < segment) {
+		NSMutableDictionary *textAttributes = [[NSMutableDictionary alloc] initWithCapacity: 0];
 		
-		x += [self widthForSegment: segCount] + 1;
+		[textAttributes setValue: [NSFont controlContentFontOfSize: [NSFont systemFontSizeForControlSize: [self controlSize]]] forKey: NSFontAttributeName];
+		[textAttributes setValue: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor] forKey: NSForegroundColorAttributeName];
 		
-		if(segCount == 0 || segCount == ([self segmentCount] -1)) {
-			
-			x += 1;
-		}
+		NSAttributedString *newTitle = [[NSAttributedString alloc] initWithString: [self labelForSegment: segment] attributes: textAttributes];
 		
-		if([self widthForSegment: segCount] == 0) {
-			
-			x += 12;
-		}
+		frame.origin.y += (BGCenterY(frame) - ([newTitle size].height /2));
+		frame.origin.x += (BGCenterX(frame) - ([newTitle size].width /2));
+		frame.size.height = [newTitle size].height;
+		frame.size.width = [newTitle size].width;
 		
-		segCount++;
+		if(frame.origin.x < 3) { frame.origin.x = 3; }
+		
+		[newTitle drawInRect: frame];
+		
+		[textAttributes release];
+		[newTitle release];
 	}
-	
-	if(segment == 0 || segment == ([self segmentCount] -1)) {
-		
-		w += 1;
-	}
-	
-	if(w == .5) {
-		
-		w += 12;
-		[self setWidth: 12 forSegment: segment];
-	}
-	
-	return NSMakeRect(x, y, w, h);
 }
 
 @end
