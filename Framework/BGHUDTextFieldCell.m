@@ -84,10 +84,7 @@
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 		
 	//Adjust Rect
-	cellFrame.origin.x += 1.5;
-	cellFrame.origin.y += 1.5;
-	cellFrame.size.width -= 3;
-	cellFrame.size.height -= 3;
+	cellFrame = NSInsetRect(cellFrame, 1.5, 1.5);
 	
 	//Create Path
 	NSBezierPath *path = [[NSBezierPath alloc] init];

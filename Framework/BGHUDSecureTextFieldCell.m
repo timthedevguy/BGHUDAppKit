@@ -72,10 +72,7 @@
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
 	//Adjust Rect
-	cellFrame.origin.x += .5;
-	cellFrame.origin.y += .5;
-	cellFrame.size.width -= 1;
-	cellFrame.size.height -= 1;
+	cellFrame = NSInsetRect(cellFrame, 1.5, 1.5);
 	
 	//Create Path
 	NSBezierPath *path = [[NSBezierPath alloc] init];
@@ -107,9 +104,20 @@
 	
 	if([self isBezeled] || [self isBordered]) {
 		
+		[NSGraphicsContext saveGraphicsState];
+		
+		if([super showsFirstResponder] && [[[self controlView] window] isKeyWindow] && 
+		   ([self focusRingType] == NSFocusRingTypeDefault ||
+			[self focusRingType] == NSFocusRingTypeExterior)) {
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] focusRing] set];
+		}
+		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
 		[path setLineWidth: 1.0];
 		[path stroke];
+		
+		[NSGraphicsContext restoreGraphicsState];
 	}
 	
 	[super drawInteriorWithFrame: cellFrame inView: controlView];
