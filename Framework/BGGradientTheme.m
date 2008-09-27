@@ -61,6 +61,30 @@
 			 [NSColor colorWithDeviceRed: 0.339 green: 0.347 blue: 0.367 alpha: [self alphaValue]], (CGFloat)1.0, nil] autorelease];
 }
 
+-(NSGradient *)knobColor {
+	
+	return [[[NSGradient alloc] initWithColorsAndLocations: [NSColor colorWithDeviceRed: 0.324 green: 0.331 blue: 0.347 alpha: 1.0],
+			 (CGFloat)0, [NSColor colorWithDeviceRed: 0.245 green: 0.253 blue: 0.269 alpha: 1.0], (CGFloat).5,
+			 [NSColor colorWithDeviceRed: 0.206 green: 0.214 blue: 0.233 alpha: 1.0], (CGFloat).5,
+			 [NSColor colorWithDeviceRed: 0.139 green: 0.147 blue: 0.167 alpha: 1.0], (CGFloat)1.0, nil] autorelease];
+}
+
+-(NSGradient *)highlightKnobColor {
+	
+	return [[[NSGradient alloc] initWithColorsAndLocations: [NSColor colorWithDeviceRed: 0.524 green: 0.531 blue: 0.547 alpha: 1.0],
+			 (CGFloat)0, [NSColor colorWithDeviceRed: 0.445 green: 0.453 blue: 0.469 alpha: 1.0], (CGFloat).5,
+			 [NSColor colorWithDeviceRed: 0.406 green: 0.414 blue: 0.433 alpha: 1.0], (CGFloat).5,
+			 [NSColor colorWithDeviceRed: 0.339 green: 0.347 blue: 0.367 alpha: 1.0], (CGFloat)1.0, nil] autorelease];
+}
+
+-(NSGradient *)disabledKnobColor {
+	
+	return [[[NSGradient alloc] initWithColorsAndLocations: [NSColor colorWithDeviceRed: 0.324 green: 0.331 blue: 0.347 alpha: 1.0],
+			 (CGFloat)0, [NSColor colorWithDeviceRed: 0.245 green: 0.253 blue: 0.269 alpha: 1.0], (CGFloat).5,
+			 [NSColor colorWithDeviceRed: 0.206 green: 0.214 blue: 0.233 alpha: 1.0], (CGFloat).5,
+			 [NSColor colorWithDeviceRed: 0.139 green: 0.147 blue: 0.167 alpha: 1.0], (CGFloat)1.0, nil] autorelease];
+}
+
 -(NSColor *)strokeColor {
 	
 	return [NSColor colorWithDeviceRed: 0.749 green: 0.761 blue: 0.788 alpha: 0.7];

@@ -427,10 +427,14 @@
 		
 		[NSGraphicsContext saveGraphicsState];
 		
+		//Draw Focus ring or shadow depending on highlight state.
 		if([self isHighlighted] && ([self focusRingType] == NSFocusRingTypeDefault ||
 									[self focusRingType] == NSFocusRingTypeExterior)) {
 			
 			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] focusRing] set];
+		} else {
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
 		}
 		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
@@ -598,6 +602,9 @@
 									[self focusRingType] == NSFocusRingTypeExterior)) {
 			
 			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] focusRing] set];
+		} else {
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
 		}
 		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
