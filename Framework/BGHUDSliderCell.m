@@ -425,8 +425,18 @@
 	//Draw Base Layer
 	if([self isEnabled]) {
 		
+		[NSGraphicsContext saveGraphicsState];
+		
+		if([self isHighlighted] && ([self focusRingType] == NSFocusRingTypeDefault ||
+									[self focusRingType] == NSFocusRingTypeExterior)) {
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] focusRing] set];
+		}
+		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
 		[pathOuter fill];
+		
+		[NSGraphicsContext restoreGraphicsState];
 	} else {
 		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
@@ -580,16 +590,39 @@
 	//[path stroke] leaves ghost lines when the knob is moved.
 	
 	//Draw Base Layer
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
-	[pathOuter fill];
-	
-	//Draw Inner Layer
-	if([self isHighlighted]) {
+	if([self isEnabled]) {
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightKnobColor] drawInBezierPath: pathInner angle: gradientAngle];
+		[NSGraphicsContext saveGraphicsState];
+		
+		if([self isHighlighted] && ([self focusRingType] == NSFocusRingTypeDefault ||
+									[self focusRingType] == NSFocusRingTypeExterior)) {
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] focusRing] set];
+		}
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+		[pathOuter fill];
+		
+		[NSGraphicsContext restoreGraphicsState];
 	} else {
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] knobColor] drawInBezierPath: pathInner angle: gradientAngle];
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
+		[pathOuter fill];
+	}
+	
+	//Draw Inner Layer
+	if([self isEnabled]) {
+		
+		if([self isHighlighted]) {
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightKnobColor] drawInBezierPath: pathInner angle: gradientAngle];
+		} else {
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] knobColor] drawInBezierPath: pathInner angle: gradientAngle];
+		}
+	} else {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledKnobColor] drawInBezierPath: pathInner angle: gradientAngle];
 	}
 	
 	[pathOuter release];

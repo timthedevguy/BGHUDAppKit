@@ -329,6 +329,16 @@
 	return 0.2;
 }
 
+-(NSShadow *)focusRing {
+	
+	NSShadow *shadow = [[NSShadow alloc] init];
+	[shadow setShadowColor: [NSColor whiteColor]];
+	[shadow setShadowBlurRadius: 3];
+	[shadow setShadowOffset: NSMakeSize( 0, 0)];
+	
+	return [shadow autorelease];
+}
+
 #pragma mark -
 
 -(void)dealloc {

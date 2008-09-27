@@ -101,5 +101,6 @@
 												//if you want certain colors to be draw with the same
 												//alpha value.
 -(float)disabledAlphaValue;						//Same as above but the disabled varient
+-(NSShadow *)focusRing;							//Shadow used for the focus rings
 
 @end
