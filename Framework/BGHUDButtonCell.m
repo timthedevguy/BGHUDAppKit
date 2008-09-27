@@ -83,6 +83,7 @@
 	// Make sure our own height is right, and not using
 	// a NSMatrix parents height.
 	cellFrame.size.height = [self cellSize].height;
+	//NSLog(@"Cell Height: %f", [self cellSize].height);
 	
 	switch ([self bezelStyle]) {
 			
@@ -693,7 +694,11 @@
 	//Adjust by .5 so lines draw true
 	frame.origin.x += .5;
 	frame.origin.y += .5;
-	frame.origin.y += (BGCenterY([[self controlView] bounds]) - BGCenterY(frame));
+	
+	if(![[[self controlView] className] isEqualToString: @"BGHUDTableView"]) {
+		
+		frame.origin.y += (BGCenterY([[self controlView] bounds]) - BGCenterY(frame));
+	}
 	
 	// Create Check Rect
 	NSRect innerRect = frame;
