@@ -37,6 +37,7 @@
 
 @interface BGTheme : NSObject {
 	
+	BOOL useAlpha;
 }
 
 //Scroller Theme
@@ -50,6 +51,9 @@
 //Slider Theme
 -(NSColor *)sliderTrackColor;					//Color used to draw slider track
 -(NSColor *)disabledSliderTrackColor;			//Color used to draw disabled slider track
+-(NSGradient *)knobColor;						//Gradient used to draw the knob
+-(NSGradient *)highlightKnobColor;				//Gradient used to draw highlighted knob
+-(NSGradient *)disabledKnobColor;				//Gradient used to draw disabled knob
 
 //Text Based Theme
 -(NSColor *)textFillColor;						//Color of background if drawbackground set to ON

@@ -438,14 +438,14 @@
 		
 		if([self isHighlighted]) {
 			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInBezierPath: pathInner angle: gradientAngle];
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightKnobColor] drawInBezierPath: pathInner angle: gradientAngle];
 		} else {
 			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: pathInner angle: gradientAngle];
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] knobColor] drawInBezierPath: pathInner angle: gradientAngle];
 		}
 	} else {
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledNormalGradient] drawInBezierPath: pathInner angle: gradientAngle];
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledKnobColor] drawInBezierPath: pathInner angle: gradientAngle];
 	}
 	
 	[pathOuter release];
@@ -586,10 +586,10 @@
 	//Draw Inner Layer
 	if([self isHighlighted]) {
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInBezierPath: pathInner angle: gradientAngle];
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightKnobColor] drawInBezierPath: pathInner angle: gradientAngle];
 	} else {
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: pathInner angle: gradientAngle];
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] knobColor] drawInBezierPath: pathInner angle: gradientAngle];
 	}
 	
 	[pathOuter release];
