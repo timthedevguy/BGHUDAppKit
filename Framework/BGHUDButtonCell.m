@@ -695,7 +695,8 @@
 	frame.origin.x += .5;
 	frame.origin.y += .5;
 	
-	if(![[[self controlView] className] isEqualToString: @"BGHUDTableView"]) {
+	if(![[[self controlView] className] isEqualToString: @"BGHUDTableView"] &&
+		![[[self controlView] className] isEqualToString: @"BGHUDOutlineView"]) {
 		
 		frame.origin.y += (BGCenterY([[self controlView] bounds]) - BGCenterY(frame));
 	}
