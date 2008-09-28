@@ -359,62 +359,69 @@
 	
 	NSBezierPath *pathOuter = [[NSBezierPath alloc] init];
 	NSBezierPath *pathInner = [[NSBezierPath alloc] init];
-	NSPoint pointsOuter[5];
-	NSPoint pointsInner[5];
-	int gradientAngle = 90;
+	NSPoint pointsOuter[7];
+	NSPoint pointsInner[7];
 	
 	if([self numberOfTickMarks] != 0) {
 		
 		if([self tickMarkPosition] == NSTickMarkBelow) {
 			
-			pointsOuter[0] = NSMakePoint(frame.origin.x, frame.origin.y);
-			pointsOuter[1] = NSMakePoint(frame.origin.x, (frame.size.height /2) +2);
-			pointsOuter[2] = NSMakePoint(frame.origin.x + (frame.size.width /2), frame.origin.y + frame.size.height);
-			pointsOuter[3] = NSMakePoint(frame.origin.x + frame.size.width, (frame.size.height /2) +2);
-			pointsOuter[4] = NSMakePoint(frame.origin.x + frame.size.width, frame.origin.y);
+			pointsOuter[0] = NSMakePoint(NSMinX(frame) + 2, NSMinY(frame));
+			pointsOuter[1] = NSMakePoint(NSMaxX(frame) - 2, NSMinY(frame));
+			pointsOuter[2] = NSMakePoint(NSMaxX(frame), NSMinY(frame) + 2);
+			pointsOuter[3] = NSMakePoint(NSMaxX(frame), NSMidY(frame) + 2);
+			pointsOuter[4] = NSMakePoint(NSMidX(frame), NSMaxY(frame));
+			pointsOuter[5] = NSMakePoint(NSMinX(frame), NSMidY(frame) + 2);
+			pointsOuter[6] = NSMakePoint(NSMinX(frame), NSMinY(frame) + 2);
+			
+			[pathOuter appendBezierPathWithPoints: pointsOuter count: 7];
+			
 		} else {
 			
-			pointsOuter[0] = NSMakePoint(frame.origin.x, frame.origin.y + frame.size.height);
-			pointsOuter[1] = NSMakePoint(frame.origin.x, frame.origin.y + (frame.size.height - (frame.size.height /2) -2));
-			pointsOuter[2] = NSMakePoint(frame.origin.x + (frame.size.width /2), frame.origin.y);
-			pointsOuter[3] = NSMakePoint(frame.origin.x + frame.size.width, frame.origin.y + (frame.size.height - (frame.size.height /2) -2));
-			pointsOuter[4] = NSMakePoint(frame.origin.x + frame.size.width, frame.origin.y + frame.size.height);
+			pointsOuter[0] = NSMakePoint(NSMidX(frame), NSMinY(frame));
+			pointsOuter[1] = NSMakePoint(NSMaxX(frame), NSMidY(frame) - 2);
+			pointsOuter[2] = NSMakePoint(NSMaxX(frame), NSMaxY(frame) - 2);
+			pointsOuter[3] = NSMakePoint(NSMaxX(frame) - 2, NSMaxY(frame));
+			pointsOuter[4] = NSMakePoint(NSMinX(frame) + 2, NSMaxY(frame));
+			pointsOuter[5] = NSMakePoint(NSMinX(frame), NSMaxY(frame) - 2);
+			pointsOuter[6] = NSMakePoint(NSMinX(frame), NSMidY(frame) - 2);
 			
-			gradientAngle = 270;
+			[pathOuter appendBezierPathWithPoints: pointsOuter count: 7];
 		}
 		
-		[pathOuter appendBezierPathWithPoints: pointsOuter count: 5];
-		
-		frame.origin.x += 1;
-		frame.origin.y += 1;
-		frame.size.width -= 2;
-		frame.size.height -= 2;
+		//Shrink frame for filling of center		
+		frame = NSInsetRect(frame, 1, 1);
 		
 		if([self tickMarkPosition] == NSTickMarkBelow) {
 			
-			pointsInner[0] = NSMakePoint(frame.origin.x, frame.origin.y);
-			pointsInner[1] = NSMakePoint(frame.origin.x, (frame.size.height /2) +2);
-			pointsInner[2] = NSMakePoint(frame.origin.x + (frame.size.width /2), frame.origin.y + frame.size.height);
-			pointsInner[3] = NSMakePoint(frame.origin.x + frame.size.width, (frame.size.height /2) +2);
-			pointsInner[4] = NSMakePoint(frame.origin.x + frame.size.width, frame.origin.y);
+			pointsInner[0] = NSMakePoint(NSMinX(frame) + 2, NSMinY(frame));
+			pointsInner[1] = NSMakePoint(NSMaxX(frame) - 2, NSMinY(frame));
+			pointsInner[2] = NSMakePoint(NSMaxX(frame), NSMinY(frame) + 2);
+			pointsInner[3] = NSMakePoint(NSMaxX(frame), NSMidY(frame) + 2);
+			pointsInner[4] = NSMakePoint(NSMidX(frame), NSMaxY(frame));
+			pointsInner[5] = NSMakePoint(NSMinX(frame), NSMidY(frame) + 2);
+			pointsInner[6] = NSMakePoint(NSMinX(frame), NSMinY(frame) + 2);
+			
+			[pathInner appendBezierPathWithPoints: pointsInner count: 7];
+			
 		} else {
 			
-			pointsInner[0] = NSMakePoint(frame.origin.x, frame.origin.y + frame.size.height);
-			pointsInner[1] = NSMakePoint(frame.origin.x, frame.origin.y + (frame.size.height - (frame.size.height /2) -2));
-			pointsInner[2] = NSMakePoint(frame.origin.x + (frame.size.width /2), frame.origin.y);
-			pointsInner[3] = NSMakePoint(frame.origin.x + frame.size.width, frame.origin.y + (frame.size.height - (frame.size.height /2) -2));
-			pointsInner[4] = NSMakePoint(frame.origin.x + frame.size.width, frame.origin.y + frame.size.height);
+			pointsInner[0] = NSMakePoint(NSMidX(frame), NSMinY(frame));
+			pointsInner[1] = NSMakePoint(NSMaxX(frame), NSMidY(frame) - 2);
+			pointsInner[2] = NSMakePoint(NSMaxX(frame), NSMaxY(frame) - 2);
+			pointsInner[3] = NSMakePoint(NSMaxX(frame) - 2, NSMaxY(frame));
+			pointsInner[4] = NSMakePoint(NSMinX(frame) + 2, NSMaxY(frame));
+			pointsInner[5] = NSMakePoint(NSMinX(frame), NSMaxY(frame) - 2);
+			pointsInner[6] = NSMakePoint(NSMinX(frame), NSMidY(frame) - 2);
+			
+			[pathInner appendBezierPathWithPoints: pointsInner count: 7];
 		}
 		
-		[pathInner appendBezierPathWithPoints: pointsInner count: 5];
 	} else {
 		
 		[pathOuter appendBezierPathWithOvalInRect: frame];
 		
-		frame.origin.x += 1;
-		frame.origin.y += 1;
-		frame.size.width -= 2;
-		frame.size.height -= 2;
+		frame = NSInsetRect(frame, 1, 1);
 		
 		[pathInner appendBezierPathWithOvalInRect: frame];
 	}
@@ -452,14 +459,14 @@
 		
 		if([self isHighlighted]) {
 			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightKnobColor] drawInBezierPath: pathInner angle: gradientAngle];
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightKnobColor] drawInBezierPath: pathInner angle: 90];
 		} else {
 			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] knobColor] drawInBezierPath: pathInner angle: gradientAngle];
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] knobColor] drawInBezierPath: pathInner angle: 90];
 		}
 	} else {
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledKnobColor] drawInBezierPath: pathInner angle: gradientAngle];
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledKnobColor] drawInBezierPath: pathInner angle: 90];
 	}
 	
 	[pathOuter release];
@@ -528,64 +535,68 @@
 	
 	NSBezierPath *pathOuter = [[NSBezierPath alloc] init];
 	NSBezierPath *pathInner = [[NSBezierPath alloc] init];
-	NSPoint pointsOuter[5];
-	NSPoint pointsInner[5];
-	int gradientAngle = 90;
+	NSPoint pointsOuter[7];
+	NSPoint pointsInner[7];
 	
 	if([self numberOfTickMarks] != 0) {
 		
 		if([self tickMarkPosition] == NSTickMarkRight) {
 			
-			pointsOuter[0] = NSMakePoint(frame.origin.x, frame.origin.y);
-			pointsOuter[1] = NSMakePoint(frame.origin.x + ((frame.size.width /2) + 2), frame.origin.y);
-			pointsOuter[2] = NSMakePoint(frame.origin.x + frame.size.width, frame.origin.y + (frame.size.height /2));
-			pointsOuter[3] = NSMakePoint(frame.origin.x + ((frame.size.width /2) + 2), frame.origin.y + frame.size.height);
-			pointsOuter[4] = NSMakePoint(frame.origin.x, frame.origin.y + frame.size.height);
+			pointsOuter[0] = NSMakePoint(NSMinX(frame), NSMinY(frame) + 2);
+			pointsOuter[1] = NSMakePoint(NSMinX(frame) + 2, NSMinY(frame));
+			pointsOuter[2] = NSMakePoint(NSMidX(frame) + 2, NSMinY(frame));
+			pointsOuter[3] = NSMakePoint(NSMaxX(frame), NSMidY(frame));
+			pointsOuter[4] = NSMakePoint(NSMidX(frame) + 2, NSMaxY(frame));
+			pointsOuter[5] = NSMakePoint(NSMinX(frame) + 2, NSMaxY(frame));
+			pointsOuter[6] = NSMakePoint(NSMinX(frame), NSMaxY(frame) - 2);
 			
-			gradientAngle = 0;
+			[pathOuter appendBezierPathWithPoints: pointsOuter count: 7];
+			
 		} else {
 			
-			pointsOuter[0] = NSMakePoint(frame.origin.x + frame.size.width, frame.origin.y);
-			pointsOuter[1] = NSMakePoint(frame.origin.x + (frame.size.width - (frame.size.width /2) -2), frame.origin.y);
-			pointsOuter[2] = NSMakePoint(frame.origin.x, frame.origin.y + (frame.size.height /2));
-			pointsOuter[3] = NSMakePoint(frame.origin.x + (frame.size.width - (frame.size.width /2) -2), frame.origin.y + frame.size.height);
-			pointsOuter[4] = NSMakePoint(frame.origin.x + frame.size.width, frame.origin.y + frame.size.height);
+			pointsOuter[0] = NSMakePoint(NSMinX(frame), NSMidY(frame));
+			pointsOuter[1] = NSMakePoint(NSMidX(frame) - 2, NSMinY(frame));
+			pointsOuter[2] = NSMakePoint(NSMaxX(frame) - 2, NSMinY(frame));
+			pointsOuter[3] = NSMakePoint(NSMaxX(frame), NSMinY(frame) + 2);
+			pointsOuter[4] = NSMakePoint(NSMaxX(frame), NSMaxY(frame) - 2);
+			pointsOuter[5] = NSMakePoint(NSMaxX(frame) - 2, NSMaxY(frame));
+			pointsOuter[6] = NSMakePoint(NSMidX(frame) - 2, NSMaxY(frame));
 			
-			gradientAngle = 180;
+			[pathOuter appendBezierPathWithPoints: pointsOuter count: 7];
 		}
 		
-		[pathOuter appendBezierPathWithPoints: pointsOuter count: 5];
-		
-		frame.origin.x += 1;
-		frame.origin.y += 1;
-		frame.size.width -= 2;
-		frame.size.height -= 2;
+		frame = NSInsetRect(frame, 1, 1);
 		
 		if([self tickMarkPosition] == NSTickMarkRight) {
 			
-			pointsInner[0] = NSMakePoint(frame.origin.x, frame.origin.y);
-			pointsInner[1] = NSMakePoint(frame.origin.x + ((frame.size.width /2) + 2), frame.origin.y);
-			pointsInner[2] = NSMakePoint(frame.origin.x + frame.size.width, frame.origin.y + (frame.size.height /2));
-			pointsInner[3] = NSMakePoint(frame.origin.x + ((frame.size.width /2) + 2), frame.origin.y + frame.size.height);
-			pointsInner[4] = NSMakePoint(frame.origin.x, frame.origin.y + frame.size.height);
+			pointsInner[0] = NSMakePoint(NSMinX(frame), NSMinY(frame) + 2);
+			pointsInner[1] = NSMakePoint(NSMinX(frame) + 2, NSMinY(frame));
+			pointsInner[2] = NSMakePoint(NSMidX(frame) + 2, NSMinY(frame));
+			pointsInner[3] = NSMakePoint(NSMaxX(frame), NSMidY(frame));
+			pointsInner[4] = NSMakePoint(NSMidX(frame) + 2, NSMaxY(frame));
+			pointsInner[5] = NSMakePoint(NSMinX(frame) + 2, NSMaxY(frame));
+			pointsInner[6] = NSMakePoint(NSMinX(frame), NSMaxY(frame) - 2);
+			
+			[pathInner appendBezierPathWithPoints: pointsInner count: 7];
+			
 		} else {
 			
-			pointsInner[0] = NSMakePoint(frame.origin.x + frame.size.width, frame.origin.y);
-			pointsInner[1] = NSMakePoint(frame.origin.x + (frame.size.width - (frame.size.width /2) -2), frame.origin.y);
-			pointsInner[2] = NSMakePoint(frame.origin.x, frame.origin.y + (frame.size.height /2));
-			pointsInner[3] = NSMakePoint(frame.origin.x + (frame.size.width - (frame.size.width /2) -2), frame.origin.y + frame.size.height);
-			pointsInner[4] = NSMakePoint(frame.origin.x + frame.size.width, frame.origin.y + frame.size.height);
+			pointsInner[0] = NSMakePoint(NSMinX(frame), NSMidY(frame));
+			pointsInner[1] = NSMakePoint(NSMidX(frame) - 2, NSMinY(frame));
+			pointsInner[2] = NSMakePoint(NSMaxX(frame) - 2, NSMinY(frame));
+			pointsInner[3] = NSMakePoint(NSMaxX(frame), NSMinY(frame) + 2);
+			pointsInner[4] = NSMakePoint(NSMaxX(frame), NSMaxY(frame) - 2);
+			pointsInner[5] = NSMakePoint(NSMaxX(frame) - 2, NSMaxY(frame));
+			pointsInner[6] = NSMakePoint(NSMidX(frame) - 2, NSMaxY(frame));
+			
+			[pathInner appendBezierPathWithPoints: pointsInner count: 7];
 		}
-		
-		[pathInner appendBezierPathWithPoints: pointsInner count: 5];
+	
 	} else {
 		
 		[pathOuter appendBezierPathWithOvalInRect: frame];
 		
-		frame.origin.x += 1;
-		frame.origin.y += 1;
-		frame.size.width -= 2;
-		frame.size.height -= 2;
+		frame = NSInsetRect(frame, 1, 1);
 		
 		[pathInner appendBezierPathWithOvalInRect: frame];
 	}
@@ -622,14 +633,14 @@
 		
 		if([self isHighlighted]) {
 			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightKnobColor] drawInBezierPath: pathInner angle: gradientAngle];
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightKnobColor] drawInBezierPath: pathInner angle: 90];
 		} else {
 			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] knobColor] drawInBezierPath: pathInner angle: gradientAngle];
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] knobColor] drawInBezierPath: pathInner angle: 90];
 		}
 	} else {
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledKnobColor] drawInBezierPath: pathInner angle: gradientAngle];
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledKnobColor] drawInBezierPath: pathInner angle: 90];
 	}
 	
 	[pathOuter release];

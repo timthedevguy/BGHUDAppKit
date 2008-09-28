@@ -34,6 +34,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "BGThemeManager.h"
+#import "BGHUDGeometry.h"
 
 @interface BGHUDSliderCell : NSSliderCell {
 
