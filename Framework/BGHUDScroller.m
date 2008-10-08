@@ -82,7 +82,12 @@
 
 - (void)drawRect:(NSRect)rect {
 	
-	arrowPosition = [[[NSUserDefaults standardUserDefaults] persistentDomainForName:NSGlobalDomain] valueForKey:@"AppleScrollBarVariant"];
+	arrowPosition = [[[NSUserDefaults standardUserDefaults] persistentDomainForName:NSGlobalDomain] valueForKey: @"AppleScrollBarVariant"];
+	
+	if(arrowPosition == nil) {
+		
+		arrowPosition = @"DoubleMax";
+	}
 	
 	if([self bounds].size.width > [self bounds].size.height) {
 		
