@@ -54,6 +54,21 @@
 	return self;
 }
 
+-(id)initWithFrame:(NSRect)frame {
+	
+	self = [super initWithFrame: frame];
+	
+	if(self) {
+		
+		[self setThemeKey: @"gradientTheme"];
+		
+		[super setVerticalScroller: [[[BGHUDScroller alloc] init] autorelease]];
+		[super setHorizontalScroller: [[[BGHUDScroller alloc] init] autorelease]];
+	}
+	
+	return self;
+}
+
 -(id)initWithCoder:(NSCoder *)aDecoder {
 	
 	self = [super initWithCoder: aDecoder];

@@ -92,6 +92,11 @@
 	if([self bounds].size.width > [self bounds].size.height) {
 		
 		sFlags.isHoriz = 1;
+		sFlags.partsUsable = NSAllScrollerParts;
+	} else {
+		
+		sFlags.isHoriz = 0;
+		sFlags.partsUsable = NSAllScrollerParts;
 	}
 	
 	NSDisableScreenUpdates();
