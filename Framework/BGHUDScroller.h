@@ -38,6 +38,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "BGThemeManager.h"
+#import "BGHUDGeometry.h"
 
 @interface BGHUDScroller : NSScroller {
 	

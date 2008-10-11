@@ -93,10 +93,43 @@
 		
 		sFlags.isHoriz = 1;
 		sFlags.partsUsable = NSAllScrollerParts;
+		
+		//Now Figure out if we can actually show all parts
+		float arrowSpace = NSWidth([self rectForPart: NSScrollerIncrementLine]) + NSWidth([self rectForPart: NSScrollerDecrementLine]) +
+			BGCenterY([self rectForPart: NSScrollerIncrementLine]);
+		float knobSpace = NSWidth([self rectForPart: NSScrollerKnob]);
+		
+		if((arrowSpace + knobSpace) > NSWidth([self bounds])) {
+		
+			if(arrowSpace > NSWidth([self bounds])) {
+				
+				sFlags.partsUsable = NSNoScrollerParts;
+			} else {
+				
+				sFlags.partsUsable = NSOnlyScrollerArrows;
+			}
+		}
+		
 	} else {
 		
 		sFlags.isHoriz = 0;
 		sFlags.partsUsable = NSAllScrollerParts;
+		
+		//Now Figure out if we can actually show all parts
+		float arrowSpace = NSHeight([self rectForPart: NSScrollerIncrementLine]) + NSHeight([self rectForPart: NSScrollerDecrementLine]) +
+		BGCenterX([self rectForPart: NSScrollerIncrementLine]);
+		float knobSpace = NSHeight([self rectForPart: NSScrollerKnob]);
+		
+		if((arrowSpace + knobSpace) > NSHeight([self bounds])) {
+			
+			if(arrowSpace > NSHeight([self bounds])) {
+				
+				sFlags.partsUsable = NSNoScrollerParts;
+			} else {
+				
+				sFlags.partsUsable = NSOnlyScrollerArrows;
+			}
+		}
 	}
 	
 	NSDisableScreenUpdates();
