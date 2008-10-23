@@ -695,8 +695,13 @@
 	frame.origin.x += .5;
 	frame.origin.y += .5;
 	
-	if(![[[self controlView] className] isEqualToString: @"BGHUDTableView"] &&
-		![[[self controlView] className] isEqualToString: @"BGHUDOutlineView"]) {
+	if([[[self controlView] className] isEqualToString: @"NSMatrix"]) {
+		
+		NSMatrix* matrix = (NSMatrix*)[self controlView];
+		frame.origin.y += (BGCenterY([matrix bounds]) / [matrix numberOfRows]) - BGCenterY(frame);
+		
+	} else if(![[[self controlView] className] isEqualToString: @"BGHUDTableView"] &&
+			![[[self controlView] className] isEqualToString: @"BGHUDOutlineView"]) {
 		
 		frame.origin.y += (BGCenterY([[self controlView] bounds]) - BGCenterY(frame));
 	}
