@@ -34,6 +34,9 @@
 
 #import "BGHUDOutlineView.h"
 
+@interface NSOutlineView (private)
+- (void)_sendDelegateWillDisplayCell:(id)cell forColumn:(id)column row:(int)row;
+@end
 
 @implementation BGHUDOutlineView
 

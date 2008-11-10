@@ -34,6 +34,9 @@
 
 #import "BGHUDTableView.h"
 
+@interface NSTableView (private)
+- (void)_sendDelegateWillDisplayCell:(id)cell forColumn:(id)column row:(int)row;
+@end
 
 @implementation BGHUDTableView
 

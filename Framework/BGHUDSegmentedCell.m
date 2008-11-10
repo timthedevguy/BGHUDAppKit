@@ -34,6 +34,10 @@
 
 #import "BGHUDSegmentedCell.h"
 
+@interface NSSegmentedCell (private)
+-(NSRect)rectForSegment:(int)segment inFrame:(NSRect)frame;
+@end
+
 @implementation BGHUDSegmentedCell
 
 @synthesize themeKey;
