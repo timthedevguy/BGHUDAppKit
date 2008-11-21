@@ -137,13 +137,76 @@
 		[NSGraphicsContext restoreGraphicsState];
 	}
 	
-	[super drawInteriorWithFrame: cellFrame inView: controlView];
-
+	NSRect frame = cellFrame;
+	
+	//Adjust based on Control size
+	switch ([self controlSize]) {
+			
+		case NSRegularControlSize:
+			
+			frame.size.width = (frame.size.width -21);
+			break;
+			
+		case NSSmallControlSize:
+			
+			frame.size.width = (frame.size.width -18);
+			break;
+			
+		case NSMiniControlSize:
+			
+			frame.size.width += (frame.size.width - 15);			
+			break;
+	}
+	
+	// Draw a 'button' around the arrow
+	[self drawButtonInRect: cellFrame];
+	
 	//Draw the arrow
 	[self drawArrowsInRect: cellFrame];
+	
+	
+	// Draw the TextField
+	[super drawInteriorWithFrame: frame inView: controlView];
 }
 
+-(void)drawButtonInRect:(NSRect) frame
+{
+	NSBezierPath *path = [[NSBezierPath alloc] init];
+	
+	
+	//Adjust based on Control size
+	switch ([self controlSize]) {
+			
+		case NSRegularControlSize:
+			
+			frame.origin.x += (frame.size.width -21);
+			frame.size.width = 21;
+			break;
+			
+		case NSSmallControlSize:
+			
+			frame.origin.x += (frame.size.width -18);
+			frame.size.width = 18;
+				
+			break;
+			
+		case NSMiniControlSize:
+			
+			frame.origin.x += (frame.size.width - 15);
+			frame.size.width = 15;
+
+			break;
+	}
+	
+	[path appendBezierPathWithRoundedRect: frame xRadius: 3.0 yRadius: 3.0];
+
+	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
+}
+
+
 - (void)drawArrowsInRect:(NSRect) frame {
+	
+
 	
 	float arrowsWidth;
 	float arrowsHeight;
