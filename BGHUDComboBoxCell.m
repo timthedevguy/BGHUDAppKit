@@ -149,7 +149,7 @@
 			
 		case NSSmallControlSize:
 			
-			frame.size.width = (frame.size.width -18);
+			frame.size.width = (frame.size.width - 18);
 			break;
 			
 		case NSMiniControlSize:
@@ -159,7 +159,12 @@
 	}
 	
 	// Draw a 'button' around the arrow
-	[self drawButtonInRect: cellFrame];
+	// TODO: Get this behaviour to work...
+	//if ([self isBordered]) 
+
+	{
+		[self drawButtonInRect: cellFrame];
+	}
 	
 	//Draw the arrow
 	[self drawArrowsInRect: cellFrame];
