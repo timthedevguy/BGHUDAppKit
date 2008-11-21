@@ -118,6 +118,10 @@
 		E7E6382B0E12E1300034DC7E /* CONTRIB.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7E638270E12E1300034DC7E /* CONTRIB.rtf */; };
 		E7E6382C0E12E1300034DC7E /* License.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7E638280E12E1300034DC7E /* License.rtf */; };
 		E7E6382D0E12E1300034DC7E /* README.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7E638290E12E1300034DC7E /* README.rtf */; };
+		F62F7C290EC7DC1400343989 /* BGHUDComboBoxCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F62F7C270EC7DC1400343989 /* BGHUDComboBoxCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F62F7C2A0EC7DC1400343989 /* BGHUDComboBoxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F7C280EC7DC1400343989 /* BGHUDComboBoxCell.m */; };
+		F62F7C640EC7DFF200343989 /* BGHUDComboBoxCell.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = F62F7C630EC7DFF200343989 /* BGHUDComboBoxCell.classdescription */; };
+		F62F7C6D0EC7E05800343989 /* BGHUDComboBoxCellIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F7C6C0EC7E05800343989 /* BGHUDComboBoxCellIntegration.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -265,6 +269,10 @@
 		E7E638270E12E1300034DC7E /* CONTRIB.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = CONTRIB.rtf; sourceTree = "<group>"; };
 		E7E638280E12E1300034DC7E /* License.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = License.rtf; sourceTree = "<group>"; };
 		E7E638290E12E1300034DC7E /* README.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
+		F62F7C270EC7DC1400343989 /* BGHUDComboBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGHUDComboBoxCell.h; sourceTree = "<group>"; };
+		F62F7C280EC7DC1400343989 /* BGHUDComboBoxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDComboBoxCell.m; sourceTree = "<group>"; };
+		F62F7C630EC7DFF200343989 /* BGHUDComboBoxCell.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDComboBoxCell.classdescription; sourceTree = "<group>"; };
+		F62F7C6C0EC7E05800343989 /* BGHUDComboBoxCellIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDComboBoxCellIntegration.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -392,6 +400,7 @@
 				E78DB0450E34E4A300AF4E06 /* BGHUDSearchFieldCellIntegration.m */,
 				E7631DA30E4DEA370092074F /* BGHUDColorWellIntegration.m */,
 				E7DAC6620E60740400549353 /* BGHUDLabelIntegration.m */,
+				F62F7C6C0EC7E05800343989 /* BGHUDComboBoxCellIntegration.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -414,6 +423,7 @@
 				E78DB0430E34E48200AF4E06 /* BGHUDSearchFieldCell.classdescription */,
 				E7631D7B0E4DE7980092074F /* BGHUDColorWell.classdescription */,
 				E7DAC6570E60726700549353 /* BGHUDLabel.classdescription */,
+				F62F7C630EC7DFF200343989 /* BGHUDComboBoxCell.classdescription */,
 			);
 			name = "Class Descriptions";
 			sourceTree = "<group>";
@@ -434,6 +444,7 @@
 		54D33B2C06778E4400C9C163 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				F62F7C1F0EC7DB6800343989 /* BGHUDComboBoxCell */,
 				E7E6381A0E12E0E50034DC7E /* ReadMe */,
 				E71317D60E10667D00885A23 /* BGHUDAppKit.h */,
 				E79C25890E1095AA00742AF4 /* Themeing */,
@@ -632,6 +643,15 @@
 			name = ReadMe;
 			sourceTree = "<group>";
 		};
+		F62F7C1F0EC7DB6800343989 /* BGHUDComboBoxCell */ = {
+			isa = PBXGroup;
+			children = (
+				F62F7C270EC7DC1400343989 /* BGHUDComboBoxCell.h */,
+				F62F7C280EC7DC1400343989 /* BGHUDComboBoxCell.m */,
+			);
+			name = BGHUDComboBoxCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -664,6 +684,7 @@
 				E7631D760E4DE6940092074F /* BGHUDColorWell.h in Headers */,
 				E7DAC65D0E60729B00549353 /* BGHUDLabel.h in Headers */,
 				E7C104960E8C476D00A96E1A /* BGHUDGeometry.h in Headers */,
+				F62F7C290EC7DC1400343989 /* BGHUDComboBoxCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,7 +735,7 @@
 /* Begin PBXProject section */
 		0259C573FE90428111CA0C5A /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C056398B08A954F8003078D8 /* Build configuration list for PBXProject "BGHUDAppKit" */;
+			buildConfigurationList = C056398B08A954F8003078D8 /* Build configuration list for PBXProject "bghudappkit" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 0259C574FE90428111CA0C5A /* BGHUDAppKit */;
@@ -764,6 +785,7 @@
 				E7631DD50E4DEFDB0092074F /* BGHUDColorWellInspector.xib in Resources */,
 				E7DAC6580E60726700549353 /* BGHUDLabel.classdescription in Resources */,
 				E7B7F64C0E9EAFB70032873A /* scrollview.png in Resources */,
+				F62F7C640EC7DFF200343989 /* BGHUDComboBoxCell.classdescription in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,6 +833,7 @@
 				E78DB0340E34E3C100AF4E06 /* BGHUDSearchFieldCell.m in Sources */,
 				E7631D770E4DE6940092074F /* BGHUDColorWell.m in Sources */,
 				E7DAC65E0E60729B00549353 /* BGHUDLabel.m in Sources */,
+				F62F7C2A0EC7DC1400343989 /* BGHUDComboBoxCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,6 +859,7 @@
 				E7631DA40E4DEA370092074F /* BGHUDColorWellIntegration.m in Sources */,
 				E7631DE60E4DF1930092074F /* BGHUDColorWellInspector.m in Sources */,
 				E7DAC6630E60740400549353 /* BGHUDLabelIntegration.m in Sources */,
+				F62F7C6D0EC7E05800343989 /* BGHUDComboBoxCellIntegration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -886,7 +910,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = "BGHUDAppKitFramework-Info.plist";
-				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					"-seg1addr",
 					0xb0440100,
@@ -1065,7 +1089,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C056398B08A954F8003078D8 /* Build configuration list for PBXProject "BGHUDAppKit" */ = {
+		C056398B08A954F8003078D8 /* Build configuration list for PBXProject "bghudappkit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C056398C08A954F8003078D8 /* Debug */,
