@@ -735,7 +735,7 @@
 /* Begin PBXProject section */
 		0259C573FE90428111CA0C5A /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C056398B08A954F8003078D8 /* Build configuration list for PBXProject "bghudappkit" */;
+			buildConfigurationList = C056398B08A954F8003078D8 /* Build configuration list for PBXProject "BGHUDAppKit" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 0259C574FE90428111CA0C5A /* BGHUDAppKit */;
@@ -1089,7 +1089,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C056398B08A954F8003078D8 /* Build configuration list for PBXProject "bghudappkit" */ = {
+		C056398B08A954F8003078D8 /* Build configuration list for PBXProject "BGHUDAppKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C056398C08A954F8003078D8 /* Debug */,

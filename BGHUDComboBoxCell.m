@@ -184,26 +184,32 @@
 			
 		case NSRegularControlSize:
 			
-			frame.origin.x += (frame.size.width -21);
-			frame.size.width = 21;
+			frame.origin.x += (frame.size.width -20);
+			frame.size.width = 20;
 			break;
 			
 		case NSSmallControlSize:
 			
-			frame.origin.x += (frame.size.width -18);
-			frame.size.width = 18;
+			frame.origin.x += (frame.size.width -17);
+			frame.size.width = 17;
 				
 			break;
 			
 		case NSMiniControlSize:
 			
-			frame.origin.x += (frame.size.width - 15);
-			frame.size.width = 15;
+			frame.origin.x += (frame.size.width - 14);
+			frame.size.width = 14;
 
 			break;
 	}
 	
+	
 	[path appendBezierPathWithRoundedRect: frame xRadius: 3.0 yRadius: 3.0];
+	
+	NSRect rect = NSMakeRect(frame.origin.x, frame.origin.y, frame.size.width/2, frame.size.height);
+	[path appendBezierPathWithRect:rect];
+	
+	[path closePath];
 
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
 }
