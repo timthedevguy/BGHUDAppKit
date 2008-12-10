@@ -269,8 +269,8 @@
 		E7E638270E12E1300034DC7E /* CONTRIB.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = CONTRIB.rtf; sourceTree = "<group>"; };
 		E7E638280E12E1300034DC7E /* License.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = License.rtf; sourceTree = "<group>"; };
 		E7E638290E12E1300034DC7E /* README.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
-		F62F7C270EC7DC1400343989 /* BGHUDComboBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGHUDComboBoxCell.h; sourceTree = "<group>"; };
-		F62F7C280EC7DC1400343989 /* BGHUDComboBoxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDComboBoxCell.m; sourceTree = "<group>"; };
+		F62F7C270EC7DC1400343989 /* BGHUDComboBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDComboBoxCell.h; path = Framework/BGHUDComboBoxCell.h; sourceTree = "<group>"; };
+		F62F7C280EC7DC1400343989 /* BGHUDComboBoxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDComboBoxCell.m; path = Framework/BGHUDComboBoxCell.m; sourceTree = "<group>"; };
 		F62F7C630EC7DFF200343989 /* BGHUDComboBoxCell.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDComboBoxCell.classdescription; sourceTree = "<group>"; };
 		F62F7C6C0EC7E05800343989 /* BGHUDComboBoxCellIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDComboBoxCellIntegration.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
