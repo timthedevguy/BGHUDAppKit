@@ -170,7 +170,15 @@
 	[self drawArrowsInRect: cellFrame];
 	
 	
-	// Draw the TextField
+	// Change the selected text colour
+	
+	NSTextView* view = (NSTextView*)[[controlView window] fieldEditor:NO forObject:controlView];
+	
+	NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];
+	[dict setObject:[NSColor darkGrayColor] forKey:NSBackgroundColorAttributeName];
+	[view setSelectedTextAttributes:dict];
+
+	// draw the text field.
 	[super drawInteriorWithFrame: frame inView: controlView];
 }
 

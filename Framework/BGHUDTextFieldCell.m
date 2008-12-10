@@ -131,7 +131,13 @@
 		
 		[NSGraphicsContext restoreGraphicsState];
 	}
+		
+	NSTextView* view = (NSTextView*)[[controlView window] fieldEditor:NO forObject:controlView];
 	
+	NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];
+	[dict setObject:[NSColor darkGrayColor] forKey:NSBackgroundColorAttributeName];
+	[view setSelectedTextAttributes:dict];
+		
 	[super drawInteriorWithFrame: cellFrame inView: controlView];
 }
 
