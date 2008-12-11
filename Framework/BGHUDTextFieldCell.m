@@ -134,10 +134,22 @@
 		
 	NSTextView* view = (NSTextView*)[[controlView window] fieldEditor:NO forObject:controlView];
 	
-	NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];
-	[dict setObject:[NSColor darkGrayColor] forKey:NSBackgroundColorAttributeName];
-	[view setSelectedTextAttributes:dict];
+	NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];	
+	
+	if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow])
+	{
+		[dict setObject:[NSColor darkGrayColor] forKey:NSBackgroundColorAttributeName];
 		
+		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+		
+	}
+	else
+	{
+		[view setTextColor:[NSColor blackColor] range:[view selectedRange]];
+	}
+	
+	[view setSelectedTextAttributes:dict];
+
 	[super drawInteriorWithFrame: cellFrame inView: controlView];
 }
 
