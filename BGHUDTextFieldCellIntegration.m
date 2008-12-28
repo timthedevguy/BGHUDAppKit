@@ -11,7 +11,7 @@
 #import "BGHUDAppKitInspector.h"
 
 
-@implementation BGHUDTextFieldCell ( BGHUDTextFieldCell )
+@implementation BGHUDTextFieldCell (Private)
 
 - (void)ibPopulateKeyPaths:(NSMutableDictionary *)keyPaths {
 	

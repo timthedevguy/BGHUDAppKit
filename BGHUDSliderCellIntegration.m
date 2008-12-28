@@ -11,7 +11,7 @@
 #import "BGHUDAppKitInspector.h"
 
 
-@implementation BGHUDSliderCell ( BGHUDSliderCell )
+@implementation BGHUDSliderCell (Private)
 
 - (void)ibPopulateKeyPaths:(NSMutableDictionary *)keyPaths {
 	

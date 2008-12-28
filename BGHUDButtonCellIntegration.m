@@ -11,7 +11,7 @@
 #import "BGHUDAppKitInspector.h"
 
 
-@implementation BGHUDButtonCell ( BGHUDButtonCell )
+@implementation BGHUDButtonCell (Private)
 
 - (void)ibPopulateKeyPaths:(NSMutableDictionary *)keyPaths {
 	

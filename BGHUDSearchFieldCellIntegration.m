@@ -11,7 +11,7 @@
 #import "BGHUDAppKitInspector.h"
 
 
-@implementation BGHUDSearchFieldCell ( BGHUDSearchFieldCell )
+@implementation BGHUDSearchFieldCell (Private)
 
 - (void)ibPopulateKeyPaths:(NSMutableDictionary *)keyPaths {
 	

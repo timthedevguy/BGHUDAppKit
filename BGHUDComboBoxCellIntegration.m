@@ -9,7 +9,7 @@
 #import <BGHUDAppKit/BGHUDComboBoxCell.h>
 #import "BGHUDAppKitInspector.h"
 
-@implementation BGHUDComboBoxCell ( BGHUDComboBoxCell )
+@implementation BGHUDComboBoxCell (Private)
 
 - (void)ibPopulateKeyPaths:(NSMutableDictionary *)keyPaths {
 	

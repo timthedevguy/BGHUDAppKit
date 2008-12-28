@@ -10,7 +10,7 @@
 #import <BGHUDAppKit/BGHUDColorWell.h>
 #import "BGHUDColorWellInspector.h"
 
-@implementation BGHUDColorWell ( BGHUDColorWell )
+@implementation BGHUDColorWell (Private)
 
 - (void)ibPopulateKeyPaths:(NSMutableDictionary *)keyPaths {
 	

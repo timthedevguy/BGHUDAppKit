@@ -10,7 +10,7 @@
 #import <BGHUDAppKit/BGHUDPopUpButtonCell.h>
 #import "BGHUDAppKitInspector.h"
 
-@implementation BGHUDPopUpButtonCell ( BGHUDPopUpButtonCell )
+@implementation BGHUDPopUpButtonCell (Private)
 
 - (void)ibPopulateKeyPaths:(NSMutableDictionary *)keyPaths {
 	

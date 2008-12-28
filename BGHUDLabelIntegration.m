@@ -10,7 +10,7 @@
 #import <BGHUDAppKit/BGHUDLabel.h>
 #import "BGHUDAppKitInspector.h"
 
-@implementation BGHUDLabel ( BGHUDLabel )
+@implementation BGHUDLabel (Private)
 
 - (void)ibPopulateKeyPaths:(NSMutableDictionary *)keyPaths {
 	
