@@ -82,8 +82,15 @@
 			[self setThemeKey: @"gradientTheme"];
 		}
 		
-		[super setVerticalScroller: [[[BGHUDScroller alloc] init] autorelease]];
-		[super setHorizontalScroller: [[[BGHUDScroller alloc] init] autorelease]];
+		if(![[super verticalScroller] isKindOfClass: [BGHUDScroller class]]) {
+			
+			[super setVerticalScroller: [[[BGHUDScroller alloc] init] autorelease]];
+		}
+		
+		if(![[super horizontalScroller] isKindOfClass: [BGHUDScroller class]]) {
+			
+			[super setHorizontalScroller: [[[BGHUDScroller alloc] init] autorelease]];
+		}
 	}
 	
 	return self;
