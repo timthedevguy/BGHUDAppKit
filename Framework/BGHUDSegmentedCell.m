@@ -151,7 +151,7 @@
 			} else if (segment == ([self segmentCount] -1)) {
 				
 				fillPath = [[NSBezierPath alloc] init];
-				fillRect.size.width -= 3;
+				//fillRect.size.width -= 3;  Removed to fix Issue #13
 				[fillPath appendBezierPathWithRoundedRect: fillRect xRadius: 3 yRadius: 3];
 				
 				//Setup our joining rect
