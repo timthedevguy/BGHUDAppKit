@@ -150,6 +150,10 @@
 	
 	[view setSelectedTextAttributes:dict];
 
+	//Adjust frame so text shows correctly!!
+	//cellFrame.origin.y -= 1;
+	cellFrame.size.height += 2;
+	
 	[super drawInteriorWithFrame: cellFrame inView: controlView];
 }
 
