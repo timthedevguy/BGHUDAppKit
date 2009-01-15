@@ -87,7 +87,7 @@
 	cellFrame = NSInsetRect(cellFrame, 1.5, 1.5);
 	
 	//Create Path
-	NSBezierPath *path = [[NSBezierPath alloc] init];
+	NSBezierPath *path = [[NSBezierPath new] autorelease];
 	
 	if([self bezelStyle] == NSTextFieldRoundedBezel) {
 		
