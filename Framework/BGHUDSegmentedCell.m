@@ -79,13 +79,39 @@
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
+-(NSSegmentStyle)segmentStyle {
+	
+	return [super segmentStyle];
+}
+
+-(void)setSegmentStyle:(NSSegmentStyle) style {
+	
+	if(style == NSSegmentStyleSmallSquare || style == NSSegmentStyleRounded) {
+		
+		[super setSegmentStyle: style];
+	}
+}
+
 - (void)drawWithFrame:(NSRect)frame inView:(NSView *)view {
 	
 	NSBezierPath *border;
 	
 	switch ([self segmentStyle]) {
+		
+		case NSSegmentStyleSmallSquare:
 			
-		case NSSegmentStyleTexturedRounded:
+			//Adjust frame for shadow
+			frame.origin.x += 1.5;
+			frame.origin.y += .5;
+			frame.size.width -= 3;
+			frame.size.height -= 3;
+			
+			border = [[NSBezierPath alloc] init];
+			[border appendBezierPathWithRect: frame];
+			
+			break;
+			
+		case NSSegmentStyleRounded: //NSSegmentStyleTexturedRounded:
 			
 			//Adjust frame for shadow
 			frame.origin.x += 1.5;
@@ -97,22 +123,22 @@
 			
 			[border appendBezierPathWithRoundedRect: frame
 											xRadius: 4.0 yRadius: 4.0];
-			
-			//Setup to Draw Border
-			[NSGraphicsContext saveGraphicsState];
-			
-			//Set Shadow + Border Color
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
-			
-			//Draw Border + Shadow
-			[border stroke];
-			
-			[NSGraphicsContext restoreGraphicsState];
-			
-			[border release];
 			break;
 	}
+	
+	//Setup to Draw Border
+	[NSGraphicsContext saveGraphicsState];
+	
+	//Set Shadow + Border Color
+	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
+	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+	
+	//Draw Border + Shadow
+	[border stroke];
+	
+	[NSGraphicsContext restoreGraphicsState];
+	
+	[border release];
 	
 	int segCount = 0;
 	
@@ -131,7 +157,14 @@
 	
 	switch ([self segmentStyle]) {
 			
-		case NSSegmentStyleTexturedRounded:
+		case NSSegmentStyleSmallSquare:
+			
+			fillPath = [[NSBezierPath alloc] init];
+			[fillPath appendBezierPathWithRect: fillRect];
+			
+			break;
+			
+		case NSSegmentStyleRounded: //NSSegmentStyleTexturedRounded:
 			
 			//If this is the first segment, draw rounded corners
 			if(segment == 0) {
@@ -166,19 +199,19 @@
 				[fillPath appendBezierPathWithRect: fillRect];
 			}
 			
-			if([self selectedSegment] == segment) {
-				
-				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInBezierPath: fillPath angle: 90];
-			} else {
-				
-				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: fillPath angle: 90];
-			}
-			
-			[fillPath release];
-			
 			break;
-			
 	}
+	
+	//Fill our pathss
+	if([self selectedSegment] == segment) {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInBezierPath: fillPath angle: 90];
+	} else {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: fillPath angle: 90];
+	}
+	
+	[fillPath release];
 	
 	//Draw Segment dividers ONLY if they are
 	//inside segments
@@ -189,30 +222,73 @@
 								  toPoint: NSMakePoint(fillRect.origin.x + fillRect.size.width, fillRect.origin.y + fillRect.size.height)];
 	}
 	
-	[self drawTextInSegment: segment inFrame: fillRect];
+	[self drawInteriorForSegment: segment withFrame: fillRect];
 }
 
--(void)drawTextInSegment:(int)segment inFrame:(NSRect)frame {
-
-	if([self labelForSegment: segment] != nil) {
+-(void)drawInteriorForSegment:(int)segment withFrame:(NSRect)rect {
 	
+	NSAttributedString *newTitle;
+	
+	//if([self labelForSegment: segment] != nil) {
+		
 		NSMutableDictionary *textAttributes = [[NSMutableDictionary alloc] initWithCapacity: 0];
 		
 		[textAttributes setValue: [NSFont controlContentFontOfSize: [NSFont systemFontSizeForControlSize: [self controlSize]]] forKey: NSFontAttributeName];
 		[textAttributes setValue: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor] forKey: NSForegroundColorAttributeName];
 		
-		NSAttributedString *newTitle = [[NSAttributedString alloc] initWithString: [self labelForSegment: segment] attributes: textAttributes];
-		
-		frame.origin.y += (BGCenterY(frame) - ([newTitle size].height /2));
-		frame.origin.x += (BGCenterX(frame) - ([newTitle size].width /2));
-		frame.size.height = [newTitle size].height;
-		frame.size.width = [newTitle size].width;
-		
-		if(frame.origin.x < 3) { frame.origin.x = 3; }
-		
-		[newTitle drawInRect: frame];
+		newTitle = [[NSAttributedString alloc] initWithString: [self labelForSegment: segment] attributes: textAttributes];
 		
 		[textAttributes release];
+	//}
+	
+	NSRect textRect = rect;
+	NSRect imageRect = rect;
+	
+	if([super imageForSegment: segment] != nil) {
+		
+		NSImage *image = [self imageForSegment: segment];
+		
+		float resizeRatio = (rect.size.height - 4) / [image size].height;
+		
+		[image setScalesWhenResized: YES];
+		[image setSize: NSMakeSize([image size].width * resizeRatio, rect.size.height -4)];
+		
+		if([self labelForSegment: segment] != nil && ![[self labelForSegment: segment] isEqualToString: @""]) {
+			
+			imageRect.origin.y += (BGCenterY(rect) - ([image size].height /2));
+			imageRect.origin.x += (BGCenterX(rect) - (([image size].width + [newTitle size].width + 5) /2));
+			imageRect.size.height = [image size].height;
+			imageRect.size.width = [image size].width;
+			
+			textRect.origin.y += (BGCenterY(rect) - ([newTitle size].height /2));
+			textRect.origin.x += imageRect.origin.x + [image size].width + 5;
+			textRect.size.height = [newTitle size].height;
+			textRect.size.width = [newTitle size].width;
+			
+			[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
+			[newTitle drawInRect: textRect];
+			[newTitle release];
+			
+		} else {
+			
+			//Draw Image Alone
+			imageRect.origin.y += (BGCenterY(rect) - ([image size].height /2));
+			imageRect.origin.x += (BGCenterX(rect) - ([image size].width /2));
+			imageRect.size.height = [image size].height;
+			imageRect.size.width = [image size].width;
+			
+			[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
+		}
+	} else {
+		
+		textRect.origin.y += (BGCenterY(rect) - ([newTitle size].height /2));
+		textRect.origin.x += (BGCenterX(rect) - ([newTitle size].width /2));
+		textRect.size.height = [newTitle size].height;
+		textRect.size.width = [newTitle size].width;
+		
+		if(textRect.origin.x < 3) { textRect.origin.x = 3; }
+		
+		[newTitle drawInRect: textRect];
 		[newTitle release];
 	}
 }
