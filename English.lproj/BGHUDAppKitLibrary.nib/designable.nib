@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.02">
+<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.03">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">9F2114</string>
-		<string key="IBDocument.InterfaceBuilderVersion">672</string>
-		<string key="IBDocument.AppKitVersion">949.41</string>
-		<string key="IBDocument.HIToolboxVersion">352.00</string>
+		<string key="IBDocument.SystemVersion">9G55</string>
+		<string key="IBDocument.InterfaceBuilderVersion">677</string>
+		<string key="IBDocument.AppKitVersion">949.43</string>
+		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="7"/>
@@ -14,6 +14,15 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>com.apple.InterfaceBuilderKit</string>
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+		</object>
+		<object class="NSMutableDictionary" key="IBDocument.Metadata">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.RootObjects" id="1012">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2056,7 +2065,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 							<object class="NSSegmentedControl" id="668274122">
 								<reference key="NSNextResponder" ref="152155517"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{13, 27}, {53, 24}}</string>
+								<string key="NSFrame">{{16, 27}, {48, 24}}</string>
 								<reference key="NSSuperview" ref="152155517"/>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSSegmentedCell" key="NSCell" id="324373822">
@@ -2067,19 +2076,19 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 									<object class="NSMutableArray" key="NSSegmentImages">
 										<bool key="EncodedWithXMLCoder">YES</bool>
 										<object class="NSSegmentItem">
-											<double key="NSSegmentItemWidth">1.500000e+01</double>
+											<double key="NSSegmentItemWidth">1.300000e+01</double>
 											<string key="NSSegmentItemLabel"/>
 											<int key="NSSegmentItemImageScaling">0</int>
 										</object>
 										<object class="NSSegmentItem">
-											<double key="NSSegmentItemWidth">1.500000e+01</double>
+											<double key="NSSegmentItemWidth">1.400000e+01</double>
 											<string key="NSSegmentItemLabel"/>
 											<int key="NSSegmentItemTag">1</int>
 											<bool key="NSSegmentItemSelected">YES</bool>
 											<int key="NSSegmentItemImageScaling">0</int>
 										</object>
 										<object class="NSSegmentItem">
-											<double key="NSSegmentItemWidth">1.500000e+01</double>
+											<double key="NSSegmentItemWidth">1.300000e+01</double>
 											<int key="NSSegmentItemImageScaling">0</int>
 										</object>
 									</object>
@@ -2130,7 +2139,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<object class="NSSegmentedControl" id="249898594">
 						<reference key="NSNextResponder" ref="1000"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{15, 224}, {104, 25}}</string>
+						<string key="NSFrame">{{15, 225}, {104, 24}}</string>
 						<reference key="NSSuperview" ref="1000"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSegmentedCell" key="NSCell" id="36628316">
@@ -2158,7 +2167,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 								</object>
 							</object>
 							<int key="NSSelectedSegment">1</int>
-							<int key="NSSegmentStyle">2</int>
+							<int key="NSSegmentStyle">1</int>
 						</object>
 					</object>
 					<object class="NSSearchField" id="57266592">
@@ -3960,6 +3969,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>244.notes</string>
 					<string>244.showNotes</string>
 					<string>247.IBPluginDependency</string>
+					<string>248.CustomClassName</string>
 					<string>248.IBPluginDependency</string>
 					<string>249.IBPluginDependency</string>
 					<string>250.CustomClassName</string>
@@ -4332,6 +4342,7 @@ cyBvdXRsZXRzIGFyZSBvcHRpb25hbC4</string>
 					</object>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>BGHUDSegmentedCell</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>BGHUDSegmentedCell</string>
@@ -4616,7 +4627,7 @@ cyBvdXRsZXRzIGFyZSBvcHRpb25hbC4</string>
 					<string key="superclassName">NSComboBoxCell</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">BGHUDComboBoxCell.h</string>
+						<string key="minorKey">Framework/BGHUDComboBoxCell.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -4718,7 +4729,7 @@ cyBvdXRsZXRzIGFyZSBvcHRpb25hbC4</string>
 			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.LastKnownRelativeProjectPath">../bghudappkit.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../BGHUDAppKit.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 	</data>
 </archive>
