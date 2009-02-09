@@ -247,11 +247,15 @@
 	if([super imageForSegment: segment] != nil) {
 		
 		NSImage *image = [self imageForSegment: segment];
+		[image setFlipped: YES];
 		
-		float resizeRatio = (rect.size.height - 4) / [image size].height;
-		
-		[image setScalesWhenResized: YES];
-		[image setSize: NSMakeSize([image size].width * resizeRatio, rect.size.height -4)];
+		if([self imageScalingForSegment: segment] == NSImageScaleProportionallyDown) {
+			
+			float resizeRatio = (rect.size.height - 4) / [image size].height;
+			
+			[image setScalesWhenResized: YES];
+			[image setSize: NSMakeSize([image size].width * resizeRatio, rect.size.height -4)];
+		}
 		
 		if([self labelForSegment: segment] != nil && ![[self labelForSegment: segment] isEqualToString: @""]) {
 			
