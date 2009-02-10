@@ -44,5 +44,6 @@
 @property (retain) NSString *themeKey;
 
 -(void)drawInteriorForSegment:(int)segment withFrame:(NSRect)rect;
+-(BOOL)hasText;
 
 @end

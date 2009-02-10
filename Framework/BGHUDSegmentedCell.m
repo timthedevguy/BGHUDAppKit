@@ -159,6 +159,11 @@
 			
 		case NSSegmentStyleSmallSquare:
 			
+			if(segment == ([self segmentCount] -1)) {
+			
+				if(![self hasText]) { fillRect.size.width -= 3; }
+			}
+			
 			fillPath = [[NSBezierPath alloc] init];
 			[fillPath appendBezierPathWithRect: fillRect];
 			
@@ -184,7 +189,9 @@
 			} else if (segment == ([self segmentCount] -1)) {
 				
 				fillPath = [[NSBezierPath alloc] init];
-				//fillRect.size.width -= 3;  Removed to fix Issue #13
+				
+				if(![self hasText]) { fillRect.size.width -= 3; }
+				
 				[fillPath appendBezierPathWithRoundedRect: fillRect xRadius: 3 yRadius: 3];
 				
 				//Setup our joining rect
@@ -295,6 +302,23 @@
 		[newTitle drawInRect: textRect];
 		[newTitle release];
 	}
+}
+
+-(BOOL)hasText {
+	
+	int i = 0;
+	BOOL flag = NO;
+	
+	while(i <= [self segmentCount] -1) {
+		
+		if([self labelForSegment: i] != nil && ![[self labelForSegment: i] isEqualToString: @""]) {
+		
+			flag = YES;
+		}
+		i++;
+	}
+	
+	return flag;
 }
 
 @end
