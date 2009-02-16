@@ -1,8 +1,8 @@
 //
-//  BGHUDView.h
+//  BGHUDBox.h
 //  BGHUDAppKit
 //
-//  Created by BinaryGod on 2/15/09.
+//  Created by BinaryGod on 2/16/09.
 //  Copyright 2009 none. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification,
@@ -33,8 +33,8 @@
 #import <Cocoa/Cocoa.h>
 #import "BGThemeManager.h"
 
-@interface BGHUDView : NSView {
-
+@interface BGHUDBox : NSBox {
+	
 	BOOL flipGradient;
 	BOOL drawTopBorder;
 	BOOL drawBottomBorder;

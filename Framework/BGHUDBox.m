@@ -1,8 +1,8 @@
 //
-//  BGHUDView.m
+//  BGHUDBox.m
 //  BGHUDAppKit
 //
-//  Created by BinaryGod on 2/15/09.
+//  Created by BinaryGod on 2/16/09.
 //  Copyright 2009 none. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification,
@@ -30,10 +30,10 @@
 //	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 //	POSSIBILITY OF SUCH DAMAGE.
 
-#import "BGHUDView.h"
+#import "BGHUDBox.h"
 
 
-@implementation BGHUDView
+@implementation BGHUDBox
 
 @synthesize flipGradient;
 @synthesize drawTopBorder;
@@ -165,105 +165,113 @@
 
 -(void)drawRect:(NSRect) rect {
 	
-	if(self.useTheme) {
+	if([self boxType] == NSBoxCustom) {
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInRect: rect angle: 90];
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
-		NSFrameRect(rect);
+		rect = [[self contentView] frame];
 		
+		if(self.useTheme) {
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInRect: rect angle: 90];
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+			NSFrameRect(rect);
+			
+		} else {
+			
+			NSGradient *gradient;
+			
+			if(customGradient != nil) {
+				
+				gradient = [customGradient retain];
+			} else {
+				
+				gradient = [[NSGradient alloc] initWithStartingColor: self.color1 endingColor: self.color2];
+			}
+			
+			NSShadow *dropShadow = [[NSShadow alloc] init];
+			
+			[dropShadow setShadowColor: self.shadowColor];
+			[dropShadow setShadowBlurRadius: 5];
+			
+			if(self.flipGradient == 0) {
+				
+				[gradient drawInRect: rect angle: 270];
+			} else {
+				
+				[gradient drawInRect: rect angle: 90];
+			}
+			
+			[gradient release];
+			
+			[[NSGraphicsContext currentContext] setShouldAntialias: NO];
+			
+			[[self borderColor] set];
+			
+			rect = NSInsetRect(rect, .5, .5);
+			
+			//Draw Borders
+			if(self.drawTopBorder) {
+				
+				[NSGraphicsContext saveGraphicsState];
+				
+				if(self.drawTopShadow) {
+					
+					[dropShadow setShadowOffset: NSMakeSize( 0, -1)];
+					[dropShadow set];
+				}
+				
+				[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMinX(rect) , NSMaxY(rect)) toPoint: NSMakePoint(NSMaxX(rect), NSMaxY(rect))];
+				
+				[NSGraphicsContext restoreGraphicsState];
+			}
+			
+			if(self.drawBottomBorder) {
+				
+				[NSGraphicsContext saveGraphicsState];
+				
+				if(self.drawBottomShadow) {
+					
+					[dropShadow setShadowOffset: NSMakeSize( 0, 1)];
+					[dropShadow set];
+				}
+				
+				[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMinX(rect), NSMinY(rect)) toPoint: NSMakePoint(NSMaxX(rect), NSMinY(rect))];
+				
+				[NSGraphicsContext restoreGraphicsState];
+			}
+			
+			if(self.drawLeftBorder) {
+				
+				[NSGraphicsContext saveGraphicsState];
+				
+				if(self.drawLeftShadow) {
+					
+					[dropShadow setShadowOffset: NSMakeSize( 1, 0)];
+					[dropShadow set];
+				}
+				
+				[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMinX(rect), NSMinY(rect)) toPoint: NSMakePoint(NSMinX(rect), NSMaxY(rect))];
+				
+				[NSGraphicsContext restoreGraphicsState];
+			}
+			
+			if(self.drawRightBorder) {
+				
+				[NSGraphicsContext saveGraphicsState];
+				
+				if(self.drawRightShadow) {
+					
+					[dropShadow setShadowOffset: NSMakeSize( -1, 0)];
+					[dropShadow set];
+				}
+				
+				[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMaxX(rect), NSMinY(rect)) toPoint: NSMakePoint(NSMaxX(rect), NSMaxY(rect))];
+				
+				[NSGraphicsContext restoreGraphicsState];
+			}
+		}
 	} else {
 		
-		NSGradient *gradient;
-		
-		if(customGradient != nil) {
-			
-			gradient = [customGradient retain];
-		} else {
-			
-			gradient = [[NSGradient alloc] initWithStartingColor: self.color1 endingColor: self.color2];
-		}
-		
-		NSShadow *dropShadow = [[NSShadow alloc] init];
-		
-		[dropShadow setShadowColor: self.shadowColor];
-		[dropShadow setShadowBlurRadius: 5];
-		
-		if(self.flipGradient == 0) {
-			
-			[gradient drawInRect: rect angle: 270];
-		} else {
-			
-			[gradient drawInRect: rect angle: 90];
-		}
-		
-		[gradient release];
-		
-		[[NSGraphicsContext currentContext] setShouldAntialias: NO];
-		
-		[[self borderColor] set];
-		
-		rect = NSInsetRect(rect, .5, .5);
-		
-		//Draw Borders
-		if(self.drawTopBorder) {
-			
-			[NSGraphicsContext saveGraphicsState];
-			
-			if(self.drawTopShadow) {
-				
-				[dropShadow setShadowOffset: NSMakeSize( 0, -1)];
-				[dropShadow set];
-			}
-			
-			[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMinX(rect) , NSMaxY(rect)) toPoint: NSMakePoint(NSMaxX(rect), NSMaxY(rect))];
-			
-			[NSGraphicsContext restoreGraphicsState];
-		}
-		
-		if(self.drawBottomBorder) {
-			
-			[NSGraphicsContext saveGraphicsState];
-			
-			if(self.drawBottomShadow) {
-				
-				[dropShadow setShadowOffset: NSMakeSize( 0, 1)];
-				[dropShadow set];
-			}
-			
-			[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMinX(rect), NSMinY(rect)) toPoint: NSMakePoint(NSMaxX(rect), NSMinY(rect))];
-			
-			[NSGraphicsContext restoreGraphicsState];
-		}
-		
-		if(self.drawLeftBorder) {
-			
-			[NSGraphicsContext saveGraphicsState];
-			
-			if(self.drawLeftShadow) {
-				
-				[dropShadow setShadowOffset: NSMakeSize( 1, 0)];
-				[dropShadow set];
-			}
-			
-			[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMinX(rect), NSMinY(rect)) toPoint: NSMakePoint(NSMinX(rect), NSMaxY(rect))];
-			
-			[NSGraphicsContext restoreGraphicsState];
-		}
-		
-		if(self.drawRightBorder) {
-			
-			[NSGraphicsContext saveGraphicsState];
-			
-			if(self.drawRightShadow) {
-				
-				[dropShadow setShadowOffset: NSMakeSize( -1, 0)];
-				[dropShadow set];
-			}
-			
-			[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMaxX(rect), NSMinY(rect)) toPoint: NSMakePoint(NSMaxX(rect), NSMaxY(rect))];
-			
-			[NSGraphicsContext restoreGraphicsState];
-		}
+		[super drawRect: rect];
 	}
 }
 

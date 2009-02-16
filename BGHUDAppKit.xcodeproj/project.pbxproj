@@ -109,6 +109,10 @@
 		E7B7F64C0E9EAFB70032873A /* scrollview.png in Resources */ = {isa = PBXBuildFile; fileRef = E7B7F64B0E9EAFB70032873A /* scrollview.png */; };
 		E7B8A3490E172733006AC84C /* Theming.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7B8A3480E172733006AC84C /* Theming.rtf */; };
 		E7C104960E8C476D00A96E1A /* BGHUDGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = E7C104940E8C476D00A96E1A /* BGHUDGeometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E7CEE1CC0F49D8FB00F5DABB /* BGHUDBox.h in Headers */ = {isa = PBXBuildFile; fileRef = E7CEE1CA0F49D8FB00F5DABB /* BGHUDBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E7CEE1CD0F49D8FB00F5DABB /* BGHUDBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CEE1CB0F49D8FB00F5DABB /* BGHUDBox.m */; };
+		E7CEE1D20F49D99900F5DABB /* BGHUDBox.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E7CEE1D10F49D99900F5DABB /* BGHUDBox.classdescription */; };
+		E7CEE1E50F49D9E800F5DABB /* BGHUDBoxIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CEE1E40F49D9E800F5DABB /* BGHUDBoxIntegration.m */; };
 		E7DAC6580E60726700549353 /* BGHUDLabel.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E7DAC6570E60726700549353 /* BGHUDLabel.classdescription */; };
 		E7DAC65D0E60729B00549353 /* BGHUDLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = E7DAC65B0E60729B00549353 /* BGHUDLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7DAC65E0E60729B00549353 /* BGHUDLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DAC65C0E60729B00549353 /* BGHUDLabel.m */; };
@@ -266,6 +270,10 @@
 		E7B7F64B0E9EAFB70032873A /* scrollview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scrollview.png; path = "Inspector Images/scrollview.png"; sourceTree = "<group>"; };
 		E7B8A3480E172733006AC84C /* Theming.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Theming.rtf; sourceTree = "<group>"; };
 		E7C104940E8C476D00A96E1A /* BGHUDGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGHUDGeometry.h; sourceTree = "<group>"; };
+		E7CEE1CA0F49D8FB00F5DABB /* BGHUDBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDBox.h; path = Framework/BGHUDBox.h; sourceTree = "<group>"; };
+		E7CEE1CB0F49D8FB00F5DABB /* BGHUDBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDBox.m; path = Framework/BGHUDBox.m; sourceTree = "<group>"; };
+		E7CEE1D10F49D99900F5DABB /* BGHUDBox.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDBox.classdescription; sourceTree = "<group>"; };
+		E7CEE1E40F49D9E800F5DABB /* BGHUDBoxIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDBoxIntegration.m; sourceTree = "<group>"; };
 		E7DAC6570E60726700549353 /* BGHUDLabel.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDLabel.classdescription; sourceTree = "<group>"; };
 		E7DAC65B0E60729B00549353 /* BGHUDLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDLabel.h; path = Framework/BGHUDLabel.h; sourceTree = "<group>"; };
 		E7DAC65C0E60729B00549353 /* BGHUDLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDLabel.m; path = Framework/BGHUDLabel.m; sourceTree = "<group>"; };
@@ -416,6 +424,7 @@
 				E7DAC6620E60740400549353 /* BGHUDLabelIntegration.m */,
 				F62F7C6C0EC7E05800343989 /* BGHUDComboBoxCellIntegration.m */,
 				E7E069A20F48AC220000BDAB /* BGHUDViewIntegration.m */,
+				E7CEE1E40F49D9E800F5DABB /* BGHUDBoxIntegration.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -440,6 +449,7 @@
 				E7DAC6570E60726700549353 /* BGHUDLabel.classdescription */,
 				F62F7C630EC7DFF200343989 /* BGHUDComboBoxCell.classdescription */,
 				E7E0698F0F48AB9E0000BDAB /* BGHUDView.classdescription */,
+				E7CEE1D10F49D99900F5DABB /* BGHUDBox.classdescription */,
 			);
 			name = "Class Descriptions";
 			sourceTree = "<group>";
@@ -462,6 +472,7 @@
 		54D33B2C06778E4400C9C163 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				E7CEE1C90F49D8DF00F5DABB /* BGHUDBox */,
 				E7E069620F48A6720000BDAB /* BGHUDView */,
 				F62F7C1F0EC7DB6800343989 /* BGHUDComboBoxCell */,
 				E7E6381A0E12E0E50034DC7E /* ReadMe */,
@@ -642,6 +653,15 @@
 			name = BGHUDTextFieldCell;
 			sourceTree = "<group>";
 		};
+		E7CEE1C90F49D8DF00F5DABB /* BGHUDBox */ = {
+			isa = PBXGroup;
+			children = (
+				E7CEE1CA0F49D8FB00F5DABB /* BGHUDBox.h */,
+				E7CEE1CB0F49D8FB00F5DABB /* BGHUDBox.m */,
+			);
+			name = BGHUDBox;
+			sourceTree = "<group>";
+		};
 		E7DAC6590E60727500549353 /* BGHUDLabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -714,6 +734,7 @@
 				E7C104960E8C476D00A96E1A /* BGHUDGeometry.h in Headers */,
 				F62F7C290EC7DC1400343989 /* BGHUDComboBoxCell.h in Headers */,
 				E7E069650F48A68B0000BDAB /* BGHUDView.h in Headers */,
+				E7CEE1CC0F49D8FB00F5DABB /* BGHUDBox.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,6 +838,7 @@
 				F62F7C640EC7DFF200343989 /* BGHUDComboBoxCell.classdescription in Resources */,
 				E7E069900F48AB9E0000BDAB /* BGHUDView.classdescription in Resources */,
 				E7E069A70F48AD250000BDAB /* BGHUDViewInspector.xib in Resources */,
+				E7CEE1D20F49D99900F5DABB /* BGHUDBox.classdescription in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,6 +888,7 @@
 				E7DAC65E0E60729B00549353 /* BGHUDLabel.m in Sources */,
 				F62F7C2A0EC7DC1400343989 /* BGHUDComboBoxCell.m in Sources */,
 				E7E069660F48A68B0000BDAB /* BGHUDView.m in Sources */,
+				E7CEE1CD0F49D8FB00F5DABB /* BGHUDBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -894,6 +917,7 @@
 				F62F7C6D0EC7E05800343989 /* BGHUDComboBoxCellIntegration.m in Sources */,
 				E7E069A10F48ABE20000BDAB /* BGHUDViewInspector.m in Sources */,
 				E7E069A30F48AC220000BDAB /* BGHUDViewIntegration.m in Sources */,
+				E7CEE1E50F49D9E800F5DABB /* BGHUDBoxIntegration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
