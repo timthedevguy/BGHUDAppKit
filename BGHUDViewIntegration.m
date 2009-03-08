@@ -32,4 +32,9 @@
     [classes addObject:[BGHUDViewInspector class]];
 }
 
+- (NSView *)ibDesignableContentView {
+	
+	return self;
+}
+
 @end

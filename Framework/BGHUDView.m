@@ -165,6 +165,8 @@
 
 -(void)drawRect:(NSRect) rect {
 	
+	rect = [self bounds];
+	
 	if(self.useTheme) {
 		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInRect: rect angle: 90];
