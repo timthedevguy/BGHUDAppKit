@@ -67,7 +67,14 @@
 	
 	if(self) {
 		
-		self.themeKey = @"gradientTheme";
+		if([aDecoder containsValueForKey: @"themeKey"]) {
+			
+			self.themeKey = [aDecoder decodeObjectForKey: @"themeKey"];
+		} else {
+			
+			self.themeKey = @"gradientTheme";
+		}
+		
 		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
 		
 		if([self drawsBackground]) {
@@ -81,8 +88,17 @@
 	return self;
 }
 
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+	
+	[super encodeWithCoder: aCoder];
+	
+	[aCoder encodeObject: self.themeKey forKey: @"themeKey"];
+}
+
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-		
+	
+	[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+	
 	//Adjust Rect
 	cellFrame = NSInsetRect(cellFrame, 1.5, 1.5);
 	
