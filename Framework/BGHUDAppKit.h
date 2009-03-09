@@ -50,3 +50,6 @@
 #import "BGHUDSegmentedCell.h"
 #import "BGHUDColorWell.h"
 #import "BGHUDLabel.h"
+#import "BGHUDBox.h"
+#import "BGHUDView.h"
+#import "BGHUDComboBoxCell.h"
