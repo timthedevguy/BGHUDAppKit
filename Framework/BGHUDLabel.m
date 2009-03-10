@@ -83,5 +83,11 @@
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
+-(void)drawRect:(NSRect) rect {
+	
+	[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+	
+	[super drawRect: rect];
+}
 
 @end
