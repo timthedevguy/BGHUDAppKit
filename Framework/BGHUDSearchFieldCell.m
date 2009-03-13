@@ -83,6 +83,8 @@
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
+	[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+	
 	//Adjust Rect
 	cellFrame = NSInsetRect(cellFrame, 1.5, 1.5);
 	

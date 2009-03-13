@@ -97,6 +97,8 @@
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
+	[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+	
 	//NSText *editor = [self _fieldEditor];
 	NSText *editor = [self valueForKey: @"_fieldEditor"];
 	[editor setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
