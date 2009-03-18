@@ -32,21 +32,21 @@
 - (void)setTextColor:(id)fp8;
 - (id)pullDownImage;
 - (id)menu;
-- (struct _NSSize)cellSizeForBounds:(struct _NSRect)fp8;
+- (struct _NSSize)cellSizeForBounds:(NSRect)fp8;
 - (struct _NSSize)cellSize;
-- (struct _NSRect)drawingRectForBounds:(struct _NSRect)fp8;
-- (struct _NSRect)titleRectForBounds:(struct _NSRect)fp8;
-- (struct _NSRect)cellFrameForTextContainer:(id)fp8 proposedLineFragment:(struct _NSRect)fp12 glyphPosition:(struct _NSPoint)fp28 characterIndex:(unsigned int)fp36;
+- (NSRect)drawingRectForBounds:(NSRect)fp8;
+- (NSRect)titleRectForBounds:(NSRect)fp8;
+- (NSRect)cellFrameForTextContainer:(id)fp8 proposedLineFragment:(NSRect)fp12 glyphPosition:(struct _NSPoint)fp28 characterIndex:(unsigned int)fp36;
 - (struct _NSPoint)cellBaselineOffset;
-- (struct _NSRect)pullDownRectForBounds:(struct _NSRect)fp8;
-- (void)drawTokenWithFrame:(struct _NSRect)fp8 inView:(id)fp24;
-- (void)drawInteriorWithFrame:(struct _NSRect)fp8 inView:(id)fp24;
-- (void)drawWithFrame:(struct _NSRect)fp8 inView:(id)fp24;
-- (void)drawWithFrame:(struct _NSRect)fp8 inView:(id)fp24 characterIndex:(unsigned int)fp28 layoutManager:(id)fp32;
+- (NSRect)pullDownRectForBounds:(NSRect)fp8;
+- (void)drawTokenWithFrame:(NSRect)fp8 inView:(id)fp24;
+- (void)drawInteriorWithFrame:(NSRect)fp8 inView:(id)fp24;
+- (void)drawWithFrame:(NSRect)fp8 inView:(id)fp24;
+- (void)drawWithFrame:(NSRect)fp8 inView:(id)fp24 characterIndex:(unsigned int)fp28 layoutManager:(id)fp32;
 - (void)encodeWithCoder:(id)fp8;
 - (id)initWithCoder:(id)fp8;
-- (BOOL)wantsToTrackMouseForEvent:(id)fp8 inRect:(struct _NSRect)fp12 ofView:(id)fp28 atCharacterIndex:(unsigned int)fp32;
-- (BOOL)trackMouse:(id)fp8 inRect:(struct _NSRect)fp12 ofView:(id)fp28 atCharacterIndex:(unsigned int)fp32 untilMouseUp:(BOOL)fp36;
+- (BOOL)wantsToTrackMouseForEvent:(id)fp8 inRect:(NSRect)fp12 ofView:(id)fp28 atCharacterIndex:(unsigned int)fp32;
+- (BOOL)trackMouse:(id)fp8 inRect:(NSRect)fp12 ofView:(id)fp28 atCharacterIndex:(unsigned int)fp32 untilMouseUp:(BOOL)fp36;
 
 @end
 

@@ -57,7 +57,7 @@
 	return [self tokenBorder];
 }
 
-- (void)drawWithFrame:(struct _NSRect)fp8 inView:(id)fp24 {
+- (void)drawWithFrame:(NSRect)fp8 inView:(id)fp24 {
 	
 	NSMutableAttributedString *newTitle = [[NSMutableAttributedString alloc] initWithAttributedString: [self attributedStringValue]];
 	NSRect textRect = fp8;

@@ -34,9 +34,6 @@
 
 #import "BGHUDProgressIndicator.h"
 
-struct NSProgressIndicator_t {
-    @defs(NSProgressIndicator)
-};
 
 @implementation BGHUDProgressIndicator
 
@@ -198,9 +195,13 @@ struct NSProgressIndicator_t {
 		//Fill Background
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInRect: frame angle: 90];
 		
+        //Get the animation index (private)
+        int animationIndex = 0;
+        object_getInstanceVariable( self, "_animationIndex", &animationIndex );
+        
 		//Create XFormation
 		NSAffineTransform *trans = [NSAffineTransform transform];
-		[trans translateXBy: (-37 + ((struct NSProgressIndicator_t*)self)->_animationIndex) yBy: 0];
+		[trans translateXBy: (-37 + animationIndex) yBy: 0];
 		
 		//Apply XForm to path
 		NSBezierPath *newPath = [trans transformBezierPath: progressPath];
