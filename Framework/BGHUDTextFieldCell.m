@@ -96,7 +96,7 @@
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-	
+
 	[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
 	
 	//Adjust Rect
@@ -167,15 +167,20 @@
 	[view setSelectedTextAttributes:dict];
 
 	//Adjust frame so text shows correctly!!
-	//cellFrame.origin.y -= 1;
+	cellFrame.origin.y -= 1;
 	cellFrame.size.height += 2;
 	
+	//[super drawInteriorWithFrame: cellFrame inView: controlView];
+	[self drawInteriorWithFrame: cellFrame inView: controlView];
+}
+
+-(void)drawInteriorWithFrame:(NSRect) cellFrame inView:(NSView *) controlView {
+
 	[super drawInteriorWithFrame: cellFrame inView: controlView];
 }
 
 - (void)_drawKeyboardFocusRingWithFrame:(NSRect)fp8 inView:(id)fp24 {
 	
-	NSLog(@"Draw Ring");
 }
 
 #pragma mark -

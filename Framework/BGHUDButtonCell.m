@@ -83,7 +83,6 @@
 	// Make sure our own height is right, and not using
 	// a NSMatrix parents height.
 	cellFrame.size.height = [self cellSize].height;
-	//NSLog(@"Cell Height: %f", [self cellSize].height);
 	
 	switch ([self bezelStyle]) {
 			

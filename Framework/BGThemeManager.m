@@ -79,17 +79,19 @@ static BGThemeManager *keyedManager = nil;
 }
 
 - (BGTheme *)themeForKey:(NSString *)key {
-	
+
 	//Make sure the key exists before we try to
 	//return it
 	if([themes objectForKey: key]) {
-		
+
 		return [themes objectForKey: key];
 	} else {
-		
+
 		//Return the default gradient key
 		return [themes objectForKey: @"gradientTheme"];
 	}
+	
+	
 }
 
 - (void)setTheme:(BGTheme *)theme forKey:(NSString *)key {

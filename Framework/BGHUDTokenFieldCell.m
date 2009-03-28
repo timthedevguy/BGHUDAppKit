@@ -152,6 +152,11 @@
 		[NSGraphicsContext restoreGraphicsState];
 	}
 	
+	[self drawInteriorWithFrame: cellFrame inView: controlView];
+}
+
+-(void)drawInteriorWithFrame:(NSRect) cellFrame inView:(NSView *) controlView {
+	
 	[super drawInteriorWithFrame: cellFrame inView: controlView];
 }
 
