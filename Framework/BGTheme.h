@@ -61,6 +61,7 @@
 -(NSColor *)selectionHighlightInActiveColor;	//Background color of higlighted text (inactive app)
 -(NSColor *)selectionTextActiveColor;			//Selection text color (active app)
 -(NSColor *)selectionTextInActiveColor;			//Selection text color (inactive app)
+-(NSColor *)placeholderTextColor;				//Placeholder text color
 
 //Progress Theme
 -(NSGradient *)progressTrackGradient;			//Gradient used to draw progress bar track

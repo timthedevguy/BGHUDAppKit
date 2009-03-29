@@ -174,6 +174,17 @@
 		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
 	}
 	
+	// Check to see if the attributed placeholder has been set or not
+	if(![self placeholderAttributedString]) {
+		
+		//Nope lets create it
+		NSDictionary *attribs = [[NSDictionary alloc] initWithObjectsAndKeys: 
+								 [[[BGThemeManager keyedManager] themeForKey: self.themeKey] placeholderTextColor] , NSForegroundColorAttributeName];
+		
+		//Set it
+		[self setPlaceholderAttributedString: [[[NSAttributedString alloc] initWithString: [self placeholderString] attributes: attribs] autorelease]];
+	}
+	
 	[self drawInteriorWithFrame: cellFrame inView: controlView];
 }
 

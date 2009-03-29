@@ -139,6 +139,11 @@
 	return [NSColor whiteColor];
 }
 
+-(NSColor *)placeholderTextColor {
+
+	return [NSColor grayColor];
+}
+
 #pragma mark -
 #pragma mark Progress Theme
 

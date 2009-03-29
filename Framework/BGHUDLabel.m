@@ -85,7 +85,13 @@
 
 -(void)drawRect:(NSRect) rect {
 	
-	[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+	if([self isEnabled]) {
+		
+		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+	} else {
+		
+		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
+	}
 	
 	[super drawRect: rect];
 }
