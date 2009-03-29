@@ -57,6 +57,10 @@
 
 //Text Based Theme
 -(NSColor *)textFillColor;						//Color of background if drawbackground set to ON
+-(NSColor *)selectionHighlightActiveColor;		//Background color of higlighted text (active app)
+-(NSColor *)selectionHighlightInActiveColor;	//Background color of higlighted text (inactive app)
+-(NSColor *)selectionTextActiveColor;			//Selection text color (active app)
+-(NSColor *)selectionTextInActiveColor;			//Selection text color (inactive app)
 
 //Progress Theme
 -(NSGradient *)progressTrackGradient;			//Gradient used to draw progress bar track

@@ -96,8 +96,6 @@
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-
-	[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
 	
 	//Adjust Rect
 	cellFrame = NSInsetRect(cellFrame, 1.5, 1.5);
@@ -140,31 +138,55 @@
 			
 			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] focusRing] set];
 		}
-		   
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+		
+		//Check State
+		if([self isEnabled]) {
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+		} else {
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
+		}
+		
 		[path setLineWidth: 1.0];
 		[path stroke];
 		
 		[NSGraphicsContext restoreGraphicsState];
 	}
-		
-	NSTextView* view = (NSTextView*)[[controlView window] fieldEditor:NO forObject:controlView];
 	
+	//Get TextView for this editor
+	NSTextView* view = (NSTextView*)[[controlView window] fieldEditor: NO forObject: controlView];
+	
+	//Get Attributes of the selected text
 	NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];	
 	
+	//If window/app is active draw the highlight/text in active colors
 	if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow])
 	{
-		[dict setObject:[NSColor darkGrayColor] forKey:NSBackgroundColorAttributeName];
+		[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightActiveColor]
+				 forKey: NSBackgroundColorAttributeName];
 		
-		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
-		
+		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]
+					 range: [view selectedRange]];
 	}
 	else
 	{
-		[view setTextColor:[NSColor blackColor] range:[view selectedRange]];
+		[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightInActiveColor]
+				 forKey: NSBackgroundColorAttributeName];
+		
+		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor]
+					 range: [view selectedRange]];
 	}
 	
 	[view setSelectedTextAttributes:dict];
+	
+	if([self isEnabled]) {
+		
+		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+	} else {
+		
+		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
+	}
 
 	//Adjust frame so text shows correctly!!
 	cellFrame.origin.y -= 1;

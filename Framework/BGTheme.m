@@ -119,6 +119,26 @@
 	return [NSColor colorWithDeviceRed: .224 green: .224 blue: .224 alpha: .95];
 }
 
+-(NSColor *)selectionHighlightActiveColor {
+	
+	return [NSColor darkGrayColor];
+}
+
+-(NSColor *)selectionHighlightInActiveColor {
+	
+	return [NSColor darkGrayColor];
+}
+
+-(NSColor *)selectionTextActiveColor {
+	
+	return [NSColor whiteColor];
+}
+
+-(NSColor *)selectionTextInActiveColor {
+	
+	return [NSColor whiteColor];
+}
+
 #pragma mark -
 #pragma mark Progress Theme
 
