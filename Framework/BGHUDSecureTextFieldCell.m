@@ -72,7 +72,7 @@
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
 	//Adjust Rect
-	cellFrame = NSInsetRect(cellFrame, 1.5, 1.5);
+	cellFrame = NSInsetRect(cellFrame, 0.5, 0.5);
 	
 	//Create Path
 	NSBezierPath *path = [[NSBezierPath alloc] init];
@@ -171,6 +171,18 @@
 		
 		//Set it
 		[self setPlaceholderAttributedString: [[[NSAttributedString alloc] initWithString: [self placeholderString] attributes: attribs] autorelease]];
+	}
+	
+	//Adjust Frame so Text Draws correctly
+	switch ([self controlSize]) {
+			
+		case NSRegularControlSize:
+			
+			cellFrame.origin.y += 1;
+			break;
+			
+		default:
+			break;
 	}
 	
 	[self drawInteriorWithFrame: cellFrame inView: controlView];

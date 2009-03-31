@@ -35,6 +35,14 @@
 #import "BGHUDSearchFieldCell.h"
 
 
+@interface NSSearchFieldCell (Private)
+
+-(NSRect)searchTextRectForBounds:(NSRect) aRect;
+-(NSRect)searchButtonRectForBounds:(NSRect) aRect;
+-(NSRect)cancelButtonRectForBounds:(NSRect) aRect;
+
+@end
+
 @implementation BGHUDSearchFieldCell
 
 @synthesize themeKey;
@@ -84,7 +92,7 @@
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
 	//Adjust Rect
-	cellFrame = NSInsetRect(cellFrame, 1.5, 1.5);
+	cellFrame = NSInsetRect(cellFrame, 0.5, 0.5);
 	
 	//Create Path
 	NSBezierPath *path = [[NSBezierPath alloc] init];
@@ -185,12 +193,48 @@
 		[self setPlaceholderAttributedString: [[[NSAttributedString alloc] initWithString: [self placeholderString] attributes: attribs] autorelease]];
 	}
 	
+	//Adjust Frame so Text Draws correctly
+	switch ([self controlSize]) {
+			
+		case NSSmallControlSize:
+			
+			cellFrame.origin.y += 1;
+			break;
+			
+		case NSMiniControlSize:
+			
+			cellFrame.origin.y += 1;
+			
+		default:
+			break;
+	}
+	
 	[self drawInteriorWithFrame: cellFrame inView: controlView];
 }
 
 -(void)drawInteriorWithFrame:(NSRect) cellFrame inView:(NSView *) controlView {
 	
 	[super drawInteriorWithFrame: cellFrame inView: controlView];
+}
+
+// This adjusts the drawing location of the Search Button
+-(NSRect)searchButtonRectForBounds:(NSRect) aRect {
+	
+	NSRect nRect = [super searchButtonRectForBounds: aRect];
+	
+	nRect.origin.y -= 1;
+	
+	return nRect;
+}
+
+// This adjusts the drawing location of the Cancel Button
+-(NSRect)cancelButtonRectForBounds:(NSRect) aRect {
+	
+	NSRect nRect = [super cancelButtonRectForBounds: aRect];
+	
+	nRect.origin.y -= 1;
+	
+	return nRect;
 }
 
 #pragma mark -

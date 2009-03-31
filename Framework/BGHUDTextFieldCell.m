@@ -95,10 +95,10 @@
 	[aCoder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
-- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+-(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
 	//Adjust Rect
-	cellFrame = NSInsetRect(cellFrame, 1.5, 1.5);
+	cellFrame = NSInsetRect(cellFrame, 0.5, 0.5);
 	
 	//Create Path
 	NSBezierPath *path = [[NSBezierPath new] autorelease];
@@ -187,10 +187,6 @@
 		
 		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
 	}
-
-	//Adjust frame so text shows correctly!!
-	cellFrame.origin.y -= 1;
-	cellFrame.size.height += 2;
 	
 	// Check to see if the attributed placeholder has been set or not
 	if(![self placeholderAttributedString]) {
@@ -203,7 +199,19 @@
 		[self setPlaceholderAttributedString: [[[NSAttributedString alloc] initWithString: [self placeholderString] attributes: attribs] autorelease]];
 	}
 	
-	//[super drawInteriorWithFrame: cellFrame inView: controlView];
+	//Adjust Frame so Text Draws correctly
+	switch ([self controlSize]) {
+			
+		case NSRegularControlSize:
+			
+			cellFrame.origin.y += 1;
+			break;
+			
+		default:
+			break;
+	}
+	
+	//NSLog(@"Inside Draw With Frame");
 	[self drawInteriorWithFrame: cellFrame inView: controlView];
 }
 
@@ -212,9 +220,45 @@
 	[super drawInteriorWithFrame: cellFrame inView: controlView];
 }
 
-- (void)_drawKeyboardFocusRingWithFrame:(NSRect)fp8 inView:(id)fp24 {
+-(void)_drawKeyboardFocusRingWithFrame:(NSRect)fp8 inView:(id)fp24 {
 	
 }
+
+/*-(void)editWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject event:(NSEvent *)theEvent {
+	
+	switch ([self controlSize]) {
+			
+		case NSRegularControlSize:
+			
+			//aRect.origin.x += 1;
+			//aRect.origin.y -= 1;
+			break;
+			
+			
+			
+		default:
+			break;
+	}
+	
+	[super editWithFrame: aRect inView: controlView editor: textObj delegate: anObject event: theEvent];
+}
+
+-(void)selectWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject start:(NSInteger)selStart length:(NSInteger)selLength {
+	
+	switch ([self controlSize]) {
+			
+		case NSRegularControlSize:
+			
+			//aRect.origin.x += 1;
+			//aRect.origin.y -= 1;
+			break;
+			
+		default:
+			break;
+	}
+	
+	[super selectWithFrame: aRect inView: controlView editor: textObj delegate: anObject start: selStart length: selLength];
+}*/
 
 #pragma mark -
 #pragma mark Helper Methods
