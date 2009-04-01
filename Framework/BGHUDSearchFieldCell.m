@@ -187,7 +187,7 @@
 		
 		//Nope lets create it
 		NSDictionary *attribs = [[NSDictionary alloc] initWithObjectsAndKeys: 
-								 [[[BGThemeManager keyedManager] themeForKey: self.themeKey] placeholderTextColor] , NSForegroundColorAttributeName];
+								 [[[BGThemeManager keyedManager] themeForKey: self.themeKey] placeholderTextColor] , NSForegroundColorAttributeName, nil];
 		
 		//Set it
 		[self setPlaceholderAttributedString: [[[NSAttributedString alloc] initWithString: [self placeholderString] attributes: attribs] autorelease]];

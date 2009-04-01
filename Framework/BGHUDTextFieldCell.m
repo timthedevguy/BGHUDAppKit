@@ -193,7 +193,7 @@
 		
 		//Nope lets create it
 		NSDictionary *attribs = [[NSDictionary alloc] initWithObjectsAndKeys: 
-								 [[[BGThemeManager keyedManager] themeForKey: self.themeKey] placeholderTextColor] , NSForegroundColorAttributeName];
+								 [[[BGThemeManager keyedManager] themeForKey: self.themeKey] placeholderTextColor] , NSForegroundColorAttributeName, nil];
 		
 		//Set it
 		[self setPlaceholderAttributedString: [[[NSAttributedString alloc] initWithString: [self placeholderString] attributes: attribs] autorelease]];
@@ -204,7 +204,26 @@
 			
 		case NSRegularControlSize:
 			
-			cellFrame.origin.y += 1;
+			if([self bezelStyle] != NSTextFieldRoundedBezel) {
+				
+				cellFrame.origin.y += 1;
+			}
+			break;
+			
+		case NSSmallControlSize:
+			
+			if([self bezelStyle] == NSTextFieldRoundedBezel) {
+				
+				cellFrame.origin.y += 1;
+			}
+			break;
+			
+		case NSMiniControlSize:
+			
+			if([self bezelStyle] == NSTextFieldRoundedBezel) {
+				
+				cellFrame.origin.x += 1;
+			}
 			break;
 			
 		default:
