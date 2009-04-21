@@ -58,6 +58,10 @@
 		E7649D0F0E1AC55B001F7E20 /* BGHUDSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7649D0D0E1AC55B001F7E20 /* BGHUDSegmentedCell.m */; };
 		E7649D140E1AC719001F7E20 /* BGHUDSegmentedCell.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E7649D130E1AC719001F7E20 /* BGHUDSegmentedCell.classdescription */; };
 		E7649D170E1AC74F001F7E20 /* BGHUDSegementedCellIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = E7649D160E1AC74F001F7E20 /* BGHUDSegementedCellIntegration.m */; };
+		E782C7600F8A25F8002657B1 /* BGHUDStepperCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E782C75E0F8A25F8002657B1 /* BGHUDStepperCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E782C7610F8A25F8002657B1 /* BGHUDStepperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E782C75F0F8A25F8002657B1 /* BGHUDStepperCell.m */; };
+		E782C78F0F8A26AC002657B1 /* BGHUDStepper.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E782C78E0F8A26AC002657B1 /* BGHUDStepper.classdescription */; };
+		E782C7950F8A26E4002657B1 /* BGHUDStepperCellIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = E782C7940F8A26E4002657B1 /* BGHUDStepperCellIntegration.m */; };
 		E7894D850E12978C00D28139 /* BGHUDPopUpButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7894D830E12978C00D28139 /* BGHUDPopUpButtonCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7894D860E12978C00D28139 /* BGHUDPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7894D840E12978C00D28139 /* BGHUDPopUpButtonCell.m */; };
 		E7894D900E12993F00D28139 /* BGHUDPopUpButtonCell.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E7894D8F0E12993F00D28139 /* BGHUDPopUpButtonCell.classdescription */; };
@@ -220,6 +224,10 @@
 		E7649D0D0E1AC55B001F7E20 /* BGHUDSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDSegmentedCell.m; path = Framework/BGHUDSegmentedCell.m; sourceTree = "<group>"; };
 		E7649D130E1AC719001F7E20 /* BGHUDSegmentedCell.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDSegmentedCell.classdescription; sourceTree = "<group>"; };
 		E7649D160E1AC74F001F7E20 /* BGHUDSegementedCellIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDSegementedCellIntegration.m; sourceTree = "<group>"; };
+		E782C75E0F8A25F8002657B1 /* BGHUDStepperCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDStepperCell.h; path = Framework/BGHUDStepperCell.h; sourceTree = "<group>"; };
+		E782C75F0F8A25F8002657B1 /* BGHUDStepperCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDStepperCell.m; path = Framework/BGHUDStepperCell.m; sourceTree = "<group>"; };
+		E782C78E0F8A26AC002657B1 /* BGHUDStepper.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDStepper.classdescription; sourceTree = "<group>"; };
+		E782C7940F8A26E4002657B1 /* BGHUDStepperCellIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDStepperCellIntegration.m; sourceTree = "<group>"; };
 		E7894D830E12978C00D28139 /* BGHUDPopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDPopUpButtonCell.h; path = Framework/BGHUDPopUpButtonCell.h; sourceTree = "<group>"; };
 		E7894D840E12978C00D28139 /* BGHUDPopUpButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDPopUpButtonCell.m; path = Framework/BGHUDPopUpButtonCell.m; sourceTree = "<group>"; };
 		E7894D8F0E12993F00D28139 /* BGHUDPopUpButtonCell.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDPopUpButtonCell.classdescription; sourceTree = "<group>"; };
@@ -425,6 +433,7 @@
 				F62F7C6C0EC7E05800343989 /* BGHUDComboBoxCellIntegration.m */,
 				E7E069A20F48AC220000BDAB /* BGHUDViewIntegration.m */,
 				E7CEE1E40F49D9E800F5DABB /* BGHUDBoxIntegration.m */,
+				E782C7940F8A26E4002657B1 /* BGHUDStepperCellIntegration.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -450,6 +459,7 @@
 				F62F7C630EC7DFF200343989 /* BGHUDComboBoxCell.classdescription */,
 				E7E0698F0F48AB9E0000BDAB /* BGHUDView.classdescription */,
 				E7CEE1D10F49D99900F5DABB /* BGHUDBox.classdescription */,
+				E782C78E0F8A26AC002657B1 /* BGHUDStepper.classdescription */,
 			);
 			name = "Class Descriptions";
 			sourceTree = "<group>";
@@ -490,6 +500,7 @@
 				E7981EAE0E12CEF50081E937 /* BGHUDSecureTextFieldCell */,
 				E7649D0B0E1AC542001F7E20 /* BGHUDSegmentedCell */,
 				E7894DBF0E12A01800D28139 /* BGHUDSliderCell */,
+				E782C75D0F8A25D5002657B1 /* BGHUDStepperCell */,
 				E7981EF00E12D68E0081E937 /* BGHUDTableView */,
 				E79C25CD0E109B9200742AF4 /* BGHUDTextFieldCell */,
 				E7981EC90E12D3070081E937 /* BGHUDTokenFieldCell */,
@@ -532,6 +543,15 @@
 				E7649D0D0E1AC55B001F7E20 /* BGHUDSegmentedCell.m */,
 			);
 			name = BGHUDSegmentedCell;
+			sourceTree = "<group>";
+		};
+		E782C75D0F8A25D5002657B1 /* BGHUDStepperCell */ = {
+			isa = PBXGroup;
+			children = (
+				E782C75E0F8A25F8002657B1 /* BGHUDStepperCell.h */,
+				E782C75F0F8A25F8002657B1 /* BGHUDStepperCell.m */,
+			);
+			name = BGHUDStepperCell;
 			sourceTree = "<group>";
 		};
 		E7894D820E12976900D28139 /* BGHUDPopUpButtonCell */ = {
@@ -735,6 +755,7 @@
 				F62F7C290EC7DC1400343989 /* BGHUDComboBoxCell.h in Headers */,
 				E7E069650F48A68B0000BDAB /* BGHUDView.h in Headers */,
 				E7CEE1CC0F49D8FB00F5DABB /* BGHUDBox.h in Headers */,
+				E782C7600F8A25F8002657B1 /* BGHUDStepperCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -839,6 +860,7 @@
 				E7E069900F48AB9E0000BDAB /* BGHUDView.classdescription in Resources */,
 				E7E069A70F48AD250000BDAB /* BGHUDViewInspector.xib in Resources */,
 				E7CEE1D20F49D99900F5DABB /* BGHUDBox.classdescription in Resources */,
+				E782C78F0F8A26AC002657B1 /* BGHUDStepper.classdescription in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -856,7 +878,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/bin/install_name_tool -change @executable_path/../Frameworks/BGHUDAppKit.framework/Versions/A/BGHUDAppKit @loader_path/../../../../../../../BGHUDAppKit.framework/Versions/A/BGHUDAppKit ${TARGET_BUILD_DIR}/${PRODUCT_NAME}.ibplugin/Contents/MacOS/${PRODUCT_NAME}";
+			shellScript = "/usr/bin/install_name_tool -change @executable_path/../Frameworks/BGHUDAppKit.framework/Versions/A/BGHUDAppKit @loader_path/../../../../../../../BGHUDAppKit.framework/Versions/A/BGHUDAppKit \"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.ibplugin/Contents/MacOS/${PRODUCT_NAME}\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -889,6 +911,7 @@
 				F62F7C2A0EC7DC1400343989 /* BGHUDComboBoxCell.m in Sources */,
 				E7E069660F48A68B0000BDAB /* BGHUDView.m in Sources */,
 				E7CEE1CD0F49D8FB00F5DABB /* BGHUDBox.m in Sources */,
+				E782C7610F8A25F8002657B1 /* BGHUDStepperCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -918,6 +941,7 @@
 				E7E069A10F48ABE20000BDAB /* BGHUDViewInspector.m in Sources */,
 				E7E069A30F48AC220000BDAB /* BGHUDViewIntegration.m in Sources */,
 				E7CEE1E50F49D9E800F5DABB /* BGHUDBoxIntegration.m in Sources */,
+				E782C7950F8A26E4002657B1 /* BGHUDStepperCellIntegration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
