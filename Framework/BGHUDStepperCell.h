@@ -12,6 +12,8 @@
 @interface BGHUDStepperCell : NSStepperCell {
 
 	NSString *themeKey;
+	int topButtonFlag;
+	int bottomButtonFlag;
 }
 
 @property (retain) NSString *themeKey;

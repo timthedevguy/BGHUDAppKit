@@ -158,6 +158,8 @@
 		[NSGraphicsContext restoreGraphicsState];
 	}
 	
+	[path release];
+	
 	//Get TextView for this editor
 	NSTextView* view = (NSTextView*)[[controlView window] fieldEditor: NO forObject: controlView];
 	

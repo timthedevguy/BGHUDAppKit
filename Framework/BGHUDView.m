@@ -266,6 +266,8 @@
 			
 			[NSGraphicsContext restoreGraphicsState];
 		}
+		
+		[dropShadow release];
 	}
 }
 

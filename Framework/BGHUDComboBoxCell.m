@@ -137,6 +137,8 @@
 		[NSGraphicsContext restoreGraphicsState];
 	}
 	
+	[path release];
+	
 	NSRect frame = cellFrame;
 	
 	//Adjust based on Control size
@@ -233,6 +235,8 @@
 	[path closePath];
 
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
+	
+	[path release];
 }
 
 

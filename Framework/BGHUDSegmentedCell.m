@@ -278,7 +278,6 @@
 			
 			[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
 			[newTitle drawInRect: textRect];
-			[newTitle release];
 			
 		} else {
 			
@@ -300,8 +299,9 @@
 		if(textRect.origin.x < 3) { textRect.origin.x = 3; }
 		
 		[newTitle drawInRect: textRect];
-		[newTitle release];
 	}
+	
+	[newTitle release];
 }
 
 -(BOOL)hasText {
