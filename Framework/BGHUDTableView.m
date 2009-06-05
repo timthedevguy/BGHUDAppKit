@@ -44,7 +44,7 @@
 
 @synthesize themeKey;
 
--(id)init {
+/*-(id)init {
 	
 	self = [super init];
 	
@@ -77,13 +77,15 @@
 	}
 	
 	return self;
-}
+}*/
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
 	
 	BOOL isSubclass = YES;
 	
 	isSubclass = isSubclass && [aDecoder isKindOfClass: [NSKeyedUnarchiver class]]; // no support for 10.1 nibs
+	isSubclass = isSubclass && [self class] != nil; // need to have something to substitute
+	isSubclass = isSubclass && [self class] != [self class]; // pointless if same
 	
 	if( !isSubclass ) {
 		
@@ -94,7 +96,7 @@
 		
 		[modDecoder setClass: [BGHUDTableViewHeaderCell class] forClassName: @"NSTableHeaderCell"];
 		
-		self = [super initWithCoder: modDecoder];
+		self = [super initWithCoder: modDecoder]; 
 		
 		[modDecoder setClass: [NSTableHeaderCell class] forClassName: @"BGHUDTableViewHeaderCell"];
 	}

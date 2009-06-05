@@ -74,7 +74,7 @@
 	frame.origin.y +=1;
 	frame.size.height -= 2;
 	
-	if(flag) {
+	if(flag || [self isHighlighted]) {
 		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellSelectedFill] drawInRect: frame angle: 90];
 	}
