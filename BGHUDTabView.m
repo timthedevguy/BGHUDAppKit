@@ -54,9 +54,46 @@
 	return self;
 }*/
 
-
-
 -(id)initWithCoder:(NSCoder *) aDecoder {
+	
+	BOOL isSubclass = YES;
+	
+	isSubclass = isSubclass && [aDecoder isKindOfClass: [NSKeyedUnarchiver class]]; // no support for 10.1 nibs
+	isSubclass = isSubclass && ![self isMemberOfClass: [NSControl class]]; // no raw NSControls
+	isSubclass = isSubclass && [self class] != nil; // need to have something to substitute
+	isSubclass = isSubclass && [self class] != [self class]; // pointless if same
+	
+	if( !isSubclass )
+	{
+		self = [super initWithCoder: aDecoder]; 
+	}
+	else
+	{
+		NSKeyedUnarchiver *modDecoder = (id)aDecoder;
+		
+		[modDecoder setClass: [BGHUDTabViewItem class] forClassName: @"NSTabViewItem"];
+		
+		self = [super initWithCoder: modDecoder];
+		
+		[modDecoder setClass: [NSTabViewItem class] forClassName: @"BGHUDTabViewItem"];
+		
+		if(self) {
+			
+			if([modDecoder containsValueForKey: @"themeKey"]) {
+				
+				self.themeKey = [modDecoder decodeObjectForKey: @"themeKey"];
+			} else {
+				
+				self.themeKey = @"gradientTheme";
+			}
+		}
+	}
+	
+	return self;
+}
+
+
+/*-(id)initWithCoder:(NSCoder *) aDecoder {
 	
 	[NSKeyedUnarchiver setClass: [BGHUDTabViewItem class]  
 				   forClassName: @"NSTabViewItem"]; 
@@ -75,7 +112,7 @@
 	}
 	
 	return self;
-}
+}*/
 
 -(void)encodeWithCoder: (NSCoder *)coder {
 	
