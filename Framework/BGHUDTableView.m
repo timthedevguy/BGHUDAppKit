@@ -81,6 +81,42 @@
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
 	
+	BOOL isSubclass = YES;
+	
+	isSubclass = isSubclass && [aDecoder isKindOfClass: [NSKeyedUnarchiver class]]; // no support for 10.1 nibs
+	
+	if( !isSubclass ) {
+		
+		self = [super initWithCoder: aDecoder]; 
+	} else {
+		
+		NSKeyedUnarchiver *modDecoder = (id)aDecoder;
+		
+		[modDecoder setClass: [BGHUDTableViewHeaderCell class] forClassName: @"NSTableHeaderCell"];
+		
+		self = [super initWithCoder: modDecoder];
+		
+		[modDecoder setClass: [NSTableHeaderCell class] forClassName: @"BGHUDTableViewHeaderCell"];
+	}
+	
+	if(self) {
+		
+		if([aDecoder containsValueForKey: @"themeKey"]) {
+			
+			self.themeKey = [aDecoder decodeObjectForKey: @"themeKey"];
+		} else {
+			self.themeKey = @"gradientTheme";
+		}
+		
+		[self setBackgroundColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableBackgroundColor]];
+		[self setFocusRingType: NSFocusRingTypeNone];
+	}
+	
+	return self;
+}
+
+/*-(id)initWithCoder:(NSCoder *)aDecoder {
+	
 	self = [super initWithCoder: aDecoder];
 	
 	if(self) {
@@ -115,7 +151,7 @@
 	}
 	
 	return self;
-}
+}*/
 
 -(void)encodeWithCoder: (NSCoder *)coder {
 	

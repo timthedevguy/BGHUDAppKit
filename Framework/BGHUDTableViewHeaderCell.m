@@ -41,6 +41,22 @@
 
 #pragma mark Drawing Functions
 
+-(id)initWithCoder:(NSCoder *) aDecoder {
+	
+	if((self = [super initWithCoder: aDecoder])) {
+		
+		if([aDecoder containsValueForKey: @"themeKey"]) {
+			
+			self.themeKey = [aDecoder decodeObjectForKey: @"themeKey"];
+		} else {
+			
+			self.themeKey = @"gradientTheme";
+		}
+	}
+	
+	return self;
+}
+
 - (id)textColor {
 	
 	return [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor];
