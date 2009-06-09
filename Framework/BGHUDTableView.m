@@ -45,7 +45,7 @@
 @synthesize themeKey;
 
 -(id)init {
-	
+	NSLog(@"Init");
 	self = [super init];
 	
 	if(self) {
@@ -63,43 +63,22 @@
 		
 		while (aColumn = [aEnumerator nextObject]) {
 			
-			//Create new cell and set it's props to that of old cell
-			BGHUDTableViewHeaderCell *newHeader = [[BGHUDTableViewHeaderCell alloc] init];
-			[newHeader setStringValue: [[aColumn headerCell] stringValue]];
-			[newHeader setThemeKey: self.themeKey];
-			[newHeader setFont: [[aColumn headerCell] font]];
-			
-			[aColumn setHeaderCell: newHeader];
-			[newHeader release];
+			if([[aColumn headerCell] class] == [NSTableHeaderCell class]) {
+				
+				BGHUDTableViewHeaderCell *newHeader = [[BGHUDTableViewHeaderCell alloc] initTextCell: @""];
+				[newHeader setThemeKey: [self themeKey]];
+				[aColumn setHeaderCell: newHeader];
+				[newHeader release];
+			}
 		}
-		
-		[[self currentEditor] setBackgroundColor: [NSColor redColor]];
 	}
 	
 	return self;
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
-	
-	BOOL isSubclass = YES;
-	
-	isSubclass = isSubclass && [aDecoder isKindOfClass: [NSKeyedUnarchiver class]]; // no support for 10.1 nibs
-	isSubclass = isSubclass && [self class] != nil; // need to have something to substitute
-	//isSubclass = isSubclass && [self class] != [self class]; // pointless if same
-	
-	if( !isSubclass ) {
 		
-		self = [super initWithCoder: aDecoder]; 
-	} else {
-		
-		NSKeyedUnarchiver *modDecoder = (id)aDecoder;
-		
-		[modDecoder setClass: [BGHUDTableViewHeaderCell class] forClassName: @"NSTableHeaderCell"];
-		
-		self = [super initWithCoder: modDecoder]; 
-		
-		[modDecoder setClass: [NSTableHeaderCell class] forClassName: @"BGHUDTableViewHeaderCell"];
-	}
+	self = [super initWithCoder: aDecoder]; 
 	
 	if(self) {
 		
@@ -112,6 +91,23 @@
 		
 		[self setBackgroundColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableBackgroundColor]];
 		[self setFocusRingType: NSFocusRingTypeNone];
+		
+		//Setup Header Cells
+		NSEnumerator*   aEnumerator;
+		NSTableColumn*  aColumn;
+		
+		aEnumerator = [[self tableColumns] objectEnumerator];
+		
+		while (aColumn = [aEnumerator nextObject]) {
+			
+			if([[aColumn headerCell] class] == [NSTableHeaderCell class]) {
+				
+				BGHUDTableViewHeaderCell *newHeader = [[BGHUDTableViewHeaderCell alloc] initTextCell: @""];
+				[newHeader setThemeKey: [self themeKey]];
+				[aColumn setHeaderCell: newHeader];
+				[newHeader release];
+			}
+		}
 	}
 	
 	return self;
