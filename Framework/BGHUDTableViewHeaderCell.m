@@ -62,31 +62,6 @@
 	return [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor];
 }
 
-- (void)_drawThemeContents:(NSRect)frame highlighted:(BOOL)flag inView:(id)view {
-
-	//Draw base layer
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellBorderColor] set];
-	NSRectFill(frame);
-	
-	//Adjust fill layer
-	frame.origin.x += 1;
-	frame.size.width -= 1;
-	frame.origin.y +=1;
-	frame.size.height -= 2;
-	
-	if(flag || [self isHighlighted]) {
-		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellSelectedFill] drawInRect: frame angle: 90];
-	}
-	
-	//Adjust so text aligns correctly
-	//frame.origin.x -= 2;
-	frame.size.width += 1;
-	frame.size.height += 2;
-	
-	[super drawInteriorWithFrame: frame inView: view];
-}
-
 - (void)drawWithFrame:(NSRect)frame inView:(NSView*)view {
 	
 	//Draw base layer
@@ -101,18 +76,63 @@
 	
 	if([self isHighlighted]) {
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellPushedFill] drawInRect: frame angle: 90];
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellSelectedFill] drawInRect: frame angle: 90];
 	} else {
 		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellNormalFill] drawInRect: frame angle: 90];
 	}
 	
 	//Adjust so text aligns correctly
-	//frame.origin.x -= 2;
+	frame.origin.x -= 1;
 	frame.size.width += 1;
+	frame.origin.y -= 1;
 	frame.size.height += 2;
 	
+	[super _drawSortIndicatorIfNecessaryWithFrame: frame inView: view];
 	[super drawInteriorWithFrame: frame inView: view];
+}
+
+- (void)drawSortIndicatorWithFrame:(NSRect) frame inView:(id) controlView ascending:(BOOL) ascFlag priority:(int) priInt {
+	
+	frame.origin.y -=1;
+	frame.size.height += 2;
+	
+	if(priInt == 0) {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellSelectedFill] drawInRect: frame angle: 90];
+		
+		NSRect arrowRect = [self sortIndicatorRectForBounds: frame];
+		NSBezierPath *arrow = [[NSBezierPath alloc] init];
+		NSPoint points[3];
+		
+		if(ascFlag == NO) {
+			
+			points[0] = NSMakePoint(NSMinX(arrowRect), NSMinY(arrowRect) +2);
+			points[1] = NSMakePoint(NSMaxX(arrowRect), NSMinY(arrowRect) +2);
+			points[2] = NSMakePoint(NSMidX(arrowRect), NSMaxY(arrowRect));
+		} else {
+			
+			points[0] = NSMakePoint(NSMinX(arrowRect), NSMaxY(arrowRect) -2);
+			points[1] = NSMakePoint(NSMaxX(arrowRect), NSMaxY(arrowRect) -2);
+			points[2] = NSMakePoint(NSMidX(arrowRect), NSMinY(arrowRect));
+		}
+		
+		[arrow appendBezierPathWithPoints: points count: 3];
+		
+		if([self isEnabled]) {
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor] set];
+		} else {
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor] set];
+		}
+		
+		[arrow fill];
+		[arrow release];
+	}
+	
+	frame.origin.y += 1;
+	frame.size.height -= 2;
+
+	[super drawInteriorWithFrame: frame inView: controlView];
 }
 
 #pragma mark -

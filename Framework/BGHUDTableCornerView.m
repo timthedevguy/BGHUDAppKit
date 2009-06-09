@@ -29,9 +29,9 @@
 	
 	//Draw base layer
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellBorderColor] set];
-	NSRectFill(rect);
+	NSRectFill([self bounds]);
 	
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellNormalFill] drawInRect: NSInsetRect(rect, 1, 1) angle: 270];
+	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellNormalFill] drawInRect: NSInsetRect([self bounds], 1, 1) angle: 270];
 }
 
 @end
