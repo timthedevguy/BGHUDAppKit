@@ -69,6 +69,9 @@
 				[newHeader setThemeKey: [self themeKey]];
 				[aColumn setHeaderCell: newHeader];
 				[newHeader release];
+			} else {
+				
+				[[aColumn headerCell] setThemeKey: [self themeKey]];
 			}
 		}
 	}
@@ -106,6 +109,9 @@
 				[newHeader setThemeKey: [self themeKey]];
 				[aColumn setHeaderCell: newHeader];
 				[newHeader release];
+			} else {
+				
+				[[aColumn headerCell] setThemeKey: [self themeKey]];
 			}
 		}
 	}

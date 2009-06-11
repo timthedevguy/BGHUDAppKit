@@ -41,7 +41,7 @@
 
 #pragma mark Drawing Functions
 
--(id)initWithCoder:(NSCoder *) aDecoder {
+/*-(id)initWithCoder:(NSCoder *) aDecoder {
 	
 	if((self = [super initWithCoder: aDecoder])) {
 		
@@ -55,6 +55,13 @@
 	}
 	
 	return self;
+}*/
+
+-(void)encodeWithCoder: (NSCoder *)coder {
+	
+	[super encodeWithCoder: coder];
+	
+	//[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
 - (id)textColor {
@@ -62,7 +69,41 @@
 	return [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor];
 }
 
-- (void)drawWithFrame:(NSRect)frame inView:(NSView*)view {
+- (void)_drawThemeContents:(NSRect)frame highlighted:(BOOL)flag inView:(id)view {
+	
+	//Draw base layer
+	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellBorderColor] set];
+	NSRectFill(frame);
+	
+	//Adjust fill layer
+	frame.origin.x += 1;
+	frame.size.width -= 1;
+	frame.origin.y +=1;
+	frame.size.height -= 2;
+	
+	if(flag) {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellSelectedFill] drawInRect: frame angle: 90];
+	} else {
+		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellNormalFill] drawInRect: frame angle: 90];
+	}
+	
+	//Adjust so text aligns correctly
+	frame.origin.x -= 1;
+	frame.size.width += 1;
+	frame.origin.y -= 1;
+	frame.size.height += 2;
+	
+	[super _drawSortIndicatorIfNecessaryWithFrame: frame inView: view];
+	
+	frame.origin.y += (NSMidY(frame) - ([[self font] pointSize] /2)) - 1;
+	frame.origin.x += 3;
+	
+	[super drawInteriorWithFrame: frame inView: view];
+}
+
+/*- (void)drawWithFrame:(NSRect)frame inView:(NSView*)view {
 	
 	//Draw base layer
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellBorderColor] set];
@@ -90,7 +131,7 @@
 	
 	[super _drawSortIndicatorIfNecessaryWithFrame: frame inView: view];
 	[super drawInteriorWithFrame: frame inView: view];
-}
+}*/
 
 - (void)drawSortIndicatorWithFrame:(NSRect) frame inView:(id) controlView ascending:(BOOL) ascFlag priority:(int) priInt {
 	
@@ -132,7 +173,7 @@
 	frame.origin.y += 1;
 	frame.size.height -= 2;
 
-	[super drawInteriorWithFrame: frame inView: controlView];
+	//[super drawInteriorWithFrame: frame inView: controlView];
 }
 
 #pragma mark -
