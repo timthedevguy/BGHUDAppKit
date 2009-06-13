@@ -67,6 +67,7 @@
 				
 				BGHUDTableViewHeaderCell *newHeader = [[BGHUDTableViewHeaderCell alloc] initTextCell: @""];
 				[newHeader setThemeKey: [self themeKey]];
+				[newHeader setFont: [[aColumn headerCell] font]];
 				[aColumn setHeaderCell: newHeader];
 				[newHeader release];
 			} else {
@@ -107,6 +108,7 @@
 				
 				BGHUDTableViewHeaderCell *newHeader = [[BGHUDTableViewHeaderCell alloc] initTextCell: @""];
 				[newHeader setThemeKey: [self themeKey]];
+				[newHeader setFont: [[aColumn headerCell] font]];
 				[aColumn setHeaderCell: newHeader];
 				[newHeader release];
 			} else {
