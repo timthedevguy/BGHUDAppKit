@@ -165,7 +165,8 @@
 	}
 	
 	// Check to see if the attributed placeholder has been set or not
-	if(![self placeholderAttributedString]) {
+	//if(![self placeholderAttributedString]) {
+	if(![self placeholderAttributedString] && [self placeholderString]) {
 		
 		//Nope lets create it
 		NSDictionary *attribs = [[NSDictionary alloc] initWithObjectsAndKeys: 

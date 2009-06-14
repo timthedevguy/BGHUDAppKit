@@ -237,15 +237,21 @@
 	NSAttributedString *newTitle;
 	
 	//if([self labelForSegment: segment] != nil) {
-		
-		NSMutableDictionary *textAttributes = [[NSMutableDictionary alloc] initWithCapacity: 0];
-		
-		[textAttributes setValue: [NSFont controlContentFontOfSize: [NSFont systemFontSizeForControlSize: [self controlSize]]] forKey: NSFontAttributeName];
-		[textAttributes setValue: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor] forKey: NSForegroundColorAttributeName];
+	
+	NSMutableDictionary *textAttributes = [[NSMutableDictionary alloc] initWithCapacity: 0];
+	
+	[textAttributes setValue: [NSFont controlContentFontOfSize: [NSFont systemFontSizeForControlSize: [self controlSize]]] forKey: NSFontAttributeName];
+	[textAttributes setValue: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor] forKey: NSForegroundColorAttributeName];
+	
+	if([self labelForSegment: segment]) {
 		
 		newTitle = [[NSAttributedString alloc] initWithString: [self labelForSegment: segment] attributes: textAttributes];
+	} else {
 		
-		[textAttributes release];
+		newTitle = [[NSAttributedString alloc] initWithString: @"" attributes: textAttributes];
+	}
+	
+	[textAttributes release];
 	//}
 	
 	NSRect textRect = rect;

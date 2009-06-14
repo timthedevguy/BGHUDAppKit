@@ -97,10 +97,6 @@
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
-	//NSText *editor = [self _fieldEditor];
-	NSText *editor = [self valueForKey: @"_fieldEditor"];
-	[editor setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
-	
 	//Adjust Rect
 	cellFrame = NSInsetRect(cellFrame, 0.5, 0.5);
 	
@@ -162,6 +158,7 @@
 	
 	//Get TextView for this editor
 	NSTextView* view = (NSTextView*)[[controlView window] fieldEditor: NO forObject: controlView];
+	[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
 	
 	//Get Attributes of the selected text
 	NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];	
