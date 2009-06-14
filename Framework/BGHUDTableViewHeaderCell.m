@@ -97,7 +97,7 @@
 	
 	[super _drawSortIndicatorIfNecessaryWithFrame: frame inView: view];
 	
-	frame.origin.y += (NSMidY(frame) - ([[self font] pointSize] /2)) - 1;
+	frame.origin.y += (NSMidY(frame) - ([[self font] pointSize] /2)) - 2;
 	frame.origin.x += 3;
 	
 	[super drawInteriorWithFrame: frame inView: view];
