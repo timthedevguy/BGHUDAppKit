@@ -112,30 +112,33 @@
 			break;
 	}
 	
-	NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect: frame
-														 xRadius: 4
-														 yRadius: 4];
-	
-	[NSGraphicsContext saveGraphicsState];
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] darkStrokeColor] set];
-	[path stroke];
-	[NSGraphicsContext restoreGraphicsState];
-	
-	if([self isEnabled]) {
+	if([self isBordered]) {
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
+		NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect: frame
+															 xRadius: 4
+															 yRadius: 4];
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
-	} else {
+		[NSGraphicsContext saveGraphicsState];
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] darkStrokeColor] set];
+		[path stroke];
+		[NSGraphicsContext restoreGraphicsState];
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledNormalGradient] drawInBezierPath: path angle: 90];
+		if([self isEnabled]) {
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: path angle: 90];
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+		} else {
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledNormalGradient] drawInBezierPath: path angle: 90];
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
+		}
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
+		[path setLineWidth: 1.0 ];
+		[path stroke];
 	}
-	
-	[path setLineWidth: 1.0 ];
-	[path stroke];
 	
 	//Draw the arrows
 	[self drawArrowsInRect: frame];
@@ -188,7 +191,36 @@
 		
 		[aTitle endEditing];
 		
-		[super drawTitle: aTitle withFrame: frame inView: controlView];
+		int arrowAdjustment = 0;
+		
+		if([self isBordered]) {
+			
+			cellFrame.size.height -= 2;
+			cellFrame.origin.x += 5;
+		} else {
+		
+			switch ([self controlSize]) {
+					
+				case NSRegularControlSize:
+					
+					arrowAdjustment = 11;
+					break;
+					
+				case NSSmallControlSize:
+					
+					arrowAdjustment = 8;
+					break;
+					
+				case NSMiniControlSize:
+					
+					arrowAdjustment = 5;
+					break;
+			}
+		}
+		
+		NSRect newFrame = NSMakeRect(cellFrame.origin.x + 5, NSMidY(cellFrame) - ([aTitle size].height/2), cellFrame.size.width - (arrowAdjustment + 10), [aTitle size].height);
+		
+		[super drawTitle: aTitle withFrame: newFrame inView: controlView];
 	}
 	
 	[aTitle release];
@@ -201,13 +233,20 @@
 	float arrowWidth;
 	float arrowHeight;
 	
+	int arrowAdjustment = 0;
+	
 	//Adjust based on Control size
 	switch ([self controlSize]) {
 			
 		case NSRegularControlSize:
 			
-			frame.origin.x += (frame.size.width -21);
-			frame.size.width = 21;
+			if([self isBordered]) {
+				
+				arrowAdjustment = 21;
+			} else {
+				
+				arrowAdjustment = 11;
+			}
 			
 			arrowWidth = 3.5;
 			arrowHeight = 2.5;
@@ -217,8 +256,13 @@
 			
 		case NSSmallControlSize:
 			
-			frame.origin.x += (frame.size.width -18);
-			frame.size.width = 18;
+			if([self isBordered]) {
+				
+				arrowAdjustment = 18;
+			} else {
+				
+				arrowAdjustment = 8;
+			}
 			
 			arrowWidth = 3.5;
 			arrowHeight = 2.5;
@@ -229,8 +273,13 @@
 			
 		case NSMiniControlSize:
 			
-			frame.origin.x += (frame.size.width - 15);
-			frame.size.width = 15;
+			if([self isBordered]) {
+				
+				arrowAdjustment = 15;
+			} else {
+				
+				arrowAdjustment = 5;
+			}
 			
 			arrowWidth = 2.5;
 			arrowHeight = 1.5;
@@ -238,6 +287,9 @@
 			arrowsWidth = 2;
 			break;
 	}
+	
+	frame.origin.x += (frame.size.width - arrowAdjustment);
+	frame.size.width = arrowAdjustment;
 	
 	if([self pullsDown]) {
 		
