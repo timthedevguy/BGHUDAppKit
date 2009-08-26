@@ -162,9 +162,9 @@
 	
 	//If window/app is active draw the highlight/text in active colors
 	if(![self isHighlighted]) {
-		NSLog(@"Range: %i :: %i", [view selectedRange].location, [view selectedRange].length);
+		
 		if([view selectedRange].length > 0) {
-			NSLog(@"Inside");
+			
 			if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow])
 			{
 				[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightActiveColor]
@@ -182,7 +182,7 @@
 							 range: [view selectedRange]];
 			}
 		} else {
-			NSLog(@"Outside");
+			
 			[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
 			[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]
 						 range: NSMakeRange(0, [[self stringValue] length])];
