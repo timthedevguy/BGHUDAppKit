@@ -161,31 +161,55 @@
 	NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];	
 	
 	//If window/app is active draw the highlight/text in active colors
-	if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow])
-	{
-		[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightActiveColor]
-				 forKey: NSBackgroundColorAttributeName];
+	if(![self isHighlighted]) {
+		NSLog(@"Range: %i :: %i", [view selectedRange].location, [view selectedRange].length);
+		if([view selectedRange].length > 0) {
+			NSLog(@"Inside");
+			if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow])
+			{
+				[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightActiveColor]
+						 forKey: NSBackgroundColorAttributeName];
+				
+				[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]
+							 range: [view selectedRange]];
+			}
+			else
+			{
+				[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightInActiveColor]
+						 forKey: NSBackgroundColorAttributeName];
+				
+				[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor]
+							 range: [view selectedRange]];
+			}
+		} else {
+			NSLog(@"Outside");
+			[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+			[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]
+						 range: NSMakeRange(0, [[self stringValue] length])];
+		}
 		
-		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]
-					 range: [view selectedRange]];
-	}
-	else
-	{
-		[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightInActiveColor]
-				 forKey: NSBackgroundColorAttributeName];
-		
-		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor]
-					 range: [view selectedRange]];
-	}
-	
-	[view setSelectedTextAttributes:dict];
-	
-	if([self isEnabled]) {
-		
-		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+		[view setSelectedTextAttributes:dict];
 	} else {
 		
-		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
+		if([self isEnabled]) {
+			
+			if([self isHighlighted]) {
+				
+				if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow])
+				{
+					//[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]];
+				} else {
+					
+					[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor]];
+				}
+			} else {
+				
+				[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+			}
+		} else {
+			
+			[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
+		}
 	}
 	
 	// Check to see if the attributed placeholder has been set or not
