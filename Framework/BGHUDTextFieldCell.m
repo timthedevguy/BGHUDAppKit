@@ -165,7 +165,7 @@
 			//Get Attributes of the selected text
 			NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];	
 			
-			if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow])
+			if([[[self controlView] window] isKeyWindow])
 			{
 				[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightActiveColor]
 						 forKey: NSBackgroundColorAttributeName];
@@ -192,18 +192,19 @@
 	} else {
 		
 		if([self isEnabled]) {
-			
+
 			if([self isHighlighted]) {
-				
-				if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow])
+
+				if([[[self controlView] window] isKeyWindow])
 				{
+
 					[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]];
 				} else {
-					
+
 					[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor]];
 				}
 			} else {
-				
+
 				[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
 			}
 		} else {

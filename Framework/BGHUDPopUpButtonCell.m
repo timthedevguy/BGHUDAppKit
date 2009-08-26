@@ -321,9 +321,24 @@
 		[arrow appendBezierPathWithPoints: points count: 3];
 		
 		if([self isEnabled]) {
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+			
+			if([self isHighlighted]) {
+				
+				if([[[self controlView] window] isKeyWindow])
+				{
+					
+					[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor] set];
+				} else {
+					
+					[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor] set];
+				}
+			} else {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor] set];
+			}
 		} else {
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor] set];
 		}
 		
 		[arrow fill];
@@ -343,9 +358,24 @@
 		[topArrow appendBezierPathWithPoints: topPoints count: 3];
 		
 		if([self isEnabled]) {
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+			
+			if([self isHighlighted]) {
+				
+				if([[[self controlView] window] isKeyWindow])
+				{
+					
+					[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor] set];
+				} else {
+					
+					[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor] set];
+				}
+			} else {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor] set];
+			}
 		} else {
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor] set];
 		}
 		[topArrow fill];
 		
@@ -360,9 +390,24 @@
 		[bottomArrow appendBezierPathWithPoints: bottomPoints count: 3];
 		
 		if([self isEnabled]) {
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+			
+			if([self isHighlighted]) {
+				
+				if([[[self controlView] window] isKeyWindow])
+				{
+					
+					[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor] set];
+				} else {
+					
+					[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor] set];
+				}
+			} else {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor] set];
+			}
 		} else {
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
+			
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor] set];
 		}
 		[bottomArrow fill];
 		
