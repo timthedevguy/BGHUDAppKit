@@ -157,13 +157,13 @@
 	//Get TextView for this editor
 	NSTextView* view = (NSTextView*)[[controlView window] fieldEditor: NO forObject: controlView];
 	
-	//Get Attributes of the selected text
-	NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];	
-	
 	//If window/app is active draw the highlight/text in active colors
 	if(![self isHighlighted]) {
 		
 		if([view selectedRange].length > 0) {
+			
+			//Get Attributes of the selected text
+			NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];	
 			
 			if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow])
 			{
@@ -181,14 +181,14 @@
 				[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor]
 							 range: [view selectedRange]];
 			}
+			
+			[view setSelectedTextAttributes:dict];
+			dict = nil;
 		} else {
 			
 			[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
-			[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]
-						 range: NSMakeRange(0, [[self stringValue] length])];
+			[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
 		}
-		
-		[view setSelectedTextAttributes:dict];
 	} else {
 		
 		if([self isEnabled]) {
@@ -197,7 +197,7 @@
 				
 				if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow])
 				{
-					//[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]];
+					[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]];
 				} else {
 					
 					[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor]];
@@ -211,6 +211,8 @@
 			[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
 		}
 	}
+	
+	view = nil;
 	
 	// Check to see if the attributed placeholder has been set or not
 	//if(![self placeholderAttributedString]) {

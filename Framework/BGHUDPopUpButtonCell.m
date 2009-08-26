@@ -181,14 +181,14 @@
 			
 			if([self isHighlighted]) {
 				
-				if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow])
+				if([[[self controlView] window] isKeyWindow])
 				{
 					
 					[aTitle addAttribute: NSForegroundColorAttributeName
 								   value: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]
 								   range: NSMakeRange(0, [aTitle length])];
 				} else {
-					
+
 					[aTitle addAttribute: NSForegroundColorAttributeName
 								   value: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor]
 								   range: NSMakeRange(0, [aTitle length])];
