@@ -66,6 +66,7 @@
 		E71317E30E10667D00885A23 /* BGTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = E71317DA0E10667D00885A23 /* BGTheme.m */; };
 		E71317E40E10667D00885A23 /* BGThemeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E71317DB0E10667D00885A23 /* BGThemeManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E71317E50E10667D00885A23 /* BGThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71317DC0E10667D00885A23 /* BGThemeManager.m */; };
+		E71BBF061049BAA9004D438F /* README in Resources */ = {isa = PBXBuildFile; fileRef = E71BBF051049BAA9004D438F /* README */; };
 		E7631D760E4DE6940092074F /* BGHUDColorWell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7631D740E4DE6940092074F /* BGHUDColorWell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7631D770E4DE6940092074F /* BGHUDColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7631D750E4DE6940092074F /* BGHUDColorWell.m */; };
 		E7631D7C0E4DE7980092074F /* BGHUDColorWell.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E7631D7B0E4DE7980092074F /* BGHUDColorWell.classdescription */; };
@@ -101,7 +102,6 @@
 		E78DB0340E34E3C100AF4E06 /* BGHUDSearchFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E78DB0320E34E3C100AF4E06 /* BGHUDSearchFieldCell.m */; };
 		E78DB0440E34E48200AF4E06 /* BGHUDSearchFieldCell.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E78DB0430E34E48200AF4E06 /* BGHUDSearchFieldCell.classdescription */; };
 		E78DB0460E34E4A300AF4E06 /* BGHUDSearchFieldCellIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = E78DB0450E34E4A300AF4E06 /* BGHUDSearchFieldCellIntegration.m */; };
-		E79388030E17280400026DD6 /* Theming.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7B8A3480E172733006AC84C /* Theming.rtf */; };
 		E7981E660E128FF90081E937 /* BGHUDProgressIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = E7981E640E128FF90081E937 /* BGHUDProgressIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7981E670E128FF90081E937 /* BGHUDProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = E7981E650E128FF90081E937 /* BGHUDProgressIndicator.m */; };
 		E7981E6C0E12C9290081E937 /* BGHUDProgressIndicator.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E7981E6B0E12C9290081E937 /* BGHUDProgressIndicator.classdescription */; };
@@ -129,7 +129,6 @@
 		E79C25D30E109BD000742AF4 /* BGHUDTextFieldCell.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E79C25D20E109BD000742AF4 /* BGHUDTextFieldCell.classdescription */; };
 		E79C25D90E109C1800742AF4 /* BGHUDTextFieldCellIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C25D80E109C1800742AF4 /* BGHUDTextFieldCellIntegration.m */; };
 		E7B7F64C0E9EAFB70032873A /* scrollview.png in Resources */ = {isa = PBXBuildFile; fileRef = E7B7F64B0E9EAFB70032873A /* scrollview.png */; };
-		E7B8A3490E172733006AC84C /* Theming.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7B8A3480E172733006AC84C /* Theming.rtf */; };
 		E7C104960E8C476D00A96E1A /* BGHUDGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = E7C104940E8C476D00A96E1A /* BGHUDGeometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7CEE1CC0F49D8FB00F5DABB /* BGHUDBox.h in Headers */ = {isa = PBXBuildFile; fileRef = E7CEE1CA0F49D8FB00F5DABB /* BGHUDBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7CEE1CD0F49D8FB00F5DABB /* BGHUDBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CEE1CB0F49D8FB00F5DABB /* BGHUDBox.m */; };
@@ -147,9 +146,6 @@
 		E7E069A70F48AD250000BDAB /* BGHUDViewInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7E069A60F48AD250000BDAB /* BGHUDViewInspector.xib */; };
 		E7E638080E12DF220034DC7E /* BGHUDOutlineViewIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E638070E12DF220034DC7E /* BGHUDOutlineViewIntegration.m */; };
 		E7E6380B0E12E0350034DC7E /* outlineview.png in Resources */ = {isa = PBXBuildFile; fileRef = E7E6380A0E12E0350034DC7E /* outlineview.png */; };
-		E7E6382B0E12E1300034DC7E /* CONTRIB.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7E638270E12E1300034DC7E /* CONTRIB.rtf */; };
-		E7E6382C0E12E1300034DC7E /* License.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7E638280E12E1300034DC7E /* License.rtf */; };
-		E7E6382D0E12E1300034DC7E /* README.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7E638290E12E1300034DC7E /* README.rtf */; };
 		F62F7C290EC7DC1400343989 /* BGHUDComboBoxCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F62F7C270EC7DC1400343989 /* BGHUDComboBoxCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F62F7C2A0EC7DC1400343989 /* BGHUDComboBoxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F7C280EC7DC1400343989 /* BGHUDComboBoxCell.m */; };
 		F62F7C640EC7DFF200343989 /* BGHUDComboBoxCell.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = F62F7C630EC7DFF200343989 /* BGHUDComboBoxCell.classdescription */; };
@@ -187,10 +183,6 @@
 			dstPath = Docs;
 			dstSubfolderSpec = 1;
 			files = (
-				E79388030E17280400026DD6 /* Theming.rtf in CopyFiles */,
-				E7E6382D0E12E1300034DC7E /* README.rtf in CopyFiles */,
-				E7E6382C0E12E1300034DC7E /* License.rtf in CopyFiles */,
-				E7E6382B0E12E1300034DC7E /* CONTRIB.rtf in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +230,7 @@
 		E71317DA0E10667D00885A23 /* BGTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGTheme.m; path = Framework/BGTheme.m; sourceTree = "<group>"; };
 		E71317DB0E10667D00885A23 /* BGThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGThemeManager.h; path = Framework/BGThemeManager.h; sourceTree = "<group>"; };
 		E71317DC0E10667D00885A23 /* BGThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGThemeManager.m; path = Framework/BGThemeManager.m; sourceTree = "<group>"; };
+		E71BBF051049BAA9004D438F /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		E7631D740E4DE6940092074F /* BGHUDColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDColorWell.h; path = Framework/BGHUDColorWell.h; sourceTree = "<group>"; };
 		E7631D750E4DE6940092074F /* BGHUDColorWell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDColorWell.m; path = Framework/BGHUDColorWell.m; sourceTree = "<group>"; };
 		E7631D7B0E4DE7980092074F /* BGHUDColorWell.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDColorWell.classdescription; sourceTree = "<group>"; };
@@ -301,7 +294,6 @@
 		E79C25D20E109BD000742AF4 /* BGHUDTextFieldCell.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDTextFieldCell.classdescription; sourceTree = "<group>"; };
 		E79C25D80E109C1800742AF4 /* BGHUDTextFieldCellIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDTextFieldCellIntegration.m; sourceTree = "<group>"; };
 		E7B7F64B0E9EAFB70032873A /* scrollview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scrollview.png; path = "Inspector Images/scrollview.png"; sourceTree = "<group>"; };
-		E7B8A3480E172733006AC84C /* Theming.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Theming.rtf; sourceTree = "<group>"; };
 		E7C104940E8C476D00A96E1A /* BGHUDGeometry.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = BGHUDGeometry.h; path = Framework/BGHUDGeometry.h; sourceTree = "<group>"; };
 		E7CEE1CA0F49D8FB00F5DABB /* BGHUDBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDBox.h; path = Framework/BGHUDBox.h; sourceTree = "<group>"; };
 		E7CEE1CB0F49D8FB00F5DABB /* BGHUDBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDBox.m; path = Framework/BGHUDBox.m; sourceTree = "<group>"; };
@@ -320,9 +312,6 @@
 		E7E069A60F48AD250000BDAB /* BGHUDViewInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BGHUDViewInspector.xib; sourceTree = "<group>"; };
 		E7E638070E12DF220034DC7E /* BGHUDOutlineViewIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDOutlineViewIntegration.m; sourceTree = "<group>"; };
 		E7E6380A0E12E0350034DC7E /* outlineview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = outlineview.png; path = "Inspector Images/outlineview.png"; sourceTree = "<group>"; };
-		E7E638270E12E1300034DC7E /* CONTRIB.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = CONTRIB.rtf; sourceTree = "<group>"; };
-		E7E638280E12E1300034DC7E /* License.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = License.rtf; sourceTree = "<group>"; };
-		E7E638290E12E1300034DC7E /* README.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
 		F62F7C270EC7DC1400343989 /* BGHUDComboBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDComboBoxCell.h; path = Framework/BGHUDComboBoxCell.h; sourceTree = "<group>"; };
 		F62F7C280EC7DC1400343989 /* BGHUDComboBoxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDComboBoxCell.m; path = Framework/BGHUDComboBoxCell.m; sourceTree = "<group>"; };
 		F62F7C630EC7DFF200343989 /* BGHUDComboBoxCell.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDComboBoxCell.classdescription; sourceTree = "<group>"; };
@@ -743,10 +732,7 @@
 		E7E6381A0E12E0E50034DC7E /* ReadMe */ = {
 			isa = PBXGroup;
 			children = (
-				E7B8A3480E172733006AC84C /* Theming.rtf */,
-				E7E638270E12E1300034DC7E /* CONTRIB.rtf */,
-				E7E638280E12E1300034DC7E /* License.rtf */,
-				E7E638290E12E1300034DC7E /* README.rtf */,
+				E71BBF051049BAA9004D438F /* README */,
 			);
 			name = ReadMe;
 			sourceTree = "<group>";
@@ -868,7 +854,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7B8A3490E172733006AC84C /* Theming.rtf in Resources */,
+				E71BBF061049BAA9004D438F /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
