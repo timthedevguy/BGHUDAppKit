@@ -57,12 +57,7 @@
 	[self setFocusRingType: NSFocusRingTypeNone];
 	
 	//Setup Header Cells
-	NSEnumerator*   aEnumerator;
-	NSTableColumn*  aColumn;
-	
-	aEnumerator = [[self tableColumns] objectEnumerator];
-	
-	while (aColumn = [aEnumerator nextObject]) {
+	for (NSTableColumn* aColumn in [self tableColumns]) {
 		
 		//Create new cell and set it's props to that of old cell
 		BGHUDTableViewHeaderCell *newHeader = [[BGHUDTableViewHeaderCell alloc] init];
@@ -94,12 +89,7 @@
 		[self setFocusRingType: NSFocusRingTypeNone];
 		
 		//Setup Header Cells
-		NSEnumerator*   aEnumerator;
-		NSTableColumn*  aColumn;
-		
-		aEnumerator = [[self tableColumns] objectEnumerator];
-		
-		while (aColumn = [aEnumerator nextObject]) {
+		for (NSTableColumn* aColumn in [self tableColumns]) {
 			
 			//Create new cell and set it's props to that of old cell
 			BGHUDTableViewHeaderCell *newHeader = [[BGHUDTableViewHeaderCell alloc] init];
