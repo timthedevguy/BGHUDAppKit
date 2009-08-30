@@ -598,7 +598,7 @@
 	//my controls match as closely to apples
 	//as possible.
 	switch ([self controlSize]) {
-			
+		default: // Silence uninitialized variable warnings for textFrame fields.
 		case NSRegularControlSize:
 			
 			frame.origin.x += 4;
