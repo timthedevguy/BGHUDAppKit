@@ -254,7 +254,7 @@
 	
 	//Adjust based on Control size
 	switch ([self controlSize]) {
-			
+		default: // Silence uninitialized variable warnings
 		case NSRegularControlSize:
 			
 			if([self isBordered]) {

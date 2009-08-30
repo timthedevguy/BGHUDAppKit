@@ -251,7 +251,7 @@
 	
 	//Adjust based on Control size
 	switch ([self controlSize]) {
-			
+		default: // Silence uninitialized variable warnings
 		case NSRegularControlSize:
 			
 			frame.origin.x += (frame.size.width -21);

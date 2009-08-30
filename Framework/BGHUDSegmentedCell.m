@@ -97,7 +97,7 @@
 	NSBezierPath *border;
 	
 	switch ([self segmentStyle]) {
-		
+		default: // Silence uninitialized variable warnings
 		case NSSegmentStyleSmallSquare:
 			
 			//Adjust frame for shadow
@@ -156,7 +156,7 @@
 	NSBezierPath *fillPath;
 	
 	switch ([self segmentStyle]) {
-			
+		default: // Silence uninitialized variable warnings
 		case NSSegmentStyleSmallSquare:
 			
 			if(segment == ([self segmentCount] -1)) {
@@ -200,8 +200,8 @@
 				
 				[fillPath appendBezierPathWithRect: joinRect];
 				
-			} else if (segment != 0 && segment != ([self segmentCount] -1)) {
-			
+			} else {
+				NSAssert(segment != 0 && segment != ([self segmentCount] -1), @"should be a middle segment");
 				fillPath = [[NSBezierPath alloc] init];
 				[fillPath appendBezierPathWithRect: fillRect];
 			}
