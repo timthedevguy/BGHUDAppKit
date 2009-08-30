@@ -34,6 +34,9 @@
 
 #import "BGHUDTableViewHeaderCell.h"
 
+@interface NSTableHeaderCell (AppKitPrivate)
+- (void)_drawSortIndicatorIfNecessaryWithFrame:(struct CGRect)arg1 inView:(id)arg2;
+@end
 
 @implementation BGHUDTableViewHeaderCell
 
@@ -95,7 +98,8 @@
 	frame.origin.y -= 1;
 	frame.size.height += 2;
 	
-	[super _drawSortIndicatorIfNecessaryWithFrame: frame inView: view];
+	if ([self respondsToSelector:@selector(_drawSortIndicatorIfNecessaryWithFrame:inView:)])
+		[super _drawSortIndicatorIfNecessaryWithFrame: frame inView: view];
 	
 	frame.origin.y += (NSMidY(frame) - ([[self font] pointSize] /2)) - 2;
 	frame.origin.x += 3;
