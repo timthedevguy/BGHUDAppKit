@@ -35,7 +35,7 @@
 #import "BGHUDSegmentedCell.h"
 
 @interface NSSegmentedCell (private)
--(NSRect)rectForSegment:(int)segment inFrame:(NSRect)frame;
+-(NSRect)rectForSegment:(NSInteger)segment inFrame:(NSRect)frame;
 @end
 
 @implementation BGHUDSegmentedCell
@@ -232,7 +232,7 @@
 	[self drawInteriorForSegment: segment withFrame: fillRect];
 }
 
--(void)drawInteriorForSegment:(int)segment withFrame:(NSRect)rect {
+-(void)drawInteriorForSegment:(NSInteger)segment withFrame:(NSRect)rect {
 	
 	NSAttributedString *newTitle;
 	

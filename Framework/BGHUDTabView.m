@@ -123,7 +123,7 @@
 
 -(void)_drawThemeTab:(id) tabItem withState:(unsigned int) state inRect:(NSRect) aRect {
 
-	int index = [self indexOfTabViewItem: tabItem];
+	NSInteger index = [self indexOfTabViewItem: tabItem];
 	int gradientAngle = 90;
 	NSBezierPath *path;
 	
