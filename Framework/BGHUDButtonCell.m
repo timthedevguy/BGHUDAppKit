@@ -295,8 +295,8 @@
 	
 	//Adjust Rect so strokes are true and
 	//shadows are visible
-	frame.origin.x += 1.5;
-	frame.origin.y += 0.5;
+	frame.origin.x += 1.5f;
+	frame.origin.y += 0.5f;
 	frame.size.width -= 3;
 	frame.size.height -= 4;
 	
@@ -325,7 +325,7 @@
 	
 	//Draw Outer-most ring
 	NSBezierPath *path = [[NSBezierPath alloc] init];
-	[path appendBezierPathWithRoundedRect: frame xRadius: 4.0 yRadius: 4.0];
+	[path appendBezierPathWithRoundedRect: frame xRadius: 4.0f yRadius: 4.0f];
 	
 	//Save Graphics State
 	[NSGraphicsContext saveGraphicsState];
@@ -337,7 +337,7 @@
 	
 	//Draw Dark Border
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] darkStrokeColor] set];
-	[path setLineWidth: 1.0];
+	[path setLineWidth: 1.0f];
 	[path stroke];
 	
 	//Restore Graphics State
@@ -380,7 +380,7 @@
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
 	}
 	
-	[path setLineWidth: 1.0];
+	[path setLineWidth: 1.0f];
 	[path stroke];
 	
 	//path = nil;
@@ -401,7 +401,7 @@
 	
 	//Adjust Rect so strokes are true and
 	//shadows are visible
-	frame.origin.x += 1.5;
+	frame.origin.x += 1.5f;
 	frame.size.width -= 3;
 	
 	//Adjust Rect based on ControlSize so that
@@ -429,12 +429,12 @@
 	//Create Path
 	NSBezierPath *path = [[NSBezierPath alloc] init];
 	
-	[path appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(frame) + BGCenterY(frame), NSMidY(frame) + 0.5)
+	[path appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(frame) + BGCenterY(frame), NSMidY(frame) + 0.5f)
 									 radius: BGCenterY(frame)
 								 startAngle: 90
 								   endAngle: 270];
 	
-	[path appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(frame) - BGCenterY(frame), NSMidY(frame) + 0.5)
+	[path appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(frame) - BGCenterY(frame), NSMidY(frame) + 0.5f)
 									 radius: BGCenterY(frame)
 								 startAngle: 270
 								   endAngle: 90];
@@ -486,7 +486,7 @@
 		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
 	}
-	[path setLineWidth: 1.0];
+	[path setLineWidth: 1.0f];
 	[path stroke];
 	
 	[path release];
@@ -509,8 +509,8 @@
 	
 	//Adjust Rect so strokes are true and
 	//shadows are visible
-	frame.origin.x += 1.5;
-	frame.origin.y += 0.5;
+	frame.origin.x += 1.5f;
+	frame.origin.y += 0.5f;
 	frame.size.width -= 3;
 	frame.size.height = [[self controlView] bounds].size.height - 3;
 	
@@ -526,7 +526,7 @@
 	}
 	
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] darkStrokeColor] set];
-	[path setLineWidth: 1.0];
+	[path setLineWidth: 1.0f];
 	[path stroke];
 	
 	[NSGraphicsContext restoreGraphicsState];
@@ -567,7 +567,7 @@
 		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
 	}
-	[path setLineWidth: 1.0];
+	[path setLineWidth: 1.0f];
 	[path stroke];
 	
 	[path release];
@@ -589,8 +589,8 @@
 	
 	//Adjust Rect so strokes are true and
 	//shadows are visible
-	frame.origin.x += .5;
-	frame.origin.y += .5;
+	frame.origin.x += .5f;
+	frame.origin.y += .5f;
 	frame.size.height -= 1;
 	frame.size.width -= 1;
 	
@@ -632,12 +632,12 @@
 	//Create Path
 	NSBezierPath *path = [[NSBezierPath alloc] init];
 	
-	[path appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(frame) + BGCenterY(frame), NSMidY(frame) + 0.5)
+	[path appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(frame) + BGCenterY(frame), NSMidY(frame) + 0.5f)
 									 radius: BGCenterY(frame)
 								 startAngle: 90
 								   endAngle: 270];
 	
-	[path appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(frame) - BGCenterY(frame), NSMidY(frame) + 0.5)
+	[path appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(frame) - BGCenterY(frame), NSMidY(frame) + 0.5f)
 									 radius: BGCenterY(frame) 
 								 startAngle: 270 
 								   endAngle: 90];
@@ -691,8 +691,8 @@
 -(void)drawCheckInFrame:(NSRect)frame isRadio:(BOOL)radio{
 	
 	//Adjust by .5 so lines draw true
-	frame.origin.x += .5;
-	frame.origin.y += .5;
+	frame.origin.x += .5f;
+	frame.origin.y += .5f;
 	
 	if([[[self controlView] className] isEqualToString: @"NSMatrix"]) {
 		
@@ -771,10 +771,10 @@
 			//center
 			if([self controlSize] == NSRegularControlSize) {
 				
-				innerRect.origin.x -= .5;
+				innerRect.origin.x -= .5f;
 			} else if([self controlSize] == NSMiniControlSize) {
 				
-				innerRect.origin.x += .5;
+				innerRect.origin.x += .5f;
 			}
 			
 			innerRect.origin.x += BGCenterX(frame) - BGCenterX(innerRect);
@@ -784,21 +784,21 @@
 			
 			if([self controlSize] == NSRegularControlSize) {
 				
-				innerRect.origin.x = (NSWidth(frame) - NSWidth(innerRect) - 1.5) ;
+				innerRect.origin.x = (NSWidth(frame) - NSWidth(innerRect) - 1.5f) ;
 				textRect.origin.x += 2;
 				textRect.size.width = (NSMinX(innerRect) - NSMinX(textRect) - 5);
 				textRect.origin.y -= 2;
 				
 			} else if([self controlSize] == NSSmallControlSize) {
 				
-				innerRect.origin.x = (NSWidth(frame) - NSWidth(innerRect) - 1.5);
+				innerRect.origin.x = (NSWidth(frame) - NSWidth(innerRect) - 1.5f);
 				textRect.origin.x += 2;
 				textRect.size.width = (NSMinX(innerRect) - NSMinX(textRect) - 5);
 				textRect.origin.y -= 1;
 				
 			} else {
 				
-				innerRect.origin.x = (NSWidth(frame) - NSWidth(innerRect) - 1.5);
+				innerRect.origin.x = (NSWidth(frame) - NSWidth(innerRect) - 1.5f);
 				textRect.origin.x += 2;
 				textRect.size.width = (NSMinX(innerRect) - NSMinX(textRect) - 5);
 			}
@@ -864,7 +864,7 @@
 		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
 	}
-	[path setLineWidth: 1.0];
+	[path setLineWidth: 1.0f];
 	[path stroke];
 	
 	[path release];
@@ -890,7 +890,7 @@
 				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
 			}
 			
-			[path setLineWidth: 2.0];
+			[path setLineWidth: 2.0f];
 			[path stroke];
 			
 			[path release];
@@ -910,8 +910,8 @@
 					
 				} else if([self controlSize] == NSSmallControlSize) {
 					
-					innerRect.origin.x += 3.5;
-					innerRect.origin.y += 3.5;
+					innerRect.origin.x += 3.5f;
+					innerRect.origin.y += 3.5f;
 					innerRect.size.width -= 7;
 					innerRect.size.height -= 7;
 					
@@ -959,10 +959,10 @@
 				
 				if([self controlSize] == NSMiniControlSize) {
 					
-					[path setLineWidth: 1.5];
+					[path setLineWidth: 1.5f];
 				} else {
 					
-					[path setLineWidth: 2.0];
+					[path setLineWidth: 2.0f];
 				}
 				
 				[path stroke];

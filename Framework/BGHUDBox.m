@@ -206,7 +206,7 @@
 			
 			[[self borderColor] set];
 			
-			rect = NSInsetRect(rect, .5, .5);
+			rect = NSInsetRect(rect, .5f, .5f);
 			
 			//Draw Borders
 			if(self.drawTopBorder) {

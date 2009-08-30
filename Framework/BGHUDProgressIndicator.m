@@ -87,24 +87,24 @@
 			
 		case NSRegularControlSize:
 			
-			frame.origin.x += 2.5;
-			frame.origin.y += .5;
+			frame.origin.x += 2.5f;
+			frame.origin.y += .5f;
 			frame.size.width -= 5;
 			frame.size.height -= 5;
 			break;
 			
 		case NSSmallControlSize:
 			
-			frame.origin.x += 0.5;
-			frame.origin.y += 0.5;
+			frame.origin.x += 0.5f;
+			frame.origin.y += 0.5f;
 			frame.size.width -= 1;
 			frame.size.height -= 3;
 			break;
 			
 		case NSMiniControlSize:
 			
-			frame.origin.x += 1.5;
-			frame.origin.y += 0.5;
+			frame.origin.x += 1.5f;
+			frame.origin.y += 0.5f;
 			frame.size.width -= 3;
 			frame.size.height -= 5;
 			break;
@@ -128,7 +128,7 @@
 	
 	if(![self isIndeterminate]) {
 		
-		frame.size.width = ((frame.size.width / ([self maxValue] - [self minValue])) * ([self doubleValue] - [self minValue]));
+		frame.size.width = (CGFloat)((frame.size.width / ([self maxValue] - [self minValue])) * ([self doubleValue] - [self minValue]));
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInRect: frame angle: 90];
 		
 	} else {
@@ -165,24 +165,24 @@
 			
 		case NSRegularControlSize:
 			
-			frame.origin.x += 2.5;
-			frame.origin.y += .5;
+			frame.origin.x += 2.5f;
+			frame.origin.y += .5f;
 			frame.size.width -= 5;
 			frame.size.height -= 5;
 			break;
 			
 		case NSSmallControlSize:
 			
-			frame.origin.x += 0.5;
-			frame.origin.y += 0.5;
+			frame.origin.x += 0.5f;
+			frame.origin.y += 0.5f;
 			frame.size.width -= 1;
 			frame.size.height -= 3;
 			break;
 			
 		case NSMiniControlSize:
 			
-			frame.origin.x += 1.5;
-			frame.origin.y += 0.5;
+			frame.origin.x += 1.5f;
+			frame.origin.y += 0.5f;
 			frame.size.width -= 3;
 			frame.size.height -= 5;
 			break;

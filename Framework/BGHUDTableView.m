@@ -204,7 +204,7 @@
 	
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
 	
-	rect = NSInsetRect(rect, 0.5, 0.5);
+	rect = NSInsetRect(rect, 0.5f, 0.5f);
 	[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMinX(rect), NSMaxY(rect)) toPoint: NSMakePoint(NSMaxX(rect), NSMaxY(rect))];
 }
 

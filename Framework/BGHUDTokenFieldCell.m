@@ -98,7 +98,7 @@
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
 	//Adjust Rect
-	cellFrame = NSInsetRect(cellFrame, 0.5, 0.5);
+	cellFrame = NSInsetRect(cellFrame, 0.5f, 0.5f);
 	
 	//Create Path
 	NSBezierPath *path = [[NSBezierPath alloc] init];
@@ -118,7 +118,7 @@
 		[path closePath];
 	} else {
 		
-		[path appendBezierPathWithRoundedRect: cellFrame xRadius: 3.0 yRadius: 3.0];
+		[path appendBezierPathWithRoundedRect: cellFrame xRadius: 3.0f yRadius: 3.0f];
 	}
 	
 	//Draw Background
@@ -148,7 +148,7 @@
 			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
 		}
 		
-		[path setLineWidth: 1.0];
+		[path setLineWidth: 1.0f];
 		[path stroke];
 		
 		[NSGraphicsContext restoreGraphicsState];

@@ -95,9 +95,9 @@
 		sFlags.partsUsable = NSAllScrollerParts;
 		
 		//Now Figure out if we can actually show all parts
-		float arrowSpace = NSWidth([self rectForPart: NSScrollerIncrementLine]) + NSWidth([self rectForPart: NSScrollerDecrementLine]) +
+		CGFloat arrowSpace = NSWidth([self rectForPart: NSScrollerIncrementLine]) + NSWidth([self rectForPart: NSScrollerDecrementLine]) +
 			BGCenterY([self rectForPart: NSScrollerIncrementLine]);
-		float knobSpace = NSWidth([self rectForPart: NSScrollerKnob]);
+		CGFloat knobSpace = NSWidth([self rectForPart: NSScrollerKnob]);
 		
 		if((arrowSpace + knobSpace) > NSWidth([self bounds])) {
 		
@@ -116,9 +116,9 @@
 		sFlags.partsUsable = NSAllScrollerParts;
 		
 		//Now Figure out if we can actually show all parts
-		float arrowSpace = NSHeight([self rectForPart: NSScrollerIncrementLine]) + NSHeight([self rectForPart: NSScrollerDecrementLine]) +
+		CGFloat arrowSpace = NSHeight([self rectForPart: NSScrollerIncrementLine]) + NSHeight([self rectForPart: NSScrollerDecrementLine]) +
 		BGCenterX([self rectForPart: NSScrollerIncrementLine]);
-		float knobSpace = NSHeight([self rectForPart: NSScrollerKnob]);
+		CGFloat knobSpace = NSHeight([self rectForPart: NSScrollerKnob]);
 		
 		if((arrowSpace + knobSpace) > NSHeight([self bounds])) {
 			
@@ -134,7 +134,7 @@
 	
 	NSDisableScreenUpdates();
 	
-	[[NSColor colorWithCalibratedWhite: 0.0 alpha: 0.7] set];
+	[[NSColor colorWithCalibratedWhite: 0.0f alpha: 0.7f] set];
 	NSRectFill([self bounds]);
 	
 	// Draw knob-slot.
@@ -160,12 +160,12 @@
 		NSBezierPath *knob = [[NSBezierPath alloc] init];
 		NSRect knobRect = [self rectForPart: NSScrollerKnob];
 		
-		[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.width - .5) /2), (knobRect.origin.y + ((knobRect.size.width -2) /2)))
+		[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.width - .5f) /2), (knobRect.origin.y + ((knobRect.size.width -2) /2)))
 										 radius: (knobRect.size.width -2) /2
 									 startAngle: 180
 									   endAngle: 0];
 		
-		[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.width - .5) /2), ((knobRect.origin.y + knobRect.size.height) - ((knobRect.size.width -2) /2)))
+		[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.width - .5f) /2), ((knobRect.origin.y + knobRect.size.height) - ((knobRect.size.width -2) /2)))
 										 radius: (knobRect.size.width -2) /2
 									 startAngle: 0
 									   endAngle: 180];
@@ -181,12 +181,12 @@
 		[knob release];
 		knob = [[NSBezierPath alloc] init];
 		
-		[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.width - .5) /2), (knobRect.origin.y + ((knobRect.size.width -2) /2)))
+		[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.width - .5f) /2), (knobRect.origin.y + ((knobRect.size.width -2) /2)))
 										 radius: (knobRect.size.width -2) /2
 									 startAngle: 180
 									   endAngle: 0];
 		
-		[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.width - .5) /2), ((knobRect.origin.y + knobRect.size.height) - ((knobRect.size.width -2) /2)))
+		[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.width - .5f) /2), ((knobRect.origin.y + knobRect.size.height) - ((knobRect.size.width -2) /2)))
 										 radius: (knobRect.size.width -2) /2
 									 startAngle: 0
 									   endAngle: 180];
@@ -200,12 +200,12 @@
 		NSBezierPath *knob = [[NSBezierPath alloc] init];
 		NSRect knobRect = [self rectForPart: NSScrollerKnob];
 		
-		[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.height - .5) /2), (knobRect.origin.y + ((knobRect.size.height -1) /2)))
+		[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.height - .5f) /2), (knobRect.origin.y + ((knobRect.size.height -1) /2)))
 										 radius: (knobRect.size.height -1) /2
 									 startAngle: 90
 									   endAngle: 270];
 		
-		[knob appendBezierPathWithArcWithCenter: NSMakePoint((knobRect.origin.x + knobRect.size.width) - ((knobRect.size.height - .5) /2), (knobRect.origin.y + ((knobRect.size.height -1) /2)))
+		[knob appendBezierPathWithArcWithCenter: NSMakePoint((knobRect.origin.x + knobRect.size.width) - ((knobRect.size.height - .5f) /2), (knobRect.origin.y + ((knobRect.size.height -1) /2)))
 										 radius: (knobRect.size.height -1) /2
 									 startAngle: 270
 									   endAngle: 90];
@@ -221,12 +221,12 @@
 		[knob release];
 		knob = [[NSBezierPath alloc] init];
 		
-		[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.height - .5) /2), (knobRect.origin.y + ((knobRect.size.height -1) /2)))
+		[knob appendBezierPathWithArcWithCenter: NSMakePoint(knobRect.origin.x + ((knobRect.size.height - .5f) /2), (knobRect.origin.y + ((knobRect.size.height -1) /2)))
 										 radius: (knobRect.size.height -1) /2
 									 startAngle: 90
 									   endAngle: 270];
 		
-		[knob appendBezierPathWithArcWithCenter: NSMakePoint((knobRect.origin.x + knobRect.size.width) - ((knobRect.size.height - .5) /2), (knobRect.origin.y + ((knobRect.size.height -1) /2)))
+		[knob appendBezierPathWithArcWithCenter: NSMakePoint((knobRect.origin.x + knobRect.size.width) - ((knobRect.size.height - .5f) /2), (knobRect.origin.y + ((knobRect.size.height -1) /2)))
 										 radius: (knobRect.size.height -1) /2
 									 startAngle: 270
 									   endAngle: 90];
@@ -369,8 +369,8 @@
 			
 			NSPoint points[3];
 			points[0] = NSMakePoint( rect.size.width /2, rect.origin.y + (rect.size.height /2) -3);
-			points[1] = NSMakePoint( (rect.size.width /2) +3.5, rect.origin.y + (rect.size.height /2) +3);
-			points[2] = NSMakePoint( (rect.size.width /2) -3.5, rect.origin.y + (rect.size.height /2) +3);
+			points[1] = NSMakePoint( (rect.size.width /2) +3.5f, rect.origin.y + (rect.size.height /2) +3);
+			points[2] = NSMakePoint( (rect.size.width /2) -3.5f, rect.origin.y + (rect.size.height /2) +3);
 			
 			[arrow appendBezierPathWithPoints: points count: 3];
 			
@@ -381,8 +381,8 @@
 			//Create Devider Line
 			[[[[BGThemeManager keyedManager] themeForKey: [[self target] themeKey]] scrollerStroke] set];
 			
-			[NSBezierPath strokeLineFromPoint: NSMakePoint(0, (rect.origin.y + rect.size.height) +.5)
-									  toPoint: NSMakePoint(rect.size.width, (rect.origin.y + rect.size.height) +.5)];
+			[NSBezierPath strokeLineFromPoint: NSMakePoint(0, (rect.origin.y + rect.size.height) +.5f)
+									  toPoint: NSMakePoint(rect.size.width, (rect.origin.y + rect.size.height) +.5f)];
 			
 			[path release];
 			[arrow release];
@@ -421,8 +421,8 @@
 			
 			NSPoint points[3];
 			points[0] = NSMakePoint( rect.size.width /2, rect.origin.y + (rect.size.height /2) -3);
-			points[1] = NSMakePoint( (rect.size.width /2) +3.5, rect.origin.y + (rect.size.height /2) +3);
-			points[2] = NSMakePoint( (rect.size.width /2) -3.5, rect.origin.y + (rect.size.height /2) +3);
+			points[1] = NSMakePoint( (rect.size.width /2) +3.5f, rect.origin.y + (rect.size.height /2) +3);
+			points[2] = NSMakePoint( (rect.size.width /2) -3.5f, rect.origin.y + (rect.size.height /2) +3);
 			
 			[arrow appendBezierPathWithPoints: points count: 3];
 			
@@ -470,8 +470,8 @@
 			
 			NSPoint points[3];
 			points[0] = NSMakePoint( rect.origin.x + (rect.size.width /2) -3, rect.size.height /2);
-			points[1] = NSMakePoint( rect.origin.x + (rect.size.height /2) +3, (rect.size.height /2) +3.5);
-			points[2] = NSMakePoint( rect.origin.x + (rect.size.height /2) +3, (rect.size.height /2) -3.5);
+			points[1] = NSMakePoint( rect.origin.x + (rect.size.height /2) +3, (rect.size.height /2) +3.5f);
+			points[2] = NSMakePoint( rect.origin.x + (rect.size.height /2) +3, (rect.size.height /2) -3.5f);
 			
 			[arrow appendBezierPathWithPoints: points count: 3];
 			
@@ -481,8 +481,8 @@
 			//Create Devider Line
 			[[[[BGThemeManager keyedManager] themeForKey: [[self target] themeKey]] scrollerStroke] set];
 			
-			[NSBezierPath strokeLineFromPoint: NSMakePoint(rect.origin.x + rect.size.width -.5, rect.origin.y)
-									  toPoint: NSMakePoint(rect.origin.x + rect.size.width -.5, rect.origin.y + rect.size.height)];
+			[NSBezierPath strokeLineFromPoint: NSMakePoint(rect.origin.x + rect.size.width -.5f, rect.origin.y)
+									  toPoint: NSMakePoint(rect.origin.x + rect.size.width -.5f, rect.origin.y + rect.size.height)];
 			
 			[path release];
 			[arrow release];
@@ -521,8 +521,8 @@
 			
 			NSPoint points[3];
 			points[0] = NSMakePoint( rect.origin.x + (rect.size.width /2) -3, rect.size.height /2);
-			points[1] = NSMakePoint( rect.origin.x + (rect.size.height /2) +3, (rect.size.height /2) +3.5);
-			points[2] = NSMakePoint( rect.origin.x + (rect.size.height /2) +3, (rect.size.height /2) -3.5);
+			points[1] = NSMakePoint( rect.origin.x + (rect.size.height /2) +3, (rect.size.height /2) +3.5f);
+			points[2] = NSMakePoint( rect.origin.x + (rect.size.height /2) +3, (rect.size.height /2) -3.5f);
 			
 			[arrow appendBezierPathWithPoints: points count: 3];
 			
@@ -557,8 +557,8 @@
 			
 			NSPoint points[3];
 			points[0] = NSMakePoint( rect.size.width /2, rect.origin.y + (rect.size.height /2) +3);
-			points[1] = NSMakePoint( (rect.size.width /2) +3.5, rect.origin.y + (rect.size.height /2) -3);
-			points[2] = NSMakePoint( (rect.size.width /2) -3.5, rect.origin.y + (rect.size.height /2) -3);
+			points[1] = NSMakePoint( (rect.size.width /2) +3.5f, rect.origin.y + (rect.size.height /2) -3);
+			points[2] = NSMakePoint( (rect.size.width /2) -3.5f, rect.origin.y + (rect.size.height /2) -3);
 			
 			[arrow appendBezierPathWithPoints: points count: 3];
 			
@@ -602,8 +602,8 @@
 			
 			NSPoint points[3];
 			points[0] = NSMakePoint( rect.size.width /2, rect.origin.y + (rect.size.height /2) +3);
-			points[1] = NSMakePoint( (rect.size.width /2) +3.5, rect.origin.y + (rect.size.height /2) -3);
-			points[2] = NSMakePoint( (rect.size.width /2) -3.5, rect.origin.y + (rect.size.height /2) -3);
+			points[1] = NSMakePoint( (rect.size.width /2) +3.5f, rect.origin.y + (rect.size.height /2) -3);
+			points[2] = NSMakePoint( (rect.size.width /2) -3.5f, rect.origin.y + (rect.size.height /2) -3);
 			
 			[arrow appendBezierPathWithPoints: points count: 3];
 			
@@ -633,8 +633,8 @@
 			
 			NSPoint points[3];
 			points[0] = NSMakePoint( rect.origin.x + (rect.size.width /2) +3, rect.size.height /2);
-			points[1] = NSMakePoint( rect.origin.x + (rect.size.height /2) -3, (rect.size.height /2) +3.5);
-			points[2] = NSMakePoint( rect.origin.x + (rect.size.height /2) -3, (rect.size.height /2) -3.5);
+			points[1] = NSMakePoint( rect.origin.x + (rect.size.height /2) -3, (rect.size.height /2) +3.5f);
+			points[2] = NSMakePoint( rect.origin.x + (rect.size.height /2) -3, (rect.size.height /2) -3.5f);
 			
 			[arrow appendBezierPathWithPoints: points count: 3];
 			
@@ -678,8 +678,8 @@
 			
 			NSPoint points[3];
 			points[0] = NSMakePoint( rect.origin.x + (rect.size.width /2) +3, rect.size.height /2);
-			points[1] = NSMakePoint( rect.origin.x + (rect.size.height /2) -3, (rect.size.height /2) +3.5);
-			points[2] = NSMakePoint( rect.origin.x + (rect.size.height /2) -3, (rect.size.height /2) -3.5);
+			points[1] = NSMakePoint( rect.origin.x + (rect.size.height /2) -3, (rect.size.height /2) +3.5f);
+			points[2] = NSMakePoint( rect.origin.x + (rect.size.height /2) -3, (rect.size.height /2) -3.5f);
 			
 			[arrow appendBezierPathWithPoints: points count: 3];
 			

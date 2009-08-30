@@ -127,7 +127,7 @@
 	int gradientAngle = 90;
 	NSBezierPath *path;
 	
-	aRect = NSInsetRect(aRect, 0.5, 0.5);
+	aRect = NSInsetRect(aRect, 0.5f, 0.5f);
 	
 	if([self tabViewType] == NSLeftTabsBezelBorder) {
 		
@@ -192,13 +192,13 @@
 		if([self tabViewType] == NSRightTabsBezelBorder ||
 		   [self tabViewType] == NSLeftTabsBezelBorder) {
 			
-			aRect.origin.y -= 0.5;
-			aRect.size.height += 0.5;
+			aRect.origin.y -= 0.5f;
+			aRect.size.height += 0.5f;
 			
 		} else {
 			
-			aRect.origin.x -= 0.5;
-			aRect.size.width += 0.5;
+			aRect.origin.x -= 0.5f;
+			aRect.size.width += 0.5f;
 		}
 		
 		if(state == 1) {

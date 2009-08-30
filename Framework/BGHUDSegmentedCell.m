@@ -101,8 +101,8 @@
 		case NSSegmentStyleSmallSquare:
 			
 			//Adjust frame for shadow
-			frame.origin.x += 1.5;
-			frame.origin.y += .5;
+			frame.origin.x += 1.5f;
+			frame.origin.y += .5f;
 			frame.size.width -= 3;
 			frame.size.height -= 3;
 			
@@ -114,15 +114,15 @@
 		case NSSegmentStyleRounded: //NSSegmentStyleTexturedRounded:
 			
 			//Adjust frame for shadow
-			frame.origin.x += 1.5;
-			frame.origin.y += .5;
+			frame.origin.x += 1.5f;
+			frame.origin.y += .5f;
 			frame.size.width -= 3;
 			frame.size.height -= 3;
 			
 			border = [[NSBezierPath alloc] init];
 			
 			[border appendBezierPathWithRoundedRect: frame
-											xRadius: 4.0 yRadius: 4.0];
+											xRadius: 4.0f yRadius: 4.0f];
 			break;
 	}
 	
@@ -264,7 +264,7 @@
 		
 		if([self imageScalingForSegment: segment] == NSImageScaleProportionallyDown) {
 			
-			float resizeRatio = (rect.size.height - 4) / [image size].height;
+			CGFloat resizeRatio = (rect.size.height - 4) / [image size].height;
 			
 			[image setScalesWhenResized: YES];
 			[image setSize: NSMakeSize([image size].width * resizeRatio, rect.size.height -4)];

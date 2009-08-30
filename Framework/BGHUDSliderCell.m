@@ -137,11 +137,11 @@
 				}
 			} else {
 				
-				frame.origin.y = frame.origin.y + (((frame.origin.y + frame.size.height) /2) - 2.5);
+				frame.origin.y = frame.origin.y + (((frame.origin.y + frame.size.height) /2) - 2.5f);
 			}
 			
-			frame.origin.x += 2.5;
-			frame.origin.y += 0.5;
+			frame.origin.x += 2.5f;
+			frame.origin.y += 0.5f;
 			frame.size.width -= 5;
 			frame.size.height = 5;
 			break;
@@ -159,11 +159,11 @@
 				}
 			} else {
 				
-				frame.origin.y = frame.origin.y + (((frame.origin.y + frame.size.height) /2) - 2.5);
+				frame.origin.y = frame.origin.y + (((frame.origin.y + frame.size.height) /2) - 2.5f);
 			}
 			
-			frame.origin.x += 0.5;
-			frame.origin.y += 0.5;
+			frame.origin.x += 0.5f;
+			frame.origin.y += 0.5f;
 			frame.size.width -= 1;
 			frame.size.height = 5;
 			break;
@@ -184,8 +184,8 @@
 				frame.origin.y = frame.origin.y + (((frame.origin.y + frame.size.height) /2) - 2);
 			}
 			
-			frame.origin.x += 0.5;
-			frame.origin.y += 0.5;
+			frame.origin.x += 0.5f;
+			frame.origin.y += 0.5f;
 			frame.size.width -= 1;
 			frame.size.height = 3;
 			break;
@@ -229,11 +229,11 @@
 				}
 			} else {
 				
-				frame.origin.x = frame.origin.x + (((frame.origin.x + frame.size.width) /2) - 2.5);
+				frame.origin.x = frame.origin.x + (((frame.origin.x + frame.size.width) /2) - 2.5f);
 			}
 			
-			frame.origin.x += 0.5;
-			frame.origin.y += 2.5;
+			frame.origin.x += 0.5f;
+			frame.origin.y += 2.5f;
 			frame.size.height -= 6;
 			frame.size.width = 5;
 			break;
@@ -252,12 +252,12 @@
 				
 			} else {
 				
-				frame.origin.x = frame.origin.x + (((frame.origin.x + frame.size.width) /2) - 2.5);
+				frame.origin.x = frame.origin.x + (((frame.origin.x + frame.size.width) /2) - 2.5f);
 			}
 			
-			frame.origin.y += 0.5;
+			frame.origin.y += 0.5f;
 			frame.size.height -= 1;
-			frame.origin.x += 0.5;
+			frame.origin.x += 0.5f;
 			frame.size.width = 5;
 			break;
 			
@@ -267,10 +267,10 @@
 				
 				if([self tickMarkPosition] == NSTickMarkRight) {
 					
-					frame.origin.x += 2.5;
+					frame.origin.x += 2.5f;
 				} else {
 					
-					frame.origin.x += frame.size.width - 6.5;
+					frame.origin.x += frame.size.width - 6.5f;
 				}
 			} else {
 				
@@ -278,7 +278,7 @@
 			}
 			
 			frame.origin.x += 1;
-			frame.origin.y += 0.5;
+			frame.origin.y += 0.5f;
 			frame.size.height -= 1;
 			frame.size.width = 3;
 			break;

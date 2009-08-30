@@ -46,7 +46,7 @@
 -(NSGradient *)scrollerTrackGradient;			//Gradient used to draw knob track
 -(NSGradient *)scrollerArrowNormalGradient;		//Gradient used on normal Arrow button
 -(NSGradient *)scrollerArrowPushedGradient;		//Gradient used on pushed Arrow button
--(float)scrollerAlphaValue;
+-(CGFloat)scrollerAlphaValue;
 
 //Slider Theme
 -(NSColor *)sliderTrackColor;					//Color used to draw slider track
@@ -102,10 +102,10 @@
 -(NSColor *)textColor;							//Color used to draw text
 -(NSColor *)disabledTextColor;					//Color used to draw disabled text
 -(NSShadow *)dropShadow;						//Drop shadow used on all controls
--(float)alphaValue;								//Alpha value that is an optional paremeter, used only
+-(CGFloat)alphaValue;								//Alpha value that is an optional paremeter, used only
 												//if you want certain colors to be draw with the same
 												//alpha value.
--(float)disabledAlphaValue;						//Same as above but the disabled varient
+-(CGFloat)disabledAlphaValue;						//Same as above but the disabled varient
 -(NSShadow *)focusRing;							//Shadow used for the focus rings
 
 @end

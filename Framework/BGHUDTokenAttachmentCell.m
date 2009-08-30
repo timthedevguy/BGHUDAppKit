@@ -81,7 +81,7 @@
 			
 			[newTitle beginEditing];
 			[newTitle addAttribute: NSFontAttributeName
-							 value: [NSFont controlContentFontOfSize: 10.0]
+							 value: [NSFont controlContentFontOfSize: 10.0f]
 							 range: NSMakeRange(0, [newTitle length])];
 			[newTitle endEditing];
 			
@@ -95,7 +95,7 @@
 			
 			[newTitle beginEditing];
 			[newTitle addAttribute: NSFontAttributeName
-							 value: [NSFont controlContentFontOfSize: 8.0]
+							 value: [NSFont controlContentFontOfSize: 8.0f]
 							 range: NSMakeRange(0, [newTitle length])];
 			[newTitle endEditing];
 			

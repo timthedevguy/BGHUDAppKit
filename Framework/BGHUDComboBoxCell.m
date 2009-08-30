@@ -89,7 +89,7 @@
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
 	//Adjust Rect
-	cellFrame = NSInsetRect(cellFrame, 1.5, 1.5);
+	cellFrame = NSInsetRect(cellFrame, 1.5f, 1.5f);
 	
 	//Create Path
 	NSBezierPath *path = [[NSBezierPath alloc] init];
@@ -109,7 +109,7 @@
 		[path closePath];
 	} else {
 		
-		[path appendBezierPathWithRoundedRect: cellFrame xRadius: 3.0 yRadius: 3.0];
+		[path appendBezierPathWithRoundedRect: cellFrame xRadius: 3.0f yRadius: 3.0f];
 	}
 	
 	//Draw Background
@@ -131,7 +131,7 @@
 		}
 		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
-		[path setLineWidth: 1.0];
+		[path setLineWidth: 1.0f];
 		[path stroke];
 		
 		[NSGraphicsContext restoreGraphicsState];
@@ -227,7 +227,7 @@
 	}
 	
 	
-	[path appendBezierPathWithRoundedRect: frame xRadius: 3.0 yRadius: 3.0];
+	[path appendBezierPathWithRoundedRect: frame xRadius: 3.0f yRadius: 3.0f];
 	
 	NSRect rect = NSMakeRect(frame.origin.x, frame.origin.y, frame.size.width/2, frame.size.height);
 	[path appendBezierPathWithRect:rect];
@@ -244,10 +244,10 @@
 	
 
 	
-	float arrowsWidth;
-	float arrowsHeight;
-	float arrowWidth;
-	float arrowHeight;
+	CGFloat arrowsWidth;
+	CGFloat arrowsHeight;
+	CGFloat arrowWidth;
+	CGFloat arrowHeight;
 	
 	//Adjust based on Control size
 	switch ([self controlSize]) {
@@ -257,10 +257,10 @@
 			frame.origin.x += (frame.size.width -21);
 			frame.size.width = 21;
 			
-			arrowWidth = 3.5;
-			arrowHeight = 2.5;
+			arrowWidth = 3.5f;
+			arrowHeight = 2.5f;
 			arrowsHeight = 2;
-			arrowsWidth = 2.5;
+			arrowsWidth = 2.5f;
 			break;
 			
 		case NSSmallControlSize:
@@ -268,10 +268,10 @@
 			frame.origin.x += (frame.size.width -18);
 			frame.size.width = 18;
 			
-			arrowWidth = 3.5;
-			arrowHeight = 2.5;
+			arrowWidth = 3.5f;
+			arrowHeight = 2.5f;
 			arrowsHeight = 2;
-			arrowsWidth = 2.5;
+			arrowsWidth = 2.5f;
 			
 			break;
 			
@@ -280,9 +280,9 @@
 			frame.origin.x += (frame.size.width - 15);
 			frame.size.width = 15;
 			
-			arrowWidth = 2.5;
-			arrowHeight = 1.5;
-			arrowsHeight = 1.5;
+			arrowWidth = 2.5f;
+			arrowHeight = 1.5f;
+			arrowsHeight = 1.5f;
 			arrowsWidth = 2;
 			break;
 	}

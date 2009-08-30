@@ -81,8 +81,8 @@
 	NSRect frame = cellFrame;
 	
 	//Adjust frame by .5 so lines draw true
-	frame.origin.x += .5;
-	frame.origin.y += .5;
+	frame.origin.x += .5f;
+	frame.origin.y += .5f;
 	frame.size.height = [self cellSize].height;
 	
 	//Make Adjustments to Frame based on Cell Size
@@ -136,7 +136,7 @@
 			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
 		}
 		
-		[path setLineWidth: 1.0 ];
+		[path setLineWidth: 1.0f ];
 		[path stroke];
 	}
 	
@@ -163,7 +163,7 @@
 		case NSMiniControlSize:
 			
 			frame.origin.x += 8;
-			frame.origin.y += .5;
+			frame.origin.y += .5f;
 			frame.size.width -= 26;
 			break;
 	}
@@ -245,10 +245,10 @@
 
 - (void)drawArrowsInRect:(NSRect) frame {
 	
-	float arrowsWidth;
-	float arrowsHeight;
-	float arrowWidth;
-	float arrowHeight;
+	CGFloat arrowsWidth;
+	CGFloat arrowsHeight;
+	CGFloat arrowWidth;
+	CGFloat arrowHeight;
 	
 	int arrowAdjustment = 0;
 	
@@ -265,10 +265,10 @@
 				arrowAdjustment = 11;
 			}
 			
-			arrowWidth = 3.5;
-			arrowHeight = 2.5;
+			arrowWidth = 3.5f;
+			arrowHeight = 2.5f;
 			arrowsHeight = 2;
-			arrowsWidth = 2.5;
+			arrowsWidth = 2.5f;
 			break;
 			
 		case NSSmallControlSize:
@@ -281,10 +281,10 @@
 				arrowAdjustment = 8;
 			}
 			
-			arrowWidth = 3.5;
-			arrowHeight = 2.5;
+			arrowWidth = 3.5f;
+			arrowHeight = 2.5f;
 			arrowsHeight = 2;
-			arrowsWidth = 2.5;
+			arrowsWidth = 2.5f;
 			
 			break;
 			
@@ -298,9 +298,9 @@
 				arrowAdjustment = 5;
 			}
 			
-			arrowWidth = 2.5;
-			arrowHeight = 1.5;
-			arrowsHeight = 1.5;
+			arrowWidth = 2.5f;
+			arrowHeight = 1.5f;
+			arrowsHeight = 1.5f;
 			arrowsWidth = 2;
 			break;
 	}
