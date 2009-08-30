@@ -45,6 +45,7 @@
 		C0D069560A49DF9100C95564 /* InterfaceBuilderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0D069550A49DF9100C95564 /* InterfaceBuilderKit.framework */; };
 		D1AEDE470A6C289C0010C343 /* BGHUDAppKitLibrary.nib in Resources */ = {isa = PBXBuildFile; fileRef = D1AEDE460A6C289C0010C343 /* BGHUDAppKitLibrary.nib */; };
 		E7014C0C0FB78F5A00321C9C /* tabview.png in Resources */ = {isa = PBXBuildFile; fileRef = E7014C0B0FB78F5A00321C9C /* tabview.png */; };
+		E7050815104AD68D00F2212D /* README.textile in Resources */ = {isa = PBXBuildFile; fileRef = E7050814104AD68D00F2212D /* README.textile */; };
 		E706FE6A0E12DD690017E470 /* tableview.png in Resources */ = {isa = PBXBuildFile; fileRef = E706FE690E12DD690017E470 /* tableview.png */; };
 		E706FE7B0E12DE180017E470 /* BGHUDOutlineView.h in Headers */ = {isa = PBXBuildFile; fileRef = E706FE790E12DE180017E470 /* BGHUDOutlineView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E706FE7C0E12DE180017E470 /* BGHUDOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = E706FE7A0E12DE180017E470 /* BGHUDOutlineView.m */; };
@@ -66,7 +67,6 @@
 		E71317E30E10667D00885A23 /* BGTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = E71317DA0E10667D00885A23 /* BGTheme.m */; };
 		E71317E40E10667D00885A23 /* BGThemeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E71317DB0E10667D00885A23 /* BGThemeManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E71317E50E10667D00885A23 /* BGThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71317DC0E10667D00885A23 /* BGThemeManager.m */; };
-		E71BBF061049BAA9004D438F /* README in Resources */ = {isa = PBXBuildFile; fileRef = E71BBF051049BAA9004D438F /* README */; };
 		E7631D760E4DE6940092074F /* BGHUDColorWell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7631D740E4DE6940092074F /* BGHUDColorWell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7631D770E4DE6940092074F /* BGHUDColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7631D750E4DE6940092074F /* BGHUDColorWell.m */; };
 		E7631D7C0E4DE7980092074F /* BGHUDColorWell.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = E7631D7B0E4DE7980092074F /* BGHUDColorWell.classdescription */; };
@@ -209,6 +209,7 @@
 		D1AEDE460A6C289C0010C343 /* BGHUDAppKitLibrary.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = BGHUDAppKitLibrary.nib; path = English.lproj/BGHUDAppKitLibrary.nib; sourceTree = "<group>"; };
 		DD92D38A0106425D02CA0E72 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		E7014C0B0FB78F5A00321C9C /* tabview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabview.png; path = "Inspector Images/tabview.png"; sourceTree = "<group>"; };
+		E7050814104AD68D00F2212D /* README.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.textile; sourceTree = "<group>"; };
 		E706FE690E12DD690017E470 /* tableview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tableview.png; path = "Inspector Images/tableview.png"; sourceTree = "<group>"; };
 		E706FE790E12DE180017E470 /* BGHUDOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDOutlineView.h; path = Framework/BGHUDOutlineView.h; sourceTree = "<group>"; };
 		E706FE7A0E12DE180017E470 /* BGHUDOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDOutlineView.m; path = Framework/BGHUDOutlineView.m; sourceTree = "<group>"; };
@@ -230,7 +231,6 @@
 		E71317DA0E10667D00885A23 /* BGTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGTheme.m; path = Framework/BGTheme.m; sourceTree = "<group>"; };
 		E71317DB0E10667D00885A23 /* BGThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGThemeManager.h; path = Framework/BGThemeManager.h; sourceTree = "<group>"; };
 		E71317DC0E10667D00885A23 /* BGThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGThemeManager.m; path = Framework/BGThemeManager.m; sourceTree = "<group>"; };
-		E71BBF051049BAA9004D438F /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		E7631D740E4DE6940092074F /* BGHUDColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDColorWell.h; path = Framework/BGHUDColorWell.h; sourceTree = "<group>"; };
 		E7631D750E4DE6940092074F /* BGHUDColorWell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDColorWell.m; path = Framework/BGHUDColorWell.m; sourceTree = "<group>"; };
 		E7631D7B0E4DE7980092074F /* BGHUDColorWell.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BGHUDColorWell.classdescription; sourceTree = "<group>"; };
@@ -732,7 +732,7 @@
 		E7E6381A0E12E0E50034DC7E /* ReadMe */ = {
 			isa = PBXGroup;
 			children = (
-				E71BBF051049BAA9004D438F /* README */,
+				E7050814104AD68D00F2212D /* README.textile */,
 			);
 			name = ReadMe;
 			sourceTree = "<group>";
@@ -854,7 +854,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E71BBF061049BAA9004D438F /* README in Resources */,
+				E7050815104AD68D00F2212D /* README.textile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
