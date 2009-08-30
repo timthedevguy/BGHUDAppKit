@@ -133,7 +133,7 @@
 	[super drawInteriorWithFrame: frame inView: view];
 }*/
 
-- (void)drawSortIndicatorWithFrame:(NSRect) frame inView:(id) controlView ascending:(BOOL) ascFlag priority:(int) priInt {
+- (void)drawSortIndicatorWithFrame:(NSRect) frame inView:(id) controlView ascending:(BOOL) ascFlag priority:(NSInteger) priInt {
 	
 	frame.origin.y -=1;
 	frame.size.height += 2;

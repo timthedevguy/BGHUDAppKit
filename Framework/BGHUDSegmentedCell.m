@@ -149,7 +149,7 @@
 	}
 }
 
-- (void)drawSegment:(int)segment inFrame:(NSRect)frame withView:(NSView *)view {
+- (void)drawSegment:(NSInteger)segment inFrame:(NSRect)frame withView:(NSView *)view {
 	
 	//Calculate rect for this segment
 	NSRect fillRect = [self rectForSegment: segment inFrame: frame];
