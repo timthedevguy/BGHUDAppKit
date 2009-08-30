@@ -35,7 +35,7 @@
 #import "BGHUDTableViewHeaderCell.h"
 
 @interface NSTableHeaderCell (AppKitPrivate)
-- (void)_drawSortIndicatorIfNecessaryWithFrame:(struct CGRect)arg1 inView:(id)arg2;
+- (void)_drawSortIndicatorIfNecessaryWithFrame:(NSRect)arg1 inView:(id)arg2;
 @end
 
 @implementation BGHUDTableViewHeaderCell
