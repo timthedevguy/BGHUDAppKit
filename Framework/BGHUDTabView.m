@@ -121,7 +121,7 @@
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
--(void)_drawThemeTab:(id) tabItem withState:(unsigned int) state inRect:(NSRect) aRect {
+-(void)_drawThemeTab:(id) tabItem withState:(NSUInteger) state inRect:(NSRect) aRect {
 
 	NSInteger index = [self indexOfTabViewItem: tabItem];
 	int gradientAngle = 90;

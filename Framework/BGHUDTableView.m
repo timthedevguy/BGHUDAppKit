@@ -35,7 +35,7 @@
 #import "BGHUDTableView.h"
 
 @interface NSTableView (private)
-- (void)_sendDelegateWillDisplayCell:(id)cell forColumn:(id)column row:(int)row;
+- (void)_sendDelegateWillDisplayCell:(id)cell forColumn:(id)column row:(NSInteger)row;
 @end
 
 @implementation BGHUDTableView
@@ -172,7 +172,7 @@
 	}
 }
 
-- (void)_sendDelegateWillDisplayCell:(id)cell forColumn:(id)column row:(int)row {
+- (void)_sendDelegateWillDisplayCell:(id)cell forColumn:(id)column row:(NSInteger)row {
 	
     [super _sendDelegateWillDisplayCell: cell forColumn: column row: row];
 	

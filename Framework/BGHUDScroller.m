@@ -237,11 +237,11 @@
 	}
 }
 
-- (void)drawArrow:(NSScrollerArrow)arrow highlightPart:(int)part {
+- (void)drawArrow:(NSScrollerArrow)arrow highlightPart:(NSUInteger)part {
 	
 	if(arrow == NSScrollerDecrementArrow) {
 		
-		if(part == -1 || part == 0) {
+		if(part == (NSUInteger)-1 || part == 0) {
 			
 			[self drawDecrementArrow: NO];
 		} else {
@@ -252,7 +252,7 @@
 	
 	if(arrow == NSScrollerIncrementArrow) {
 		
-		if(part == 1 || part == -1) {
+		if(part == 1 || part == (NSUInteger)-1) {
 			
 			[self drawIncrementArrow: NO];
 		} else {

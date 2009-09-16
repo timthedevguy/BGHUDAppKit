@@ -35,7 +35,7 @@
 #import "BGHUDOutlineView.h"
 
 @interface NSOutlineView (private)
-- (void)_sendDelegateWillDisplayCell:(id)cell forColumn:(id)column row:(int)row;
+- (void)_sendDelegateWillDisplayCell:(id)cell forColumn:(id)column row:(NSInteger)row;
 @end
 
 @implementation BGHUDOutlineView
@@ -122,7 +122,7 @@
 	return [[[BGThemeManager keyedManager] themeForKey: self.themeKey] cellHighlightColor];
 }
 
-- (void)_sendDelegateWillDisplayCell:(id)cell forColumn:(id)column row:(int)row {
+- (void)_sendDelegateWillDisplayCell:(id)cell forColumn:(id)column row:(NSInteger)row {
 	
     [super _sendDelegateWillDisplayCell:cell forColumn:column row:row];
 	
