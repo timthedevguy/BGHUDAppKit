@@ -95,6 +95,14 @@
 	[aCoder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
+- (NSText *)setUpFieldEditorAttributes:(NSText *)textObj;
+{
+	textObj = [super setUpFieldEditorAttributes:textObj];
+	NSColor *textColor = [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor];
+	[(NSTextView *)textObj setInsertionPointColor:textColor];
+	return textObj;
+}
+
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
 	//Adjust Rect
