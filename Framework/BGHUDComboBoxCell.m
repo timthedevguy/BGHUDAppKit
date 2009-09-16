@@ -244,8 +244,6 @@
 	
 
 	
-	CGFloat arrowsWidth;
-	CGFloat arrowsHeight;
 	CGFloat arrowWidth;
 	CGFloat arrowHeight;
 	
@@ -259,8 +257,6 @@
 			
 			arrowWidth = 3.5f;
 			arrowHeight = 2.5f;
-			arrowsHeight = 2;
-			arrowsWidth = 2.5f;
 			break;
 			
 		case NSSmallControlSize:
@@ -270,8 +266,6 @@
 			
 			arrowWidth = 3.5f;
 			arrowHeight = 2.5f;
-			arrowsHeight = 2;
-			arrowsWidth = 2.5f;
 			
 			break;
 			
@@ -282,8 +276,6 @@
 			
 			arrowWidth = 2.5f;
 			arrowHeight = 1.5f;
-			arrowsHeight = 1.5f;
-			arrowsWidth = 2;
 			break;
 	}
 
