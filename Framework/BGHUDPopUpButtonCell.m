@@ -214,33 +214,158 @@
 			
 			cellFrame.size.height -= 2;
 			cellFrame.origin.x += 5;
-		} else {
+		} /*else {
 		
-			switch ([self controlSize]) {
+			
+		}*/
+		
+		switch ([self controlSize]) {
+				
+			case NSRegularControlSize:
+				
+				arrowAdjustment = 21;
+				break;
+				
+			case NSSmallControlSize:
+				
+				arrowAdjustment = 18;
+				break;
+				
+			case NSMiniControlSize:
+				
+				arrowAdjustment = 15;
+				break;
+		}
+		
+		NSRect titleFrame = NSMakeRect(cellFrame.origin.x + 5, NSMidY(cellFrame) - ([aTitle size].height/2), cellFrame.size.width - arrowAdjustment, [aTitle size].height);
+		NSRect imageFrame = NSMakeRect(cellFrame.origin.x, cellFrame.origin.y, cellFrame.size.width - arrowAdjustment, cellFrame.size.height);
+
+		if([self image]) {
+
+			switch ([self imagePosition]) {
 					
-				case NSRegularControlSize:
+				case NSImageLeft:
+				case NSNoImage:
 					
-					arrowAdjustment = 11;
+					titleFrame.origin.x += 6;
+					titleFrame.origin.x += [[self image] size].width;
 					break;
 					
-				case NSSmallControlSize:
+				case NSImageOnly:
 					
-					arrowAdjustment = 8;
+					titleFrame.size.width = 0;
+					//imageRect.origin.x += (frame.size.width /2) - (imageRect.size.width /2);
 					break;
 					
-				case NSMiniControlSize:
+				case NSImageRight:
 					
-					arrowAdjustment = 5;
+					//btitleFrame.origin.x += 3;
+					//imageRect.origin.x = ((frame.origin.x + frame.size.width) - imageRect.size.width) - 5;
+					break;
+					
+				case NSImageBelow:
+					
+					break;
+					
+				case NSImageAbove:
+					
+					break;
+					
+				case NSImageOverlaps:
+					
+					break;
+					
+				default:
+					
+					//imageRect.origin.x += 5;
 					break;
 			}
 		}
-		
-		NSRect newFrame = NSMakeRect(cellFrame.origin.x + 5, NSMidY(cellFrame) - ([aTitle size].height/2), cellFrame.size.width - (arrowAdjustment + 10), [aTitle size].height);
-		
-		[super drawTitle: aTitle withFrame: newFrame inView: controlView];
+
+		[super drawTitle: aTitle withFrame: titleFrame inView: controlView];
+		[self drawImage: [self image] withFrame: imageFrame inView: controlView];
 	}
 	
 	[aTitle release];
+}
+
+- (void)drawImage:(NSImage *)image withFrame:(NSRect)frame inView:(NSView *)controlView {
+	
+	//Setup per State and Highlight Settings
+	if([self showsStateBy] == 0 && [self highlightsBy] == 1) {
+		
+		if([self isHighlighted]) {
+			
+			if([self alternateImage]) {
+				
+				image = [self alternateImage];
+			}
+		}
+	}
+	
+	if([self showsStateBy] == 1 && [self highlightsBy] == 3) {
+		
+		if([self state] == 1) {
+			
+			if([self alternateImage]) {
+				
+				image = [self alternateImage];
+			}
+		}
+	}
+	
+	//Calculate Image Position
+	NSRect imageRect = frame;
+	imageRect.size.height = [image size].height;
+	imageRect.size.width = [image size].width;
+	imageRect.origin.y += (frame.size.height /2) - (imageRect.size.height /2);
+	
+	//Setup Position
+	switch ([self imagePosition]) {
+			
+		case NSImageLeft:
+		case NSNoImage:
+			
+			imageRect.origin.x += 6;
+			break;
+			
+		case NSImageOnly:
+			
+			imageRect.origin.x += (frame.size.width /2) - (imageRect.size.width /2);
+			break;
+			
+		case NSImageRight:
+			
+			imageRect.origin.x = (NSMaxX(frame) - imageRect.size.width) - 8;
+			break;
+			
+		case NSImageBelow:
+			
+			break;
+			
+		case NSImageAbove:
+			
+			break;
+			
+		case NSImageOverlaps:
+			
+			break;
+			
+		default:
+			
+			imageRect.origin.x += 5;
+			break;
+	}
+	
+	[image setFlipped: YES];
+	
+	//Draw the image based on enabled state
+	if([self isEnabled]) {
+		
+		[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
+	} else {
+		[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue]];
+	}
 }
 
 - (void)drawArrowsInRect:(NSRect) frame {
