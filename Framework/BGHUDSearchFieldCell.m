@@ -34,6 +34,52 @@
 
 #import "BGHUDSearchFieldCell.h"
 
+NSImage *searchButtonImage() {
+	
+    static NSImage *__image = nil;
+    if(!__image) {
+        __image = [[NSImage alloc] initWithSize:NSMakeSize(14, 14)];
+        [__image lockFocus];
+        [[NSColor clearColor] set];
+        NSRectFill(NSMakeRect(0, 0, 14, 14));
+        
+        NSBezierPath *path = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect(1, 4, 8, 8)];
+        [path setLineWidth:1.9];
+        [path moveToPoint:NSMakePoint(7, 6)];
+        [path lineToPoint:NSMakePoint(12, 1)];
+        [[NSColor whiteColor] set];
+        [path stroke];
+        [__image unlockFocus];
+    }
+    return __image;
+}
+
+NSImage *cancelButtonImageUp() {
+
+    static NSImage *__image = nil;
+    if(!__image) {
+        __image = [[NSImage alloc] initWithSize:NSMakeSize(14, 14)];
+        [__image lockFocus];
+        [[NSColor clearColor] set];
+        NSRectFill(NSMakeRect(0, 0, 14, 14));
+        
+        NSBezierPath *circle = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect(1, 1, 12, 12)];
+        [[NSColor colorWithDeviceWhite:1.0 alpha:1.0] set];
+        [circle fill];
+		
+        NSBezierPath *cross = [NSBezierPath bezierPath];
+        [cross setLineWidth:1.1];
+        [cross moveToPoint:NSMakePoint(4, 4)];
+        [cross lineToPoint:NSMakePoint(10, 10)];
+        [cross moveToPoint:NSMakePoint(4, 10)];
+        [cross lineToPoint:NSMakePoint(10, 4)];
+        [[NSColor colorWithDeviceWhite:0.0 alpha:0.7] set];
+        [cross stroke];
+        
+        [__image unlockFocus];
+    }
+    return __image;
+}
 
 @interface NSSearchFieldCell (Private)
 
@@ -64,6 +110,9 @@
 		}
 		
 		[self setDrawsBackground: NO];
+		[[self searchButtonCell] setImage:searchButtonImage()];
+		[[self cancelButtonCell] setImage:cancelButtonImageUp()];
+		[[self cancelButtonCell] setAlternateImage:nil];
 	}
 	
 	return self;
@@ -84,6 +133,9 @@
 		}
 		
 		[self setDrawsBackground: NO];
+		[[self searchButtonCell] setImage:searchButtonImage()];
+		[[self cancelButtonCell] setImage:cancelButtonImageUp()];
+		[[self cancelButtonCell] setAlternateImage:nil];
 	}
 	
 	return self;
@@ -217,6 +269,8 @@
 
 -(void)drawInteriorWithFrame:(NSRect) cellFrame inView:(NSView *) controlView {
 	
+	cellFrame.origin.x += 5;
+	cellFrame.size.width -= 5;
 	[super drawInteriorWithFrame: cellFrame inView: controlView];
 }
 
@@ -225,6 +279,7 @@
 	
 	NSRect nRect = [super searchButtonRectForBounds: aRect];
 	
+	nRect.origin.x -= 5;
 	nRect.origin.y -= 1;
 	
 	return nRect;
@@ -238,6 +293,32 @@
 	nRect.origin.y -= 1;
 	
 	return nRect;
+}
+
+// Set insertion point to white
+-(NSText *)setUpFieldEditorAttributes:(NSText *) textObj {
+	
+    textObj = [super setUpFieldEditorAttributes:textObj];
+    if([textObj isKindOfClass:[NSTextView class]]) {
+        [(NSTextView *)textObj setInsertionPointColor:[self textColor]];
+    }
+    return textObj;
+}
+
+// Change Editing Text Rect
+- (void)editWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject event:(NSEvent *)theEvent {
+	
+	aRect.origin.x += 5;
+	aRect.size.width -= 5;
+	[super editWithFrame: aRect inView: controlView editor: textObj delegate: anObject event: theEvent];
+}
+
+// Chnage the Selected Text Rect
+- (void)selectWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject start:(NSInteger)selStart length:(NSInteger)selLength {
+	
+	aRect.origin.x += 5;
+	aRect.size.width -= 5;
+	[super selectWithFrame: aRect inView: controlView editor: textObj delegate: anObject start: selStart length: selLength];
 }
 
 #pragma mark -
