@@ -366,6 +366,8 @@
 	} else {
 		[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue]];
 	}
+	
+	[image setFlipped: NO];
 }
 
 - (void)drawArrowsInRect:(NSRect) frame {
