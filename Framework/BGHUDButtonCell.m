@@ -167,8 +167,10 @@
 		
 		[newTitle beginEditing];
 		
-		[newTitle removeAttribute: NSShadowAttributeName
-							range: NSMakeRange(0, [newTitle length])];
+		// Removed so Shadows could be used
+		// TODO: Find out why I had this in here in the first place, no cosmetic difference
+		/*[newTitle removeAttribute: NSShadowAttributeName
+							range: NSMakeRange(0, [newTitle length])];*/
 		
 		//Set text color based on button enabled state.
 		if([self isEnabled]) {
