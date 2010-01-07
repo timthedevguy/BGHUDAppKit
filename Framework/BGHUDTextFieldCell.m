@@ -194,8 +194,13 @@
 			dict = nil;
 		} else {
 			
-			[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
-			[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+			// Only change color (marks view as dirty) if it had a selection at some point,
+			// thus changing the colors.
+			if([view textColor] != [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]) {
+				
+				[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+				[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+			}
 		}
 	} else {
 		
@@ -278,42 +283,6 @@
 -(void)_drawKeyboardFocusRingWithFrame:(NSRect)fp8 inView:(id)fp24 {
 	
 }
-
-/*-(void)editWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject event:(NSEvent *)theEvent {
-	
-	switch ([self controlSize]) {
-			
-		case NSRegularControlSize:
-			
-			//aRect.origin.x += 1;
-			//aRect.origin.y -= 1;
-			break;
-			
-			
-			
-		default:
-			break;
-	}
-	
-	[super editWithFrame: aRect inView: controlView editor: textObj delegate: anObject event: theEvent];
-}
-
--(void)selectWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject start:(NSInteger)selStart length:(NSInteger)selLength {
-	
-	switch ([self controlSize]) {
-			
-		case NSRegularControlSize:
-			
-			//aRect.origin.x += 1;
-			//aRect.origin.y -= 1;
-			break;
-			
-		default:
-			break;
-	}
-	
-	[super selectWithFrame: aRect inView: controlView editor: textObj delegate: anObject start: selStart length: selLength];
-}*/
 
 #pragma mark -
 #pragma mark Helper Methods
