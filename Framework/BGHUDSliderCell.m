@@ -103,6 +103,13 @@
 }
 
 - (void)drawKnob:(NSRect)aRect {
+
+	// Prevent drawing outside the rectangle to prevent ghost lines
+	// when moving the slider
+	// The ghost lines appear because of the shadow in highlight
+	NSBezierPath *clipPath = [[NSBezierPath alloc] init];
+	[clipPath appendBezierPathWithRect:aRect];
+	[clipPath setClip];
 	
 	if([self sliderType] == NSLinearSlider) {
 		
@@ -295,9 +302,6 @@
 }
 
 - (void)drawHorizontalKnobInFrame:(NSRect)frame {
-	NSBezierPath *clipPath = [[NSBezierPath alloc] init];
-	[clipPath appendBezierPathWithRect:frame];
-	[clipPath setClip];
 	
 	switch ([self controlSize]) {
 			
