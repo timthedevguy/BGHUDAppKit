@@ -295,6 +295,9 @@
 }
 
 - (void)drawHorizontalKnobInFrame:(NSRect)frame {
+	NSBezierPath *clipPath = [[NSBezierPath alloc] init];
+	[clipPath appendBezierPathWithRect:frame];
+	[clipPath setClip];
 	
 	switch ([self controlSize]) {
 			
@@ -433,7 +436,6 @@
 	if([self isEnabled]) {
 		
 		[NSGraphicsContext saveGraphicsState];
-		
 		//Draw Focus ring or shadow depending on highlight state.
 		if([self isHighlighted] && ([self focusRingType] == NSFocusRingTypeDefault ||
 									[self focusRingType] == NSFocusRingTypeExterior)) {
