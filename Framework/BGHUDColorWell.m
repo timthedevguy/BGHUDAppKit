@@ -46,7 +46,7 @@
 	self = [super init];
 	
 	if(self) {
-		
+		isBeingDecoded = NO;
 		self.themeKey = @"gradientTheme";
 	}
 	
@@ -56,6 +56,8 @@
 -(id)initWithCoder:(NSCoder *)aDecoder {
 	
 	self = [super initWithCoder: aDecoder];
+	
+	isBeingDecoded = YES;
 	
 	if(self) {
 		
@@ -69,7 +71,7 @@
 	}
 	
 	[self setUseTransparentWell: [aDecoder decodeBoolForKey: @"useTransparentWell"]];
-	
+	isBeingDecoded = NO;
 	return self;
 }
 
@@ -91,6 +93,9 @@
 
 - (void)drawRect:(NSRect) rect {
 
+	if (isBeingDecoded)
+		return;
+	
 	if([self isActive]) {
 		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInRect: rect angle: 270];
