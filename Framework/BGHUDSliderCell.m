@@ -103,6 +103,13 @@
 }
 
 - (void)drawKnob:(NSRect)aRect {
+
+	// Prevent drawing outside the rectangle to prevent ghost lines
+	// when moving the slider
+	// The ghost lines appear because of the shadow in highlight
+	NSBezierPath *clipPath = [[NSBezierPath alloc] init];
+	[clipPath appendBezierPathWithRect:aRect];
+	[clipPath setClip];
 	
 	if([self sliderType] == NSLinearSlider) {
 		
@@ -433,7 +440,6 @@
 	if([self isEnabled]) {
 		
 		[NSGraphicsContext saveGraphicsState];
-		
 		//Draw Focus ring or shadow depending on highlight state.
 		if([self isHighlighted] && ([self focusRingType] == NSFocusRingTypeDefault ||
 									[self focusRingType] == NSFocusRingTypeExterior)) {

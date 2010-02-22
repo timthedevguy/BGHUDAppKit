@@ -34,6 +34,7 @@
 
 #import "BGHUDSearchFieldCell.h"
 
+// TODO: Find out why NSSmallControlSize/NSMiniControlSize revert to original dark images
 NSImage *searchButtonImage() {
 	
     static NSImage *__image = nil;
@@ -51,7 +52,7 @@ NSImage *searchButtonImage() {
         [path stroke];
         [__image unlockFocus];
     }
-    return __image;
+    return [__image copy];
 }
 
 NSImage *cancelButtonImageUp() {
@@ -78,7 +79,7 @@ NSImage *cancelButtonImageUp() {
         
         [__image unlockFocus];
     }
-    return __image;
+    return [__image copy];
 }
 
 @interface NSSearchFieldCell (Private)
@@ -113,6 +114,20 @@ NSImage *cancelButtonImageUp() {
 		[[self searchButtonCell] setImage:searchButtonImage()];
 		[[self cancelButtonCell] setImage:cancelButtonImageUp()];
 		[[self cancelButtonCell] setAlternateImage:nil];
+		
+		if([self controlSize] == NSSmallControlSize) {
+			
+			[[[self searchButtonCell] image] setScalesWhenResized: YES];
+			[[[self searchButtonCell] image] setSize: NSMakeSize(12, 12)];
+			[[[self cancelButtonCell] image] setScalesWhenResized: YES];
+			[[[self cancelButtonCell] image] setSize: NSMakeSize(12, 12)];
+		} else if ([self controlSize] == NSMiniControlSize) {
+			
+			[[[self searchButtonCell] image] setScalesWhenResized: YES];
+			[[[self searchButtonCell] image] setSize: NSMakeSize(10, 10)];
+			[[[self cancelButtonCell] image] setScalesWhenResized: YES];
+			[[[self cancelButtonCell] image] setSize: NSMakeSize(10, 10)];
+		}
 	}
 	
 	return self;
@@ -136,6 +151,20 @@ NSImage *cancelButtonImageUp() {
 		[[self searchButtonCell] setImage:searchButtonImage()];
 		[[self cancelButtonCell] setImage:cancelButtonImageUp()];
 		[[self cancelButtonCell] setAlternateImage:nil];
+		
+		if([self controlSize] == NSSmallControlSize) {
+			
+			[[[self searchButtonCell] image] setScalesWhenResized: YES];
+			[[[self searchButtonCell] image] setSize: NSMakeSize(12, 12)];
+			[[[self cancelButtonCell] image] setScalesWhenResized: YES];
+			[[[self cancelButtonCell] image] setSize: NSMakeSize(12, 12)];
+		} else if ([self controlSize] == NSMiniControlSize) {
+			
+			[[[self searchButtonCell] image] setScalesWhenResized: YES];
+			[[[self searchButtonCell] image] setSize: NSMakeSize(10, 10)];
+			[[[self cancelButtonCell] image] setScalesWhenResized: YES];
+			[[[self cancelButtonCell] image] setSize: NSMakeSize(10, 10)];
+		}
 	}
 	
 	return self;
@@ -269,8 +298,30 @@ NSImage *cancelButtonImageUp() {
 
 -(void)drawInteriorWithFrame:(NSRect) cellFrame inView:(NSView *) controlView {
 	
-	cellFrame.origin.x += 5;
-	cellFrame.size.width -= 5;
+	switch ([self controlSize]) {
+			
+		case NSRegularControlSize:
+			
+			cellFrame.origin.x += 5;
+			cellFrame.size.width -= 5;
+			break;
+			
+		case NSSmallControlSize:
+			
+			cellFrame.origin.x += 1;
+			cellFrame.size.width -= 3;
+			break;
+			
+		case NSMiniControlSize:
+			
+			//cellFrame.origin.x += 5;
+			//cellFrame.size.width -= 5;
+			break;
+			
+		default:
+			break;
+	}
+	
 	[super drawInteriorWithFrame: cellFrame inView: controlView];
 }
 
@@ -279,8 +330,30 @@ NSImage *cancelButtonImageUp() {
 	
 	NSRect nRect = [super searchButtonRectForBounds: aRect];
 	
-	nRect.origin.x -= 5;
-	nRect.origin.y -= 1;
+	switch ([self controlSize]) {
+			
+		case NSRegularControlSize:
+			
+			nRect.origin.x -= 5;
+			nRect.origin.y -= 1;
+			break;
+			
+		case NSSmallControlSize:
+			
+			nRect.origin.x -= 1;
+			nRect.origin.y -= 2;
+			break;
+			
+		case NSMiniControlSize:
+			
+			nRect.origin.x -= 2;
+			nRect.origin.y -= 2;
+			break;
+			
+		default:
+			break;
+	}
+	
 	
 	return nRect;
 }
@@ -290,7 +363,27 @@ NSImage *cancelButtonImageUp() {
 	
 	NSRect nRect = [super cancelButtonRectForBounds: aRect];
 	
-	nRect.origin.y -= 1;
+	switch ([self controlSize]) {
+			
+		case NSRegularControlSize:
+			
+			nRect.origin.y -= 1;
+			break;
+			
+		case NSSmallControlSize:
+			
+			nRect.origin.y -= 1.5;
+			nRect.origin.x += 2;
+			break;
+			
+		case NSMiniControlSize:
+			
+			nRect.origin.y -= 2;
+			break;
+			
+		default:
+			break;
+	}
 	
 	return nRect;
 }
@@ -305,20 +398,85 @@ NSImage *cancelButtonImageUp() {
     return textObj;
 }
 
+// TODO: Add proper sizeing for NSSmallControlSize/NSMiniControlSize
 // Change Editing Text Rect
 - (void)editWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject event:(NSEvent *)theEvent {
 	
-	aRect.origin.x += 5;
-	aRect.size.width -= 5;
+	switch ([self controlSize]) {
+			
+		case NSRegularControlSize:
+			
+			aRect.origin.x += 5;
+			aRect.size.width -= 5;
+			break;
+			
+		case NSSmallControlSize:
+			
+			aRect.origin.x += 1;
+			aRect.size.width -= 3;
+			break;
+			
+		case NSMiniControlSize:
+			
+			//aRect.origin.x += 5;
+			//aRect.size.width -= 5;
+			break;
+			
+		default:
+			break;
+	}
+	
 	[super editWithFrame: aRect inView: controlView editor: textObj delegate: anObject event: theEvent];
 }
 
+// TODO: Add proper sizeing for NSSmallControlSize/NSMiniControlSize
 // Chnage the Selected Text Rect
 - (void)selectWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject start:(NSInteger)selStart length:(NSInteger)selLength {
 	
-	aRect.origin.x += 5;
-	aRect.size.width -= 5;
+	switch ([self controlSize]) {
+			
+		case NSRegularControlSize:
+			
+			aRect.origin.x += 5;
+			aRect.size.width -= 5;
+			break;
+			
+		case NSSmallControlSize:
+			
+			aRect.origin.x += 1;
+			aRect.size.width -= 3;
+			break;
+			
+		case NSMiniControlSize:
+			
+			//aRect.origin.x += 5;
+			//aRect.size.width -= 5;
+			break;
+			
+		default:
+			break;
+	}
+	
 	[super selectWithFrame: aRect inView: controlView editor: textObj delegate: anObject start: selStart length: selLength];
+}
+
+-(void)setControlSize:(NSControlSize)size {
+
+	[super setControlSize: size];
+	
+	if([self controlSize] == NSSmallControlSize) {
+		
+		[[[self searchButtonCell] image] setScalesWhenResized: YES];
+		[[[self searchButtonCell] image] setSize: NSMakeSize(12, 12)];
+		[[[self cancelButtonCell] image] setScalesWhenResized: YES];
+		[[[self cancelButtonCell] image] setSize: NSMakeSize(12, 12)];
+	} else if ([self controlSize] == NSMiniControlSize) {
+		
+		[[[self searchButtonCell] image] setScalesWhenResized: YES];
+		[[[self searchButtonCell] image] setSize: NSMakeSize(10, 10)];
+		[[[self cancelButtonCell] image] setScalesWhenResized: YES];
+		[[[self cancelButtonCell] image] setSize: NSMakeSize(10, 10)];
+	}
 }
 
 #pragma mark -
