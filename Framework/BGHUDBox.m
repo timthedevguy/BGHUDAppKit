@@ -171,7 +171,12 @@
 		
 		if(self.useTheme) {
 			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInRect: rect angle: 90];
+			// Issue #16 - Allows a transparent background
+			if(![self isTransparent]) {
+				
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInRect: rect angle: 90];
+			}
+			
 			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
 			NSFrameRect(rect);
 			
@@ -192,12 +197,16 @@
 			[dropShadow setShadowColor: self.shadowColor];
 			[dropShadow setShadowBlurRadius: 5];
 			
-			if(self.flipGradient == 0) {
+			// Issue #16 - Allows a transparent background
+			if(![self isTransparent]) {
 				
-				[gradient drawInRect: rect angle: 270];
-			} else {
-				
-				[gradient drawInRect: rect angle: 90];
+				if(self.flipGradient == 0) {
+					
+					[gradient drawInRect: rect angle: 270];
+				} else {
+					
+					[gradient drawInRect: rect angle: 90];
+				}
 			}
 			
 			[gradient release];

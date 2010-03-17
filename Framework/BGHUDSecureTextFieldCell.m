@@ -69,13 +69,20 @@
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
+- (NSText *)setUpFieldEditorAttributes:(NSText *)textObj {
+	textObj = [super setUpFieldEditorAttributes:textObj];
+	NSColor *textColor = [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor];
+	[(NSTextView *)textObj setInsertionPointColor:textColor];
+	return textObj;
+}
+
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
 	//Adjust Rect
 	cellFrame = NSInsetRect(cellFrame, 0.5f, 0.5f);
 	
 	//Create Path
-	NSBezierPath *path = [[NSBezierPath alloc] init];
+	NSBezierPath *path = [[NSBezierPath new] autorelease];
 	
 	if([self bezelStyle] == NSTextFieldRoundedBezel) {
 		
@@ -109,9 +116,9 @@
 		if([super showsFirstResponder] && [[[self controlView] window] isKeyWindow] && 
 		   ([self focusRingType] == NSFocusRingTypeDefault ||
 			[self focusRingType] == NSFocusRingTypeExterior)) {
-			
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] focusRing] set];
-		}
+			   
+			   [[[[BGThemeManager keyedManager] themeForKey: self.themeKey] focusRing] set];
+		   }
 		
 		//Check State
 		if([self isEnabled]) {
@@ -128,41 +135,71 @@
 		[NSGraphicsContext restoreGraphicsState];
 	}
 	
-	[path release];
-	
 	//Get TextView for this editor
 	NSTextView* view = (NSTextView*)[[controlView window] fieldEditor: NO forObject: controlView];
 	
-	//Get Attributes of the selected text
-	NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];	
-	
 	//If window/app is active draw the highlight/text in active colors
-	if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow])
-	{
-		[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightActiveColor]
-				 forKey: NSBackgroundColorAttributeName];
+	if(![self isHighlighted]) {
 		
-		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]
-					 range: [view selectedRange]];
-	}
-	else
-	{
-		[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightInActiveColor]
-				 forKey: NSBackgroundColorAttributeName];
-		
-		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor]
-					 range: [view selectedRange]];
-	}
-	
-	[view setSelectedTextAttributes:dict];
-	
-	if([self isEnabled]) {
-		
-		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+		if([view selectedRange].length > 0) {
+			
+			//Get Attributes of the selected text
+			NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];	
+			
+			if([[[self controlView] window] isKeyWindow])
+			{
+				[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightActiveColor]
+						 forKey: NSBackgroundColorAttributeName];
+				
+				[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]
+							 range: [view selectedRange]];
+			}
+			else
+			{
+				[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightInActiveColor]
+						 forKey: NSBackgroundColorAttributeName];
+				
+				[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor]
+							 range: [view selectedRange]];
+			}
+			
+			[view setSelectedTextAttributes:dict];
+			dict = nil;
+		} else {
+			
+			// Only change color (marks view as dirty) if it had a selection at some point,
+			// thus changing the colors.
+			if([view textColor] != [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]) {
+				
+				[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+				[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+			}
+		}
 	} else {
 		
-		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
+		if([self isEnabled]) {
+			
+			if([self isHighlighted]) {
+				
+				if([[[self controlView] window] isKeyWindow])
+				{
+					
+					[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]];
+				} else {
+					
+					[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor]];
+				}
+			} else {
+				
+				[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+			}
+		} else {
+			
+			[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
+		}
 	}
+	
+	view = nil;
 	
 	// Check to see if the attributed placeholder has been set or not
 	//if(![self placeholderAttributedString]) {
@@ -207,8 +244,8 @@
 			break;
 	}
 	
-	[self drawInteriorWithFrame: cellFrame inView: controlView];
-}
+	//NSLog(@"Inside Draw With Frame");
+	[self drawInteriorWithFrame: cellFrame inView: controlView];}
 
 -(void)drawInteriorWithFrame:(NSRect) cellFrame inView:(NSView *) controlView {
 	
