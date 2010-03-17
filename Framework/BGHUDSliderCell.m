@@ -107,7 +107,7 @@
 	// Prevent drawing outside the rectangle to prevent ghost lines
 	// when moving the slider
 	// The ghost lines appear because of the shadow in highlight
-	NSBezierPath *clipPath = [[NSBezierPath alloc] init];
+	NSBezierPath *clipPath = [[NSBezierPath new] autorelease];
 	[clipPath appendBezierPathWithRect:aRect];
 	[clipPath setClip];
 	
