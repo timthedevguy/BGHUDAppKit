@@ -56,6 +56,13 @@
 	return self;
 }
 
+- (void) dealloc
+{
+	[themeKey release];
+	[super dealloc];
+}
+
+
 -(id)initWithCoder:(NSCoder *)aDecoder {
 	
 	self = [super initWithCoder: aDecoder];
