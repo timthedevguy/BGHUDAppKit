@@ -327,4 +327,10 @@
 	return flag;
 }
 
+-(void)dealloc {
+	
+	[themeKey release];
+	[super dealloc];
+}
+
 @end

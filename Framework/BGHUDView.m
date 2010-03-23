@@ -273,6 +273,7 @@
 
 -(void)dealloc {
 	
+	[themeKey release];
 	[color1 release];
 	[color2 release];
 	[customGradient release];

@@ -290,8 +290,12 @@
 		
 		[path release];
 	}
+}
+
+-(void)dealloc {
 	
-	
+	[themeKey release];
+	[super dealloc];
 }
 
 @end
