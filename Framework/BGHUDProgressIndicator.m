@@ -220,7 +220,7 @@
 
 -(void)dealloc {
 	
-	[themeKey release];
+	 
 	[progressPath release];
 	[super dealloc];
 }

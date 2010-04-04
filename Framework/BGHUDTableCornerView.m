@@ -36,7 +36,7 @@
 
 -(void)dealloc {
 	
-	[themeKey release];
+	 
 	[super dealloc];
 }
 

@@ -484,7 +484,7 @@ NSImage *cancelButtonImageUp() {
 
 -(void)dealloc {
 	
-	[themeKey release];
+	 
 	[super dealloc];
 }
 
