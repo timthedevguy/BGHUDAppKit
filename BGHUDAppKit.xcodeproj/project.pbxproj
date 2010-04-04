@@ -1024,6 +1024,97 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3D9BABBF1166D18F008CEA8B /* Release_10.6_10.5_32_64_GC_embed */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Release_10.6_10.5_32_64_GC_embed;
+		};
+		3D9BABC01166D18F008CEA8B /* Release_10.6_10.5_32_64_GC_embed */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				PRODUCT_NAME = All;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Release_10.6_10.5_32_64_GC_embed;
+		};
+		3D9BABC11166D18F008CEA8B /* Release_10.6_10.5_32_64_GC_embed */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/BGHUDAppKit.framework/Resources/";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					$inherited,
+					$FRAMEWORK_SEARCH_PATHS_QUOTED_2,
+					$FRAMEWORK_SEARCH_PATHS_QUOTED_1,
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(HOME)/Library/Frameworks/\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(DEVELOPER_DIR)/Library/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(BUILD_DIR)/$(CONFIGURATION)\"";
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BGHUDAppKitPlugin_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "@loader_path/../Frameworks";
+				PRODUCT_NAME = BGHUDAppKitPlugin;
+				WRAPPER_EXTENSION = ibplugin;
+			};
+			name = Release_10.6_10.5_32_64_GC_embed;
+		};
+		3D9BABC21166D18F008CEA8B /* Release_10.6_10.5_32_64_GC_embed */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "BGHUDAppKitFramework-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
+				OTHER_LDFLAGS = (
+					"-seg1addr",
+					0xb0000000,
+				);
+				PRODUCT_NAME = BGHUDAppKit;
+				SEPARATE_STRIP = YES;
+				SKIP_INSTALL = NO;
+				STRIP_INSTALLED_PRODUCT = YES;
+			};
+			name = Release_10.6_10.5_32_64_GC_embed;
+		};
+		3D9BABC31166D18F008CEA8B /* Release_10.6_10.5_32_64_GC_embed */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = "Static Analysis";
+				ZERO_LINK = NO;
+			};
+			name = Release_10.6_10.5_32_64_GC_embed;
+		};
 		C056398008A954F8003078D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1244,6 +1335,7 @@
 			buildConfigurations = (
 				C056398008A954F8003078D8 /* Debug */,
 				C056398108A954F8003078D8 /* Release */,
+				3D9BABC21166D18F008CEA8B /* Release_10.6_10.5_32_64_GC_embed */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1253,6 +1345,7 @@
 			buildConfigurations = (
 				C056398408A954F8003078D8 /* Debug */,
 				C056398508A954F8003078D8 /* Release */,
+				3D9BABC11166D18F008CEA8B /* Release_10.6_10.5_32_64_GC_embed */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1262,6 +1355,7 @@
 			buildConfigurations = (
 				C056398808A954F8003078D8 /* Debug */,
 				C056398908A954F8003078D8 /* Release */,
+				3D9BABC01166D18F008CEA8B /* Release_10.6_10.5_32_64_GC_embed */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1271,6 +1365,7 @@
 			buildConfigurations = (
 				C056398C08A954F8003078D8 /* Debug */,
 				C056398D08A954F8003078D8 /* Release */,
+				3D9BABBF1166D18F008CEA8B /* Release_10.6_10.5_32_64_GC_embed */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1280,6 +1375,7 @@
 			buildConfigurations = (
 				E7FDEAFC0FC784AC0014A745 /* Debug */,
 				E7FDEAFD0FC784AC0014A745 /* Release */,
+				3D9BABC31166D18F008CEA8B /* Release_10.6_10.5_32_64_GC_embed */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
