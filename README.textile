@@ -2,7 +2,7 @@ h2. About
 
 BGHUDAppKit 
 Tim Davis @ BinaryMethod.com
-"Homepage":http://www.binarymethod.com/?page_id=7
+"Homepage":http://www.binarymethod.com/bghudappkit
 
 The missing OS X Leopard/Snow Leopard HUD controls.
 
@@ -11,7 +11,7 @@ BGHUDAppKit is a small framework I designed to fill the gap left by Apple when t
 Project is hosted on "GitHub":http://github.com/binarygod/BGHUDAppKit/tree/master
 Public GIT Clone URL: git://github.com/binarygod/BGHUDAppKit.git
 
-!http://www.binarymethod.com/wp-content/uploads/2010/01/BGHUDAppKit-Clear.png!
+!http://www.binarymethod.com/images/BGHUDAppKit-Clear.png!
 
 h2. Requirements
 
@@ -78,7 +78,7 @@ Making the controls use this theme is even easier.  In IB a new inspector panel	
 		
 Hint: Controls that are a combination of two controls, such as NSOutlineView, NSTableView, will have to have the theme set for the ScrollView and the underlying object, in the example above they would be OutlineView, and TableView respectively.
 
-!http://www.binarymethod.com/wp-content/uploads/2010/01/AppKit-ThemeSample.png!
+!http://www.binarymethod.com/images/AppKit-ThemeSample.png!
 
 h2. Shrinking
 
