@@ -104,7 +104,7 @@
 }
 
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-	
+	NSLog(@"Draw");
 	//Adjust Rect
 	cellFrame = NSInsetRect(cellFrame, 0.5f, 0.5f);
 	
@@ -276,7 +276,7 @@
 }
 
 -(void)drawInteriorWithFrame:(NSRect) cellFrame inView:(NSView *) controlView {
-
+	
 	[super drawInteriorWithFrame: cellFrame inView: controlView];
 }
 
@@ -289,6 +289,7 @@
 
 -(void)dealloc {
 	
+	 
 	[super dealloc];
 }
 

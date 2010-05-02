@@ -484,6 +484,7 @@ NSImage *cancelButtonImageUp() {
 
 -(void)dealloc {
 	
+	 
 	[super dealloc];
 }
 

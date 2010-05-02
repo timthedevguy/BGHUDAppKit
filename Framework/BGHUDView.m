@@ -273,6 +273,7 @@
 
 -(void)dealloc {
 	
+	 
 	[color1 release];
 	[color2 release];
 	[customGradient release];

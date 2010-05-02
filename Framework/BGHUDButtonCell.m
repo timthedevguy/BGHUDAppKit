@@ -55,7 +55,7 @@
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
 	
-	self = [super initWithCoder: aDecoder];
+	self = (BGHUDButtonCell *)[super initWithCoder: aDecoder];
 	
 	if(self) {
 		
@@ -117,7 +117,7 @@
 	}
 }
 
-- (NSRect)drawTitle:(NSAttributedString *)title withFrame:(NSRect)frame inView:(NSView *)controlView {
+-(NSRect)drawTitle:(NSAttributedString *)title withFrame:(NSRect)frame inView:(NSView *)controlView {
 	
 	NSRect textRect = frame;
 	
@@ -195,7 +195,7 @@
 	return textRect;
 }
 
-- (void)drawImage:(NSImage *)image withFrame:(NSRect)frame inView:(NSView *)controlView {
+-(void)drawImage:(NSImage *)image withFrame:(NSRect)frame inView:(NSView *)controlView {
 	
 	if([image isTemplate]) {
 		
@@ -989,9 +989,6 @@
 
 -(void)dealloc {
 	
-	/*if(themeManager) {
-	 [themeManager release];
-	 }*/
 	[super dealloc];
 }
 

@@ -220,6 +220,7 @@
 
 -(void)dealloc {
 	
+	 
 	[progressPath release];
 	[super dealloc];
 }

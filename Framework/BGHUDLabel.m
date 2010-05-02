@@ -103,4 +103,10 @@
 	[super drawRect: rect];
 }
 
+-(void)dealloc {
+	
+	 
+	[super dealloc];
+}
+
 @end
