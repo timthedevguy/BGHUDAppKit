@@ -79,6 +79,16 @@
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
+-(id)copyWithZone:(NSZone *) zone {
+	
+	BGHUDSegmentedCell *copy = [super copyWithZone: zone];
+	
+	copy->themeKey = nil;
+	[copy setThemeKey: [self themeKey]];
+	
+	return copy;
+}
+
 -(NSSegmentStyle)segmentStyle {
 	
 	return [super segmentStyle];
@@ -329,7 +339,7 @@
 
 -(void)dealloc {
 	
-	 
+	[themeKey release];
 	[super dealloc];
 }
 

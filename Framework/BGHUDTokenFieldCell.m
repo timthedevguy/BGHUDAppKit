@@ -95,6 +95,16 @@
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
+-(id)copyWithZone:(NSZone *) zone {
+	
+	BGHUDTokenFieldCell *copy = [super copyWithZone: zone];
+	
+	copy->themeKey = nil;
+	[copy setThemeKey: [self themeKey]];
+	
+	return copy;
+}
+
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
 	//Adjust Rect
@@ -219,7 +229,7 @@
 
 -(void)dealloc {
 	
-	 
+	[themeKey release];
 	[super dealloc];
 }
 

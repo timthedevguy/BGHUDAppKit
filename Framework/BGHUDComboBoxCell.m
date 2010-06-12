@@ -40,7 +40,7 @@
 
 #pragma mark Drawing Functions
 
-- (id)initTextCell:(NSString *)aString {
+-(id)initTextCell:(NSString *) aString {
 	
 	self = [super initTextCell: aString];
 	
@@ -60,33 +60,43 @@
 	return self;
 }
 
--(id)initWithCoder:(NSCoder *)aDecoder {
+-(id)initWithCoder:(NSCoder *) aDecoder {
 	
-	self = [super initWithCoder: aDecoder];
-	
-	if(self) {
+	if((self = [super initWithCoder: aDecoder])) {
 		
 		if([aDecoder containsValueForKey: @"themeKey"]) {
 			
 			self.themeKey = [aDecoder decodeObjectForKey: @"themeKey"];
+			
 		} else {
+			
 			self.themeKey = @"gradientTheme";
 		}
-	
+		
 		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
 	}
 	
 	return self;
 }
 
--(void)encodeWithCoder: (NSCoder *)coder {
+-(void)encodeWithCoder: (NSCoder *) coder {
 	
 	[super encodeWithCoder: coder];
 	
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
-- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+-(id)copyWithZone:(NSZone *) zone {
+
+	BGHUDComboBoxCell *copy = [super copyWithZone: zone];
+	
+	copy->themeKey = nil;
+	[copy setThemeKey: [self themeKey]];
+	
+	return copy;
+}
+
+-(void)drawWithFrame:(NSRect) cellFrame inView:(NSView *) controlView {
 	
 	//Adjust Rect
 	cellFrame = NSInsetRect(cellFrame, 1.5f, 1.5f);
@@ -197,8 +207,7 @@
 	[super drawInteriorWithFrame: frame inView: controlView];
 }
 
--(void)drawButtonInRect:(NSRect) frame
-{
+-(void)drawButtonInRect:(NSRect) frame {
 	NSBezierPath *path = [[NSBezierPath alloc] init];
 	
 	
@@ -239,8 +248,7 @@
 	[path release];
 }
 
-
-- (void)drawArrowsInRect:(NSRect) frame {
+-(void)drawArrowsInRect:(NSRect) frame {
 	
 
 	
@@ -306,7 +314,7 @@
 
 -(void)dealloc {
 	
-	 
+	[themeKey release];
 	[super dealloc];
 }
 

@@ -95,6 +95,16 @@
 	[aCoder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
+-(id)copyWithZone:(NSZone *) zone {
+	
+	BGHUDTextFieldCell *copy = [super copyWithZone: zone];
+	
+	copy->themeKey = nil;
+	[copy setThemeKey: [self themeKey]];
+	
+	return copy;
+}
+
 - (NSText *)setUpFieldEditorAttributes:(NSText *)textObj {
 	
 	NSText *newText = [[NSText alloc] init];
@@ -290,7 +300,7 @@
 
 -(void)dealloc {
 	
-	 
+	[themeKey release];
 	[super dealloc];
 }
 

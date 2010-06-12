@@ -77,9 +77,19 @@
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
+-(id)copyWithZone:(NSZone *) zone {
+	
+	BGHUDSliderCell *copy = [super copyWithZone: zone];
+	
+	copy->themeKey = nil;
+	[copy setThemeKey: [self themeKey]];
+	
+	return copy;
+}
+
 -(void)dealloc {
 	
-	 
+	[themeKey release];
 	[super dealloc];
 }
 

@@ -78,6 +78,16 @@
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
+-(id)copyWithZone:(NSZone *) zone {
+	
+	BGHUDButtonCell *copy = [super copyWithZone: zone];
+	
+	copy->themeKey = nil;
+	[copy setThemeKey: [self themeKey]];
+	
+	return copy;
+}
+
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
 	// Make sure our own height is right, and not using
@@ -700,6 +710,7 @@
 		
 		NSMatrix* matrix = (NSMatrix*)[self controlView];
 		frame.origin.y += (BGCenterY([matrix bounds]) / [matrix numberOfRows]) - BGCenterY(frame);
+		//frame.origin.x += 40;
 		
 	} else if(![[[self controlView] className] isEqualToString: @"BGHUDTableView"] &&
 			![[[self controlView] className] isEqualToString: @"BGHUDOutlineView"]) {
@@ -989,6 +1000,7 @@
 
 -(void)dealloc {
 	
+	[themeKey release];
 	[super dealloc];
 }
 

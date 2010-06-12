@@ -67,6 +67,16 @@
 	//[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
+-(id)copyWithZone:(NSZone *) zone {
+	
+	BGHUDTableViewHeaderCell *copy = [super copyWithZone: zone];
+	
+	copy->themeKey = nil;
+	[copy setThemeKey: [self themeKey]];
+	
+	return copy;
+}
+
 - (id)textColor {
 	
 	return [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor];
@@ -185,7 +195,7 @@
 
 -(void)dealloc {
 	
-	 
+	[themeKey release];
 	[super dealloc];
 }
 

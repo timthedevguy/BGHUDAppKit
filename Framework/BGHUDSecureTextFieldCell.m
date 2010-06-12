@@ -69,6 +69,16 @@
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
+-(id)copyWithZone:(NSZone *) zone {
+	
+	BGHUDSecureTextFieldCell *copy = [super copyWithZone: zone];
+	
+	copy->themeKey = nil;
+	[copy setThemeKey: [self themeKey]];
+	
+	return copy;
+}
+
 - (NSText *)setUpFieldEditorAttributes:(NSText *)textObj {
 	textObj = [super setUpFieldEditorAttributes:textObj];
 	NSColor *textColor = [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor];
@@ -257,7 +267,7 @@
 
 -(void)dealloc {
 	
-	 
+	[themeKey release];
 	[super dealloc];
 }
 
