@@ -120,7 +120,7 @@
 	// The ghost lines appear because of the shadow in highlight
 	NSBezierPath *clipPath = [[NSBezierPath new] autorelease];
 	[clipPath appendBezierPathWithRect:aRect];
-	[clipPath setClip];
+	[clipPath addClip];
 	
 	if([self sliderType] == NSLinearSlider) {
 		
