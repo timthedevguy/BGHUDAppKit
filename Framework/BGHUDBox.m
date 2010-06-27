@@ -294,6 +294,7 @@
 	[customGradient release];
 	[borderColor release];
 	[shadowColor release];
+	[themeKey release];
 	[super dealloc];
 }
 

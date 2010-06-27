@@ -95,16 +95,27 @@
 	[aCoder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
-- (NSText *)setUpFieldEditorAttributes:(NSText *)textObj;
-{
-	textObj = [super setUpFieldEditorAttributes:textObj];
+-(id)copyWithZone:(NSZone *) zone {
+	
+	BGHUDTextFieldCell *copy = [super copyWithZone: zone];
+	
+	copy->themeKey = nil;
+	[copy setThemeKey: [self themeKey]];
+	
+	return copy;
+}
+
+- (NSText *)setUpFieldEditorAttributes:(NSText *)textObj {
+	
+	NSText *newText = [[NSText alloc] init];
+	newText = [super setUpFieldEditorAttributes: textObj];
 	NSColor *textColor = [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor];
-	[(NSTextView *)textObj setInsertionPointColor:textColor];
-	return textObj;
+	[(NSTextView *)newText setInsertionPointColor:textColor];
+	return newText;
 }
 
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-	NSLog(@"Draw");
+
 	//Adjust Rect
 	cellFrame = NSInsetRect(cellFrame, 0.5f, 0.5f);
 	
@@ -289,7 +300,7 @@
 
 -(void)dealloc {
 	
-	 
+	[themeKey release];
 	[super dealloc];
 }
 

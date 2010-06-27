@@ -76,6 +76,16 @@
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
+-(id)copyWithZone:(NSZone *) zone {
+	
+	BGHUDPopUpButtonCell *copy = [super copyWithZone: zone];
+	
+	copy->themeKey = nil;
+	[copy setThemeKey: [self themeKey]];
+	
+	return copy;
+}
+
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
 	NSRect frame = cellFrame;
@@ -548,7 +558,7 @@
 
 -(void)dealloc {
 	
-	 
+	[themeKey release]; 
 	[super dealloc];
 }
 

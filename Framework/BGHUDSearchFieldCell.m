@@ -170,6 +170,16 @@ NSImage *cancelButtonImageUp() {
 	return self;
 }
 
+-(id)copyWithZone:(NSZone *) zone {
+	
+	BGHUDSearchFieldCell *copy = [super copyWithZone: zone];
+	
+	copy->themeKey = nil;
+	[copy setThemeKey: [self themeKey]];
+	
+	return copy;
+}
+
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
 	
 	//Adjust Rect
@@ -484,7 +494,7 @@ NSImage *cancelButtonImageUp() {
 
 -(void)dealloc {
 	
-	 
+	[themeKey release];
 	[super dealloc];
 }
 
