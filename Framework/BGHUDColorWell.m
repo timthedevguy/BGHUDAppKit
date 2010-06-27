@@ -96,7 +96,11 @@
 
 	if (isBeingDecoded)
 		return;
-	
+
+	// rect in parameter is the clip region, could be part of the bounds
+	// We want to draw the whole bound without clip region optimization
+	rect = [self bounds];
+
 	if([self isActive]) {
 		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInRect: rect angle: 270];
