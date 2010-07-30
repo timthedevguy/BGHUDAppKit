@@ -37,35 +37,19 @@
 
 @implementation BGThemeManager
 
-static BGThemeManager *keyedManager = nil;
+static BGThemeManager *sharedThemeManager = nil;
 
 + (BGThemeManager *)keyedManager;
 {
-    @synchronized(self) {
-		
-        if (keyedManager == nil) {
-			
-            [[self alloc] init];
-        }
+    if (sharedThemeManager == nil) {
+        sharedThemeManager = [[super allocWithZone:NULL] init];
     }
-    return keyedManager;
+    return sharedThemeManager;
 }
 
 + (id)allocWithZone:(NSZone *)zone;
 {
-    @synchronized(self) {
-		
-        if (keyedManager == nil) {
-			
-            keyedManager = [super allocWithZone: zone];
-			
-			[keyedManager initDefaultThemes];
-
-            return keyedManager;
-        }
-    }
-	
-    return nil;
+    return [[self keyedManager] retain];
 }
 
 -(void)initDefaultThemes {
