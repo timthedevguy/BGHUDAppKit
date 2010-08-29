@@ -44,22 +44,6 @@
 
 #pragma mark Drawing Functions
 
-/*-(id)initWithCoder:(NSCoder *) aDecoder {
-	
-	if((self = [super initWithCoder: aDecoder])) {
-		
-		if([aDecoder containsValueForKey: @"themeKey"]) {
-			
-			self.themeKey = [aDecoder decodeObjectForKey: @"themeKey"];
-		} else {
-			
-			self.themeKey = @"gradientTheme";
-		}
-	}
-	
-	return self;
-}*/
-
 -(void)encodeWithCoder: (NSCoder *)coder {
 	
 	[super encodeWithCoder: coder];
@@ -108,44 +92,19 @@
 	frame.origin.y -= 1;
 	frame.size.height += 2;
 	
-	if ([self respondsToSelector:@selector(_drawSortIndicatorIfNecessaryWithFrame:inView:)])
-		[super _drawSortIndicatorIfNecessaryWithFrame: frame inView: view];
+	// REMOVED - Enabling this line draws two sort arrows, frame alignment issue here.
+	//			 Not needed since the Apple drawing routines seem to be updating sort
+	//			 arrows fine.
+	/*if ([self respondsToSelector:@selector(_drawSortIndicatorIfNecessaryWithFrame:inView:)])
+		[super _drawSortIndicatorIfNecessaryWithFrame: frame inView: view];*/
 	
 	frame.origin.y += (NSMidY(frame) - ([[self font] pointSize] /2)) - 2;
 	frame.origin.x += 3;
 	
+	
+	
 	[super drawInteriorWithFrame: frame inView: view];
 }
-
-/*- (void)drawWithFrame:(NSRect)frame inView:(NSView*)view {
-	
-	//Draw base layer
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellBorderColor] set];
-	NSRectFill(frame);
-	
-	//Adjust fill layer
-	frame.origin.x += 1;
-	frame.size.width -= 1;
-	frame.origin.y +=1;
-	frame.size.height -= 2;
-	
-	if([self isHighlighted]) {
-		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellSelectedFill] drawInRect: frame angle: 90];
-	} else {
-		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellNormalFill] drawInRect: frame angle: 90];
-	}
-	
-	//Adjust so text aligns correctly
-	frame.origin.x -= 1;
-	frame.size.width += 1;
-	frame.origin.y -= 1;
-	frame.size.height += 2;
-	
-	[super _drawSortIndicatorIfNecessaryWithFrame: frame inView: view];
-	[super drawInteriorWithFrame: frame inView: view];
-}*/
 
 - (void)drawSortIndicatorWithFrame:(NSRect) frame inView:(id) controlView ascending:(BOOL) ascFlag priority:(NSInteger) priInt {
 	
@@ -154,14 +113,18 @@
 	
 	if(priInt == 0) {
 		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] tableHeaderCellSelectedFill] drawInRect: frame angle: 90];
-		
 		NSRect arrowRect = [self sortIndicatorRectForBounds: frame];
+		
+		// Adjust Arrow rect
+		arrowRect.size.width -= 2;
+		arrowRect.size.height -= 1;
+		
 		NSBezierPath *arrow = [[NSBezierPath alloc] init];
 		NSPoint points[3];
 		
 		if(ascFlag == NO) {
-			
+			// Re-center arrow
+			arrowRect.origin.y -= 2;
 			points[0] = NSMakePoint(NSMinX(arrowRect), NSMinY(arrowRect) +2);
 			points[1] = NSMakePoint(NSMaxX(arrowRect), NSMinY(arrowRect) +2);
 			points[2] = NSMakePoint(NSMidX(arrowRect), NSMaxY(arrowRect));
@@ -186,8 +149,6 @@
 	
 	frame.origin.y += 1;
 	frame.size.height -= 2;
-
-	//[super drawInteriorWithFrame: frame inView: controlView];
 }
 
 #pragma mark -
