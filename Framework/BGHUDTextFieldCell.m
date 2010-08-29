@@ -243,12 +243,43 @@
 	//if(![self placeholderAttributedString]) {
 	if(![self placeholderAttributedString] && [self placeholderString]) {
 		
-		//Nope lets create it
+		NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+		
+		// Set the paragraph style
+		[style setAlignment: [self alignment]];
+		
+		//Attributed string doesn't exist lets create it
 		NSDictionary *attribs = [[NSDictionary alloc] initWithObjectsAndKeys: 
-								 [[[BGThemeManager keyedManager] themeForKey: self.themeKey] placeholderTextColor] , NSForegroundColorAttributeName, nil];
+								 [[[BGThemeManager keyedManager] themeForKey: self.themeKey] placeholderTextColor] , NSForegroundColorAttributeName, 
+								 style, NSParagraphStyleAttributeName, nil];
+		
+		[style release];
 		
 		//Set it
 		[self setPlaceholderAttributedString: [[[NSAttributedString alloc] initWithString: [self placeholderString] attributes: [attribs autorelease]] autorelease]];
+	} else {
+		
+		// Check to see if the proper styles have been applied
+		if([[self placeholderAttributedString] attribute: NSParagraphStyleAttributeName atIndex: 1 effectiveRange: nil] != [self alignment]) {
+	
+			NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+			
+			// Set the paragraph style
+			[style setAlignment: [self alignment]];
+			
+			// Get current attr string
+			NSMutableAttributedString *adjPlaceholder = [[NSMutableAttributedString alloc] initWithAttributedString: [self placeholderAttributedString]];
+			
+			// Add style attr
+			[adjPlaceholder addAttribute: NSParagraphStyleAttributeName value: style range: NSMakeRange(0,[adjPlaceholder length])];
+			
+			// Reset Placeholder to correct placeholder
+			[self setPlaceholderAttributedString: adjPlaceholder];
+			
+			// Cleanup
+			[style release];
+			[adjPlaceholder release];
+		}
 	}
 	
 	//Adjust Frame so Text Draws correctly
@@ -286,10 +317,10 @@
 	[self drawInteriorWithFrame: cellFrame inView: controlView];
 }
 
--(void)drawInteriorWithFrame:(NSRect) cellFrame inView:(NSView *) controlView {
+/*-(void)drawInteriorWithFrame:(NSRect) cellFrame inView:(NSView *) controlView {
 	
 	[super drawInteriorWithFrame: cellFrame inView: controlView];
-}
+}*/
 
 -(void)_drawKeyboardFocusRingWithFrame:(NSRect)fp8 inView:(id)fp24 {
 	
