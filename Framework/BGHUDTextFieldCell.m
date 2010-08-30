@@ -4,10 +4,10 @@
 //
 //  Created by BinaryGod on 6/2/08.
 //
-//  Copyright (c) 2008, Tim Davis (BinaryMethod.com, binary.god@gmail.com)
+//		Copyright (c) 2008, Tim Davis (BinaryMethod.com, binary.god@gmail.com)
 //  All rights reserved.
 //
-//  Redistribution and use in source and binary forms, with or without modification,
+//		Redistribution and use in source and binary forms, with or without modification,
 //  are permitted provided that the following conditions are met:
 //
 //		Redistributions of source code must retain the above copyright notice, this
@@ -31,6 +31,11 @@
 //	WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 //	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 //	POSSIBILITY OF SUCH DAMAGE.
+//
+//  History
+//	
+//		8/30/2010 - Fixed placeholder alignment not rendering while in design view,
+//					provided by [tylerb](GitHub).
 
 #import "BGHUDTextFieldCell.h"
 
@@ -257,10 +262,10 @@
 		
 		//Set it
 		[self setPlaceholderAttributedString: [[[NSAttributedString alloc] initWithString: [self placeholderString] attributes: [attribs autorelease]] autorelease]];
-	} else {
+	} else if([self placeholderAttributedString]) {
 		
 		// Check to see if the proper styles have been applied
-		if([[self placeholderAttributedString] attribute: NSParagraphStyleAttributeName atIndex: 1 effectiveRange: nil] != [self alignment]) {
+		if([[[self placeholderAttributedString] attribute: NSParagraphStyleAttributeName atIndex: 1 effectiveRange: nil] alignment] != [self alignment]) {
 	
 			NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
 			

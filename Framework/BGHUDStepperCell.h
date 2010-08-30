@@ -3,7 +3,9 @@
 //  BGHUDAppKit
 //
 //  Created by BinaryGod on 4/6/09.
-//  Copyright 2009 Sastira. All rights reserved.
+//
+//  Copyright 2009 Tyler Bunnell and Steve Audette
+//	All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification,
 //  are permitted provided that the following conditions are met:
