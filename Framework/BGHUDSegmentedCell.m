@@ -140,7 +140,10 @@
 	[NSGraphicsContext saveGraphicsState];
 	
 	//Set Shadow + Border Color
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
+	if([self isEnabled])
+	{
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
+	}
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
 	
 	//Draw Border + Shadow
@@ -220,14 +223,24 @@
 	}
 	
 	//Fill our pathss
-	if([self selectedSegment] == segment) {
-		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInBezierPath: fillPath angle: 90];
-	} else {
-		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInBezierPath: fillPath angle: 90];
+	
+	NSGradient *gradient = nil;
+	
+	if([self isEnabled])
+	{
+		if([self selectedSegment] == segment) {
+			
+			gradient = [[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient];
+		} else {
+			
+			gradient = [[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient];
+		}
+	}
+	else {
+		gradient = [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledNormalGradient];
 	}
 	
+	[gradient drawInBezierPath: fillPath angle: 90];
 	[fillPath release];
 	
 	//Draw Segment dividers ONLY if they are
@@ -251,7 +264,14 @@
 	NSMutableDictionary *textAttributes = [[NSMutableDictionary alloc] initWithCapacity: 0];
 	
 	[textAttributes setValue: [NSFont controlContentFontOfSize: [NSFont systemFontSizeForControlSize: [self controlSize]]] forKey: NSFontAttributeName];
-	[textAttributes setValue: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor] forKey: NSForegroundColorAttributeName];
+	if([self isEnabled])
+	{
+		[textAttributes setValue: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor] forKey: NSForegroundColorAttributeName];
+	}
+	else {
+		[textAttributes setValue:[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor] forKey: NSForegroundColorAttributeName];
+	}
+
 	
 	if([self labelForSegment: segment]) {
 		
