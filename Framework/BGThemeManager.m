@@ -43,6 +43,7 @@ static BGThemeManager *sharedThemeManager = nil;
 {
     if (sharedThemeManager == nil) {
         sharedThemeManager = [[super allocWithZone:NULL] init];
+		[sharedThemeManager initDefaultThemes];
     }
     return sharedThemeManager;
 }

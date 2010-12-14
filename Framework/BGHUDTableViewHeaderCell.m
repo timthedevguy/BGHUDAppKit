@@ -73,7 +73,7 @@
 	NSRectFill(frame);
 	
 	//Adjust fill layer
-	frame.origin.x += 1;
+	//frame.origin.x += 1;	- Removed to fix Issue #31
 	frame.size.width -= 1;
 	frame.origin.y +=1;
 	frame.size.height -= 2;
