@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">10C540</string>
-		<string key="IBDocument.InterfaceBuilderVersion">740</string>
-		<string key="IBDocument.AppKitVersion">1038.25</string>
-		<string key="IBDocument.HIToolboxVersion">458.00</string>
+		<string key="IBDocument.SystemVersion">10F569</string>
+		<string key="IBDocument.InterfaceBuilderVersion">804</string>
+		<string key="IBDocument.AppKitVersion">1038.29</string>
+		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
@@ -15,8 +15,8 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>740</string>
-				<string>740</string>
+				<string>804</string>
+				<string>804</string>
 			</object>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
@@ -53,29 +53,78 @@
 				<int key="NSvFlags">268</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBLibraryObjectTemplate" id="1002">
+					<object class="NSButton" id="232111774">
+						<reference key="NSNextResponder" ref="1000"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{906, 514}, {64, 25}}</string>
+						<reference key="NSSuperview" ref="1000"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSButtonCell" key="NSCell" id="430156221">
+							<int key="NSCellFlags">67239424</int>
+							<int key="NSCellFlags2">0</int>
+							<string key="NSContents">Radio</string>
+							<object class="NSFont" key="NSSupport" id="1007">
+								<string key="NSName">LucidaGrande</string>
+								<double key="NSSize">13</double>
+								<int key="NSfFlags">1044</int>
+							</object>
+							<reference key="NSControlView" ref="232111774"/>
+							<int key="NSButtonFlags">1211912447</int>
+							<int key="NSButtonFlags2">2</int>
+							<object class="NSCustomResource" key="NSNormalImage" id="241137107">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">NSRadioButton</string>
+							</object>
+							<string key="NSAlternateContents"/>
+							<string key="NSKeyEquivalent"/>
+							<int key="NSPeriodicDelay">200</int>
+							<int key="NSPeriodicInterval">25</int>
+						</object>
+					</object>
+					<object class="NSButton" id="350914716">
+						<reference key="NSNextResponder" ref="1000"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{906, 541}, {64, 25}}</string>
+						<reference key="NSSuperview" ref="1000"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSButtonCell" key="NSCell" id="600840850">
+							<int key="NSCellFlags">67239424</int>
+							<int key="NSCellFlags2">0</int>
+							<string key="NSContents">Check</string>
+							<reference key="NSSupport" ref="1007"/>
+							<reference key="NSControlView" ref="350914716"/>
+							<int key="NSButtonFlags">1211912447</int>
+							<int key="NSButtonFlags2">2</int>
+							<object class="NSCustomResource" key="NSNormalImage" id="333304683">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">NSSwitch</string>
+							</object>
+							<string key="NSAlternateContents"/>
+							<string key="NSKeyEquivalent"/>
+							<int key="NSPeriodicDelay">200</int>
+							<int key="NSPeriodicInterval">25</int>
+						</object>
+					</object>
+					<object class="IBLibraryObjectTemplate" id="735522835">
 						<reference key="NSNextResponder" ref="1000"/>
 						<int key="NSvFlags">268</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="NSButton" id="919617951">
-								<reference key="NSNextResponder" ref="1002"/>
+							<object class="NSButton" id="144711472">
+								<reference key="NSNextResponder" ref="735522835"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{16, 22}, {48, 32}}</string>
-								<reference key="NSSuperview" ref="1002"/>
+								<string key="NSFrame">{{16, 27}, {48, 25}}</string>
+								<reference key="NSSuperview" ref="735522835"/>
 								<bool key="NSEnabled">YES</bool>
-								<object class="NSButtonCell" key="NSCell" id="846483809">
+								<object class="NSButtonCell" key="NSCell" id="111982083">
 									<int key="NSCellFlags">67239424</int>
-									<int key="NSCellFlags2">134217728</int>
+									<int key="NSCellFlags2">0</int>
 									<string key="NSContents"/>
-									<object class="NSFont" key="NSSupport" id="1007">
-										<string key="NSName">LucidaGrande</string>
-										<double key="NSSize">13</double>
-										<int key="NSfFlags">1044</int>
-									</object>
-									<reference key="NSControlView" ref="919617951"/>
-									<int key="NSButtonFlags">-2038284033</int>
-									<int key="NSButtonFlags2">129</int>
+									<reference key="NSSupport" ref="1007"/>
+									<reference key="NSControlView" ref="144711472"/>
+									<int key="NSButtonFlags">1215582463</int>
+									<int key="NSButtonFlags2">2</int>
+									<reference key="NSNormalImage" ref="241137107"/>
 									<string key="NSAlternateContents"/>
 									<string key="NSKeyEquivalent"/>
 									<int key="NSPeriodicDelay">200</int>
@@ -83,14 +132,14 @@
 								</object>
 							</object>
 						</object>
-						<string key="NSFrame">{{15, 485}, {80, 80}}</string>
+						<string key="NSFrame">{{802, 400}, {80, 80}}</string>
 						<reference key="NSSuperview" ref="1000"/>
-						<string key="label">HUD Push Button</string>
-						<string key="identifier">9A458614-9290-48E0-957B-FCF32C621238</string>
-						<string key="briefDescription">Push Style Button</string>
+						<string key="label">HUD Gradient Radio Button</string>
+						<string key="identifier">A3ACE6FE-EAA3-4F31-BF19-440CF2BB262E</string>
+						<string key="briefDescription">Gradient Style Radio Button</string>
 						<object class="NSAttributedString" key="fullDescription">
-							<string key="NSString">This is a standard HUD push style button.</string>
-							<object class="NSDictionary" key="NSAttributes" id="1023837443">
+							<string key="NSString">This is a standard HUD gradient style Radio Button.</string>
+							<object class="NSDictionary" key="NSAttributes" id="175948869">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSArray" key="dict.sortedKeys">
 									<bool key="EncodedWithXMLCoder">YES</bool>
@@ -110,6 +159,95 @@
 									</object>
 								</object>
 							</object>
+						</object>
+						<string key="initialCategoryPath">Views &amp; Cells/Buttons</string>
+						<nil key="draggableView"/>
+						<nil key="draggedView"/>
+						<nil key="representedObject"/>
+						<nil key="filterableNames"/>
+						<nil key="subtitle"/>
+						<int key="animationScalingMode">0</int>
+						<bool key="representativeTemplateForClass">NO</bool>
+					</object>
+					<object class="IBLibraryObjectTemplate" id="730315051">
+						<reference key="NSNextResponder" ref="1000"/>
+						<int key="NSvFlags">268</int>
+						<object class="NSMutableArray" key="NSSubviews">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="NSButton" id="777075736">
+								<reference key="NSNextResponder" ref="730315051"/>
+								<int key="NSvFlags">268</int>
+								<string key="NSFrame">{{16, 27}, {48, 25}}</string>
+								<reference key="NSSuperview" ref="730315051"/>
+								<bool key="NSEnabled">YES</bool>
+								<object class="NSButtonCell" key="NSCell" id="545244903">
+									<int key="NSCellFlags">67239424</int>
+									<int key="NSCellFlags2">0</int>
+									<string key="NSContents"/>
+									<reference key="NSSupport" ref="1007"/>
+									<reference key="NSControlView" ref="777075736"/>
+									<int key="NSButtonFlags">1215582463</int>
+									<int key="NSButtonFlags2">2</int>
+									<reference key="NSNormalImage" ref="333304683"/>
+									<string key="NSAlternateContents"/>
+									<string key="NSKeyEquivalent"/>
+									<int key="NSPeriodicDelay">200</int>
+									<int key="NSPeriodicInterval">25</int>
+								</object>
+							</object>
+						</object>
+						<string key="NSFrame">{{802, 485}, {80, 80}}</string>
+						<reference key="NSSuperview" ref="1000"/>
+						<string key="label">HUD Gradient Checkbox</string>
+						<string key="identifier">B564EC45-F8AC-4FCC-A25F-3754DA273B7D</string>
+						<string key="briefDescription">Gradient Style Checkbox</string>
+						<object class="NSAttributedString" key="fullDescription">
+							<string key="NSString">This is a standard HUD gradient style checkbox.</string>
+							<reference key="NSAttributes" ref="175948869"/>
+						</object>
+						<string key="initialCategoryPath">Views &amp; Cells/Buttons</string>
+						<nil key="draggableView"/>
+						<nil key="draggedView"/>
+						<nil key="representedObject"/>
+						<nil key="filterableNames"/>
+						<nil key="subtitle"/>
+						<int key="animationScalingMode">0</int>
+						<bool key="representativeTemplateForClass">NO</bool>
+					</object>
+					<object class="IBLibraryObjectTemplate" id="1002">
+						<reference key="NSNextResponder" ref="1000"/>
+						<int key="NSvFlags">268</int>
+						<object class="NSMutableArray" key="NSSubviews">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="NSButton" id="919617951">
+								<reference key="NSNextResponder" ref="1002"/>
+								<int key="NSvFlags">268</int>
+								<string key="NSFrame">{{16, 22}, {48, 32}}</string>
+								<reference key="NSSuperview" ref="1002"/>
+								<bool key="NSEnabled">YES</bool>
+								<object class="NSButtonCell" key="NSCell" id="846483809">
+									<int key="NSCellFlags">67239424</int>
+									<int key="NSCellFlags2">134217728</int>
+									<string key="NSContents"/>
+									<reference key="NSSupport" ref="1007"/>
+									<reference key="NSControlView" ref="919617951"/>
+									<int key="NSButtonFlags">-2038284033</int>
+									<int key="NSButtonFlags2">129</int>
+									<string key="NSAlternateContents"/>
+									<string key="NSKeyEquivalent"/>
+									<int key="NSPeriodicDelay">200</int>
+									<int key="NSPeriodicInterval">25</int>
+								</object>
+							</object>
+						</object>
+						<string key="NSFrame">{{15, 485}, {80, 80}}</string>
+						<reference key="NSSuperview" ref="1000"/>
+						<string key="label">HUD Push Button</string>
+						<string key="identifier">9A458614-9290-48E0-957B-FCF32C621238</string>
+						<string key="briefDescription">Push Style Button</string>
+						<object class="NSAttributedString" key="fullDescription">
+							<string key="NSString">This is a standard HUD push style button.</string>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Buttons</string>
 						<nil key="draggableView"/>
@@ -191,7 +329,7 @@
 						<string key="briefDescription">Standard HUD TextField</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD TextField.</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Inputs &amp; Values</string>
 						<nil key="draggableView"/>
@@ -281,7 +419,7 @@
 						<string key="briefDescription">Standard HUD SearchField</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD SearchField.</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Inputs &amp; Values</string>
 						<nil key="draggableView"/>
@@ -324,7 +462,7 @@
 						<string key="briefDescription">Standard HUD ColorWell</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD ColorWell.</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Inputs &amp; Values</string>
 						<nil key="draggableView"/>
@@ -368,7 +506,7 @@
 						<string key="briefDescription">Standard HUD Label</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Label.</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Inputs &amp; Values</string>
 						<nil key="draggableView"/>
@@ -430,7 +568,7 @@
 						<string key="briefDescription">Gradient Style Button</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD gradient style button.</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Buttons</string>
 						<nil key="draggableView"/>
@@ -517,7 +655,7 @@
 						<string key="briefDescription">Rounded Textured Style Button</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD rounded textured style button.</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Buttons</string>
 						<nil key="draggableView"/>
@@ -587,7 +725,7 @@
 						<string key="briefDescription">Rounded Rect Style Button</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD rounded rect style button.</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Buttons</string>
 						<nil key="draggableView"/>
@@ -682,7 +820,7 @@
 						<string key="briefDescription">Standard HUD Pop Up Button</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Pop Up Button</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Inputs &amp; Values</string>
 						<nil key="draggableView"/>
@@ -793,7 +931,7 @@
 						<string key="briefDescription">Standard HUD Vertical Slider</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Vertical Slider</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Inputs &amp; Values</string>
 						<nil key="draggableView"/>
@@ -861,7 +999,7 @@
 						<string key="briefDescription">Standard HUD Horizontal Slider</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Horizontal Slider</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Inputs &amp; Values</string>
 						<nil key="draggableView"/>
@@ -939,7 +1077,7 @@
 						<string key="briefDescription">Standard HUD Text View</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Text View</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Inputs &amp; Values</string>
 						<nil key="draggableView"/>
@@ -995,7 +1133,7 @@
 						<string key="briefDescription">Standard HUD ScrollView</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Scroll View</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Layout Views</string>
 						<nil key="draggableView"/>
@@ -1272,7 +1410,7 @@
 														<string key="NSColorName">selectedTextBackgroundColor</string>
 														<object class="NSColor" key="NSColor" id="520841658">
 															<int key="NSColorSpace">3</int>
-															<bytes key="NSWhite">MC42NjY2NjY2ODY1AA</bytes>
+															<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 														</object>
 													</object>
 													<object class="NSColor">
@@ -1376,7 +1514,7 @@
 						<string key="briefDescription">Standard HUD Indeterminate Progress</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Indeterminate Progress</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Inputs &amp; Values</string>
 						<nil key="draggableView"/>
@@ -1427,7 +1565,7 @@
 						<string key="briefDescription">Standard HUD Secure Text Field</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Secure Text Field</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Inputs &amp; Values</string>
 						<nil key="draggableView"/>
@@ -1540,7 +1678,7 @@
 						<string key="briefDescription">Standard HUD Token Field</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Token Field</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Inputs &amp; Values</string>
 						<nil key="draggableView"/>
@@ -1623,7 +1761,7 @@
 						<string key="briefDescription">Standard HUD Table View</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Table View</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Data Views</string>
 						<nil key="draggableView"/>
@@ -1857,7 +1995,7 @@
 						<string key="briefDescription">Standard HUD Outline View</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Outline View</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Data Views</string>
 						<nil key="draggableView"/>
@@ -2043,10 +2181,7 @@
 									<reference key="NSControlView" ref="886628700"/>
 									<int key="NSButtonFlags">1215582719</int>
 									<int key="NSButtonFlags2">2</int>
-									<object class="NSCustomResource" key="NSNormalImage" id="148880651">
-										<string key="NSClassName">NSImage</string>
-										<string key="NSResourceName">NSSwitch</string>
-									</object>
+									<reference key="NSNormalImage" ref="333304683"/>
 									<object class="NSButtonImageSource" key="NSAlternateImage" id="201061633">
 										<string key="NSImageName">NSSwitch</string>
 									</object>
@@ -2064,7 +2199,7 @@
 						<string key="briefDescription">Standard HUD Check Box</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Check Box</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Inputs &amp; Values</string>
 						<nil key="draggableView"/>
@@ -2122,7 +2257,7 @@
 						<string key="briefDescription">Standard HUD Segmented Control</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Segmented Control</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Inputs &amp; Values</string>
 						<nil key="draggableView"/>
@@ -2147,7 +2282,7 @@
 							<reference key="NSControlView" ref="673076920"/>
 							<int key="NSButtonFlags">1211912703</int>
 							<int key="NSButtonFlags2">2</int>
-							<reference key="NSNormalImage" ref="148880651"/>
+							<reference key="NSNormalImage" ref="333304683"/>
 							<reference key="NSAlternateImage" ref="201061633"/>
 							<string key="NSAlternateContents"/>
 							<string key="NSKeyEquivalent"/>
@@ -2428,7 +2563,7 @@
 						<string key="briefDescription">Standard HUD Combo Box</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Combo Box</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Inputs &amp; Values</string>
 						<nil key="draggableView"/>
@@ -2459,7 +2594,7 @@
 						<string key="briefDescription">Standard HUD View</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD View</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Layout Views</string>
 						<nil key="draggableView"/>
@@ -2596,7 +2731,7 @@
 						<string key="briefDescription">Standard HUD Box</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Box</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Layout Views</string>
 						<nil key="draggableView"/>
@@ -2635,7 +2770,7 @@
 						<string key="briefDescription">Standard HUD Stepper</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Stepper</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Inputs &amp; Values</string>
 						<nil key="draggableView"/>
@@ -2691,7 +2826,7 @@
 						<string key="briefDescription">Standard HUD TabView</string>
 						<object class="NSAttributedString" key="fullDescription">
 							<string key="NSString">This is a standard HUD Stepper</string>
-							<reference key="NSAttributes" ref="1023837443"/>
+							<reference key="NSAttributes" ref="175948869"/>
 						</object>
 						<string key="initialCategoryPath">Views &amp; Cells/Layout Views</string>
 						<nil key="draggableView"/>
@@ -3199,6 +3334,38 @@
 					</object>
 					<int key="connectionID">334</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">draggedView</string>
+						<reference key="source" ref="730315051"/>
+						<reference key="destination" ref="350914716"/>
+					</object>
+					<int key="connectionID">344</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">representedObject</string>
+						<reference key="source" ref="730315051"/>
+						<reference key="destination" ref="350914716"/>
+					</object>
+					<int key="connectionID">345</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">draggedView</string>
+						<reference key="source" ref="735522835"/>
+						<reference key="destination" ref="232111774"/>
+					</object>
+					<int key="connectionID">353</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">representedObject</string>
+						<reference key="source" ref="735522835"/>
+						<reference key="destination" ref="232111774"/>
+					</object>
+					<int key="connectionID">354</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -3282,6 +3449,10 @@
 							<reference ref="656502252"/>
 							<reference ref="740045387"/>
 							<reference ref="22313449"/>
+							<reference ref="730315051"/>
+							<reference ref="350914716"/>
+							<reference ref="735522835"/>
+							<reference ref="232111774"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Library Objects</string>
@@ -4349,6 +4520,80 @@
 						<reference key="object" ref="937593314"/>
 						<reference key="parent" ref="898542424"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">337</int>
+						<reference key="object" ref="730315051"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="777075736"/>
+						</object>
+						<reference key="parent" ref="1000"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">338</int>
+						<reference key="object" ref="777075736"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="545244903"/>
+						</object>
+						<reference key="parent" ref="730315051"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">339</int>
+						<reference key="object" ref="545244903"/>
+						<reference key="parent" ref="777075736"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">342</int>
+						<reference key="object" ref="350914716"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="600840850"/>
+						</object>
+						<reference key="parent" ref="1000"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">343</int>
+						<reference key="object" ref="600840850"/>
+						<reference key="parent" ref="350914716"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">346</int>
+						<reference key="object" ref="735522835"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="144711472"/>
+						</object>
+						<reference key="parent" ref="1000"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">347</int>
+						<reference key="object" ref="144711472"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="111982083"/>
+						</object>
+						<reference key="parent" ref="735522835"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">348</int>
+						<reference key="object" ref="111982083"/>
+						<reference key="parent" ref="144711472"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">351</int>
+						<reference key="object" ref="232111774"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="430156221"/>
+						</object>
+						<reference key="parent" ref="1000"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">352</int>
+						<reference key="object" ref="430156221"/>
+						<reference key="parent" ref="232111774"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -4556,6 +4801,38 @@
 					<string>332.IBPluginDependency</string>
 					<string>335.IBPluginDependency</string>
 					<string>336.IBPluginDependency</string>
+					<string>337.IBPluginDependency</string>
+					<string>337.IBViewBoundsToFrameTransform</string>
+					<string>337.notes</string>
+					<string>337.showNotes</string>
+					<string>338.IBPluginDependency</string>
+					<string>338.IBViewBoundsToFrameTransform</string>
+					<string>338.notes</string>
+					<string>338.showNotes</string>
+					<string>339.CustomClassName</string>
+					<string>339.IBPluginDependency</string>
+					<string>342.IBPluginDependency</string>
+					<string>342.IBViewBoundsToFrameTransform</string>
+					<string>342.notes</string>
+					<string>342.showNotes</string>
+					<string>343.CustomClassName</string>
+					<string>343.IBPluginDependency</string>
+					<string>346.IBPluginDependency</string>
+					<string>346.IBViewBoundsToFrameTransform</string>
+					<string>346.notes</string>
+					<string>346.showNotes</string>
+					<string>347.IBPluginDependency</string>
+					<string>347.IBViewBoundsToFrameTransform</string>
+					<string>347.notes</string>
+					<string>347.showNotes</string>
+					<string>348.CustomClassName</string>
+					<string>348.IBPluginDependency</string>
+					<string>351.IBPluginDependency</string>
+					<string>351.IBViewBoundsToFrameTransform</string>
+					<string>351.notes</string>
+					<string>351.showNotes</string>
+					<string>352.CustomClassName</string>
+					<string>352.IBPluginDependency</string>
 					<string>43.IBPluginDependency</string>
 					<string>43.notes</string>
 					<string>43.showNotes</string>
@@ -4566,6 +4843,7 @@
 					<string>49.CustomClassName</string>
 					<string>49.IBPluginDependency</string>
 					<string>52.IBPluginDependency</string>
+					<string>52.IBViewBoundsToFrameTransform</string>
 					<string>52.notes</string>
 					<string>52.showNotes</string>
 					<string>53.IBPluginDependency</string>
@@ -5058,6 +5336,84 @@ cyBvdXRsZXRzIGFyZSBvcHRpb25hbC4</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBSDKPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">AURIgABD8oAAA</bytes>
+					</object>
+					<object class="NSAttributedString">
+						<string type="base64-UTF8" key="NSString">VGhpcyBzYW1wbGUgaXMgc2V0IHVwIHNvIHRoYXQgdGhlIHNtYWxsZXIgYnV0dG9uIGFwcGVhcnMgaW4g
+dGhlIGxpYnJhcnkgd2luZG93LiBXaGVuIHRoZSBzbWFsbGVyIGJ1dHRvbiBpcyBkcmFnZ2VkIG91dCwg
+aXQgd2lsbCBhbmltYXRlIHRvIHRoZSBsYXJnZXIgYnV0dG9uLiBXaGVuIHRoZSBsYXJnZSBidXR0b24g
+aXMgZGVwb3NpdGVkIGludG8gdGhlIGFwcGxpY2F0aW9uLCBpdCB3aWxsIGRlcG9zaXQgYSBidXR0b24g
+Y2VsbC4KClRoZSBhbmltYXRpb24gaXMgYWNoaWV2ZWQgYnkgY29ubmVjdGluZyB0aGUgdGVtcGxhdGUg
+dmlldydzIGRyYWdnZWRWaWV3IG91dGxldC4KCkRlcG9zaXRpbmcgdGhlIGJ1dHRvbiBjZWxsIGluc3Rl
+YWQgb2YgdGhlIGJ1dHRvbiBpcyBhY2hpZXZlZCBieSBjb25uZWN0aW5nIHRoZSByZXByZXNlbnRlZE9i
+amVjdCBvdXRsZXQgb2YgdGhlIHRlbXBsYXRlIHZpZXcuCgpBbGwgb2YgdGhlIHRlbXBsYXRlIHZpZXcn
+cyBvdXRsZXRzIGFyZSBvcHRpb25hbC4</string>
+						<reference key="NSAttributes" ref="328176555"/>
+					</object>
+					<integer value="1"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABBgAAAwkgAAA</bytes>
+					</object>
+					<object class="NSAttributedString">
+						<string key="NSString">This button is connected to its IBLibraryTemplateObject.</string>
+						<reference key="NSAttributes" ref="328176555"/>
+					</object>
+					<integer value="1"/>
+					<string>BGHUDButtonCell</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABEYoAAxA0AAA</bytes>
+					</object>
+					<object class="NSAttributedString">
+						<string key="NSString">This button is connected to its IBLibraryTemplateObject.</string>
+						<reference key="NSAttributes" ref="328176555"/>
+					</object>
+					<integer value="1"/>
+					<string>BGHUDButtonCell</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBSDKPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">AURJwABD8AAAA</bytes>
+					</object>
+					<object class="NSAttributedString">
+						<string type="base64-UTF8" key="NSString">VGhpcyBzYW1wbGUgaXMgc2V0IHVwIHNvIHRoYXQgdGhlIHNtYWxsZXIgYnV0dG9uIGFwcGVhcnMgaW4g
+dGhlIGxpYnJhcnkgd2luZG93LiBXaGVuIHRoZSBzbWFsbGVyIGJ1dHRvbiBpcyBkcmFnZ2VkIG91dCwg
+aXQgd2lsbCBhbmltYXRlIHRvIHRoZSBsYXJnZXIgYnV0dG9uLiBXaGVuIHRoZSBsYXJnZSBidXR0b24g
+aXMgZGVwb3NpdGVkIGludG8gdGhlIGFwcGxpY2F0aW9uLCBpdCB3aWxsIGRlcG9zaXQgYSBidXR0b24g
+Y2VsbC4KClRoZSBhbmltYXRpb24gaXMgYWNoaWV2ZWQgYnkgY29ubmVjdGluZyB0aGUgdGVtcGxhdGUg
+dmlldydzIGRyYWdnZWRWaWV3IG91dGxldC4KCkRlcG9zaXRpbmcgdGhlIGJ1dHRvbiBjZWxsIGluc3Rl
+YWQgb2YgdGhlIGJ1dHRvbiBpcyBhY2hpZXZlZCBieSBjb25uZWN0aW5nIHRoZSByZXByZXNlbnRlZE9i
+amVjdCBvdXRsZXQgb2YgdGhlIHRlbXBsYXRlIHZpZXcuCgpBbGwgb2YgdGhlIHRlbXBsYXRlIHZpZXcn
+cyBvdXRsZXRzIGFyZSBvcHRpb25hbC4</string>
+						<reference key="NSAttributes" ref="328176555"/>
+					</object>
+					<integer value="1"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABBgAAAwkgAAA</bytes>
+					</object>
+					<object class="NSAttributedString">
+						<string key="NSString">This button is connected to its IBLibraryTemplateObject.</string>
+						<reference key="NSAttributes" ref="328176555"/>
+					</object>
+					<integer value="1"/>
+					<string>BGHUDButtonCell</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABEY8AAxAvAAA</bytes>
+					</object>
+					<object class="NSAttributedString">
+						<string key="NSString">This button is connected to its IBLibraryTemplateObject.</string>
+						<reference key="NSAttributes" ref="328176555"/>
+					</object>
+					<integer value="1"/>
+					<string>BGHUDButtonCell</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBSDKPlugin</string>
 					<object class="NSAttributedString">
 						<string type="base64-UTF8" key="NSString">VGhpcyBzYW1wbGUgaXMgc2V0IHVwIHNvIHRoYXQgdGhlIHNtYWxsZXIgYnV0dG9uIGFwcGVhcnMgaW4g
 dGhlIGxpYnJhcnkgd2luZG93LiBXaGVuIHRoZSBzbWFsbGVyIGJ1dHRvbiBpcyBkcmFnZ2VkIG91dCwg
@@ -5078,6 +5434,9 @@ cyBvdXRsZXRzIGFyZSBvcHRpb25hbC4</string>
 					<string>BGHUDTextFieldCell</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBSDKPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">AULOAABD8oAAA</bytes>
+					</object>
 					<object class="NSAttributedString">
 						<string type="base64-UTF8" key="NSString">VGhpcyBzYW1wbGUgaXMgc2V0IHVwIHNvIHRoYXQgdGhlIHNtYWxsZXIgYnV0dG9uIGFwcGVhcnMgaW4g
 dGhlIGxpYnJhcnkgd2luZG93LiBXaGVuIHRoZSBzbWFsbGVyIGJ1dHRvbiBpcyBkcmFnZ2VkIG91dCwg
@@ -5141,7 +5500,7 @@ cyBvdXRsZXRzIGFyZSBvcHRpb25hbC4</string>
 						<reference key="NSAttributes" ref="328176555"/>
 					</object>
 					<integer value="1"/>
-					<string>{{239, 299}, {1147, 585}}</string>
+					<string>{{346, 273}, {1147, 585}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSMutableArray">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -5200,7 +5559,7 @@ cyBvdXRsZXRzIGFyZSBvcHRpb25hbC4</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">336</int>
+			<int key="maxID">354</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -6032,6 +6391,7 @@ cyBvdXRsZXRzIGFyZSBvcHRpb25hbC4</string>
 			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
+		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
 			<integer value="1050" key="NS.object.0"/>
@@ -6047,5 +6407,32 @@ cyBvdXRsZXRzIGFyZSBvcHRpb25hbC4</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<string key="IBDocument.LastKnownRelativeProjectPath">../BGHUDAppKit.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>NSMenuCheckmark</string>
+				<string>NSMenuMixedState</string>
+				<string>NSRadioButton</string>
+				<string>NSSwitch</string>
+				<string>outlineview</string>
+				<string>scrollview</string>
+				<string>tableview</string>
+				<string>tabview</string>
+				<string>textview</string>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{9, 8}</string>
+				<string>{7, 2}</string>
+				<string>{16, 15}</string>
+				<string>{15, 15}</string>
+				<string>{48, 47}</string>
+				<string>{48, 41}</string>
+				<string>{48, 47}</string>
+				<string>{47, 42}</string>
+				<string>{48, 41}</string>
+			</object>
+		</object>
 	</data>
 </archive>
