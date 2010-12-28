@@ -4,10 +4,10 @@
 //
 //  Created by BinaryGod on 6/2/08.
 //
-//  Copyright (c) 2008, Tim Davis (BinaryMethod.com, binary.god@gmail.com)
+//		Copyright (c) 2008, Tim Davis (BinaryMethod.com, binary.god@gmail.com)
 //  All rights reserved.
 //
-//  Redistribution and use in source and binary forms, with or without modification,
+//		Redistribution and use in source and binary forms, with or without modification,
 //  are permitted provided that the following conditions are met:
 //
 //		Redistributions of source code must retain the above copyright notice, this
@@ -31,6 +31,11 @@
 //	WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 //	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 //	POSSIBILITY OF SUCH DAMAGE.
+//
+//  History
+//	
+//		8/30/2010 - Fixed placeholder alignment not rendering while in design view,
+//					provided by [tylerb](GitHub).
 
 #import "BGHUDTextFieldCell.h"
 
@@ -107,8 +112,7 @@
 
 - (NSText *)setUpFieldEditorAttributes:(NSText *)textObj {
 	
-	NSText *newText = [[NSText alloc] init];
-	newText = [super setUpFieldEditorAttributes: textObj];
+	NSText *newText = [super setUpFieldEditorAttributes: textObj];
 	NSColor *textColor = [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor];
 	[(NSTextView *)newText setInsertionPointColor:textColor];
 	return newText;
@@ -243,12 +247,43 @@
 	//if(![self placeholderAttributedString]) {
 	if(![self placeholderAttributedString] && [self placeholderString]) {
 		
-		//Nope lets create it
+		NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+		
+		// Set the paragraph style
+		[style setAlignment: [self alignment]];
+		
+		//Attributed string doesn't exist lets create it
 		NSDictionary *attribs = [[NSDictionary alloc] initWithObjectsAndKeys: 
-								 [[[BGThemeManager keyedManager] themeForKey: self.themeKey] placeholderTextColor] , NSForegroundColorAttributeName, nil];
+								 [[[BGThemeManager keyedManager] themeForKey: self.themeKey] placeholderTextColor] , NSForegroundColorAttributeName, 
+								 style, NSParagraphStyleAttributeName, nil];
+		
+		[style release];
 		
 		//Set it
 		[self setPlaceholderAttributedString: [[[NSAttributedString alloc] initWithString: [self placeholderString] attributes: [attribs autorelease]] autorelease]];
+	} else if([self placeholderAttributedString]) {
+		
+		// Check to see if the proper styles have been applied
+		if([[[self placeholderAttributedString] attribute: NSParagraphStyleAttributeName atIndex: 1 effectiveRange: nil] alignment] != [self alignment]) {
+	
+			NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+			
+			// Set the paragraph style
+			[style setAlignment: [self alignment]];
+			
+			// Get current attr string
+			NSMutableAttributedString *adjPlaceholder = [[NSMutableAttributedString alloc] initWithAttributedString: [self placeholderAttributedString]];
+			
+			// Add style attr
+			[adjPlaceholder addAttribute: NSParagraphStyleAttributeName value: style range: NSMakeRange(0,[adjPlaceholder length])];
+			
+			// Reset Placeholder to correct placeholder
+			[self setPlaceholderAttributedString: adjPlaceholder];
+			
+			// Cleanup
+			[style release];
+			[adjPlaceholder release];
+		}
 	}
 	
 	//Adjust Frame so Text Draws correctly
@@ -286,10 +321,10 @@
 	[self drawInteriorWithFrame: cellFrame inView: controlView];
 }
 
--(void)drawInteriorWithFrame:(NSRect) cellFrame inView:(NSView *) controlView {
+/*-(void)drawInteriorWithFrame:(NSRect) cellFrame inView:(NSView *) controlView {
 	
 	[super drawInteriorWithFrame: cellFrame inView: controlView];
-}
+}*/
 
 -(void)_drawKeyboardFocusRingWithFrame:(NSRect)fp8 inView:(id)fp24 {
 	

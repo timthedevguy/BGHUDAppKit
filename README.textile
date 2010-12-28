@@ -1,12 +1,17 @@
-h1. Important 4/30/2010
+h1. Important 12/27/2010
 
-BGHUDAppKit is, as of today, going through a small optimization/rewrite/improvement phase.  I will update the entire repository when this is finished.  Please keep posting Issues as I will be tackling these at the same time.
+I have recieved numerous reports that any application that uses BGHUDAppKit is being rejected by the new App Store for using Private API's.  This may be the death of BGHUDAppKit, unless Apple changed the internals of NSScroller then I know BGHUDScroller will be dead, unfortunately the private API's I used where because of necessity not choice. I am halting development on every other aspect of BGHUDAppkit and creating an AppStore branch to begin experimental development without the private API calls. Please bookmark http://www.binarymethod.com as this is where my blog is and the progress reports will be posted concerning this.
+
+<b>Update!</b>
+12/27/2010 - 7PM EST
+
+BGHUDScroller AND BGHUDButtonCell have been fixed and no longer call any private API's.  They appear to work as normal on my end but I need to get verification from some end users.  Please checkout the "<b>appstore</b>" branch.
 
 h2. About
 
 BGHUDAppKit 
 Tim Davis @ BinaryMethod.com
-"Homepage":http://www.binarymethod.com/bghudappkit
+"Homepage":http://www.binarymethod.com/
 
 The missing OS X Leopard/Snow Leopard HUD controls.
 
@@ -14,8 +19,6 @@ BGHUDAppKit is a small framework I designed to fill the gap left by Apple when t
 
 Project is hosted on "GitHub":http://github.com/binarygod/BGHUDAppKit/tree/master
 Public GIT Clone URL: git://github.com/binarygod/BGHUDAppKit.git
-
-!http://www.binarymethod.com/images/BGHUDAppKit-Clear.png!
 
 h2. Requirements
 

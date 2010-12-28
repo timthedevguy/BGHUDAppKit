@@ -192,93 +192,129 @@
 				gradient = [[NSGradient alloc] initWithStartingColor: self.color1 endingColor: self.color2];
 			}
 			
-			NSShadow *dropShadow = [[NSShadow alloc] init];
-			
-			[dropShadow setShadowColor: self.shadowColor];
-			[dropShadow setShadowBlurRadius: 5];
-			
-			// Issue #16 - Allows a transparent background
-			if(![self isTransparent]) {
+			if([self cornerRadius] > 0) {
+
+				// Draw Rounded border
+				// Respect borderWidth
+				// Use borderColor
+				// Ignore drop shadows/borders/
+				
+				NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect: rect
+																	 xRadius: [self cornerRadius] 
+																	 yRadius: [self cornerRadius]];
 				
 				if(self.flipGradient == 0) {
 					
-					[gradient drawInRect: rect angle: 270];
+					[gradient drawInBezierPath: path angle: 270];
 				} else {
 					
-					[gradient drawInRect: rect angle: 90];
+					[gradient drawInBezierPath: path angle: 90];
 				}
-			}
-			
-			[gradient release];
-			
-			[[NSGraphicsContext currentContext] setShouldAntialias: NO];
-			
-			[[self borderColor] set];
-			
-			rect = NSInsetRect(rect, .5f, .5f);
-			
-			//Draw Borders
-			if(self.drawTopBorder) {
 				
-				[NSGraphicsContext saveGraphicsState];
-				
-				if(self.drawTopShadow) {
+				if([self borderType] != NSNoBorder) {
 					
-					[dropShadow setShadowOffset: NSMakeSize( 0, -1)];
-					[dropShadow set];
-				}
-				
-				[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMinX(rect) , NSMaxY(rect)) toPoint: NSMakePoint(NSMaxX(rect), NSMaxY(rect))];
-				
-				[NSGraphicsContext restoreGraphicsState];
-			}
-			
-			if(self.drawBottomBorder) {
-				
-				[NSGraphicsContext saveGraphicsState];
-				
-				if(self.drawBottomShadow) {
+					[[self borderColor] set];
 					
-					[dropShadow setShadowOffset: NSMakeSize( 0, 1)];
-					[dropShadow set];
+					if([self borderWidth] > 0) {
+						
+						[path setLineWidth: [self borderWidth]];
+					} else {
+						
+						[path setLineWidth: 1.0f];
+					}
+											 
+					[path stroke];
 				}
+			} else {
 				
-				[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMinX(rect), NSMinY(rect)) toPoint: NSMakePoint(NSMaxX(rect), NSMinY(rect))];
+				NSShadow *dropShadow = [[NSShadow alloc] init];
 				
-				[NSGraphicsContext restoreGraphicsState];
-			}
-			
-			if(self.drawLeftBorder) {
+				[dropShadow setShadowColor: self.shadowColor];
+				[dropShadow setShadowBlurRadius: 5];
 				
-				[NSGraphicsContext saveGraphicsState];
-				
-				if(self.drawLeftShadow) {
+				// Issue #16 - Allows a transparent background
+				if(![self isTransparent]) {
 					
-					[dropShadow setShadowOffset: NSMakeSize( 1, 0)];
-					[dropShadow set];
+					if(self.flipGradient == 0) {
+						
+						[gradient drawInRect: rect angle: 270];
+					} else {
+						
+						[gradient drawInRect: rect angle: 90];
+					}
 				}
 				
-				[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMinX(rect), NSMinY(rect)) toPoint: NSMakePoint(NSMinX(rect), NSMaxY(rect))];
+				[gradient release];
 				
-				[NSGraphicsContext restoreGraphicsState];
-			}
-			
-			if(self.drawRightBorder) {
+				[[NSGraphicsContext currentContext] setShouldAntialias: NO];
 				
-				[NSGraphicsContext saveGraphicsState];
+				[[self borderColor] set];
 				
-				if(self.drawRightShadow) {
+				rect = NSInsetRect(rect, .5f, .5f);
+				
+				//Draw Borders
+				if(self.drawTopBorder) {
 					
-					[dropShadow setShadowOffset: NSMakeSize( -1, 0)];
-					[dropShadow set];
+					[NSGraphicsContext saveGraphicsState];
+					
+					if(self.drawTopShadow) {
+						
+						[dropShadow setShadowOffset: NSMakeSize( 0, -1)];
+						[dropShadow set];
+					}
+					
+					[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMinX(rect) , NSMaxY(rect)) toPoint: NSMakePoint(NSMaxX(rect), NSMaxY(rect))];
+					
+					[NSGraphicsContext restoreGraphicsState];
 				}
 				
-				[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMaxX(rect), NSMinY(rect)) toPoint: NSMakePoint(NSMaxX(rect), NSMaxY(rect))];
+				if(self.drawBottomBorder) {
+					
+					[NSGraphicsContext saveGraphicsState];
+					
+					if(self.drawBottomShadow) {
+						
+						[dropShadow setShadowOffset: NSMakeSize( 0, 1)];
+						[dropShadow set];
+					}
+					
+					[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMinX(rect), NSMinY(rect)) toPoint: NSMakePoint(NSMaxX(rect), NSMinY(rect))];
+					
+					[NSGraphicsContext restoreGraphicsState];
+				}
 				
-				[NSGraphicsContext restoreGraphicsState];
+				if(self.drawLeftBorder) {
+					
+					[NSGraphicsContext saveGraphicsState];
+					
+					if(self.drawLeftShadow) {
+						
+						[dropShadow setShadowOffset: NSMakeSize( 1, 0)];
+						[dropShadow set];
+					}
+					
+					[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMinX(rect), NSMinY(rect)) toPoint: NSMakePoint(NSMinX(rect), NSMaxY(rect))];
+					
+					[NSGraphicsContext restoreGraphicsState];
+				}
+				
+				if(self.drawRightBorder) {
+					
+					[NSGraphicsContext saveGraphicsState];
+					
+					if(self.drawRightShadow) {
+						
+						[dropShadow setShadowOffset: NSMakeSize( -1, 0)];
+						[dropShadow set];
+					}
+					
+					[NSBezierPath strokeLineFromPoint: NSMakePoint(NSMaxX(rect), NSMinY(rect)) toPoint: NSMakePoint(NSMaxX(rect), NSMaxY(rect))];
+					
+					[NSGraphicsContext restoreGraphicsState];
+				}
+				
+				[dropShadow release];
 			}
-			
-			[dropShadow release];
 		}
 	} else {
 		
