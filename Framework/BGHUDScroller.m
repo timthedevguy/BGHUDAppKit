@@ -113,52 +113,6 @@
 		}
 	}
 	
-	sFlags.partsUsable = NSAllScrollerParts;
-	
-	if([self arrowsPosition] != NSScrollerArrowsNone) {
-		
-		if([self bounds].size.width > [self bounds].size.height) {
-			
-			sFlags.isHoriz = 1;
-			
-			//Now Figure out if we can actually show all parts
-			CGFloat arrowSpace = NSWidth([self rectForPart: NSScrollerIncrementLine]) + NSWidth([self rectForPart: NSScrollerDecrementLine]) +
-			BGCenterY([self rectForPart: NSScrollerIncrementLine]);
-			CGFloat knobSpace = NSWidth([self rectForPart: NSScrollerKnob]);
-			
-			if((arrowSpace + knobSpace) > NSWidth([self bounds])) {
-				
-				if(arrowSpace > NSWidth([self bounds])) {
-					
-					sFlags.partsUsable = NSNoScrollerParts;
-				} else {
-					
-					sFlags.partsUsable = NSOnlyScrollerArrows;
-				}
-			}
-			
-		} else {
-			
-			sFlags.isHoriz = 0;
-			
-			//Now Figure out if we can actually show all parts
-			CGFloat arrowSpace = NSHeight([self rectForPart: NSScrollerIncrementLine]) + NSHeight([self rectForPart: NSScrollerDecrementLine]) +
-			BGCenterX([self rectForPart: NSScrollerIncrementLine]);
-			CGFloat knobSpace = NSHeight([self rectForPart: NSScrollerKnob]);
-			
-			if((arrowSpace + knobSpace) > NSHeight([self bounds])) {
-				
-				if(arrowSpace > NSHeight([self bounds])) {
-					
-					sFlags.partsUsable = NSNoScrollerParts;
-				} else {
-					
-					sFlags.partsUsable = NSOnlyScrollerArrows;
-				}
-			}
-		}
-	}
-	
 	NSDisableScreenUpdates();
 	
 	[[NSColor colorWithCalibratedWhite: 0.0f alpha: 0.7f] set];
@@ -181,7 +135,7 @@
 
 - (void)drawKnob {
 
-	if(sFlags.isHoriz == 0) {
+	if(![self isHoriz]) {
 		
 		//Draw Knob
 		NSBezierPath *knob = [[NSBezierPath alloc] init];
@@ -292,7 +246,7 @@
 
 - (void)drawKnobSlotInRect:(NSRect)rect highlight:(BOOL)highlight {
 	
-	if(sFlags.isHoriz == 0) {
+	if(![self isHoriz]) {
 		
 		//Draw Knob Slot
 		[[[[BGThemeManager keyedManager] themeForKey: [self themeKey]] scrollerTrackGradient] drawInRect: rect angle: 0];
@@ -460,7 +414,7 @@
 
 - (void)drawDecrementArrow:(BOOL)highlighted {
 	
-	if(sFlags.isHoriz == 0) {
+	if(![self isHoriz]) {
 		
 		if([arrowPosition isEqualToString: @"DoubleMax"]) {
 			
@@ -666,7 +620,7 @@
 
 - (void)drawIncrementArrow:(BOOL)highlighted {
 	
-	if(sFlags.isHoriz == 0) {
+	if(![self isHoriz]) {
 		
 		if([arrowPosition isEqualToString: @"DoubleMax"]) {
 			
@@ -831,7 +785,57 @@
 #pragma mark Helper Methods
 - (NSUsableScrollerParts)usableParts {
 	
+	if([self arrowsPosition] != NSScrollerArrowsNone) {
+		
+		if([self isHoriz]) {
+			
+			//Now Figure out if we can actually show all parts
+			CGFloat arrowSpace = NSWidth([self rectForPart: NSScrollerIncrementLine]) + NSWidth([self rectForPart: NSScrollerDecrementLine]) +
+			BGCenterY([self rectForPart: NSScrollerIncrementLine]);
+			CGFloat knobSpace = NSWidth([self rectForPart: NSScrollerKnob]);
+			
+			if((arrowSpace + knobSpace) > NSWidth([self bounds])) {
+				
+				if(arrowSpace > NSWidth([self bounds])) {
+					
+					return NSNoScrollerParts;
+				} else {
+					
+					return NSOnlyScrollerArrows;
+				}
+			}
+			
+		} else {
+			
+			//Now Figure out if we can actually show all parts
+			CGFloat arrowSpace = NSHeight([self rectForPart: NSScrollerIncrementLine]) + NSHeight([self rectForPart: NSScrollerDecrementLine]) +
+			BGCenterX([self rectForPart: NSScrollerIncrementLine]);
+			CGFloat knobSpace = NSHeight([self rectForPart: NSScrollerKnob]);
+			
+			if((arrowSpace + knobSpace) > NSHeight([self bounds])) {
+				
+				if(arrowSpace > NSHeight([self bounds])) {
+					
+					return NSNoScrollerParts;
+				} else {
+					
+					return NSOnlyScrollerArrows;
+				}
+			}
+		}
+	}
+	
 	return NSAllScrollerParts;
+}
+
+- (BOOL)isHoriz {
+	
+	if([self bounds].size.width > [self bounds].size.height) {
+		
+		return YES;
+	}
+	
+	return NO;
 }
 #pragma mark -
 
