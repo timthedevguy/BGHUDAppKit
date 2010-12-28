@@ -53,4 +53,6 @@
 
 -(NSString *)themeKey;
 
+-(BOOL)isHoriz;
+
 @end
