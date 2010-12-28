@@ -66,6 +66,8 @@
 			
 			self.themeKey = @"gradientTheme";
 		}
+		
+		buttonType = [aDecoder decodeIntegerForKey: @"BGButtonType"];
 	}
 	
 	return self;
@@ -76,6 +78,7 @@
 	[super encodeWithCoder: coder];
 	
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
+	[coder encodeInt: buttonType forKey: @"BGButtonType"];
 }
 
 -(id)copyWithZone:(NSZone *) zone {
@@ -86,6 +89,12 @@
 	[copy setThemeKey: [self themeKey]];
 	
 	return copy;
+}
+
+- (void)setButtonType:(NSButtonType)aType {
+
+	buttonType = aType;	
+	[super setButtonType: aType];
 }
 
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
@@ -117,12 +126,7 @@
 			break;
 	}
 	
-	/*if([[_normalImage name] isEqualToString: @"NSSwitch"] ||
-	   [[_normalImage name] isEqualToString: @"NSRadioButton"]) {*/
-	//NSLog(@"Line 122: Name=%@", [[self image] name]);
-	//NSLog(@"         Bezel=%i", [self bezelStyle]);
-	if([[[self image] name] isEqualToString: @"NSSwitch"] ||
-	   [[[self image] name] isEqualToString: @"NSRadioButton"]) {
+	if(buttonType == NSSwitchButton || buttonType == NSRadioButton) {
 		
 		if([self imagePosition] != NSNoImage) {
 			
@@ -136,13 +140,7 @@
 	NSRect textRect = frame;
 	
 	// Adjust Text Rect based on control type and size
-	//NSLog(@"Line 138: Name=%@", [[self image] name]);
-	//NSLog(@"         Bezel=%i", [self bezelStyle]);
-	if([[[self image] name] isEqualToString: @"NSSwitch"] ||
-	   [[[self image] name] isEqualToString: @"NSRadioButton"]) {
-		
-		//We aren't going to do anything here
-	} else {
+	if(buttonType != NSSwitchButton && buttonType != NSRadioButton) {
 		
 		textRect.origin.x += 5;
 		textRect.size.width -= 10;
@@ -218,16 +216,10 @@
 		[super drawImage: image withFrame: frame inView: controlView];
 	} else {
 		
-		//Ugly hack to determine if this is a Check or Radio button.
-		//Apple uses Images for the check and radio buttons, this is
-		//a very ugly hack to detect which one is being used so that
-		//I can draw the correct one.
-		//NSLog(@"Line 223: Name=%@", [[self image] name]);
-		//NSLog(@"         Bezel=%i", [self bezelStyle]);
-		if([[[self image] name] isEqualToString: @"NSSwitch"]) {
+		if(buttonType == NSSwitchButton) {
 			
 			[self drawCheckInFrame: frame isRadio: NO];		
-		} else if([[[self image] name] isEqualToString: @"NSRadioButton"]) {
+		} else if(buttonType == NSRadioButton) {
 			
 			[self drawCheckInFrame: frame isRadio: YES];
 		} else {
@@ -1010,6 +1002,25 @@
 	
 	[themeKey release];
 	[super dealloc];
+}
+
+-(void)setValue:(id) value forKey:(NSString *) key {
+	
+	if([key isEqualToString: @"inspectedType"]) {
+		
+		if([(NSNumber *)value intValue] == 2) {
+			
+			buttonType = NSSwitchButton;
+		} else if([(NSNumber *)value intValue] == 3) {
+			
+			buttonType = NSRadioButton;
+		} else {
+			
+			buttonType = 0;
+		}
+	}
+	
+	[super setValue: value forKey: key];
 }
 
 #pragma mark -

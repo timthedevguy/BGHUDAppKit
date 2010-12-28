@@ -39,6 +39,7 @@
 @interface BGHUDButtonCell : NSButtonCell {
 
 	NSString *themeKey;
+	NSButtonType buttonType;
 }
 
 @property (retain) NSString *themeKey;

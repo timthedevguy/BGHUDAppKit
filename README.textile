@@ -65,23 +65,6 @@ h2. Usage
 
 Using BGHUDAppKit is as simple as opening your project Nib/Xib and designing your interface.  BGHUDAppKit comes with an IBPlugin, when your open the Nib/Xib the plugin will be loaded automatically.  Just look for the Library item called "BGHUDAppKit", now you can use it like any other control in Apple.  Drag and Drop, setup your properties and run.
 
-h2. Known Issues
-
-With the release of the Mac App Store some changes where made to the internal workings of BGHUDAppKit and BGHUDButtonCells.  If you have an existing project with Checkboxes or Radio Buttons from a pre-appstore version of BGHUDAppKit you will need to set some options.
-
-h3. Checkboxes
-
-** Select your Checkbox
-** Set Type to Switch
-** Set Bezel to Check
-** Type "NSSwitch" in Image field of the Inspector panel.
-
-h3. Radio Buttons
-** Select your Radio Button
-** Set Type to Radio
-** Set Bezel to Radio
-** Type "NSRadioButton" in Image field of the Inspector panel.
-
 h2. Themeing
 	
 BGHUDAppKit is more powerful than it first appears to be.  I have designed the classes with the mentality of reinvention.  Why should everyone have to reinvent the NSScroller if they want to apply iTunes style colors to it?  You shouldn't have to.  I've done the hard work and research for you.  My purpose in life as a developer is to make life easier, programmers are lazy :)  Every control in BGHUDAppKit uses a theme, you can have one theme for every control or you could have 10 different themes for 10 different controls.
