@@ -35,6 +35,12 @@
 #import "BGHUDButtonCell.h"
 
 
+@interface BGHUDButtonCell ()
+// Returns NSSwitch for checkboxes, NSRadioButton for radio buttons, and nil otherwise
+-(NSString *) buttonImageName;
+@end
+
+
 @implementation BGHUDButtonCell
 
 #pragma mark Draw Functions
@@ -66,8 +72,6 @@
 			
 			self.themeKey = @"gradientTheme";
 		}
-		
-		buttonType = [aDecoder decodeIntegerForKey: @"BGButtonType"];
 	}
 	
 	return self;
@@ -78,7 +82,6 @@
 	[super encodeWithCoder: coder];
 	
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
-	[coder encodeInt: buttonType forKey: @"BGButtonType"];
 }
 
 -(id)copyWithZone:(NSZone *) zone {
@@ -89,12 +92,6 @@
 	[copy setThemeKey: [self themeKey]];
 	
 	return copy;
-}
-
-- (void)setButtonType:(NSButtonType)aType {
-
-	buttonType = aType;	
-	[super setButtonType: aType];
 }
 
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
@@ -126,7 +123,8 @@
 			break;
 	}
 	
-	if(buttonType == NSSwitchButton || buttonType == NSRadioButton) {
+	if([[self buttonImageName] isEqualToString: @"NSSwitch"] ||
+	   [[self buttonImageName] isEqualToString: @"NSRadioButton"]) {
 		
 		if([self imagePosition] != NSNoImage) {
 			
@@ -140,7 +138,11 @@
 	NSRect textRect = frame;
 	
 	// Adjust Text Rect based on control type and size
-	if(buttonType != NSSwitchButton && buttonType != NSRadioButton) {
+	if([[self buttonImageName] isEqualToString: @"NSSwitch"] ||
+	   [[self buttonImageName] isEqualToString: @"NSRadioButton"]) {
+		
+		//We aren't going to do anything here
+	} else {
 		
 		textRect.origin.x += 5;
 		textRect.size.width -= 10;
@@ -216,10 +218,10 @@
 		[super drawImage: image withFrame: frame inView: controlView];
 	} else {
 		
-		if(buttonType == NSSwitchButton) {
+		if([[self buttonImageName] isEqualToString: @"NSSwitch"]) {
 			
 			[self drawCheckInFrame: frame isRadio: NO];		
-		} else if(buttonType == NSRadioButton) {
+		} else if([[self buttonImageName] isEqualToString: @"NSRadioButton"]) {
 			
 			[self drawCheckInFrame: frame isRadio: YES];
 		} else {
@@ -1004,23 +1006,25 @@
 	[super dealloc];
 }
 
--(void)setValue:(id) value forKey:(NSString *) key {
+
+#pragma mark Private methods
+
+-(NSString *) buttonImageName {
+	// Obtain the NSNormalImage by means of a trick: pretend we're encoding this class,
+	// which causes NSButtonCell to store the image in the NSNormalImage key in the
+	// coder
+
+	// Dummy encode
+    NSMutableData *data = [NSMutableData data];
+    NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
+    [super encodeWithCoder:archiver];
+    [archiver finishEncoding];
 	
-	if([key isEqualToString: @"inspectedType"]) {
-		
-		if([(NSNumber *)value intValue] == 2) {
-			
-			buttonType = NSSwitchButton;
-		} else if([(NSNumber *)value intValue] == 3) {
-			
-			buttonType = NSRadioButton;
-		} else {
-			
-			buttonType = 0;
-		}
-	}
+	// Decode the normal image
+    NSKeyedUnarchiver *unarchiver = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
+    NSString *normalImage = [[unarchiver decodeObjectForKey:@"NSNormalImage"] name];
 	
-	[super setValue: value forKey: key];
+	return normalImage;
 }
 
 #pragma mark -
