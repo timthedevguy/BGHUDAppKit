@@ -211,8 +211,6 @@
 		E70CA2C60FB705040073E3DF /* BGHUDTabViewIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDTabViewIntegration.m; sourceTree = "<group>"; };
 		E70CE4FF0E188A61000139C1 /* BGHUDTableCornerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDTableCornerView.h; path = Framework/BGHUDTableCornerView.h; sourceTree = "<group>"; };
 		E70CE5000E188A61000139C1 /* BGHUDTableCornerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDTableCornerView.m; path = Framework/BGHUDTableCornerView.m; sourceTree = "<group>"; };
-		E711056112D0B6060051465A /* BGHUDAppKit Static-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGHUDAppKit Static-Info.plist"; sourceTree = "<group>"; };
-		E71105AF12D0B6170051465A /* BGHUDAppKitFramework-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGHUDAppKitFramework-Info copy.plist"; sourceTree = "<group>"; };
 		E71317D40E10667D00885A23 /* BGGradientTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGGradientTheme.h; path = Framework/BGGradientTheme.h; sourceTree = "<group>"; };
 		E71317D50E10667D00885A23 /* BGGradientTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGGradientTheme.m; path = Framework/BGGradientTheme.m; sourceTree = "<group>"; };
 		E71317D60E10667D00885A23 /* BGHUDAppKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDAppKit.h; path = Framework/BGHUDAppKit.h; sourceTree = "<group>"; };
@@ -339,7 +337,6 @@
 				0259C582FE90428111CA0C5A /* Resources */,
 				1ED78706FE9D4A0611CA0C5A /* Products */,
 				2E58F364FFB232C311CA0CBA /* Frameworks */,
-				E711056112D0B6060051465A /* BGHUDAppKit Static-Info.plist */,
 			);
 			name = BGHUDAppKit;
 			sourceTree = "<group>";
@@ -350,7 +347,6 @@
 				8D1AC9730486D14A00FE50C9 /* Info.plist */,
 				53DF68FE067E5B5A0090B5B0 /* BGHUDAppKitFramework-Info.plist */,
 				8D1AC97F0486D23B00FE50C9 /* InfoPlist.strings */,
-				E71105AF12D0B6170051465A /* BGHUDAppKitFramework-Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
