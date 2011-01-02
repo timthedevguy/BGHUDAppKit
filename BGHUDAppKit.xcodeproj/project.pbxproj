@@ -19,17 +19,6 @@
 			name = All;
 			productName = All;
 		};
-		E7FDEAFB0FC784AC0014A745 /* Static Analysis */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = E7FDEB000FC784BD0014A745 /* Build configuration list for PBXAggregateTarget "Static Analysis" */;
-			buildPhases = (
-				E7FDEAFA0FC784AC0014A745 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = "Static Analysis";
-			productName = "Static Analysis";
-		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -222,6 +211,8 @@
 		E70CA2C60FB705040073E3DF /* BGHUDTabViewIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGHUDTabViewIntegration.m; sourceTree = "<group>"; };
 		E70CE4FF0E188A61000139C1 /* BGHUDTableCornerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDTableCornerView.h; path = Framework/BGHUDTableCornerView.h; sourceTree = "<group>"; };
 		E70CE5000E188A61000139C1 /* BGHUDTableCornerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDTableCornerView.m; path = Framework/BGHUDTableCornerView.m; sourceTree = "<group>"; };
+		E711056112D0B6060051465A /* BGHUDAppKit Static-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGHUDAppKit Static-Info.plist"; sourceTree = "<group>"; };
+		E71105AF12D0B6170051465A /* BGHUDAppKitFramework-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGHUDAppKitFramework-Info copy.plist"; sourceTree = "<group>"; };
 		E71317D40E10667D00885A23 /* BGGradientTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGGradientTheme.h; path = Framework/BGGradientTheme.h; sourceTree = "<group>"; };
 		E71317D50E10667D00885A23 /* BGGradientTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGGradientTheme.m; path = Framework/BGGradientTheme.m; sourceTree = "<group>"; };
 		E71317D60E10667D00885A23 /* BGHUDAppKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDAppKit.h; path = Framework/BGHUDAppKit.h; sourceTree = "<group>"; };
@@ -348,6 +339,7 @@
 				0259C582FE90428111CA0C5A /* Resources */,
 				1ED78706FE9D4A0611CA0C5A /* Products */,
 				2E58F364FFB232C311CA0CBA /* Frameworks */,
+				E711056112D0B6060051465A /* BGHUDAppKit Static-Info.plist */,
 			);
 			name = BGHUDAppKit;
 			sourceTree = "<group>";
@@ -358,6 +350,7 @@
 				8D1AC9730486D14A00FE50C9 /* Info.plist */,
 				53DF68FE067E5B5A0090B5B0 /* BGHUDAppKitFramework-Info.plist */,
 				8D1AC97F0486D23B00FE50C9 /* InfoPlist.strings */,
+				E71105AF12D0B6170051465A /* BGHUDAppKitFramework-Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -851,7 +844,6 @@
 				53DF6901067E5B8E0090B5B0 /* All */,
 				8D1AC9600486D14A00FE50C9 /* BGHUDAppKitPlugin */,
 				53DF68FC067E5B5A0090B5B0 /* BGHUDAppKit */,
-				E7FDEAFB0FC784AC0014A745 /* Static Analysis */,
 			);
 		};
 /* End PBXProject section */
@@ -917,19 +909,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ -f \"/usr/bin/install_name_tool\" ]; then\n\n    /usr/bin/install_name_tool -change @executable_path/../Frameworks/BGHUDAppKit.framework/Versions/A/BGHUDAppKit @loader_path/../../../../../../../BGHUDAppKit.framework/Versions/A/BGHUDAppKit \"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.ibplugin/Contents/MacOS/${PRODUCT_NAME}\"\n\nelse\n\n    /Developer/usr/bin/install_name_tool -change @executable_path/../Frameworks/BGHUDAppKit.framework/Versions/A/BGHUDAppKit @loader_path/../../../../../../../BGHUDAppKit.framework/Versions/A/BGHUDAppKit \"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.ibplugin/Contents/MacOS/${PRODUCT_NAME}\"\n\nfi";
-		};
-		E7FDEAFA0FC784AC0014A745 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# shell script goes here\ncd \"$SRCROOT\"\nxcodebuild clean -target $PROJECT_NAME\n~/Development/llvm-checker/scan-build -analyze-headers -k -V xcodebuild -target $PROJECT_NAME\nexit 0";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1110,17 +1089,6 @@
 				SEPARATE_STRIP = YES;
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = YES;
-			};
-			name = Release_10.6_10.5_32_64_GC_embed;
-		};
-		3D9BABC31166D18F008CEA8B /* Release_10.6_10.5_32_64_GC_embed */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				PRODUCT_NAME = "Static Analysis";
-				ZERO_LINK = NO;
 			};
 			name = Release_10.6_10.5_32_64_GC_embed;
 		};
@@ -1315,27 +1283,6 @@
 			};
 			name = Release;
 		};
-		E7FDEAFC0FC784AC0014A745 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				PRODUCT_NAME = "Static Analysis";
-			};
-			name = Debug;
-		};
-		E7FDEAFD0FC784AC0014A745 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				PRODUCT_NAME = "Static Analysis";
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1375,16 +1322,6 @@
 				C056398C08A954F8003078D8 /* Debug */,
 				C056398D08A954F8003078D8 /* Release */,
 				3D9BABBF1166D18F008CEA8B /* Release_10.6_10.5_32_64_GC_embed */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E7FDEB000FC784BD0014A745 /* Build configuration list for PBXAggregateTarget "Static Analysis" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E7FDEAFC0FC784AC0014A745 /* Debug */,
-				E7FDEAFD0FC784AC0014A745 /* Release */,
-				3D9BABC31166D18F008CEA8B /* Release_10.6_10.5_32_64_GC_embed */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
