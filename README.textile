@@ -1,4 +1,4 @@
-h1. Important 12/27/2010
+h1. Important 1/3/2011
 
 The App Store branch has been merged into Master.  Please be aware that existing projects that upgrade to the new version will need to toggle any Radio/Check buttons from the existing Bezel style to another and back again.  (IE: A check will need to be toggled to radio and then back to check)  This will setup the new code changes I had to implement for the App Store.
 
