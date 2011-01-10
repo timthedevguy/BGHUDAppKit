@@ -67,7 +67,10 @@
 			self.themeKey = @"gradientTheme";
 		}
 		
-		buttonType = [aDecoder decodeIntegerForKey: @"BGButtonType"];
+		if([aDecoder containsValueForKey: @"BGButtonType"]) {
+			
+			buttonType = [aDecoder decodeIntegerForKey: @"BGButtonType"];
+		}
 	}
 	
 	return self;
