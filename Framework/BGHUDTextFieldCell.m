@@ -261,7 +261,7 @@
 		
 		//Set it
 		[self setPlaceholderAttributedString: [[[NSAttributedString alloc] initWithString: [self placeholderString] attributes: [attribs autorelease]] autorelease]];
-	} else if([self placeholderAttributedString]) {
+	} else if([self placeholderAttributedString] && [[self placeholderAttributedString] length] > 0) {
 		
 		// Check to see if the proper styles have been applied
 		if([[[self placeholderAttributedString] attribute: NSParagraphStyleAttributeName atIndex: 1 effectiveRange: nil] alignment] != [self alignment]) {
