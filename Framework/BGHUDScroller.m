@@ -326,6 +326,7 @@
 			[path appendBezierPathWithPoints: basePoints count: 4];
 			
 			[[[[BGThemeManager keyedManager] themeForKey: [self themeKey]] scrollerArrowNormalGradient] drawInBezierPath: path angle: 0];
+			[path release];
 		}
 	} else {
 		
@@ -408,6 +409,7 @@
 			[path appendBezierPathWithPoints: basePoints count: 4];
 			
 			[[[[BGThemeManager keyedManager] themeForKey: [self themeKey]] scrollerArrowNormalGradient] drawInBezierPath: path angle: 90];
+			[path release];
 		}
 	}
 }

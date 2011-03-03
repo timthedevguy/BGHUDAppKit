@@ -211,6 +211,8 @@
 					[gradient drawInBezierPath: path angle: 90];
 				}
 				
+				[gradient release];
+				
 				if([self borderType] != NSNoBorder) {
 					
 					[[self borderColor] set];

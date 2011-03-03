@@ -226,11 +226,9 @@
 
 - (NSText *)setUpFieldEditorAttributes:(NSText *)textObj {
 
-	NSText *newText = [[NSText alloc] init];
-	newText = [super setUpFieldEditorAttributes: textObj];
-	NSColor *textColor = [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor];
-	[(NSTextView *)newText setInsertionPointColor:textColor];
-	return newText;
+	NSText *newText = [[super setUpFieldEditorAttributes: textObj] retain];
+	[(NSTextView *)newText setInsertionPointColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+	return [newText autorelease];
 }
 
 #pragma mark -
