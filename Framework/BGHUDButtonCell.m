@@ -115,6 +115,10 @@
 			
 			[self drawRoundedButtonInFrame: cellFrame];
 			break;
+			
+		case NSRecessedBezelStyle:
+			[self drawRecessedButtonInFrame: cellFrame];
+			break;
 	}
 	
 	if([[_normalImage name] isEqualToString: @"NSSwitch"] ||
@@ -712,8 +716,10 @@
 		frame.origin.y += (BGCenterY([matrix bounds]) / [matrix numberOfRows]) - BGCenterY(frame);
 		//frame.origin.x += 40;
 		
-	} else if(![[[self controlView] className] isEqualToString: @"BGHUDTableView"] &&
-			![[[self controlView] className] isEqualToString: @"BGHUDOutlineView"]) {
+	} else if(![[[[self controlView] superclass] className] isEqualToString: @"BGHUDTableView"] &&
+			  ![[[[self controlView] superclass] className] isEqualToString: @"BGHUDOutlineView"] &&
+			  ![[[self controlView] className] isEqualToString: @"BGHUDTableView"] &&
+			  ![[[self controlView] className] isEqualToString: @"BGHUDOutlineView"]) {
 		
 		frame.origin.y += (BGCenterY([[self controlView] bounds]) - BGCenterY(frame));
 	}
@@ -995,6 +1001,109 @@
 	}
 }
 
+-(void)drawRecessedButtonInFrame:(NSRect)frame {//This part is not implemented so good as the codes from Timothy Davis, but we do need that
+	NSRect textFrame;
+	
+	//Adjust Rect so strokes are true and
+	//shadows are visible
+	frame.origin.x += .5f;
+	frame.origin.y += .5f;
+	frame.size.height -= 1;
+	frame.size.width -= 1;
+	
+	//Adjust Rect based on ControlSize so that
+	//my controls match as closely to apples
+	//as possible.
+	switch ([self controlSize]) {
+		default: // Silence uninitialized variable warnings for textFrame fields.
+		case NSRegularControlSize:
+			
+			frame.origin.x += 1;
+			frame.origin.y += 1;
+			frame.size.width -= 2;
+			frame.size.height -= 4;
+			
+			textFrame = frame;
+			break;
+			
+		case NSSmallControlSize:
+			
+			frame.origin.x += 1;
+			frame.origin.y += 1;
+			frame.size.width -= 2;
+			frame.size.height -= 3;
+			
+			textFrame = frame;
+			textFrame.origin.y += 1;
+			break;
+			
+		case NSMiniControlSize:
+			
+			frame.origin.y -= 1;
+			
+			textFrame = frame;
+			textFrame.origin.y += 1;
+			break;
+	}	
+	//Create Path
+	NSBezierPath *path = [[NSBezierPath alloc] init];
+	
+	[path appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(frame) + BGCenterY(frame), NSMidY(frame) + 0.5f)
+									 radius: BGCenterY(frame)
+								 startAngle: 90
+								   endAngle: 270];
+	
+	[path appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(frame) - BGCenterY(frame), NSMidY(frame) + 0.5f)
+									 radius: BGCenterY(frame) 
+								 startAngle: 270 
+								   endAngle: 90];
+	
+	[path closePath];
+	
+	if([self isEnabled]) {
+		if([self state] == 1) {
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedSolidFill] set];
+			[path fill];
+			isMouseIn = NO;
+		}
+		else {
+			if(isMouseIn){
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightSolidFill] set];
+				[path fill];
+			}
+			else {
+				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalSolidFill] set];
+				[path fill];
+			}
+		}
+	}
+	else {
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledNormalSolidFill] set];
+	}
+	
+	[path release];
+	
+	if([self imagePosition] != NSImageOnly) {
+		[self drawTitle: [self attributedTitle] withFrame: textFrame inView: [self controlView]];
+	}
+	
+	if([self imagePosition] != NSNoImage) {
+		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
+	}
+}
+
+- (void)mouseEntered:(NSEvent *)event{
+	if ([self bezelStyle] == NSRecessedBezelStyle) {
+		isMouseIn = YES;
+		[self setHighlighted:YES];
+	}
+}
+- (void)mouseExited:(NSEvent *)event{
+	if ([self bezelStyle] == NSRecessedBezelStyle) {
+		isMouseIn = NO;
+		[self setHighlighted:NO];
+	}
+}
 #pragma mark -
 #pragma mark Helper Methods
 
