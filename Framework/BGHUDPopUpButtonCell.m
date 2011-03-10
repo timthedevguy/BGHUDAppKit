@@ -198,7 +198,7 @@
 								   value: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]
 								   range: NSMakeRange(0, [aTitle length])];
 				} else {
-
+					
 					[aTitle addAttribute: NSForegroundColorAttributeName
 								   value: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor]
 								   range: NSMakeRange(0, [aTitle length])];
@@ -217,84 +217,84 @@
 		}
 		
 		[aTitle endEditing];
-		
-		int arrowAdjustment = 0;
-		
-		if([self isBordered]) {
-			
-			cellFrame.size.height -= 2;
-			cellFrame.origin.x += 5;
-		} /*else {
-		
-			
-		}*/
-		
-		switch ([self controlSize]) {
-				
-			case NSRegularControlSize:
-				
-				arrowAdjustment = 21;
-				break;
-				
-			case NSSmallControlSize:
-				
-				arrowAdjustment = 18;
-				break;
-				
-			case NSMiniControlSize:
-				
-				arrowAdjustment = 15;
-				break;
-		}
-		
-		NSRect titleFrame = NSMakeRect(cellFrame.origin.x + 5, NSMidY(cellFrame) - ([aTitle size].height/2), cellFrame.size.width - arrowAdjustment, [aTitle size].height);
-		NSRect imageFrame = NSMakeRect(cellFrame.origin.x, cellFrame.origin.y, cellFrame.size.width - arrowAdjustment, cellFrame.size.height);
-
-		if([self image]) {
-
-			switch ([self imagePosition]) {
-					
-				case NSImageLeft:
-				case NSNoImage:
-					
-					titleFrame.origin.x += 6;
-					titleFrame.origin.x += [[self image] size].width;
-					break;
-					
-				case NSImageOnly:
-					
-					titleFrame.size.width = 0;
-					//imageRect.origin.x += (frame.size.width /2) - (imageRect.size.width /2);
-					break;
-					
-				case NSImageRight:
-					
-					//btitleFrame.origin.x += 3;
-					//imageRect.origin.x = ((frame.origin.x + frame.size.width) - imageRect.size.width) - 5;
-					break;
-					
-				case NSImageBelow:
-					
-					break;
-					
-				case NSImageAbove:
-					
-					break;
-					
-				case NSImageOverlaps:
-					
-					break;
-					
-				default:
-					
-					//imageRect.origin.x += 5;
-					break;
-			}
-		}
-
-		[super drawTitle: aTitle withFrame: titleFrame inView: controlView];
-		[self drawImage: [self image] withFrame: imageFrame inView: controlView];
 	}
+	
+	int arrowAdjustment = 0;
+	
+	if([self isBordered]) {
+		
+		cellFrame.size.height -= 2;
+		cellFrame.origin.x += 5;
+	} /*else {
+	   
+	   
+	   }*/
+	
+	switch ([self controlSize]) {
+			
+		case NSRegularControlSize:
+			
+			arrowAdjustment = 21;
+			break;
+			
+		case NSSmallControlSize:
+			
+			arrowAdjustment = 18;
+			break;
+			
+		case NSMiniControlSize:
+			
+			arrowAdjustment = 15;
+			break;
+	}
+	
+	NSRect titleFrame = NSMakeRect(cellFrame.origin.x + 5, NSMidY(cellFrame) - ([aTitle size].height/2), cellFrame.size.width - arrowAdjustment, [aTitle size].height);
+	NSRect imageFrame = NSMakeRect(cellFrame.origin.x, cellFrame.origin.y, cellFrame.size.width - arrowAdjustment, cellFrame.size.height);
+	
+	if([self image]) {
+		
+		switch ([self imagePosition]) {
+				
+			case NSImageLeft:
+			case NSNoImage:
+				
+				titleFrame.origin.x += 6;
+				titleFrame.origin.x += [[self image] size].width;
+				break;
+				
+			case NSImageOnly:
+				
+				titleFrame.size.width = 0;
+				//imageRect.origin.x += (frame.size.width /2) - (imageRect.size.width /2);
+				break;
+				
+			case NSImageRight:
+				
+				//btitleFrame.origin.x += 3;
+				//imageRect.origin.x = ((frame.origin.x + frame.size.width) - imageRect.size.width) - 5;
+				break;
+				
+			case NSImageBelow:
+				
+				break;
+				
+			case NSImageAbove:
+				
+				break;
+				
+			case NSImageOverlaps:
+				
+				break;
+				
+			default:
+				
+				//imageRect.origin.x += 5;
+				break;
+		}
+	}
+	
+	[super drawTitle: aTitle withFrame: titleFrame inView: controlView];
+	[self drawImage: [self image] withFrame: imageFrame inView: controlView];
 	
 	[aTitle release];
 }
@@ -483,7 +483,7 @@
 		[arrow release];
 		
 	} else {
-	
+		
 		NSBezierPath *topArrow = [[NSBezierPath alloc] init];
 		
 		NSPoint topPoints[3];
