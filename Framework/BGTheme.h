@@ -56,6 +56,7 @@
 -(NSGradient *)disabledKnobColor;				//Gradient used to draw disabled knob
 
 //Text Based Theme
+-(BOOL)isOverrideFillColor;
 -(NSColor *)textFillColor;						//Color of background if drawbackground set to ON
 -(NSColor *)selectionHighlightActiveColor;		//Background color of higlighted text (active app)
 -(NSColor *)selectionHighlightInActiveColor;	//Background color of higlighted text (inactive app)
@@ -84,6 +85,7 @@
 -(NSGradient *)tableHeaderCellSelectedFill;		//Gradient used to draw selected column header
 
 //General Theme
+-(CGFloat)gradientAngle;
 -(NSGradient *)normalGradient;					//Gradient used to draw normal background
 -(NSGradient *)disabledNormalGradient;			//Gradient used for disabled background
 -(NSGradient *)pushedGradient;					//Gradient used to draw pushed background
@@ -100,6 +102,7 @@
 -(NSColor *)disabledStrokeColor;				//Color used for disabled border
 -(NSColor *)darkStrokeColor;					//Color used to draw dark shadow border
 -(NSColor *)textColor;							//Color used to draw text
+-(NSColor *)highlightTextColor;
 -(NSColor *)disabledTextColor;					//Color used to draw disabled text
 -(NSShadow *)dropShadow;						//Drop shadow used on all controls
 -(CGFloat)alphaValue;								//Alpha value that is an optional paremeter, used only

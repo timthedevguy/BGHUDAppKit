@@ -114,6 +114,9 @@
 #pragma mark -
 #pragma mark Text Based Theme
 
+-(BOOL)isOverrideFillColor {
+	return YES;
+}
 -(NSColor *)textFillColor {
 	
 	return [NSColor colorWithDeviceRed: .224f green: .224f blue: .224f alpha: .95f];
@@ -233,6 +236,9 @@
 #pragma mark -
 #pragma mark General Theme
 
+-(CGFloat)gradientAngle {
+	return 90.0f;
+}
 -(NSGradient *)normalGradient {
 	
 	return [[[NSGradient alloc] initWithStartingColor: [NSColor colorWithDeviceRed: 0.251f green: 0.251f blue: 0.255f alpha: [self alphaValue]]
@@ -329,6 +335,10 @@
 	return [NSColor whiteColor];
 }
 
+-(NSColor *)highlightTextColor {
+	
+	return [NSColor whiteColor];
+}
 -(NSColor *)disabledTextColor {
 	
 	return [NSColor colorWithDeviceRed: 1 green: 1 blue: 1 alpha: [self disabledAlphaValue]];
