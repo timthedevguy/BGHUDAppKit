@@ -336,13 +336,13 @@
 		case NSSmallControlSize:
 			
 			frame.origin.y += 3;
-			frame.size.height += 2;
+			//frame.size.height += 2;
 			break;
 			
 		case NSMiniControlSize:
 			
 			frame.origin.y += 5;
-			frame.size.height += 1;
+			//frame.size.height += 1;
 			break;
 	}
 	
