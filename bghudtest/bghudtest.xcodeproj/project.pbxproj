@@ -1,0 +1,288 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E70E5C811354CBB900BAA5B0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E70E5C801354CBB900BAA5B0 /* Cocoa.framework */; };
+		E70E5C8B1354CBB900BAA5B0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E70E5C891354CBB900BAA5B0 /* InfoPlist.strings */; };
+		E70E5C8E1354CBB900BAA5B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E70E5C8D1354CBB900BAA5B0 /* main.m */; };
+		E70E5C911354CBB900BAA5B0 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E70E5C8F1354CBB900BAA5B0 /* Credits.rtf */; };
+		E70E5C941354CBB900BAA5B0 /* bghudtestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E70E5C931354CBB900BAA5B0 /* bghudtestAppDelegate.m */; };
+		E70E5C971354CBB900BAA5B0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E70E5C951354CBB900BAA5B0 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E70E5C7C1354CBB900BAA5B0 /* bghudtest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bghudtest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E70E5C801354CBB900BAA5B0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		E70E5C831354CBB900BAA5B0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		E70E5C841354CBB900BAA5B0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E70E5C851354CBB900BAA5B0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E70E5C881354CBB900BAA5B0 /* bghudtest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "bghudtest-Info.plist"; sourceTree = "<group>"; };
+		E70E5C8A1354CBB900BAA5B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E70E5C8C1354CBB900BAA5B0 /* bghudtest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bghudtest-Prefix.pch"; sourceTree = "<group>"; };
+		E70E5C8D1354CBB900BAA5B0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E70E5C901354CBB900BAA5B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		E70E5C921354CBB900BAA5B0 /* bghudtestAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bghudtestAppDelegate.h; sourceTree = "<group>"; };
+		E70E5C931354CBB900BAA5B0 /* bghudtestAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bghudtestAppDelegate.m; sourceTree = "<group>"; };
+		E70E5C961354CBB900BAA5B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E70E5C791354CBB900BAA5B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E70E5C811354CBB900BAA5B0 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E70E5C711354CBB800BAA5B0 = {
+			isa = PBXGroup;
+			children = (
+				E70E5C861354CBB900BAA5B0 /* bghudtest */,
+				E70E5C7F1354CBB900BAA5B0 /* Frameworks */,
+				E70E5C7D1354CBB900BAA5B0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E70E5C7D1354CBB900BAA5B0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E70E5C7C1354CBB900BAA5B0 /* bghudtest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E70E5C7F1354CBB900BAA5B0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E70E5C801354CBB900BAA5B0 /* Cocoa.framework */,
+				E70E5C821354CBB900BAA5B0 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E70E5C821354CBB900BAA5B0 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E70E5C831354CBB900BAA5B0 /* AppKit.framework */,
+				E70E5C841354CBB900BAA5B0 /* CoreData.framework */,
+				E70E5C851354CBB900BAA5B0 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		E70E5C861354CBB900BAA5B0 /* bghudtest */ = {
+			isa = PBXGroup;
+			children = (
+				E70E5C921354CBB900BAA5B0 /* bghudtestAppDelegate.h */,
+				E70E5C931354CBB900BAA5B0 /* bghudtestAppDelegate.m */,
+				E70E5C951354CBB900BAA5B0 /* MainMenu.xib */,
+				E70E5C871354CBB900BAA5B0 /* Supporting Files */,
+			);
+			path = bghudtest;
+			sourceTree = "<group>";
+		};
+		E70E5C871354CBB900BAA5B0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E70E5C881354CBB900BAA5B0 /* bghudtest-Info.plist */,
+				E70E5C891354CBB900BAA5B0 /* InfoPlist.strings */,
+				E70E5C8C1354CBB900BAA5B0 /* bghudtest-Prefix.pch */,
+				E70E5C8D1354CBB900BAA5B0 /* main.m */,
+				E70E5C8F1354CBB900BAA5B0 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E70E5C7B1354CBB900BAA5B0 /* bghudtest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E70E5C9A1354CBB900BAA5B0 /* Build configuration list for PBXNativeTarget "bghudtest" */;
+			buildPhases = (
+				E70E5C781354CBB900BAA5B0 /* Sources */,
+				E70E5C791354CBB900BAA5B0 /* Frameworks */,
+				E70E5C7A1354CBB900BAA5B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = bghudtest;
+			productName = bghudtest;
+			productReference = E70E5C7C1354CBB900BAA5B0 /* bghudtest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E70E5C731354CBB800BAA5B0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = none;
+			};
+			buildConfigurationList = E70E5C761354CBB800BAA5B0 /* Build configuration list for PBXProject "bghudtest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E70E5C711354CBB800BAA5B0;
+			productRefGroup = E70E5C7D1354CBB900BAA5B0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E70E5C7B1354CBB900BAA5B0 /* bghudtest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E70E5C7A1354CBB900BAA5B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E70E5C8B1354CBB900BAA5B0 /* InfoPlist.strings in Resources */,
+				E70E5C911354CBB900BAA5B0 /* Credits.rtf in Resources */,
+				E70E5C971354CBB900BAA5B0 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E70E5C781354CBB900BAA5B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E70E5C8E1354CBB900BAA5B0 /* main.m in Sources */,
+				E70E5C941354CBB900BAA5B0 /* bghudtestAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E70E5C891354CBB900BAA5B0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E70E5C8A1354CBB900BAA5B0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E70E5C8F1354CBB900BAA5B0 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E70E5C901354CBB900BAA5B0 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		E70E5C951354CBB900BAA5B0 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E70E5C961354CBB900BAA5B0 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E70E5C981354CBB900BAA5B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E70E5C991354CBB900BAA5B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E70E5C9B1354CBB900BAA5B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "bghudtest/bghudtest-Prefix.pch";
+				INFOPLIST_FILE = "bghudtest/bghudtest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E70E5C9C1354CBB900BAA5B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "bghudtest/bghudtest-Prefix.pch";
+				INFOPLIST_FILE = "bghudtest/bghudtest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E70E5C761354CBB800BAA5B0 /* Build configuration list for PBXProject "bghudtest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E70E5C981354CBB900BAA5B0 /* Debug */,
+				E70E5C991354CBB900BAA5B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E70E5C9A1354CBB900BAA5B0 /* Build configuration list for PBXNativeTarget "bghudtest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E70E5C9B1354CBB900BAA5B0 /* Debug */,
+				E70E5C9C1354CBB900BAA5B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E70E5C731354CBB800BAA5B0 /* Project object */;
+}
