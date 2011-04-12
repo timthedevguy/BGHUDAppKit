@@ -31,6 +31,20 @@
 //	POSSIBILITY OF SUCH DAMAGE.
 
 #import "BGHUDTabView.h"
+#import "BGHUDSegmentedCell.h"
+
+@interface NSTabView (Private) 
+
+- (NSRect)_tabRectForTabViewItem:(id)arg1;
+- (void)_drawThemeBezelBorder:(id)arg1 inRect:(NSRect)arg2;
+- (NSRect)_legacy__tabRectForTabViewItem:(id)arg1;
+- (NSRect)_themeContentRect;
+- (NSRect)_themeTabAndBarArea;
+- (NSRect)_titleRectForTabViewItem:(id)arg1;
+- (id)_tabsCell;
+- (void)_setTabsCell:(id)arg1;
+
+@end
 
 @implementation BGHUDTabView
 
@@ -65,10 +79,13 @@
 	
 	if( !isSubclass )
 	{
+        NSLog(@"A");
 		self = [super initWithCoder: aDecoder]; 
 	}
 	else
 	{
+        
+        NSLog(@"B");
 		NSKeyedUnarchiver *modDecoder = (id)aDecoder;
 		
 		[modDecoder setClass: [BGHUDTabViewItem class] forClassName: @"NSTabViewItem"];
@@ -89,6 +106,11 @@
 		}
 	}
 	
+    BGHUDSegmentedCell *myCell = [[BGHUDSegmentedCell alloc] init];
+    [myCell setSegmentStyle: NSSegmentStyleRounded];
+    
+    [self _setTabsCell: myCell];
+    [myCell release];
 	return self;
 }
 
@@ -121,8 +143,10 @@
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
--(void)_drawThemeTab:(id) tabItem withState:(NSUInteger) state inRect:(NSRect) aRect {
+/*-(void)_drawThemeTab:(id) tabItem withState:(NSUInteger) state inRect:(NSRect) aRect {
 
+    NSLog(@"_drawThemeTab");
+    
 	NSInteger index = [self indexOfTabViewItem: tabItem];
 	int gradientAngle = 90;
 	NSBezierPath *path;
@@ -290,6 +314,50 @@
 		
 		[path release];
 	}
+}*/
+
+/*- (void)drawRect:(NSRect)arg1 {
+ 
+    for(BGHUDTabViewItem *item in [self tabViewItems]) {
+        
+        [self _drawThemeTab: item withState: (item == [self selectedTabViewItem]) ? 0 : 1 inRect: [self _tabRectForTabViewItem: item]];
+    }
+}*/
+
+/*- (BOOL)_coreUIDrawTab:(id)arg1 withState:(unsigned long long)arg2 inRect:(struct CGRect)arg3 {
+    
+    return NO;
+}
+
+- (BOOL)_coreUIDrawBezelInRect:(struct CGRect)arg1 withClip:(struct CGRect)arg2 {
+    return NO;
+}
+
+- (BOOL)_shouldTryCoreUIDrawing {
+    
+    return NO;
+}*/
+
+/*- (void)_drawThemeBezelBorder:(id)arg1 inRect:(NSRect)arg2 {
+    
+}*/
+/*- (void)_drawBezelBorder:(id)arg1 inRect:(NSRect)arg2 {
+    
+}
+- (void)_drawBorder:(id)arg1 inRect:(NSRect)arg2 {
+    
+}
+- (void)_drawTabViewItem:(id)arg1 inRect:(NSRect)arg2 {
+    
+}*/
+
+- (BOOL)_allowAnimation {
+    
+    return NO;
+}
+
+- (void)_getThemeImageTabBarRect:(NSRect *)arg1 backgroundRect:(NSRect *)arg2 fillBackgroundRect:(NSRect *)arg3 {
+    
 }
 
 -(void)dealloc {

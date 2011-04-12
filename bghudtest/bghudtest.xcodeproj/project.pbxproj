@@ -13,7 +13,22 @@
 		E70E5C911354CBB900BAA5B0 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E70E5C8F1354CBB900BAA5B0 /* Credits.rtf */; };
 		E70E5C941354CBB900BAA5B0 /* bghudtestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E70E5C931354CBB900BAA5B0 /* bghudtestAppDelegate.m */; };
 		E70E5C971354CBB900BAA5B0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E70E5C951354CBB900BAA5B0 /* MainMenu.xib */; };
+		E73CD0C61354CE5F006D4D89 /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73CD0C51354CE5F006D4D89 /* BGHUDAppKit.framework */; };
+		E73CD0C91354CE90006D4D89 /* BGHUDAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E73CD0C51354CE5F006D4D89 /* BGHUDAppKit.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E73CD0C81354CE88006D4D89 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E73CD0C91354CE90006D4D89 /* BGHUDAppKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E70E5C7C1354CBB900BAA5B0 /* bghudtest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bghudtest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,6 +44,7 @@
 		E70E5C921354CBB900BAA5B0 /* bghudtestAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bghudtestAppDelegate.h; sourceTree = "<group>"; };
 		E70E5C931354CBB900BAA5B0 /* bghudtestAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bghudtestAppDelegate.m; sourceTree = "<group>"; };
 		E70E5C961354CBB900BAA5B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		E73CD0C51354CE5F006D4D89 /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BGHUDAppKit.framework; path = ../build/Debug/BGHUDAppKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E73CD0C61354CE5F006D4D89 /* BGHUDAppKit.framework in Frameworks */,
 				E70E5C811354CBB900BAA5B0 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +89,7 @@
 		E70E5C821354CBB900BAA5B0 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E73CD0C51354CE5F006D4D89 /* BGHUDAppKit.framework */,
 				E70E5C831354CBB900BAA5B0 /* AppKit.framework */,
 				E70E5C841354CBB900BAA5B0 /* CoreData.framework */,
 				E70E5C851354CBB900BAA5B0 /* Foundation.framework */,
@@ -112,6 +130,7 @@
 				E70E5C781354CBB900BAA5B0 /* Sources */,
 				E70E5C791354CBB900BAA5B0 /* Frameworks */,
 				E70E5C7A1354CBB900BAA5B0 /* Resources */,
+				E73CD0C81354CE88006D4D89 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -237,11 +256,16 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../build/Debug\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bghudtest/bghudtest-Prefix.pch";
 				INFOPLIST_FILE = "bghudtest/bghudtest-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -253,10 +277,15 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../build/Debug\"",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bghudtest/bghudtest-Prefix.pch";
 				INFOPLIST_FILE = "bghudtest/bghudtest-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -281,6 +310,7 @@
 				E70E5C9C1354CBB900BAA5B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

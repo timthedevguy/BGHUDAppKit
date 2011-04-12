@@ -357,6 +357,15 @@
 	return flag;
 }
 
+- (BOOL)_canAnimate {
+    
+    return NO;
+}
+
+- (BOOL)_isSliderStyle {
+    return NO;
+}
+
 -(void)dealloc {
 	
 	[themeKey release];

@@ -11,10 +11,13 @@
 @implementation bghudtestAppDelegate
 
 @synthesize window;
+@synthesize tabView;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+    NSLog(@"Done with initialization");
+    NSLog(@"TabView: %@", tabView);
 }
 
 @end
