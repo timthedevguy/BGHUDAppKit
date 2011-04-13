@@ -1,0 +1,128 @@
+body {
+	background-color: #6d6d6d;
+}
+
+.wrapper {
+	width: 600px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.toc {
+	background-color: #FFF;
+	width: 600px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.toc-item {
+	width: 200px;
+	display: inline;
+}
+
+.toc-item h4 {
+	text-align: center;
+	color: #383838;
+	margin-top: 0;
+	text-shadow: #959595 1px 1px 3px;
+	font: bold 20px "Lucida Grande", Lucida, Verdana, sans-serif;
+	margin-bottom: 0;
+}
+
+.toc-image {
+	width: 130px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+
+.smartnumber
+{
+    display:            inline;
+    background-color:   #c8c8c8;
+    border:             1px solid #c8c8c8;
+    padding: 0px 1px 4px 0px;
+    margin-right: 5px;
+}
+
+.smartvalue
+{
+    display:            inline;
+    color:              white;
+    font-weight:        bold;
+    background-color: #54adfd;
+    margin-left: -3px;
+    width: 20px;
+    border:             2px solid white;
+    padding: 1px 1px 1px 5px;
+}
+
+.section {
+	background-color: #FFF;
+	width: 600px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	margin-top: 20px;
+}
+
+.section .title {
+	border-bottom: 1px solid #777;
+	font: bold 20px "Lucida Grande", Lucida, Verdana, sans-serif;
+	margin-bottom: 0;
+	padding: 9px;
+}
+
+.section .content {
+	padding: 15px;
+	font: 15px "Lucida Grande", Lucida, Verdana, sans-serif;
+	color: #5b5b5b;
+	background-color: #f6f6f6;
+}
+
+.section .subcontent{
+	margin-bottom: 20px;
+	padding-left: 10px;
+	line-height: 25px;
+}
+
+.subcontent h1 {
+	color: #000;
+	font-size: 15px;
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: 14px;
+	margin-left: -24px;
+	text-shadow: #fff 1px 1px 0;
+	background-color: #dddfdf;
+	margin-right: -15px;
+}
