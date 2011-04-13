@@ -84,6 +84,95 @@
 				</div>
 			</div>
 			
+			<div class="section">
+				<div class="title">
+					Usage
+				</div>
+				<div class="content">
+					<div class="subcontent">
+						<h1>Including in Project</h1>
+						
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								1
+							</div>
+						</div>
+						Right-Click on your <b>Frameworks</b> group in XCode.</p>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								2
+							</div>
+						</div>
+						Select <b>Add -> Existing Frameworks...</b></p>
+						<div class="imagesection">
+							<div class="imagesection-image" style="width: 475px;">
+								<img src="step1-2.png"/>
+							</div>
+						</div>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								3
+							</div>
+						</div>
+						Navigate to your BGHUDAppKit <b>build/Release</b> directory and select <b>BGHUDAppKit.framework</b> <i>(Yes, it's a folder)</i></p>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								4
+							</div>
+						</div>
+						Right-Click on your projects Target <i>(This is generally a target with the same name as your project)</i> located in your <b>Targets</b> group in XCode</p>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								5
+							</div>
+						</div>
+						Select <b>Add -> New Build Phase -> New Copy Files Build Phase</b></p>
+						<div class="imagesection">
+							<div class="imagesection-image" style="width: 600px;">
+								<img src="step4-5.png"/>
+							</div>
+						</div>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								6
+							</div>
+						</div>
+						Double-Click the new item named <b>Copy Files</b> under your projects target grouping.  <i>(You may need to expand your projects target to see this)</i></p>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								7
+							</div>
+						</div>
+						Select <b>Frameworks</b> from the Destination drop down, close the window when your done.</p>
+						<div class="imagesection">
+							<div class="imagesection-image" style="width: 353px;">
+								<img src="step6-7.png"/>
+							</div>
+						</div>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								8
+							</div>
+						</div>
+						Drag BGHUDAppKit.framework from <b>Frameworks</b> group in XCode to the <b>Copy Files</b> build phase under <b>Targets</b> group in XCode.</p>
+						<div class="imagesection">
+							<div class="imagesection-image" style="width: 180px;">
+								<img src="step8.png"/>
+							</div>
+						</div>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								9
+							</div>
+						</div>
+						Build your project.</p>
+						
+						<p>You should now be able to inspect your products .APP bundle and see a new folder named <b>Frameworks</b> that contains BGHUDAppKit.
+						
+					</div>
+				</div>
+			</div>
+			
 		</div>
 	</body>
 </html>

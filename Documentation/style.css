@@ -126,3 +126,16 @@ html[xmlns] .clearfix {
 	background-color: #dddfdf;
 	margin-right: -15px;
 }
+
+.imagesection {
+	background-color: #cecece;
+	border-top: 1px solid #ababab;
+	border-bottom: 1px solid #ababab;
+	margin-left: -25px;
+	margin-right: -15px;
+}
+
+.imagesection-image {
+	margin-left: auto;
+	margin-right: auto;
+}
