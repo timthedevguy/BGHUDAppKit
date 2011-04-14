@@ -2,6 +2,10 @@ body {
 	background-color: #6d6d6d;
 }
 
+a {
+	text-decoration: none;
+}
+
 .wrapper {
 	width: 600px;
 	margin-right: auto;
@@ -66,6 +70,22 @@ html[xmlns] .clearfix {
 	height: 1%;
 }
 
+.text-toc {
+	font: bold 12px "Lucida Grande", Lucida, Verdana, sans-serif;
+	margin-top: 14px;
+	float: right;
+	margin-right: 12px;
+}
+
+.text-toc ul {
+	margin: 0;
+	padding: 0;
+}
+
+.text-toc ul li {
+	display: inline;
+}
+
 .smartnumber
 {
     display:            inline;
@@ -95,11 +115,24 @@ html[xmlns] .clearfix {
 	margin-top: 20px;
 }
 
-.section .title {
+.section a {
+	color: #54adfd;
+}
+
+.section .title-wrapper {
 	border-bottom: 1px solid #777;
+	width: 100%;
+}
+
+.section .title {
 	font: bold 20px "Lucida Grande", Lucida, Verdana, sans-serif;
 	margin-bottom: 0;
 	padding: 9px;
+	float: left;
+}
+
+section .title a {
+	color: #000;
 }
 
 .section .content {
@@ -138,4 +171,18 @@ html[xmlns] .clearfix {
 .imagesection-image {
 	margin-left: auto;
 	margin-right: auto;
+}
+
+pre {
+	background-color: #cecece;
+	border-top: 1px solid #ababab;
+	border-bottom: 1px solid #ababab;
+	margin-left: -25px;
+	margin-right: -15px;
+	padding-left: 25px;
+}
+
+code {
+	background-color: #cecece;
+	border: 1px solid #ababab;
 }
