@@ -78,6 +78,11 @@
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
+- (void)drawRect:(NSRect)dirtyRect {
+	[self _drawThemeBackground];
+	[self _drawThemeProgressArea:NO];
+}
+
 - (void)_drawThemeBackground {
 	
 	NSRect frame = [self bounds];
