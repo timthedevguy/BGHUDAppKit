@@ -2,13 +2,8 @@ build
 BGHUDAppKit.xcodeproj/*.mode1v3
 BGHUDAppKit.xcodeproj/*.pbxuser
 BGHUDAppKit.xcodeproj/*.perspectivev3
-BGHUDAppKit.xcodeproj/project.xcworkspace/xcuserdata/binarygod.xcuserdatad/UserInterfaceState.xcuserstate
-BGHUDAppKit.xcodeproj/xcuserdata/binarygod.xcuserdatad/xcschemes/All.xcscheme
-BGHUDAppKit.xcodeproj/xcuserdata/binarygod.xcuserdatad/xcschemes/BGHUDAppKit.xcscheme
-BGHUDAppKit.xcodeproj/xcuserdata/binarygod.xcuserdatad/xcschemes/BGHUDAppKitPlugin.xcscheme
-BGHUDAppKit.xcodeproj/xcuserdata/binarygod.xcuserdatad/xcschemes/xcschememanagement.plist
-bghudtest/bghudtest.xcodeproj/xcuserdata/binarygod.xcuserdatad/xcschemes/xcschememanagement.plist
-bghudtest/bghudtest.xcodeproj/xcuserdata/binarygod.xcuserdatad/xcschemes/bghudtest.xcscheme
-bghudtest/bghudtest.xcodeproj/project.xcworkspace/xcuserdata/binarygod.xcuserdatad/UserInterfaceState.xcuserstate
-BGHUDAppKit.xcodeproj/xcuserdata/binarygod.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
+BGHUDAppKit.xcodeproj/xcuserdata/
+bghudtest/bghudtest.xcodeproj/xcuserdata/
+bghudtest/bghudtest.xcodeproj/project.xcworkspace/
 .DS_Store
+BGHUDAppKit.xcodeproj/project.xcworkspace/xcuserdata/binarygod.xcuserdatad/
