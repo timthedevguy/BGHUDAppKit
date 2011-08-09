@@ -356,10 +356,6 @@
     return NO;
 }
 
-- (void)_getThemeImageTabBarRect:(NSRect *)arg1 backgroundRect:(NSRect *)arg2 fillBackgroundRect:(NSRect *)arg3 {
-    
-}
-
 -(void)dealloc {
 	
 	[themeKey release];

@@ -26,6 +26,8 @@
 		E71317E30E10667D00885A23 /* BGTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = E71317DA0E10667D00885A23 /* BGTheme.m */; };
 		E71317E40E10667D00885A23 /* BGThemeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E71317DB0E10667D00885A23 /* BGThemeManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E71317E50E10667D00885A23 /* BGThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E71317DC0E10667D00885A23 /* BGThemeManager.m */; };
+		E758DF8F13F1EEF7006B3549 /* BGHUDCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = E758DF8D13F1EEF7006B3549 /* BGHUDCommon.h */; };
+		E758DF9013F1EEF7006B3549 /* BGHUDCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = E758DF8E13F1EEF7006B3549 /* BGHUDCommon.m */; };
 		E7631D760E4DE6940092074F /* BGHUDColorWell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7631D740E4DE6940092074F /* BGHUDColorWell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7631D770E4DE6940092074F /* BGHUDColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7631D750E4DE6940092074F /* BGHUDColorWell.m */; };
 		E7649D0E0E1AC55B001F7E20 /* BGHUDSegmentedCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E7649D0C0E1AC55B001F7E20 /* BGHUDSegmentedCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -109,6 +111,8 @@
 		E71317DA0E10667D00885A23 /* BGTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGTheme.m; path = Framework/BGTheme.m; sourceTree = "<group>"; };
 		E71317DB0E10667D00885A23 /* BGThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGThemeManager.h; path = Framework/BGThemeManager.h; sourceTree = "<group>"; };
 		E71317DC0E10667D00885A23 /* BGThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGThemeManager.m; path = Framework/BGThemeManager.m; sourceTree = "<group>"; };
+		E758DF8D13F1EEF7006B3549 /* BGHUDCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDCommon.h; path = Framework/BGHUDCommon.h; sourceTree = "<group>"; };
+		E758DF8E13F1EEF7006B3549 /* BGHUDCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDCommon.m; path = Framework/BGHUDCommon.m; sourceTree = "<group>"; };
 		E7631D740E4DE6940092074F /* BGHUDColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDColorWell.h; path = Framework/BGHUDColorWell.h; sourceTree = "<group>"; };
 		E7631D750E4DE6940092074F /* BGHUDColorWell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BGHUDColorWell.m; path = Framework/BGHUDColorWell.m; sourceTree = "<group>"; };
 		E7649D0C0E1AC55B001F7E20 /* BGHUDSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BGHUDSegmentedCell.h; path = Framework/BGHUDSegmentedCell.h; sourceTree = "<group>"; };
@@ -249,6 +253,8 @@
 				E79C25CD0E109B9200742AF4 /* BGHUDTextFieldCell */,
 				E7981EC90E12D3070081E937 /* BGHUDTokenFieldCell */,
 				E7C104940E8C476D00A96E1A /* BGHUDGeometry.h */,
+				E758DF8D13F1EEF7006B3549 /* BGHUDCommon.h */,
+				E758DF8E13F1EEF7006B3549 /* BGHUDCommon.m */,
 			);
 			name = Framework;
 			sourceTree = "<group>";
@@ -517,6 +523,7 @@
 				E782C7600F8A25F8002657B1 /* BGHUDStepperCell.h in Headers */,
 				E70CA2BD0FB6F89D0073E3DF /* BGHUDTabViewItem.h in Headers */,
 				E70CA2C20FB6FFBB0073E3DF /* BGHUDTabView.h in Headers */,
+				E758DF8F13F1EEF7006B3549 /* BGHUDCommon.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,6 +619,7 @@
 				E782C7610F8A25F8002657B1 /* BGHUDStepperCell.m in Sources */,
 				E70CA2BE0FB6F89D0073E3DF /* BGHUDTabViewItem.m in Sources */,
 				E70CA2C30FB6FFBB0073E3DF /* BGHUDTabView.m in Sources */,
+				E758DF9013F1EEF7006B3549 /* BGHUDCommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
