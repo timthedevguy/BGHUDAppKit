@@ -177,7 +177,7 @@
 
 -(void)awakeFromNib {
 	
-	[self setCornerView: [[BGHUDTableCornerView alloc] initWithThemeKey: self.themeKey]];
+    [self setCornerView: [[BGHUDTableCornerView alloc] initWithThemeKey: self.themeKey]];
 }
 
 #pragma mark -
