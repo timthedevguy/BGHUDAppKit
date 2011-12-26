@@ -185,7 +185,7 @@
 		case NSSegmentStyleRounded: //NSSegmentStyleTexturedRounded:
 			
 			//If this is the first segment, draw rounded corners
-			if(segment == 0) {
+			if(segment == 0 && segment != ([self segmentCount] -1)) {
 				
 				fillPath = [[NSBezierPath alloc] init];
 				
@@ -203,7 +203,7 @@
 				
 				fillPath = [[NSBezierPath alloc] init];
 				
-				if(![self hasText]) { fillRect.size.width -= 3; }
+				fillRect.size.width -= 3;
 				
 				[fillPath appendBezierPathWithRoundedRect: fillRect xRadius: 3 yRadius: 3];
 				
