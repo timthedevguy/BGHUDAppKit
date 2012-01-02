@@ -411,7 +411,9 @@
 	
 	if([self imagePosition] != NSImageOnly) {
 		
-		[self drawTitle: [self attributedTitle] withFrame: frame inView: [self controlView]];
+		NSRect textFrame = frame;
+		textFrame.origin.y += 1;
+		[self drawTitle: [self attributedTitle] withFrame: textFrame inView: [self controlView]];
 	}
 	
 	if([self imagePosition] != NSNoImage) {
