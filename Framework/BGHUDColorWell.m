@@ -101,12 +101,16 @@
 	// We want to draw the whole bound without clip region optimization
 	rect = [self bounds];
 
-	if([self isActive]) {
-		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInRect: rect angle: 270];
-	} else {
-		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInRect: rect angle: 270];
+	
+	if([self isEnabled]) {
+		if([self isActive]) {
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInRect: rect angle: 270];
+		} else {
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInRect: rect angle: 270];
+		}
+	}
+	else {
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledNormalGradient] drawInRect: rect angle: 270];
 	}
 	
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
@@ -125,17 +129,26 @@
 		rect = NSInsetRect(rect, 2, 2);
 	}
 	
-	if([self useTransparentWell]) {
-		
-		NSColor *newColor = [NSColor colorWithDeviceRed: [[self color] redComponent]
+	
+	if([self isEnabled]) {
+		if([self useTransparentWell]) {
+			NSColor *newColor = [NSColor colorWithDeviceRed: [[self color] redComponent]
+													  green: [[self color] greenComponent]  
+													   blue: [[self color] blueComponent] 
+													  alpha: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
+			[newColor set];
+		} else {
+			[[self color] set];
+		}
+	}
+	else {
+		NSColor *disabledColor = [NSColor colorWithDeviceRed: [[self color] redComponent]
 												  green: [[self color] greenComponent]  
 												   blue: [[self color] blueComponent] 
-												  alpha: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
-		[newColor set];
-	} else {
-		
-		[[self color] set];
+												  alpha: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue]];
+		[disabledColor set];
 	}
+
 
 	NSRectFill(rect);
 }
