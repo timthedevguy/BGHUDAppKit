@@ -411,12 +411,30 @@
 	
 	if([self imagePosition] != NSImageOnly) {
 		
-		[self drawTitle: [self attributedTitle] withFrame: frame inView: [self controlView]];
+		NSRect textFrame = frame;
+		
+		switch ([self controlSize]) {
+				
+			case NSRegularControlSize:
+				
+				break;
+				
+			case NSSmallControlSize:
+				
+				textFrame.origin.y += 1;
+				break;
+				
+			case NSMiniControlSize:
+				
+				break;
+		}
+		
+		[self drawTitle: [self attributedTitle] withFrame: textFrame inView: [self controlView]];
 	}
 	
 	if([self imagePosition] != NSNoImage) {
 		
-		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
+		[self drawImage: (([self alternateImage]&&[self state])?[self alternateImage]:[self image]) withFrame: frame inView: [self controlView]];
 	}
 }
 
@@ -517,14 +535,29 @@
 	if([self imagePosition] != NSImageOnly) {
 		
 		NSRect textFrame = frame;
-		textFrame.origin.y += 1;
+		
+		switch ([self controlSize]) {
+				
+			case NSRegularControlSize:
+				
+				break;
+				
+			case NSSmallControlSize:
+				
+				textFrame.origin.y += 1;
+				break;
+				
+			case NSMiniControlSize:
+				
+				break;
+		}
 		
 		[self drawTitle: [self attributedTitle] withFrame: textFrame inView: [self controlView]];
 	}
 	
 	if([self imagePosition] != NSNoImage) {
 		
-		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
+		[self drawImage: (([self alternateImage]&&[self state])?[self alternateImage]:[self image]) withFrame: frame inView: [self controlView]];
 	}
 }
 
@@ -602,7 +635,7 @@
 	
 	if([self imagePosition] != NSNoImage) {
 		
-		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
+		[self drawImage: (([self alternateImage]&&[self state])?[self alternateImage]:[self image]) withFrame: frame inView: [self controlView]];
 	}
 }
 
@@ -707,7 +740,7 @@
 	
 	if([self imagePosition] != NSNoImage) {
 		
-		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
+		[self drawImage: (([self alternateImage]&&[self state])?[self alternateImage]:[self image]) withFrame: frame inView: [self controlView]];
 	}
 }
 
@@ -1095,7 +1128,7 @@
 	}
 	
 	if([self imagePosition] != NSNoImage) {
-		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
+		[self drawImage: (([self alternateImage]&&[self state])?[self alternateImage]:[self image]) withFrame: frame inView: [self controlView]];
 	}
 }
 

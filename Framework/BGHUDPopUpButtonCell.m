@@ -221,9 +221,8 @@
 	
 	int arrowAdjustment = 0;
 	
+	cellFrame.size.height -= 2;
 	if([self isBordered]) {
-		
-		cellFrame.size.height -= 2;
 		cellFrame.origin.x += 5;
 	} /*else {
 	   
@@ -293,8 +292,14 @@
 		}
 	}
 	
-	[super drawTitle: aTitle withFrame: titleFrame inView: controlView];
-	[self drawImage: [self image] withFrame: imageFrame inView: controlView];
+	if([self imagePosition] != NSImageOnly) {
+		[super drawTitle: aTitle withFrame: titleFrame inView: controlView];
+	}
+
+	
+	if([self imagePosition] != NSNoImage) {
+		[self drawImage: [self image] withFrame: imageFrame inView: controlView];
+	}
 	
 	[aTitle release];
 }
@@ -324,60 +329,60 @@
 		}
 	}
 	
-	//Calculate Image Position
-	NSRect imageRect = frame;
-	imageRect.size.height = [image size].height;
-	imageRect.size.width = [image size].width;
-	imageRect.origin.y += (frame.size.height /2) - (imageRect.size.height /2);
-	
-	//Setup Position
-	switch ([self imagePosition]) {
-			
-		case NSImageLeft:
-		case NSNoImage:
-			
-			imageRect.origin.x += 6;
-			break;
-			
-		case NSImageOnly:
-			
-			imageRect.origin.x += (frame.size.width /2) - (imageRect.size.width /2);
-			break;
-			
-		case NSImageRight:
-			
-			imageRect.origin.x = (NSMaxX(frame) - imageRect.size.width) - 8;
-			break;
-			
-		case NSImageBelow:
-			
-			break;
-			
-		case NSImageAbove:
-			
-			break;
-			
-		case NSImageOverlaps:
-			
-			break;
-			
-		default:
-			
-			imageRect.origin.x += 5;
-			break;
-	}
-	
-	[image setFlipped: YES];
-	
-	//Draw the image based on enabled state
-	if([self isEnabled]) {
+	if (image) {
+		//Calculate Image Position
+		NSRect imageRect = frame;
+		imageRect.size.height = [image size].height;
+		imageRect.size.width = [image size].width;
+		imageRect.origin.y += (frame.size.height /2) - (imageRect.size.height /2);
 		
-		[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
-	} else {
-		[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue]];
+		//Setup Position
+		switch ([self imagePosition]) {
+				
+			case NSImageLeft:
+			case NSNoImage:
+				
+				imageRect.origin.x += 6;
+				break;
+				
+			case NSImageOnly:
+				
+				imageRect.origin.x += (frame.size.width /2) - (imageRect.size.width /2);
+				break;
+				
+			case NSImageRight:
+				
+				imageRect.origin.x = (NSMaxX(frame) - imageRect.size.width) - 8;
+				break;
+				
+			case NSImageBelow:
+				
+				break;
+				
+			case NSImageAbove:
+				
+				break;
+				
+			case NSImageOverlaps:
+				
+				break;
+				
+			default:
+				
+				imageRect.origin.x += 5;
+				break;
+		}
+		
+		[image setFlipped: YES];
+		
+		//Draw the image based on enabled state
+		if([self isEnabled]) {
+			[image drawInRect: NSIntegralRect(imageRect) fromRect: NSZeroRect operation: NSCompositeCopy fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
+		} else {
+			[image drawInRect: NSIntegralRect(imageRect) fromRect: NSZeroRect operation: NSCompositeCopy fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue]];
+		}
+		[image setFlipped: NO];
 	}
-	
-	[image setFlipped: NO];
 }
 
 - (void)drawArrowsInRect:(NSRect) frame {
