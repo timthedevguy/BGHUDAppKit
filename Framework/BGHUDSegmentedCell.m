@@ -103,7 +103,6 @@
 }
 
 - (void)drawWithFrame:(NSRect)frame inView:(NSView *)view {
-	
 	NSBezierPath *border;
 	
 	switch ([self segmentStyle]) {
@@ -112,9 +111,9 @@
 			
 			//Adjust frame for shadow
 			frame.origin.x += 1.5f;
-			frame.origin.y += .5f;
+			frame.origin.y += 0.5f;
 			frame.size.width -= 3;
-			frame.size.height -= 3;
+			frame.size.height -= 5;
 			
 			border = [[NSBezierPath alloc] init];
 			[border appendBezierPathWithRect: frame];
@@ -122,12 +121,12 @@
 			break;
 			
 		case NSSegmentStyleRounded: //NSSegmentStyleTexturedRounded:
-			
+
 			//Adjust frame for shadow
 			frame.origin.x += 1.5f;
 			frame.origin.y += .5f;
 			frame.size.width -= 3;
-			frame.size.height -= 3;
+			frame.size.height -= 5;
 			
 			border = [[NSBezierPath alloc] init];
 			
@@ -136,60 +135,59 @@
 			break;
 	}
 	
-	//Setup to Draw Border
+	//Draw Shadow + Border
 	[NSGraphicsContext saveGraphicsState];
-	
-	//Set Shadow + Border Color
-	if([self isEnabled])
-	{
+	if([self isEnabled]) {
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
 	}
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
-	
-	//Draw Border + Shadow
 	[border stroke];
-	
 	[NSGraphicsContext restoreGraphicsState];
 	
 	[border release];
 	
+	//Draw Background (used as dividers)
+	NSBezierPath *shadowPath = [[NSBezierPath alloc] init];
+	[shadowPath appendBezierPathWithRoundedRect: frame
+										xRadius: 5.0f yRadius: 5.0f];
+	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+	[shadowPath fill];
+	[shadowPath release];
+	
+	//Draw Segments
+	[NSGraphicsContext saveGraphicsState];
 	int segCount = 0;
-	
 	while (segCount <= [self segmentCount] -1) {
-	
 		[self drawSegment: segCount inFrame: frame withView: view];
 		segCount++;
 	}
+	[NSGraphicsContext restoreGraphicsState];
 }
 
 - (void)drawSegment:(NSInteger)segment inFrame:(NSRect)frame withView:(NSView *)view {
-	
 	//Calculate rect for this segment
 	NSRect fillRect = [self rectForSegment: segment inFrame: frame];
+	fillRect.origin.x += 0.5f;
+	fillRect.origin.y += 0.5f;
+	fillRect.size.width -= 1.0f;
+	fillRect.size.height -= 1.0f;
+	
 	NSBezierPath *fillPath;
 	
 	switch ([self segmentStyle]) {
 		default: // Silence uninitialized variable warnings
 		case NSSegmentStyleSmallSquare:
-			
 			if(segment == ([self segmentCount] -1)) {
-			
-				if(![self hasText]) { fillRect.size.width -= 3; }
+				fillRect.size.width -= 3;
 			}
-			
 			fillPath = [[NSBezierPath alloc] init];
 			[fillPath appendBezierPathWithRect: fillRect];
-			
 			break;
-			
 		case NSSegmentStyleRounded: //NSSegmentStyleTexturedRounded:
-			
-			//If this is the first segment, draw rounded corners
-			if(segment == 0) {
-				
-				fillPath = [[NSBezierPath alloc] init];
-				
-				[fillPath appendBezierPathWithRoundedRect: fillRect xRadius: 3 yRadius: 3];
+			fillPath = [[NSBezierPath alloc] init];
+			//If this is the first segment, draw left rounded corners
+			if(segment == 0 && segment != ([self segmentCount] -1)) {
+				[fillPath appendBezierPathWithRoundedRect: fillRect xRadius: 4.0f yRadius: 4.0f];
 				
 				//Setup our joining rect
 				NSRect joinRect = fillRect;
@@ -197,15 +195,11 @@
 				joinRect.size.width -= 4;
 				
 				[fillPath appendBezierPathWithRect: joinRect];
-			
-			//If this is the last segment, draw rounded corners
-			} else if (segment == ([self segmentCount] -1)) {
-				
-				fillPath = [[NSBezierPath alloc] init];
-				
-				if(![self hasText]) { fillRect.size.width -= 3; }
-				
-				[fillPath appendBezierPathWithRoundedRect: fillRect xRadius: 3 yRadius: 3];
+			}
+			//If this is the last segment, draw right rounded corners
+			if (segment != 0 && segment == ([self segmentCount] -1)) {
+				fillRect.size.width -= 3;
+				[fillPath appendBezierPathWithRoundedRect: fillRect xRadius: 4.0f yRadius: 4.0f];
 				
 				//Setup our joining rect
 				NSRect joinRect = fillRect;
@@ -213,23 +207,26 @@
 				
 				[fillPath appendBezierPathWithRect: joinRect];
 				
-			} else {
-				NSAssert(segment != 0 && segment != ([self segmentCount] -1), @"should be a middle segment");
-				fillPath = [[NSBezierPath alloc] init];
+			}
+			//If this is the only segment
+			if (segment == 0 && segment == ([self segmentCount] -1)) {
+				//if(![self hasText]) {
+					fillRect.size.width -= 3;
+				//}
+				[fillPath appendBezierPathWithRoundedRect: fillRect xRadius: 4.0f yRadius: 4.0f];
+			}
+			//If this is a middle segment
+			if (segment != 0 && segment != ([self segmentCount] -1)) {
 				[fillPath appendBezierPathWithRect: fillRect];
 			}
-			
 			break;
 	}
 	
-	//Fill our pathss
-	
+	//Fill our pathes
 	NSGradient *gradient = nil;
-	
 	if([self isEnabled])
 	{
 		if([self selectedSegment] == segment) {
-			
 			gradient = [[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient];
 		} else {
 			
@@ -242,15 +239,6 @@
 	
 	[gradient drawInBezierPath: fillPath angle: 90];
 	[fillPath release];
-	
-	//Draw Segment dividers ONLY if they are
-	//inside segments
-	if(segment != ([self segmentCount] -1)) {
-		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
-		[NSBezierPath strokeLineFromPoint: NSMakePoint(fillRect.origin.x + fillRect.size.width , fillRect.origin.y)
-								  toPoint: NSMakePoint(fillRect.origin.x + fillRect.size.width, fillRect.origin.y + fillRect.size.height)];
-	}
 	
 	[self drawInteriorForSegment: segment withFrame: fillRect];
 }
