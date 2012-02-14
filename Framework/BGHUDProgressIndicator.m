@@ -88,9 +88,9 @@
 		case NSRegularControlSize:
 			
 			frame.origin.x += 2.5f;
-			frame.origin.y += .5f;
+			frame.origin.y += 1.5f;
 			frame.size.width -= 5;
-			frame.size.height -= 5;
+			frame.size.height -= 3;
 			break;
 			
 		case NSSmallControlSize:
@@ -98,16 +98,7 @@
 			frame.origin.x += 0.5f;
 			frame.origin.y += 0.5f;
 			frame.size.width -= 1;
-			frame.size.height -= 3;
-			break;
-			
-		case NSMiniControlSize:
-			
-			frame.origin.x += 1.5f;
-			frame.origin.y += 0.5f;
-			frame.size.width -= 3;
-			frame.size.height -= 5;
-			break;
+			frame.size.height -= 2;
 			break;
 	}
 	
@@ -166,9 +157,9 @@
 		case NSRegularControlSize:
 			
 			frame.origin.x += 2.5f;
-			frame.origin.y += .5f;
+			frame.origin.y += 1.5f;
 			frame.size.width -= 5;
-			frame.size.height -= 5;
+			frame.size.height -= 3;
 			break;
 			
 		case NSSmallControlSize:
@@ -176,15 +167,7 @@
 			frame.origin.x += 0.5f;
 			frame.origin.y += 0.5f;
 			frame.size.width -= 1;
-			frame.size.height -= 3;
-			break;
-			
-		case NSMiniControlSize:
-			
-			frame.origin.x += 1.5f;
-			frame.origin.y += 0.5f;
-			frame.size.width -= 3;
-			frame.size.height -= 5;
+			frame.size.height -= 2;
 			break;
 	}
 	
@@ -213,6 +196,11 @@
 		
 		
 	}
+}
+
+- (void)drawRect:(NSRect)dirtyRect {
+	[self _drawThemeBackground];
+	[self _drawThemeProgressArea:YES];
 }
 
 #pragma mark -
