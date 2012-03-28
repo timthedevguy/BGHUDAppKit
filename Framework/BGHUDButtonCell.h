@@ -37,7 +37,6 @@
 #import "BGHUDGeometry.h"
 
 @interface BGHUDButtonCell : NSButtonCell {
-	BOOL isMouseIn;
 	NSString *themeKey;
 	NSButtonType buttonType;
 }

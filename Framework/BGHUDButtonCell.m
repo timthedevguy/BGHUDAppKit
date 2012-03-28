@@ -1057,34 +1057,19 @@
 	switch ([self controlSize]) {
 		default: // Silence uninitialized variable warnings for textFrame fields.
 		case NSRegularControlSize:
-			
-			frame.origin.x += 1;
-			frame.origin.y += 1;
-			frame.size.width -= 2;
-			frame.size.height -= 4;
-			
 			textFrame = frame;
 			break;
 			
 		case NSSmallControlSize:
-			
-			frame.origin.x += 1;
-			frame.origin.y += 1;
-			frame.size.width -= 2;
-			frame.size.height -= 3;
-			
 			textFrame = frame;
-			textFrame.origin.y += 1;
 			break;
 			
 		case NSMiniControlSize:
-			
-			frame.origin.y -= 1;
-			
+			frame.size.height -= 4;
 			textFrame = frame;
-			textFrame.origin.y += 1;
 			break;
-	}	
+	}
+	
 	//Create Path
 	NSBezierPath *path = [[NSBezierPath alloc] init];
 	
@@ -1099,29 +1084,56 @@
 								   endAngle: 90];
 	
 	[path closePath];
+	[path setClip];
 	
-	if([self isEnabled]) {
-		if([self state] == 1) {
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedSolidFill] set];
-			[path fill];
-			isMouseIn = NO;
-		}
-		else {
-			if(isMouseIn){
-				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightSolidFill] set];
-				[path fill];
-			}
-			else {
-				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalSolidFill] set];
-				[path fill];
-			}
-		}
+	NSBezierPath *shadowPath = [[NSBezierPath alloc] init];
+	
+	[shadowPath appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(frame) + BGCenterY(frame), NSMidY(frame) + 0.5f)
+									 radius: BGCenterY(frame) + 1
+								 startAngle: 90
+								   endAngle: 270];
+	
+	[shadowPath appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(frame) - BGCenterY(frame), NSMidY(frame) + 0.5f)
+									 radius: BGCenterY(frame) + 1
+								 startAngle: 270 
+								   endAngle: 90];
+	
+	[shadowPath closePath];
+	
+	//Draw
+	if([self state] == 1) {
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedSolidFill] set];
+		[path fill];
+		//Draw inner shadow
+		[[NSGraphicsContext currentContext] saveGraphicsState];
+		NSShadow *innerShadow = [[NSShadow alloc] init];
+		[innerShadow setShadowBlurRadius:1];
+		
+		[innerShadow setShadowColor:[NSColor whiteColor]];
+		[innerShadow setShadowOffset:NSMakeSize(0, 1)];
+		[innerShadow set];
+		[shadowPath stroke];
+		
+		[innerShadow setShadowColor:[NSColor blackColor]];
+		[innerShadow setShadowOffset:NSMakeSize(0, -1)];
+		[innerShadow set];
+		[shadowPath stroke];
+		
+		[innerShadow release];
+		[[NSGraphicsContext currentContext] restoreGraphicsState];
 	}
 	else {
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledNormalSolidFill] set];
+		if([self isHighlighted]){
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightSolidFill] set];
+			[path fill];
+		}
+		else {
+			//Transparent
+		}
 	}
 	
 	[path release];
+	[shadowPath release];
 	
 	if([self imagePosition] != NSImageOnly) {
 		[self drawTitle: [self attributedTitle] withFrame: textFrame inView: [self controlView]];
@@ -1134,16 +1146,16 @@
 
 - (void)mouseEntered:(NSEvent *)event{
 	if ([self bezelStyle] == NSRecessedBezelStyle) {
-		isMouseIn = YES;
 		[self setHighlighted:YES];
 	}
 }
+
 - (void)mouseExited:(NSEvent *)event{
 	if ([self bezelStyle] == NSRecessedBezelStyle) {
-		isMouseIn = NO;
 		[self setHighlighted:NO];
 	}
 }
+
 #pragma mark -
 #pragma mark Helper Methods
 
