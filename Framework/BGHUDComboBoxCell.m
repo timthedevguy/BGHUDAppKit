@@ -49,12 +49,10 @@
 		self.themeKey = @"gradientTheme";
 		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
 		
-		if([self drawsBackground]) {
-			
+		if([self drawsBackground] && [[[BGThemeManager keyedManager] themeForKey: self.themeKey] isOverrideFillColor]) {
 			fillsBackground = YES;
+			[self setDrawsBackground: NO];
 		}
-		
-		[self setDrawsBackground: NO];
 	}
 	
 	return self;
