@@ -461,7 +461,7 @@
 	frame.origin.x += 1.5f;
 	frame.origin.y += 0.5f;
 	frame.size.width -= 3;
-	frame.size.height -= 2;
+	frame.size.height -= 3;
 	
 	switch ([self controlSize]) {
 		case NSRegularControlSize:
