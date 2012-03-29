@@ -1101,7 +1101,8 @@
 	[shadowPath closePath];
 	
 	//Draw
-	if([self state] == 1) {
+	NSLog(@"sate:%d isHighlighted:%d showsStateBy:%d highlightsBy:%d",[self state],[self isHighlighted],[self showsStateBy],[self highlightsBy]);
+	if([self state] || [self isHighlighted]) {
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedSolidFill] set];
 		[path fill];
 		//Draw inner shadow
@@ -1123,7 +1124,7 @@
 		[[NSGraphicsContext currentContext] restoreGraphicsState];
 	}
 	else {
-		if([self isHighlighted]){
+		if([self highlightsBy] & NSChangeBackgroundCellMask){
 			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightSolidFill] set];
 			[path fill];
 		}
@@ -1146,13 +1147,17 @@
 
 - (void)mouseEntered:(NSEvent *)event{
 	if ([self bezelStyle] == NSRecessedBezelStyle) {
-		[self setHighlighted:YES];
+		if (!([self highlightsBy] & NSChangeBackgroundCellMask)) {
+			[self setHighlightsBy:([self highlightsBy] + NSChangeBackgroundCellMask)];
+		}
 	}
 }
 
 - (void)mouseExited:(NSEvent *)event{
 	if ([self bezelStyle] == NSRecessedBezelStyle) {
-		[self setHighlighted:NO];
+		if (([self highlightsBy] & NSChangeBackgroundCellMask)) {
+			[self setHighlightsBy:([self highlightsBy] - NSChangeBackgroundCellMask)];
+		}
 	}
 }
 
