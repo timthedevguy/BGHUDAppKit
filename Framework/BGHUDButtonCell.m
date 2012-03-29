@@ -477,9 +477,9 @@
 	NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect: frame xRadius: 2.0f yRadius: 2.0f];
 	[path setLineWidth: 1.0f];
 	if ([self isBordered] && [self isEnabled] &&
-		([self state] || [self isHighlighted] || ([self highlightsBy] & NSChangeBackgroundCellMask) || ([self showsStateBy] & NSChangeBackgroundCellMask))) {
+		([self state] == 1 || [self isHighlighted] || ([self highlightsBy] & NSChangeBackgroundCellMask) || ([self showsStateBy] & NSChangeBackgroundCellMask))) {
 		//Background
-		if(([self state] && ([self highlightsBy] & NSChangeBackgroundCellMask) && ([self showsStateBy] & NSChangeBackgroundCellMask)) ||
+		if(([self state] == 1 && ([self highlightsBy] & NSChangeBackgroundCellMask) && ([self showsStateBy] & NSChangeBackgroundCellMask)) ||
 		   [self isHighlighted]) {
 			[[[[NSGradient alloc] initWithStartingColor:[NSColor colorWithDeviceWhite:0.25f alpha:1.0f]
 											endingColor:[NSColor colorWithDeviceWhite:0.21f alpha:1.0f]] autorelease] drawInBezierPath: path angle: 90];
@@ -508,7 +508,7 @@
 		NSShadow *innerShadow = [[NSShadow alloc] init];
 		[innerShadow setShadowOffset:NSMakeSize(0, -1)];
 		
-		if(([self state] && ([self highlightsBy] & NSChangeBackgroundCellMask) && ([self showsStateBy] & NSChangeBackgroundCellMask)) ||
+		if(([self state] == 1 && ([self highlightsBy] & NSChangeBackgroundCellMask) && ([self showsStateBy] & NSChangeBackgroundCellMask)) ||
 		   [self isHighlighted]) {
 			[innerShadow setShadowColor:[NSColor colorWithDeviceWhite:0.0f alpha:0.35f]];
 		}
@@ -1205,7 +1205,7 @@
 	[shadowPath closePath];
 	
 	//Draw
-	if([self state] || [self isHighlighted]) {
+	if([self state] == 1 || [self isHighlighted]) {
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedSolidFill] set];
 		[path fill];
 		//Draw inner shadow
