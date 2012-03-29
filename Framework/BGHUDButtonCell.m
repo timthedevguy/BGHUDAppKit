@@ -434,7 +434,7 @@
 	
 	if([self imagePosition] != NSNoImage) {
 		
-		[self drawImage: (([self alternateImage]&&[self state])?[self alternateImage]:[self image]) withFrame: frame inView: [self controlView]];
+		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
 	}
 }
 
@@ -557,7 +557,7 @@
 	
 	if([self imagePosition] != NSNoImage) {
 		
-		[self drawImage: (([self alternateImage]&&[self state])?[self alternateImage]:[self image]) withFrame: frame inView: [self controlView]];
+		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
 	}
 }
 
@@ -635,7 +635,7 @@
 	
 	if([self imagePosition] != NSNoImage) {
 		
-		[self drawImage: (([self alternateImage]&&[self state])?[self alternateImage]:[self image]) withFrame: frame inView: [self controlView]];
+		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
 	}
 }
 
@@ -740,7 +740,7 @@
 	
 	if([self imagePosition] != NSNoImage) {
 		
-		[self drawImage: (([self alternateImage]&&[self state])?[self alternateImage]:[self image]) withFrame: frame inView: [self controlView]];
+		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
 	}
 }
 
@@ -1101,7 +1101,6 @@
 	[shadowPath closePath];
 	
 	//Draw
-	NSLog(@"sate:%d isHighlighted:%d showsStateBy:%d highlightsBy:%d",[self state],[self isHighlighted],[self showsStateBy],[self highlightsBy]);
 	if([self state] || [self isHighlighted]) {
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedSolidFill] set];
 		[path fill];
@@ -1141,7 +1140,7 @@
 	}
 	
 	if([self imagePosition] != NSNoImage) {
-		[self drawImage: (([self alternateImage]&&[self state])?[self alternateImage]:[self image]) withFrame: frame inView: [self controlView]];
+		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
 	}
 }
 
