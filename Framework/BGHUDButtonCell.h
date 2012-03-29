@@ -49,5 +49,6 @@
 -(void)drawSmallSquareButtonInFrame:(NSRect)frame;
 -(void)drawRoundedButtonInFrame:(NSRect)frame;
 -(void)drawRecessedButtonInFrame:(NSRect)frame;
+-(void)drawTexturedSquareButtonInFrame:(NSRect)frame;
 
 @end
