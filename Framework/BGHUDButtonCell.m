@@ -1041,7 +1041,7 @@
 	}
 }
 
--(void)drawRecessedButtonInFrame:(NSRect)frame {//This part is not implemented so good as the codes from Timothy Davis, but we do need that
+-(void)drawRecessedButtonInFrame:(NSRect)frame {
 	NSRect textFrame;
 	
 	//Adjust Rect so strokes are true and
