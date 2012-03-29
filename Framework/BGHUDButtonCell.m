@@ -122,9 +122,6 @@
 }
 
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-	
-	NSLog(@"buttonType:%d state:%d isHighlighted:%d showsStateBy:%d highlightsBy:%d",buttonType,[self state],[self isHighlighted],[self showsStateBy],[self highlightsBy]);
-	
 	// Make sure our own height is right, and not using
 	// a NSMatrix parents height.
 //	cellFrame.size.height = [self cellSize].height;
