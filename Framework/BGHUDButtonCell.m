@@ -461,7 +461,7 @@
 	frame.origin.x += 1.5f;
 	frame.origin.y += 0.5f;
 	frame.size.width -= 3;
-	frame.size.height -= 3;
+	frame.size.height -= 4;
 	
 	switch ([self controlSize]) {
 		case NSRegularControlSize:
@@ -474,15 +474,15 @@
 	}
 	
 	//Path
-	NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect: frame xRadius: 2.0f yRadius: 2.0f];
+	NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect: frame xRadius: 4.0f yRadius: 4.0f];
 	[path setLineWidth: 1.0f];
 	if ([self isBordered] && [self isEnabled] &&
 		([self state] == 1 || [self isHighlighted] || ([self highlightsBy] & NSChangeBackgroundCellMask) || ([self showsStateBy] & NSChangeBackgroundCellMask))) {
 		//Background
 		if(([self state] == 1 && ([self highlightsBy] & NSChangeBackgroundCellMask) && ([self showsStateBy] & NSChangeBackgroundCellMask)) ||
 		   [self isHighlighted]) {
-			[[[[NSGradient alloc] initWithStartingColor:[NSColor colorWithDeviceWhite:0.25f alpha:1.0f]
-											endingColor:[NSColor colorWithDeviceWhite:0.21f alpha:1.0f]] autorelease] drawInBezierPath: path angle: 90];
+			[[[[NSGradient alloc] initWithStartingColor:[NSColor colorWithDeviceWhite:0.21f alpha:1.0f]
+											endingColor:[NSColor colorWithDeviceWhite:0.27f alpha:1.0f]] autorelease] drawInBezierPath: path angle: 90];
 		}
 		else {
 			[[[[NSGradient alloc] initWithStartingColor:[NSColor colorWithDeviceWhite:0.44f alpha:1.0f]
@@ -493,27 +493,30 @@
 		[[NSGraphicsContext currentContext] saveGraphicsState];
 		[[NSColor colorWithDeviceWhite:0.16f alpha:1.0f] setStroke];
 		
-		//Draw border with outter shadow
-		NSShadow *outerShadow = [[NSShadow alloc] init];
-		[outerShadow setShadowColor:[NSColor colorWithDeviceWhite:1.0f alpha:0.1f]];
-		[outerShadow setShadowOffset:NSMakeSize(0, -1)];
-		[outerShadow set];
-		
-		[path stroke];
-		
-		[outerShadow release];
-		
 		//Draw border with inner shadow
 		[path setClip];
 		NSShadow *innerShadow = [[NSShadow alloc] init];
-		[innerShadow setShadowOffset:NSMakeSize(0, -1)];
+		[innerShadow setShadowBlurRadius:2.0f];
 		
 		if(([self state] == 1 && ([self highlightsBy] & NSChangeBackgroundCellMask) && ([self showsStateBy] & NSChangeBackgroundCellMask)) ||
 		   [self isHighlighted]) {
-			[innerShadow setShadowColor:[NSColor colorWithDeviceWhite:0.0f alpha:0.35f]];
+			[innerShadow setShadowOffset:NSMakeSize(0, -1)];
+			[innerShadow setShadowColor:[NSColor colorWithDeviceWhite:0.0f alpha:0.3f]];
 		}
 		else {
-			[innerShadow setShadowColor:[NSColor colorWithDeviceWhite:1.0f alpha:0.2f]];
+			[innerShadow setShadowOffset:NSMakeSize(0, -1)];
+			[innerShadow setShadowColor:[NSColor colorWithDeviceWhite:1.0f alpha:0.5f]];
+		}
+		[innerShadow set];
+		[path stroke];
+		
+		[innerShadow setShadowOffset:NSMakeSize(0, 1)];
+		if(([self state] == 1 && ([self highlightsBy] & NSChangeBackgroundCellMask) && ([self showsStateBy] & NSChangeBackgroundCellMask)) ||
+		   [self isHighlighted]) {
+		
+		}
+		else {
+			[innerShadow setShadowColor:[NSColor colorWithDeviceWhite:0.0f alpha:0.5f]];
 		}
 		
 		[innerShadow set];
