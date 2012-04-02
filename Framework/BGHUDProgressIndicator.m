@@ -79,72 +79,55 @@
 }
 
 - (void)_drawThemeBackground {
-	
 	NSRect frame = [self bounds];
 	
 	//Adjust rect based on size
 	switch ([self controlSize]) {
-			
 		case NSRegularControlSize:
-			
-			frame.origin.x += 2.5f;
-			frame.origin.y += 1.5f;
-			frame.size.width -= 5;
-			frame.size.height -= 3;
+			frame.origin.y += 1.0f;
+			frame.size.height -= 2.0f;
 			break;
-			
 		case NSSmallControlSize:
-			
-			frame.origin.x += 0.5f;
-			frame.origin.y += 0.5f;
-			frame.size.width -= 1;
-			frame.size.height -= 2;
 			break;
 	}
 	
-	
-	NSBezierPath *path = [NSBezierPath bezierPathWithRect: frame];
-	
-	//Draw border
-	[NSGraphicsContext saveGraphicsState];
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] dropShadow] set];
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] darkStrokeColor] set];
-	[path stroke];
-	[NSGraphicsContext restoreGraphicsState];
+	NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:frame xRadius:2.0f yRadius:2.0f];
+	[path setClip];
 	
 	//Draw Fill
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] progressTrackGradient] drawInRect: NSInsetRect(frame, 0, 0) angle: 90];
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
-	[path stroke];
+	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] progressTrackGradient] drawInBezierPath:path angle:90];
 	
 	if(![self isIndeterminate]) {
-		
 		frame.size.width = (CGFloat)((frame.size.width / ([self maxValue] - [self minValue])) * ([self doubleValue] - [self minValue]));
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInRect: frame angle: 90];
-		
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightGradient] drawInBezierPath:[NSBezierPath bezierPathWithRect:frame] angle: 90];
 	} else {
-		
 		//Setup Our Complex Path
 		//Adjust Frame width
-		frame.origin.x -= 40;
-		frame.size.width += 80;
+		frame.origin.x -= frame.size.height;
+		frame.size.width += frame.size.height * 4;
 		
-		NSPoint position = NSMakePoint(frame.origin.x, frame.origin.y);
+		NSPoint position = NSMakePoint(frame.origin.x + 1, frame.origin.y + 1);
 		
 		if(progressPath) {[progressPath release];}
 		progressPath = [[NSBezierPath alloc] init];
 		
+		CGFloat step = frame.size.height - 2;
+		CGFloat double_step = step * 2;
 		while(position.x <= (frame.origin.x + frame.size.width)) {
-			
-			[progressPath moveToPoint: NSMakePoint(position.x, position.y)];
-			[progressPath lineToPoint: NSMakePoint(position.x + frame.size.height, position.y)];
-			[progressPath lineToPoint: NSMakePoint(position.x + ((frame.size.height *2)), position.y + frame.size.height)];
-			[progressPath lineToPoint: NSMakePoint(position.x + (frame.size.height), position.y + frame.size.height)];
+			[progressPath moveToPoint: NSMakePoint(position.x,					position.y)];
+			[progressPath lineToPoint: NSMakePoint(position.x + step,			position.y)];
+			[progressPath lineToPoint: NSMakePoint(position.x + double_step,	position.y + step)];
+			[progressPath lineToPoint: NSMakePoint(position.x + step,			position.y + step)];
 			[progressPath closePath];
-			
-			position.x += ((frame.size.height *2));
+			position.x += double_step;
 		}
 	}
+	
+	//Draw border
+	[NSGraphicsContext saveGraphicsState];
+	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] darkStrokeColor] set];
+	[path stroke];
+	[NSGraphicsContext restoreGraphicsState];
 }
 
 - (void)_drawThemeProgressArea:(BOOL)flag {
@@ -153,28 +136,18 @@
 	
 	//Adjust rect based on size
 	switch ([self controlSize]) {
-			
 		case NSRegularControlSize:
-			
-			frame.origin.x += 2.5f;
-			frame.origin.y += 1.5f;
-			frame.size.width -= 5;
-			frame.size.height -= 3;
+			frame.origin.y += 1.0f;
+			frame.size.height -= 2.0f;
 			break;
-			
 		case NSSmallControlSize:
-			
-			frame.origin.x += 0.5f;
-			frame.origin.y += 0.5f;
-			frame.size.width -= 1;
-			frame.size.height -= 2;
 			break;
 	}
 	
 	if([self isIndeterminate]) {
-		
 		//Setup Cliping Rect
-		[NSBezierPath clipRect: NSInsetRect(frame, 1, 1)];
+		NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect(frame, 1, 1) xRadius:2.0f yRadius:2.0f];
+		[path setClip];
 		
 		//Fill Background
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInRect: frame angle: 90];
@@ -182,10 +155,10 @@
         //Get the animation index (private)
         int animationIndex = 0;
         object_getInstanceVariable( self, "_animationIndex", (void **)&animationIndex );
-        
+
 		//Create XFormation
 		NSAffineTransform *trans = [NSAffineTransform transform];
-		[trans translateXBy: (-37 + animationIndex) yBy: 0];
+		[trans translateXBy:animationIndex - 16 yBy: 0];
 		
 		//Apply XForm to path
 		NSBezierPath *newPath = [trans transformBezierPath: progressPath];
