@@ -125,7 +125,7 @@
 	
 	//Draw border
 	[NSGraphicsContext saveGraphicsState];
-	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] darkStrokeColor] set];
+	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
 	[path stroke];
 	[NSGraphicsContext restoreGraphicsState];
 }
