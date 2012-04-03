@@ -49,6 +49,15 @@
 		
 		self.themeKey = @"gradientTheme";
 		buttonType = 0;
+		
+		if ([self bezelStyle] == NSRecessedBezelStyle) {
+			if (([self highlightsBy] & NSChangeBackgroundCellMask)) {
+				[self setHighlightsBy:([self highlightsBy] - NSChangeBackgroundCellMask)];
+			}
+			if (([self showsStateBy] & NSChangeBackgroundCellMask)) {
+				[self setShowsStateBy:([self showsStateBy] - NSChangeBackgroundCellMask)];
+			}
+		}
 	}
 	
 	return self;
@@ -75,6 +84,15 @@
 			
 			buttonType = 0;
 		}
+		
+		if ([self bezelStyle] == NSRecessedBezelStyle) {
+			if (([self highlightsBy] & NSChangeBackgroundCellMask)) {
+				[self setHighlightsBy:([self highlightsBy] - NSChangeBackgroundCellMask)];
+			}
+			if (([self showsStateBy] & NSChangeBackgroundCellMask)) {
+				[self setShowsStateBy:([self showsStateBy] - NSChangeBackgroundCellMask)];
+			}
+		}
 	}
 	
 	return self;
@@ -99,16 +117,14 @@
 }
 
 - (void)setButtonType:(NSButtonType)aType {
-
 	buttonType = aType;	
 	[super setButtonType: aType];
 }
 
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-	
 	// Make sure our own height is right, and not using
 	// a NSMatrix parents height.
-	cellFrame.size.height = [self cellSize].height;
+//	cellFrame.size.height = [self cellSize].height;
 	
 	switch ([self bezelStyle]) {
 			
@@ -133,7 +149,13 @@
 			break;
 			
 		case NSRecessedBezelStyle:
+			
 			[self drawRecessedButtonInFrame: cellFrame];
+			break;
+			
+		case NSTexturedSquareBezelStyle:
+			
+			[self drawTexturedSquareButtonInFrame:cellFrame];
 			break;
 	}
 	
@@ -300,14 +322,11 @@
 					break;
 			}
 			
-			[image setFlipped: YES];
-			
 			//Draw the image based on enabled state
 			if([self isEnabled]) {
-				
-				[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
+				[image drawInRect:imageRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:[[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue] respectFlipped:YES hints:nil];
 			} else {
-				[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue]];
+				[image drawInRect:imageRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue] respectFlipped:YES hints:nil];
 			}
 			
 		}
@@ -330,19 +349,20 @@
 			
 		case NSRegularControlSize:
 			
-			frame.origin.y += 1;
+			//frame.origin.y += 1;
+			frame.size.height -= 2;
 			break;
 			
 		case NSSmallControlSize:
 			
 			//frame.origin.y += 3;
-			//frame.size.height += 2;
+			frame.size.height += 1;
 			break;
 			
 		case NSMiniControlSize:
 			
 			//frame.origin.y += 5;
-			//frame.size.height += 1;
+			frame.size.height -= 1;
 			break;
 	}
 	
@@ -434,7 +454,95 @@
 	
 	if([self imagePosition] != NSNoImage) {
 		
-		[self drawImage: (([self alternateImage]&&[self state])?[self alternateImage]:[self image]) withFrame: frame inView: [self controlView]];
+		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
+	}
+}
+
+-(void)drawTexturedSquareButtonInFrame:(NSRect)frame {
+	frame.origin.x += 1.5f;
+	frame.origin.y += 0.5f;
+	frame.size.width -= 3;
+	frame.size.height -= 4;
+	
+	switch ([self controlSize]) {
+		case NSRegularControlSize:
+			frame.origin.y += 1;
+			break;
+		case NSSmallControlSize:
+			break;
+		case NSMiniControlSize:
+			break;
+	}
+	
+	//Path
+	NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect: frame xRadius: 4.0f yRadius: 4.0f];
+	[path setLineWidth: 1.0f];
+	if ([self isBordered] && [self isEnabled] &&
+		([self state] == 1 || [self isHighlighted] || ([self highlightsBy] & NSChangeBackgroundCellMask) || ([self showsStateBy] & NSChangeBackgroundCellMask))) {
+		//Background
+		if(([self state] == 1 && ([self highlightsBy] & NSChangeBackgroundCellMask) && ([self showsStateBy] & NSChangeBackgroundCellMask)) ||
+		   [self isHighlighted]) {
+			[[[[NSGradient alloc] initWithStartingColor:[NSColor colorWithDeviceWhite:0.21f alpha:1.0f]
+											endingColor:[NSColor colorWithDeviceWhite:0.27f alpha:1.0f]] autorelease] drawInBezierPath: path angle: 90];
+		}
+		else {
+			[[[[NSGradient alloc] initWithStartingColor:[NSColor colorWithDeviceWhite:0.44f alpha:1.0f]
+											endingColor:[NSColor colorWithDeviceWhite:0.33f alpha:1.0f]] autorelease] drawInBezierPath: path angle: 90];
+		}
+		
+		//Border
+		[[NSGraphicsContext currentContext] saveGraphicsState];
+		[[NSColor colorWithDeviceWhite:0.16f alpha:1.0f] setStroke];
+		
+		//Draw border with inner shadow
+		[path setClip];
+		NSShadow *innerShadow = [[NSShadow alloc] init];
+		[innerShadow setShadowBlurRadius:2.0f];
+		
+		if(([self state] == 1 && ([self highlightsBy] & NSChangeBackgroundCellMask) && ([self showsStateBy] & NSChangeBackgroundCellMask)) ||
+		   [self isHighlighted]) {
+			[innerShadow setShadowOffset:NSMakeSize(0, -1)];
+			[innerShadow setShadowColor:[NSColor colorWithDeviceWhite:0.0f alpha:0.3f]];
+		}
+		else {
+			[innerShadow setShadowOffset:NSMakeSize(0, -1)];
+			[innerShadow setShadowColor:[NSColor colorWithDeviceWhite:1.0f alpha:0.5f]];
+		}
+		[innerShadow set];
+		[path stroke];
+		
+		[innerShadow setShadowOffset:NSMakeSize(0, 1)];
+		if(([self state] == 1 && ([self highlightsBy] & NSChangeBackgroundCellMask) && ([self showsStateBy] & NSChangeBackgroundCellMask)) ||
+		   [self isHighlighted]) {
+		
+		}
+		else {
+			[innerShadow setShadowColor:[NSColor colorWithDeviceWhite:0.0f alpha:0.5f]];
+		}
+		
+		[innerShadow set];
+		[path stroke];
+		[innerShadow release];
+		[[NSGraphicsContext currentContext] restoreGraphicsState];
+	}
+	
+	if([self imagePosition] != NSImageOnly) {
+		NSRect textFrame = frame;
+		switch ([self controlSize]) {
+			case NSRegularControlSize:
+				break;
+			case NSSmallControlSize:
+				textFrame.origin.y += 1;
+				break;
+			case NSMiniControlSize:
+				break;
+		}
+		
+		[self drawTitle: [self attributedTitle] withFrame: textFrame inView: [self controlView]];
+	}
+	
+	if([self imagePosition] != NSNoImage) {
+		[self drawImage:[self image] withFrame: frame inView: [self controlView]];
 	}
 }
 
@@ -557,7 +665,7 @@
 	
 	if([self imagePosition] != NSNoImage) {
 		
-		[self drawImage: (([self alternateImage]&&[self state])?[self alternateImage]:[self image]) withFrame: frame inView: [self controlView]];
+		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
 	}
 }
 
@@ -635,7 +743,7 @@
 	
 	if([self imagePosition] != NSNoImage) {
 		
-		[self drawImage: (([self alternateImage]&&[self state])?[self alternateImage]:[self image]) withFrame: frame inView: [self controlView]];
+		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
 	}
 }
 
@@ -740,7 +848,7 @@
 	
 	if([self imagePosition] != NSNoImage) {
 		
-		[self drawImage: (([self alternateImage]&&[self state])?[self alternateImage]:[self image]) withFrame: frame inView: [self controlView]];
+		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
 	}
 }
 
@@ -1041,7 +1149,7 @@
 	}
 }
 
--(void)drawRecessedButtonInFrame:(NSRect)frame {//This part is not implemented so good as the codes from Timothy Davis, but we do need that
+-(void)drawRecessedButtonInFrame:(NSRect)frame {
 	NSRect textFrame;
 	
 	//Adjust Rect so strokes are true and
@@ -1057,34 +1165,19 @@
 	switch ([self controlSize]) {
 		default: // Silence uninitialized variable warnings for textFrame fields.
 		case NSRegularControlSize:
-			
-			frame.origin.x += 1;
-			frame.origin.y += 1;
-			frame.size.width -= 2;
-			frame.size.height -= 4;
-			
 			textFrame = frame;
 			break;
 			
 		case NSSmallControlSize:
-			
-			frame.origin.x += 1;
-			frame.origin.y += 1;
-			frame.size.width -= 2;
-			frame.size.height -= 3;
-			
 			textFrame = frame;
-			textFrame.origin.y += 1;
 			break;
 			
 		case NSMiniControlSize:
-			
-			frame.origin.y -= 1;
-			
+			frame.size.height -= 4;
 			textFrame = frame;
-			textFrame.origin.y += 1;
 			break;
-	}	
+	}
+	
 	//Create Path
 	NSBezierPath *path = [[NSBezierPath alloc] init];
 	
@@ -1099,51 +1192,89 @@
 								   endAngle: 90];
 	
 	[path closePath];
+	[path setClip];
 	
-	if([self isEnabled]) {
-		if([self state] == 1) {
-			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedSolidFill] set];
-			[path fill];
-			isMouseIn = NO;
-		}
-		else {
-			if(isMouseIn){
-				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightSolidFill] set];
-				[path fill];
-			}
-			else {
-				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalSolidFill] set];
-				[path fill];
-			}
-		}
+	NSBezierPath *shadowPath = [[NSBezierPath alloc] init];
+	
+	[shadowPath appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(frame) + BGCenterY(frame), NSMidY(frame) + 0.5f)
+									 radius: BGCenterY(frame) + 1
+								 startAngle: 90
+								   endAngle: 270];
+	
+	[shadowPath appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(frame) - BGCenterY(frame), NSMidY(frame) + 0.5f)
+									 radius: BGCenterY(frame) + 1
+								 startAngle: 270 
+								   endAngle: 90];
+	
+	[shadowPath closePath];
+	
+	//Draw
+	if([self state] == 1 || [self isHighlighted]) {
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedSolidFill] set];
+		[path fill];
+		//Draw inner shadow
+		[[NSGraphicsContext currentContext] saveGraphicsState];
+		NSShadow *innerShadow = [[NSShadow alloc] init];
+		[innerShadow setShadowBlurRadius:1];
+		
+		[innerShadow setShadowColor:[NSColor whiteColor]];
+		[innerShadow setShadowOffset:NSMakeSize(0, 1)];
+		[innerShadow set];
+		[shadowPath stroke];
+		
+		[innerShadow setShadowColor:[NSColor blackColor]];
+		[innerShadow setShadowOffset:NSMakeSize(0, -1)];
+		[innerShadow set];
+		[shadowPath stroke];
+		
+		[innerShadow release];
+		[[NSGraphicsContext currentContext] restoreGraphicsState];
 	}
 	else {
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledNormalSolidFill] set];
+		if([self highlightsBy] & NSChangeBackgroundCellMask ||
+		   [self showsStateBy] & NSChangeBackgroundCellMask){
+			[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightSolidFill] set];
+			[path fill];
+		}
+		else {
+			//Transparent
+		}
 	}
 	
 	[path release];
+	[shadowPath release];
 	
 	if([self imagePosition] != NSImageOnly) {
 		[self drawTitle: [self attributedTitle] withFrame: textFrame inView: [self controlView]];
 	}
 	
 	if([self imagePosition] != NSNoImage) {
-		[self drawImage: (([self alternateImage]&&[self state])?[self alternateImage]:[self image]) withFrame: frame inView: [self controlView]];
+		[self drawImage: [self image] withFrame: frame inView: [self controlView]];
 	}
 }
 
 - (void)mouseEntered:(NSEvent *)event{
 	if ([self bezelStyle] == NSRecessedBezelStyle) {
-		isMouseIn = YES;
-		[self setHighlighted:YES];
+		if (!([self highlightsBy] & NSChangeBackgroundCellMask)) {
+			[self setHighlightsBy:([self highlightsBy] + NSChangeBackgroundCellMask)];
+		}
+		if (!([self showsStateBy] & NSChangeBackgroundCellMask)) {
+			[self setShowsStateBy:([self showsStateBy] + NSChangeBackgroundCellMask)];
+		}
 	}
 }
+
 - (void)mouseExited:(NSEvent *)event{
 	if ([self bezelStyle] == NSRecessedBezelStyle) {
-		isMouseIn = NO;
-		[self setHighlighted:NO];
+		if (([self highlightsBy] & NSChangeBackgroundCellMask)) {
+			[self setHighlightsBy:([self highlightsBy] - NSChangeBackgroundCellMask)];
+		}
+		if (([self showsStateBy] & NSChangeBackgroundCellMask)) {
+			[self setShowsStateBy:([self showsStateBy] - NSChangeBackgroundCellMask)];
+		}
 	}
 }
+
 #pragma mark -
 #pragma mark Helper Methods
 

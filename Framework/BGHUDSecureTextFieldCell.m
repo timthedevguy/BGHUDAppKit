@@ -25,12 +25,10 @@
 		
 		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
 		
-		if([self drawsBackground]) {
-			
+		if([self drawsBackground] && [[[BGThemeManager keyedManager] themeForKey: self.themeKey] isOverrideFillColor]) {
 			fillsBackground = YES;
+			[self setDrawsBackground: NO];
 		}
-		
-		[self setDrawsBackground: NO];
 	}
 	
 	return self;
@@ -51,12 +49,10 @@
 		
 		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
 		
-		if([self drawsBackground]) {
-			
+		if([self drawsBackground] && [[[BGThemeManager keyedManager] themeForKey: self.themeKey] isOverrideFillColor]) {
 			fillsBackground = YES;
+			[self setDrawsBackground: NO];
 		}
-		
-		[self setDrawsBackground: NO];
 	}
 	
 	return self;
@@ -148,67 +144,37 @@
 	//Get TextView for this editor
 	NSTextView* view = (NSTextView*)[[controlView window] fieldEditor: NO forObject: controlView];
 	
-	//If window/app is active draw the highlight/text in active colors
-	if(![self isHighlighted]) {
-		
-		if([view selectedRange].length > 0) {
-			
-			//Get Attributes of the selected text
-			NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];	
-			
-			if([[[self controlView] window] isKeyWindow])
-			{
-				[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightActiveColor]
-						 forKey: NSBackgroundColorAttributeName];
-				
-				[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]
-							 range: [view selectedRange]];
-			}
-			else
-			{
-				[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightInActiveColor]
-						 forKey: NSBackgroundColorAttributeName];
-				
-				[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor]
-							 range: [view selectedRange]];
-			}
-			
-			[view setSelectedTextAttributes:dict];
-			dict = nil;
-		} else {
-			
-			// Only change color (marks view as dirty) if it had a selection at some point,
-			// thus changing the colors.
-			if([view textColor] != [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]) {
-				
-				[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
-				[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
-			}
-		}
-	} else {
-		
-		if([self isEnabled]) {
-			
-			if([self isHighlighted]) {
-				
-				if([[[self controlView] window] isKeyWindow])
-				{
-					
-					[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]];
-				} else {
-					
-					[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor]];
-				}
-			} else {
-				
-				[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
-			}
-		} else {
-			
-			[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
-		}
+	//Set text color
+	if([self isEnabled]) {
+		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+	}
+	else {
+		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
+		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
 	}
 	
+	//Get Attributes of the selected text
+	NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];	
+	
+	//If window/app is active draw the highlight/text in active colors
+	if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow]) {
+		[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightActiveColor]
+				 forKey: NSBackgroundColorAttributeName];
+		
+		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]
+					 range: [view selectedRange]];
+	}
+	else {
+		[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightInActiveColor]
+				 forKey: NSBackgroundColorAttributeName];
+		
+		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor]
+					 range: [view selectedRange]];
+	}
+	
+	[view setSelectedTextAttributes:dict];
+	dict = nil;
 	view = nil;
 	
 	// Check to see if the attributed placeholder has been set or not

@@ -148,8 +148,18 @@
 	
 	//Draw Background (used as dividers)
 	NSBezierPath *shadowPath = [[NSBezierPath alloc] init];
-	[shadowPath appendBezierPathWithRoundedRect: frame
-										xRadius: 5.0f yRadius: 5.0f];
+	switch ([self segmentStyle]) {
+		default: // Silence uninitialized variable warnings
+		case NSSegmentStyleSmallSquare:
+			[shadowPath appendBezierPathWithRect:frame];
+			break;
+			
+		case NSSegmentStyleRounded: //NSSegmentStyleTexturedRounded:
+			[shadowPath appendBezierPathWithRoundedRect:frame
+												xRadius:5.0f
+												yRadius:5.0f];
+			break;
+	}
 	[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
 	[shadowPath fill];
 	[shadowPath release];
@@ -177,13 +187,16 @@
 	switch ([self segmentStyle]) {
 		default: // Silence uninitialized variable warnings
 		case NSSegmentStyleSmallSquare:
+		{
 			if(segment == ([self segmentCount] -1)) {
 				fillRect.size.width -= 3;
 			}
 			fillPath = [[NSBezierPath alloc] init];
 			[fillPath appendBezierPathWithRect: fillRect];
+		}
 			break;
 		case NSSegmentStyleRounded: //NSSegmentStyleTexturedRounded:
+		{
 			fillPath = [[NSBezierPath alloc] init];
 			//If this is the first segment, draw left rounded corners
 			if(segment == 0 && segment != ([self segmentCount] -1)) {
@@ -219,6 +232,7 @@
 			if (segment != 0 && segment != ([self segmentCount] -1)) {
 				[fillPath appendBezierPathWithRect: fillRect];
 			}
+		}
 			break;
 	}
 	
@@ -254,7 +268,11 @@
 	[textAttributes setValue: [NSFont controlContentFontOfSize: [NSFont systemFontSizeForControlSize: [self controlSize]]] forKey: NSFontAttributeName];
 	if([self isEnabled])
 	{
-		[textAttributes setValue: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor] forKey: NSForegroundColorAttributeName];
+		if([self selectedSegment] == segment) {
+			[textAttributes setValue: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightTextColor] forKey: NSForegroundColorAttributeName];
+		} else {
+			[textAttributes setValue: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor] forKey: NSForegroundColorAttributeName];
+		}
 	}
 	else {
 		[textAttributes setValue:[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor] forKey: NSForegroundColorAttributeName];
