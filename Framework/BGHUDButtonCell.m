@@ -260,25 +260,19 @@
 			//Setup per State and Highlight Settings
 			if([self showsStateBy] == 0 && [self highlightsBy] == 1) {
 				
-				if([self isHighlighted]) {
-					
-					if([self alternateImage]) {
+				if([self isHighlighted] && [self alternateImage]) {
 						
-						image = [self alternateImage];
-					}
+					image = [self alternateImage];
 				}
 			}
 			
-			if([self showsStateBy] == 1 && [self highlightsBy] == 3) {
+//			if([self showsStateBy] == 1 && [self highlightsBy] == 3) {
 				
-				if([self state] == 1) {
-					
-					if([self alternateImage]) {
+				if([self state] == 1 && [self alternateImage]) {
 						
-						image = [self alternateImage];
-					}
+					image = [self alternateImage];
 				}
-			}
+//			}
 			
 			//Calculate Image Position
 			NSRect imageRect = frame;
@@ -695,30 +689,29 @@
 	
 	[NSGraphicsContext restoreGraphicsState];
 	
-	//Draw Background
+	//Draw Background	
 	if([self isEnabled]) {
-		
 		if(([self showsStateBy] == 12 && [self highlightsBy] == 14) ||
 		   ([self showsStateBy] == 12 && [self highlightsBy] == 12)) {
-			
 			if([self state] == 1) {
 				
 				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] highlightComplexGradient] drawInBezierPath: path angle: 90];
-			} else {
-				
+			}
+			else {
 				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalComplexGradient] drawInBezierPath: path angle: 90];
 			}
-		} else {
-			
+		}
+		else {
 			if([self isHighlighted]) {
-				
 				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] pushedComplexGradient] drawInBezierPath: path angle: 90];
-			} else {
+			}
+			else {
 				
 				[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalComplexGradient] drawInBezierPath: path angle: 90];
 			}
 		}
-	} else {
+	}
+	else {
 		
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledNormalComplexGradient] drawInBezierPath: path angle: 90];
 	}
