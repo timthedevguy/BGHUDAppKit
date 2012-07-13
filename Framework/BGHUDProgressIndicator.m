@@ -111,7 +111,7 @@
 		if(progressPath) {[progressPath release];}
 		progressPath = [[NSBezierPath alloc] init];
 		
-		CGFloat step = frame.size.height - 2;
+		CGFloat step = (frame.size.height / 4)*4;
 		CGFloat double_step = step * 2;
 		while(position.x <= (frame.origin.x + frame.size.width)) {
 			[progressPath moveToPoint: NSMakePoint(position.x,					position.y)];
