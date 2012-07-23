@@ -36,6 +36,13 @@
 
 #import <objc/runtime.h>
 
+@interface BGHUDProgressIndicator()
+NSTimer *spinningAnimationTimer;
+int spinningAnimationIndex;
+NSThread *spinningAnimationThread;
+BOOL isAnimating;
+@end
+
 @implementation BGHUDProgressIndicator
 
 @synthesize themeKey;
@@ -131,7 +138,6 @@
 }
 
 - (void)_drawThemeProgressArea:(BOOL)flag {
-	
 	NSRect frame = [self bounds];
 	
 	//Adjust rect based on size
@@ -152,10 +158,10 @@
 		//Fill Background
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInRect: frame angle: 90];
 		
-        //Get the animation index (private)
-        int animationIndex = 0;
-        object_getInstanceVariable( self, "_animationIndex", (void **)&animationIndex );
-
+		//Get the animation index (private)
+		int animationIndex = 0;
+		object_getInstanceVariable( self, "_animationIndex", (void **)&animationIndex );
+		
 		//Create XFormation
 		NSAffineTransform *trans = [NSAffineTransform transform];
 		[trans translateXBy:animationIndex - 16 yBy: 0];
@@ -171,9 +177,71 @@
 	}
 }
 
+#define NUM_FINS 12
+
+- (void)drawSpinningStyleIndicator {
+    // Determine size based on current bounds
+    NSSize size = [self bounds].size;
+    float theMaxSize = MIN(size.width,size.height);
+	
+	[NSGraphicsContext saveGraphicsState];
+    CGContextRef currentContext = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
+	
+    // Move the CTM so 0,0 is at the center of our bounds
+    CGContextTranslateCTM(currentContext,[self bounds].size.width/2,[self bounds].size.height/2);
+	
+	NSColor *foreColor = [[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor];
+	float alpha = [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue];
+	
+    if ([self isIndeterminate]) {
+        CGContextRotateCTM(currentContext, M_PI * 2.0f * spinningAnimationIndex / NUM_FINS);
+		
+        NSBezierPath *path = [[NSBezierPath alloc] init];
+        float lineWidth = 0.0859375 * theMaxSize; // should be 2.75 for 32x32
+        float lineStart = 0.234375 * theMaxSize; // should be 7.5 for 32x32
+        float lineEnd = 0.421875 * theMaxSize;  // should be 13.5 for 32x32
+        [path setLineWidth:lineWidth];
+        [path setLineCapStyle:NSRoundLineCapStyle];
+        [path moveToPoint:NSMakePoint(0,lineStart)];
+        [path lineToPoint:NSMakePoint(0,lineEnd)];
+
+		int i;
+        for (i = 0; i < NUM_FINS; i++) {
+			[[foreColor colorWithAlphaComponent:alpha] set];
+            [path stroke];
+            CGContextRotateCTM(currentContext, -M_PI * 2.0f/NUM_FINS);
+            alpha -= 1.0/NUM_FINS;
+        }
+        [path release];
+    }
+    else {
+        float lineWidth = 1 + (0.01 * theMaxSize);
+        float circleRadius = (theMaxSize - lineWidth) / 2.1;
+        NSPoint circleCenter = NSMakePoint(0, 0);
+        [[foreColor colorWithAlphaComponent:alpha] set];
+        NSBezierPath *path = [[NSBezierPath alloc] init];
+        [path setLineWidth:lineWidth];
+        [path appendBezierPathWithOvalInRect:NSMakeRect(-circleRadius, -circleRadius, circleRadius*2, circleRadius*2)];
+        [path stroke];
+        [path release];
+        path = [[NSBezierPath alloc] init];
+        [path appendBezierPathWithArcWithCenter:circleCenter radius:circleRadius startAngle:90 endAngle:90-(360*([self doubleValue]/[self maxValue])) clockwise:YES];
+        [path lineToPoint:circleCenter] ;
+        [path fill];
+        [path release];
+    }
+	
+    [NSGraphicsContext restoreGraphicsState];
+}
+
 - (void)drawRect:(NSRect)dirtyRect {
-	[self _drawThemeBackground];
-	[self _drawThemeProgressArea:YES];
+	if ([self style] == NSProgressIndicatorBarStyle) {
+		[self _drawThemeBackground];
+		[self _drawThemeProgressArea:YES];
+	}
+	else if ([self style] == NSProgressIndicatorSpinningStyle) {
+		[self drawSpinningStyleIndicator];
+	}
 }
 
 #pragma mark -
@@ -187,5 +255,127 @@
 }
 
 #pragma mark -
+
+- (void)updateFrame:(NSTimer *)timer;
+{
+    if(spinningAnimationIndex < NUM_FINS) {
+        spinningAnimationIndex++;
+    }
+    else {
+        spinningAnimationIndex = 0;
+    }
+    
+    if ([self usesThreadedAnimation]) {
+        // draw now instead of waiting for setNeedsDisplay (that's the whole reason
+        // we're animating from background thread)
+        [self setNeedsDisplay:YES];
+		[self display];
+    }
+    else {
+        [self setNeedsDisplay:YES];
+    }
+}
+
+- (void)animateInBackgroundThread
+{
+	NSAutoreleasePool *animationPool = [[NSAutoreleasePool alloc] init];
+	
+	// Set up the animation speed to subtly change with size > 32.
+	// int animationDelay = 38000 + (2000 * ([self bounds].size.height / 32));
+    
+    // Set the rev per minute here
+    int omega = 100; // RPM
+    int animationDelay = 60*1000000/omega/NUM_FINS;
+	int poolFlushCounter = 0;
+    
+	do {
+		[self updateFrame:nil];
+		usleep(animationDelay);
+		poolFlushCounter++;
+		if (poolFlushCounter > 256) {
+			[animationPool drain];
+			animationPool = [[NSAutoreleasePool alloc] init];
+			poolFlushCounter = 0;
+		}
+	} while (![[NSThread currentThread] isCancelled]); 
+    
+	[animationPool release];
+}
+
+- (void)actuallyStopAnimation
+{
+    if (spinningAnimationThread) {
+        // we were using threaded animation
+		[spinningAnimationThread cancel];
+		if (![spinningAnimationThread isFinished]) {
+			[[NSRunLoop currentRunLoop] runMode:NSModalPanelRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.05]];
+		}
+		[spinningAnimationThread release];
+        spinningAnimationThread = nil;
+	}
+    else if (spinningAnimationTimer) {
+        // we were using timer-based animation
+        [spinningAnimationTimer invalidate];
+        [spinningAnimationTimer release];
+        spinningAnimationTimer = nil;
+    }
+    [self setNeedsDisplay:YES];
+}
+
+- (void)actuallyStartAnimation
+{
+    // Just to be safe kill any existing timer.
+    [self actuallyStopAnimation];
+	
+    if ([self window]) {
+        // Why animate if not visible?  viewDidMoveToWindow will re-call this method when needed.
+        if ([self usesThreadedAnimation]) {
+            spinningAnimationThread = [[NSThread alloc] initWithTarget:self selector:@selector(animateInBackgroundThread) object:nil];
+            [spinningAnimationThread start];
+        }
+        else {
+            spinningAnimationTimer = [[NSTimer timerWithTimeInterval:(NSTimeInterval)0.05
+															  target:self
+															selector:@selector(updateFrame:)
+															userInfo:nil
+															 repeats:YES] retain];
+            
+            [[NSRunLoop currentRunLoop] addTimer:spinningAnimationTimer forMode:NSRunLoopCommonModes];
+            [[NSRunLoop currentRunLoop] addTimer:spinningAnimationTimer forMode:NSDefaultRunLoopMode];
+            [[NSRunLoop currentRunLoop] addTimer:spinningAnimationTimer forMode:NSEventTrackingRunLoopMode];
+        }
+    }
+}
+
+- (void)startAnimation:(id)sender
+{
+    if ([self style] == NSProgressIndicatorSpinningStyle) {
+		if (![self isIndeterminate]) return;
+		if (isAnimating) return;
+		
+		if (![self isDisplayedWhenStopped])
+			[self setHidden:NO];
+		
+		[self actuallyStartAnimation];
+		isAnimating = YES;
+	}
+	else {
+		[super startAnimation:sender];
+	}
+}
+
+- (void)stopAnimation:(id)sender
+{
+    if ([self style] == NSProgressIndicatorSpinningStyle) {
+		[self actuallyStopAnimation];
+		isAnimating = NO;
+		
+		if (![self isDisplayedWhenStopped])
+			[self setHidden:YES];
+	}
+	else {
+		[super startAnimation:sender];
+	}
+}
 
 @end
