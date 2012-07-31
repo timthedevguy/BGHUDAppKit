@@ -36,9 +36,13 @@
 #import "BGThemeManager.h"
 
 @interface BGHUDProgressIndicator : NSProgressIndicator {
-
 	NSBezierPath *progressPath;
 	NSString *themeKey;
+@private
+    NSTimer *spinningAnimationTimer;
+    int spinningAnimationIndex;
+    NSThread *spinningAnimationThread;
+    BOOL isAnimating;
 }
 
 @property (retain) NSString *themeKey;

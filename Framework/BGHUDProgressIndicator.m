@@ -36,13 +36,6 @@
 
 #import <objc/runtime.h>
 
-@interface BGHUDProgressIndicator()
-NSTimer *spinningAnimationTimer;
-int spinningAnimationIndex;
-NSThread *spinningAnimationThread;
-BOOL isAnimating;
-@end
-
 @implementation BGHUDProgressIndicator
 
 @synthesize themeKey;
