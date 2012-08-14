@@ -105,12 +105,11 @@ NSImage *cancelButtonImageUp() {
 		self.themeKey = @"gradientTheme";
 		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
 		
-		if([self drawsBackground]) {
-			
+		if([self drawsBackground] && [[[BGThemeManager keyedManager] themeForKey: self.themeKey] isOverrideFillColor]) {
 			fillsBackground = YES;
+			[self setDrawsBackground: NO];
 		}
 		
-		[self setDrawsBackground: NO];
 		[[self searchButtonCell] setImage:searchButtonImage()];
 		[[self cancelButtonCell] setImage:cancelButtonImageUp()];
 		[[self cancelButtonCell] setAlternateImage:nil];
@@ -142,12 +141,11 @@ NSImage *cancelButtonImageUp() {
 		self.themeKey = @"gradientTheme";
 		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
 		
-		if([self drawsBackground]) {
-			
+		if([self drawsBackground] && [[[BGThemeManager keyedManager] themeForKey: self.themeKey] isOverrideFillColor]) {
 			fillsBackground = YES;
+			[self setDrawsBackground: NO];
 		}
 		
-		[self setDrawsBackground: NO];
 		[[self searchButtonCell] setImage:searchButtonImage()];
 		[[self cancelButtonCell] setImage:cancelButtonImageUp()];
 		[[self cancelButtonCell] setAlternateImage:nil];
@@ -244,20 +242,28 @@ NSImage *cancelButtonImageUp() {
 	//Get TextView for this editor
 	NSTextView* view = (NSTextView*)[[controlView window] fieldEditor: NO forObject: controlView];
 	
+	//Set text color
+	if([self isEnabled]) {
+		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+	}
+	else {
+		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
+		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
+	}
+	
 	//Get Attributes of the selected text
 	NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];	
 	
 	//If window/app is active draw the highlight/text in active colors
-	if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow])
-	{
+	if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow]) {
 		[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightActiveColor]
 				 forKey: NSBackgroundColorAttributeName];
 		
 		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]
 					 range: [view selectedRange]];
 	}
-	else
-	{
+	else {
 		[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightInActiveColor]
 				 forKey: NSBackgroundColorAttributeName];
 		
@@ -266,14 +272,8 @@ NSImage *cancelButtonImageUp() {
 	}
 	
 	[view setSelectedTextAttributes:dict];
-	
-	if([self isEnabled]) {
-		
-		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
-	} else {
-		
-		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
-	}
+	dict = nil;
+	view = nil;
 	
 	// Check to see if the attributed placeholder has been set or not
 	//if(![self placeholderAttributedString]) {

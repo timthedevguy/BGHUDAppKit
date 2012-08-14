@@ -51,12 +51,10 @@
 
 		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
 
-		if([self drawsBackground]) {
-
+		if([self drawsBackground] && [[[BGThemeManager keyedManager] themeForKey: self.themeKey] isOverrideFillColor]) {
 			fillsBackground = YES;
+			[self setDrawsBackground: NO];
 		}
-
-		[self setDrawsBackground: NO];
 	}
 
 	return self;
@@ -77,12 +75,10 @@
 
 		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
 
-		if([self drawsBackground]) {
-
+		if([self drawsBackground] && [[[BGThemeManager keyedManager] themeForKey: self.themeKey] isOverrideFillColor]) {
 			fillsBackground = YES;
+			[self setDrawsBackground: NO];
 		}
-
-		[self setDrawsBackground: NO];
 	}
 
 	return self;
@@ -165,41 +161,42 @@
 	}
 
 	[path release];
-
+	
 	//Get TextView for this editor
 	NSTextView* view = (NSTextView*)[[controlView window] fieldEditor: NO forObject: controlView];
-	[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
-
+	
+	//Set text color
+	if([self isEnabled]) {
+		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+	}
+	else {
+		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
+		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
+	}
+	
 	//Get Attributes of the selected text
-	NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];
-
+	NSMutableDictionary *dict = [[[view selectedTextAttributes] mutableCopy] autorelease];	
+	
 	//If window/app is active draw the highlight/text in active colors
-	if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow])
-	{
+	if([self showsFirstResponder] && [[[self controlView] window] isKeyWindow]) {
 		[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightActiveColor]
 				 forKey: NSBackgroundColorAttributeName];
-
+		
 		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextActiveColor]
 					 range: [view selectedRange]];
 	}
-	else
-	{
+	else {
 		[dict setObject: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionHighlightInActiveColor]
 				 forKey: NSBackgroundColorAttributeName];
-
+		
 		[view setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] selectionTextInActiveColor]
 					 range: [view selectedRange]];
 	}
-
+	
 	[view setSelectedTextAttributes:dict];
-
-	if([self isEnabled]) {
-
-		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
-	} else {
-
-		[self setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledTextColor]];
-	}
+	dict = nil;
+	view = nil;
 
 	[self drawInteriorWithFrame: cellFrame inView: controlView];
 }

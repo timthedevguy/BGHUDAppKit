@@ -1,8 +1,0 @@
-build
-BGHUDAppKit.xcodeproj/*.mode1v3
-BGHUDAppKit.xcodeproj/*.pbxuser
-BGHUDAppKit.xcodeproj/*.perspectivev3
-
-.DS_Store
-xcuserdata
-.git
