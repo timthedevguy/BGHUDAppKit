@@ -154,6 +154,7 @@
 		//Get the animation index (private)
 		int animationIndex = 0;
 		object_getInstanceVariable( self, "_animationIndex", (void **)&animationIndex );
+		animationIndex %= 32;
 		
 		//Create XFormation
 		NSAffineTransform *trans = [NSAffineTransform transform];
