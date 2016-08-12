@@ -796,6 +796,7 @@
 	switch ([self imagePosition]) {
 			
 		case NSImageLeft:
+    default:
 			
 			//Make adjustments to horizontal placement
 			//Create Text Rect so text is drawn properly
@@ -872,6 +873,10 @@
 			
 		case NSImageOverlaps:
 			
+			break;
+
+		case NSNoImage:
+
 			break;
 	}
 	
