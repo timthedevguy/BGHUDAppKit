@@ -36,6 +36,12 @@
 
 #import <objc/runtime.h>
 
+@interface BGHUDProgressIndicator ()
+// Use prefix to avoid collisions with Apple's API
+-(void)BGHUDDrawProgressArea;
+-(void)BGHUDDrawRemainderArea;
+@end
+
 @implementation BGHUDProgressIndicator
 
 @synthesize themeKey;
@@ -78,7 +84,32 @@
 	[coder encodeObject: self.themeKey forKey: @"themeKey"];
 }
 
-- (void)_drawThemeBackground {
+- (void)drawRect:(NSRect)dirtyRect {
+	[self BGHUDDrawRemainderArea];
+	[self BGHUDDrawProgressArea];
+}
+
+- (void)_drawThemeProgressArea:(BOOL)flag {
+	// Need to override this private API because 10.6 calls this regardless of
+	// our overriding drawRect:, resulting in an Aqua progress bar being drawn
+	// over ours
+	[self BGHUDDrawProgressArea];
+}
+
+#pragma mark -
+#pragma mark Helper Methods
+
+-(void)dealloc {
+	
+	[themeKey release];
+	[progressPath release];
+	[super dealloc];
+}
+
+#pragma mark -
+#pragma mark Private methods
+
+- (void)BGHUDDrawRemainderArea {
 	
 	NSRect frame = [self bounds];
 	
@@ -156,7 +187,7 @@
 	}
 }
 
-- (void)_drawThemeProgressArea:(BOOL)flag {
+- (void)BGHUDDrawProgressArea {
 	
 	NSRect frame = [self bounds];
 	
@@ -213,16 +244,6 @@
 		
 		
 	}
-}
-
-#pragma mark -
-#pragma mark Helper Methods
-
--(void)dealloc {
-	
-	[themeKey release];
-	[progressPath release];
-	[super dealloc];
 }
 
 #pragma mark -

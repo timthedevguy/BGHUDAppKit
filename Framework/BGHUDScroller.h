@@ -46,12 +46,10 @@
 	NSString *themeKey;
 }
 
-@property (copy,getter=themeKey) NSString *themeKey;
+@property (nonatomic,copy) NSString *themeKey;
 
 - (void)drawDecrementArrow:(BOOL)highlighted;
 - (void)drawIncrementArrow:(BOOL)highlighted;
-
--(NSString *)themeKey;
 
 -(BOOL)isHoriz;
 

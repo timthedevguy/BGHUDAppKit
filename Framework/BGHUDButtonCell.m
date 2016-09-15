@@ -300,14 +300,12 @@
 					break;
 			}
 			
-			[image setFlipped: YES];
-			
 			//Draw the image based on enabled state
 			if([self isEnabled]) {
 				
-				[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
+        [image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue] respectFlipped:YES hints:nil];
 			} else {
-				[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue]];
+        [image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue] respectFlipped:YES hints:nil];
 			}
 			
 		}
@@ -798,6 +796,7 @@
 	switch ([self imagePosition]) {
 			
 		case NSImageLeft:
+    default:
 			
 			//Make adjustments to horizontal placement
 			//Create Text Rect so text is drawn properly
@@ -874,6 +873,10 @@
 			
 		case NSImageOverlaps:
 			
+			break;
+
+		case NSNoImage:
+
 			break;
 	}
 	
