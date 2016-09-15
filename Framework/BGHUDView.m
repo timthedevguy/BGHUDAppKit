@@ -168,8 +168,7 @@
 	rect = [self bounds];
 	
 	if(self.useTheme) {
-		
-		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInRect: rect angle: 90];
+		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] normalGradient] drawInRect: rect angle: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] gradientAngle]];
 		[[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
 		NSFrameRect(rect);
 		
@@ -192,10 +191,10 @@
 		
 		if(self.flipGradient == 0) {
 			
-			[gradient drawInRect: rect angle: 270];
+			[gradient drawInRect: rect angle: 360 - [[[BGThemeManager keyedManager] themeForKey: self.themeKey] gradientAngle]];
 		} else {
 			
-			[gradient drawInRect: rect angle: 90];
+			[gradient drawInRect: rect angle: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] gradientAngle]];
 		}
 		
 		[gradient release];

@@ -1,0 +1,273 @@
+<html>
+	<head>
+		<title>BGHUDAppKit Documentation</title>
+		<link rel="stylesheet" href="style.css" type="text/css" />
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="toc clearfix">
+				<div class="toc-item left">
+					<div class="toc-image">
+						<a href="#compiling"><img src="compile.png"/>
+						<h4>Compiling</h4></a>
+					</div>
+				</div>
+				<div class="toc-item left">
+					<div class="toc-image">
+						<a href="#howtouse"><img src="warning.png"/>
+						<h4>Usage</h4></a>
+					</div>
+				</div>
+				<div class="toc-item right">
+					<div class="toc-image">
+						<a href="#help"><img src="help.png"/>
+						<h4>Help</h4></a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="section">
+				<div class="title-wrapper clearfix">
+				<div class="title">
+					Introduction
+				</div>
+				</div>
+				<div class="content">
+				<p>The missing OS X Leopard/Snow Leopard HUD controls.</p>
+				
+				<p>BGHUDAppKit is a small framework I designed to fill the gap left by Apple when they released the nifty HUD window but forgot to release their controls that match it.	There are few really good frameworks out there that will provide you with the HUD style interface. This is where the big change in BGHUDAppKit becomes clear. I use absolutely	NO resources or images to give these controls the HUD appearance. BGHUDAppKit uses 100% native Cocoa drawing functions like NSColor, NSGradient and NSBezierPath. Because	of this the framework is much smaller, provides a cleaner interface and is already Resolution Independence ready. And of course it is free and open-source.</p>
+				</div>
+			</div>
+			
+			<div class="section">
+				<div class="title-wrapper clearfix">
+				<div class="title">
+					<a name="compiling" style="color: #000;">Compiling</a>
+					</div>
+					<div class="text-toc">
+						<ul>
+							<li><a href="#10.5">OS X 10.5</a></li>
+							<li>&bull;</li>
+							<li><a href="#10.6">OS X 10.6</a></li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="content">
+					There are several different build configurations you can choose from based on your needs.  Below is a list of available configurations.
+					<div class="subcontent">
+						<a name="10.6"><h1>OS X Snow Leopard 10.6</h1></a>
+						<div class="smartnumber">
+							<div class="smartvalue">
+								1
+							</div>
+						</div>
+						<b>10.6+</b> - Use this configuration to build against the 10.6 SDK.
+					</div>
+					
+					<div class="subcontent">
+						<a name="10.5"><h1>OS X Leopard 10.5</h1></a>
+						<p>You have a couple of options on this build.</p>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								1
+							</div>
+						</div>
+						<b>10.5+ (32bit Plugin)</b> - If your are developing on an OS X Leopard 10.5 system you will need to select this build configuration so your IBPlugin builds as a 32bit plugin.  64bit IBPlugins wheren't introduced until OS X Snow Leopard 10.6.</p>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								2
+							</div>
+						</div>
+						<b>10.5+ (64bit Plugin)</b> - Use this option if you are on an OS X Snow Leopard 10.6 and are developing applications against the 10.5 SDK.</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="section">
+				<div class="title-wrapper clearfix">
+					<div class="title">
+					<a name="howtouse" style="color: #000;">Usage</a>
+					</div>
+					<div class="text-toc">
+						<ul>
+							<li><a href="#projectinstall">Project Install</a></li>
+							<li>&bull;</li>
+							<li><a href="#usage">Usage</a></li>
+							<li>&bull;</li>
+							<li><a href="#themeing">Themeing</a></li>
+							<li>&bull;</li>
+							<li><a href="#shrinking">Shrinking</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="content">
+					<div class="subcontent">
+						<a name="projectinstall"><h1>Project Install</h1></a>
+						
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								1
+							</div>
+						</div>
+						Right-Click on your <b>Frameworks</b> group in XCode.</p>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								2
+							</div>
+						</div>
+						Select <b>Add -> Existing Frameworks...</b></p>
+						<div class="imagesection">
+							<div class="imagesection-image" style="width: 475px;">
+								<img src="step1-2.png"/>
+							</div>
+						</div>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								3
+							</div>
+						</div>
+						Navigate to your BGHUDAppKit <b>build/Release</b> directory and select <b>BGHUDAppKit.framework</b> <i>(Yes, it's a folder)</i></p>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								4
+							</div>
+						</div>
+						Right-Click on your projects Target <i>(This is generally a target with the same name as your project)</i> located in your <b>Targets</b> group in XCode</p>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								5
+							</div>
+						</div>
+						Select <b>Add -> New Build Phase -> New Copy Files Build Phase</b></p>
+						<div class="imagesection">
+							<div class="imagesection-image" style="width: 600px;">
+								<img src="step4-5.png"/>
+							</div>
+						</div>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								6
+							</div>
+						</div>
+						Double-Click the new item named <b>Copy Files</b> under your projects target grouping.  <i>(You may need to expand your projects target to see this)</i></p>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								7
+							</div>
+						</div>
+						Select <b>Frameworks</b> from the Destination drop down, close the window when your done.</p>
+						<div class="imagesection">
+							<div class="imagesection-image" style="width: 353px;">
+								<img src="step6-7.png"/>
+							</div>
+						</div>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								8
+							</div>
+						</div>
+						Drag BGHUDAppKit.framework from <b>Frameworks</b> group in XCode to the <b>Copy Files</b> build phase under <b>Targets</b> group in XCode.</p>
+						<div class="imagesection">
+							<div class="imagesection-image" style="width: 180px;">
+								<img src="step8.png"/>
+							</div>
+						</div>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								9
+							</div>
+						</div>
+						Build your project.</p>
+						
+						<p>You should now be able to inspect your products .APP bundle and see a new folder named <b>Frameworks</b> that contains BGHUDAppKit.
+						
+					</div>
+					
+					<div class="subcontent">
+						<a name="usage"><h1>Usage</h1></a>
+						<p>Usage is now as simple as opening your <b>MainMenu.nib</b> and dragging a control from the BGHUDAppKit palette inside of Interface Builder.</p>
+						<p>BGHUDAppKit controls will look exactly like they do at runtime while you are designing your interface in IB.  The only exception to this is when custom themes are in use.  Those custom themes will not show up in design time since the BGThemeManager has no idea they exist.  See more on <a href="#themeing">Themeing</a> below.</p>
+					</div>
+					
+					<div class="subcontent">
+						<a name="themeing"><h1>Themeing</h1></a>
+						<p>BGHUDAppKit is more powerful than it first appears to be. I have designed the classes with the mentality of reinvention. Why should everyone have to reinvent the NSScroller if they want to apply iTunes style colors to it? You shouldn&rsquo;t have to. I&rsquo;ve done the hard work and research for you. My purpose in life as a developer is to make life easier, programmers are lazy :) Every control in BGHUDAppKit uses a theme, you can have one theme for every control or you could have 10 different themes for 10 different controls.</p>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								1
+							</div>
+						</div>
+						Creating a theme does take a little bit of work. If you look inside the Headers directory of BGHUDAppKit.framework you will see a file named <code>BGTheme.h</code>. This is the master theme file. Inside of it you will see every theme method available and a short description of each explaining where it is used at. Just create a subclass of BGTheme and start overriding whatever methods you need to change.</p>
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								2
+							</div>
+						</div>
+						BGHUDAppKit uses a singleton BGThemeManager object. This makes it so that there	is only ever one instance of the theme allocated, thus saving memory. In this example my subclassed theme is myTheme.m. This code is in my main AppController object.</p>
+						<pre>-(void)awakeFromNib {
+  [[BGThemeManager keyedManager] setTheme: 
+    [[[myTheme alloc] init] autorelease] 
+                                   forKey: @"myTheme"];
+}</pre>
+						<p>What&rsquo;s happening? We are telling <code>BGThemeManager keyedManager</code> object that we want to add a new theme instance to its memory with a key of <code>myTheme</code>. You can add as many as you like. Two default themes are provided for you. The one you&rsquo;ll see when you Drag&rsquo;n&rsquo;Drop from the IB palette is <code>gradientTheme</code>, this is also the theme you will always see	when you simulate the interface in IB. This is because your custom theme object doesn&rsquo;t exist yet. The second default theme is <code>flatTheme</code>, this theme is just a slight dark gradient, giving the controls a less candy look.</p>
+						
+						<p><div class="smartnumber">
+							<div class="smartvalue">
+								3
+							</div>
+						</div>
+						Making the controls use this theme is even easier. In IB a new inspector panel will present itself when you are in the proper focus for that control. Some controls, like buttons, have this panel in the Cell focus. Click on a button once, and then again and it will get a halo around it. You will see a new section called <b>Theme</b> with a text box labeled <b>Theme Key</b>. Just type your theme key in there and when you build the app that control (and only that control) will use your custom theme.</p>
+						<div class="imagesection">
+							<div class="imagesection-image" style="width: 285px;">
+								<img src="theme.png"/>
+							</div>
+						</div>
+						
+					</div>
+					<div class="subcontent">
+						<a name="shrinking"><h1>Shrinking</h1></a>
+						<p>BGHUDAppKit is appox 1.0 Mb in size. This is quite large for a framework this simple. The extra disk space is taken up by the BGHUDAppKitPlugin which is the IB Plugin. This really doesn’t need to be in your distributed app, the framework will function normally without it. Do <b>NOT</b> delete BGHUDAppKitPlugin from your source BGHUDAppKit.framework.</p>
+						
+						<p>The reason the framework is built this way is because IB will automatically look in a linked framework for a plugin. This seemed, to me at least, the most logical and easiest way to distribute the plugin to you the developer.</p>
+						
+						<p>A way to shrink your final APP size is really simple. Create a new <b>Run Script</b> build phase and copy the following line to it.</p>
+						<pre>rm -fR "${CONFIGURATION_BUILD_DIR}/${WRAPPER_NAME}
+/Contents/Frameworks/BGHUDAppKit.framework/Versions/
+Current/Resources"</pre>
+						<i><b>Note:</b> The above line is wrapped to fit in this window, please ensure it's a single line when you paste it</i>
+						<p>The next time you build your project XCode will look in your final .APP folder and remove the unneeded Resources directory that BGHUDAppKitPlugin resides in. This shrinks BGHUDAppKit.framework down to approx 400k. Quite a big difference.</p>
+					</div>
+										
+				</div>
+			</div>
+			
+			<div class="section">
+				<div class="title-wrapper clearfix">
+				<div class="title">
+					<a name="help" style="color: #000;">Help</a>
+				</div>
+					<div class="text-toc">
+						<ul>
+							<li><a href="#gettinghelp">Getting Help</a></li>
+							<li>&bull;</li>
+							<li><a href="#knownissues">Known Issues</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="content">
+					<div class="subcontent">
+						<a name="gettinghelp"><h1>Getting Help</h1></a>
+						<p>You may email me on GitHub for assistance.  So far the majority of users have found no problems getting started.  Please report any bugs you find on the GitHub issue tracker page.</p>
+					</div>
+					<div class="subcontent">
+						<a name="knownissues"><h1>Known Issues</h1></a>
+						<p>BGHUDAppKit is currently incompatable with XCode 4.  It will compile and run, but some controls are drawing badly.  Use it at your own risk.  I will be upgrading the code as I go.</p>
+						<p>Radio button matrices are flawed due to the odd way that BGHUDAppKit has to determine if the underlaying NSButtonCell is a Radio or Check.  Pre App Store this worked fine, but with the removal of private variable usage it will remain broken until a better solution can be found.</p>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</body>
+</html>
