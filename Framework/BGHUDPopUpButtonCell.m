@@ -372,16 +372,23 @@
 				imageRect.origin.x += 5;
 				break;
 		}
-		
-		[image setFlipped: YES];
-		
+
+        NSImage *finalImage = image;
+        if ([image isTemplate]) {
+            NSImage *coloredImage = [NSImage imageWithSize:image.size flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
+                [[[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor] set];
+                NSRectFill(dstRect);
+                [image drawInRect:dstRect fromRect:NSZeroRect operation:NSCompositeDestinationIn fraction:1.0 respectFlipped:YES hints:nil];
+                return YES;
+            }];
+            finalImage = coloredImage;
+        }
 		//Draw the image based on enabled state
 		if([self isEnabled]) {
-			[image drawInRect: NSIntegralRect(imageRect) fromRect: NSZeroRect operation: NSCompositeCopy fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
+			[finalImage drawInRect: NSIntegralRect(imageRect) fromRect: NSZeroRect operation: NSCompositeCopy fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
 		} else {
-			[image drawInRect: NSIntegralRect(imageRect) fromRect: NSZeroRect operation: NSCompositeCopy fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue]];
+			[finalImage drawInRect: NSIntegralRect(imageRect) fromRect: NSZeroRect operation: NSCompositeCopy fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue]];
 		}
-		[image setFlipped: NO];
 	}
 }
 

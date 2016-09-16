@@ -278,13 +278,9 @@
 	if([super imageForSegment: segment] != nil) {
 		
 		NSImage *image = [self imageForSegment: segment];
-		[image setFlipped: YES];
 		
 		if([self imageScalingForSegment: segment] == NSImageScaleProportionallyDown) {
-			
 			CGFloat resizeRatio = (rect.size.height - 4) / [image size].height;
-			
-			[image setScalesWhenResized: YES];
 			[image setSize: NSMakeSize([image size].width * resizeRatio, rect.size.height -4)];
 		}
 		
