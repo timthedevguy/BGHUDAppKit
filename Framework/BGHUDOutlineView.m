@@ -126,8 +126,12 @@
 	
     [super _sendDelegateWillDisplayCell:cell forColumn:column row:row];
 	
-	[[self currentEditor] setBackgroundColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] cellEditingFillColor]];
-	[[self currentEditor] setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+    NSText *editor = [self currentEditor];
+    if (editor) {
+        [editor setDrawsBackground:YES];
+        [editor setBackgroundColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] cellEditingFillColor]];
+        [editor setTextColor: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]];
+    }
 	
 	if([[self selectedRowIndexes] containsIndex: row]) {
 		
@@ -153,7 +157,7 @@
 
 -(void)awakeFromNib {
 
-	[self setCornerView: [[BGHUDTableCornerView alloc] initWithThemeKey: self.themeKey]];
+    [self setCornerView: [[BGHUDTableCornerView alloc] initWithThemeKey: self.themeKey]];
 }
 
 #pragma mark -

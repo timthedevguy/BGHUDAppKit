@@ -124,12 +124,12 @@
 
 -(NSColor *)selectionHighlightActiveColor {
 	
-	return [NSColor darkGrayColor];
+	return [NSColor grayColor];
 }
 
 -(NSColor *)selectionHighlightInActiveColor {
 	
-	return [NSColor darkGrayColor];
+	return [NSColor grayColor];
 }
 
 -(NSColor *)selectionTextActiveColor {

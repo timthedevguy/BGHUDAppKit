@@ -135,6 +135,8 @@
 		case NSRecessedBezelStyle:
 			[self drawRecessedButtonInFrame: cellFrame];
 			break;
+        default:
+            break;
 	}
 	
 	if(buttonType == NSSwitchButton || buttonType == NSRadioButton) {
@@ -201,7 +203,7 @@
 		if([self isEnabled]) {
 			
 			[newTitle addAttribute: NSForegroundColorAttributeName
-							 value: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor]
+							 value: [[[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor] colorWithAlphaComponent:[[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]]
 							 range: NSMakeRange(0, [newTitle length])];
 		} else {
 			
@@ -221,97 +223,89 @@
 }
 
 -(void)drawImage:(NSImage *)image withFrame:(NSRect)frame inView:(NSView *)controlView {
-	
-	if([image isTemplate]) {
-		
-		[super drawImage: image withFrame: frame inView: controlView];
-	} else {
-		
-		if(buttonType == NSSwitchButton) {
-			
-			[self drawCheckInFrame: frame isRadio: NO];		
-		} else if(buttonType == NSRadioButton) {
-			
-			[self drawCheckInFrame: frame isRadio: YES];
-		} else {
-			
-			//Setup per State and Highlight Settings
-			if([self showsStateBy] == 0 && [self highlightsBy] == 1) {
-				
-				if([self isHighlighted]) {
-					
-					if([self alternateImage]) {
-						
-						image = [self alternateImage];
-					}
-				}
-			}
-			
-			if([self showsStateBy] == 1 && [self highlightsBy] == 3) {
-				
-				if([self state] == 1) {
-					
-					if([self alternateImage]) {
-						
-						image = [self alternateImage];
-					}
-				}
-			}
-			
-			//Calculate Image Position
-			NSRect imageRect = frame;
-			imageRect.size.height = [image size].height;
-			imageRect.size.width = [image size].width;
-			imageRect.origin.y += (frame.size.height /2) - (imageRect.size.height /2);
-			
-			//Setup Position
-			switch ([self imagePosition]) {
-					
-				case NSImageLeft:
-					
-					imageRect.origin.x += 5;
-					break;
-					
-				case NSImageOnly:
-					
-					imageRect.origin.x += (frame.size.width /2) - (imageRect.size.width /2);
-					break;
-					
-				case NSImageRight:
-					
-					imageRect.origin.x = ((frame.origin.x + frame.size.width) - imageRect.size.width) - 5;
-					break;
-					
-				case NSImageBelow:
-					
-					break;
-					
-				case NSImageAbove:
-					
-					break;
-					
-				case NSImageOverlaps:
-					
-					break;
-					
-				default:
-					
-					imageRect.origin.x += 5;
-					break;
-			}
-			
-			[image setFlipped: YES];
-			
-			//Draw the image based on enabled state
-			if([self isEnabled]) {
-				
-				[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
-			} else {
-				[image drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue]];
-			}
-			
-		}
-	}
+
+    if(buttonType == NSSwitchButton) {
+        [self drawCheckInFrame: frame isRadio: NO];
+    } else if(buttonType == NSRadioButton) {
+        [self drawCheckInFrame: frame isRadio: YES];
+    } else {
+
+        //Setup per State and Highlight Settings
+        if([self showsStateBy] == 0 && [self highlightsBy] == 1) {
+            if([self isHighlighted]) {
+                if([self alternateImage]) {
+                    image = [self alternateImage];
+                }
+            }
+        }
+
+        if([self showsStateBy] == 1 && [self highlightsBy] == 3) {
+            if([self state] == 1) {
+                if([self alternateImage]) {
+                    image = [self alternateImage];
+                }
+            }
+        }
+
+        //Calculate Image Position
+        NSRect imageRect = frame;
+        imageRect.size.height = [image size].height;
+        imageRect.size.width = [image size].width;
+        imageRect.origin.y += (frame.size.height /2) - (imageRect.size.height /2);
+
+        //Setup Position
+        switch ([self imagePosition]) {
+
+            case NSImageLeft:
+
+                imageRect.origin.x += 5;
+                break;
+
+            case NSImageOnly:
+
+                imageRect.origin.x += (frame.size.width /2) - (imageRect.size.width /2);
+                break;
+
+            case NSImageRight:
+
+                imageRect.origin.x = ((frame.origin.x + frame.size.width) - imageRect.size.width) - 5;
+                break;
+
+            case NSImageBelow:
+
+                break;
+
+            case NSImageAbove:
+
+                break;
+
+            case NSImageOverlaps:
+
+                break;
+
+            default:
+                
+                imageRect.origin.x += 5;
+                break;
+        }
+        NSImage *finalImage = image;
+        if ([image isTemplate]) {
+            NSImage *coloredImage = [NSImage imageWithSize:image.size flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
+                [[[[BGThemeManager keyedManager] themeForKey: self.themeKey] textColor] set];
+                NSRectFill(dstRect);
+                [image drawInRect:dstRect fromRect:NSZeroRect operation:NSCompositeDestinationIn fraction:1.0 respectFlipped:YES hints:nil];
+                return YES;
+            }];
+            finalImage = coloredImage;
+        }
+        //Draw the image based on enabled state
+        if([self isEnabled]) {
+            [finalImage drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue] respectFlipped:YES hints:nil];
+        } else {
+            [finalImage drawInRect: imageRect fromRect: NSZeroRect operation: NSCompositeSourceAtop fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue] respectFlipped:YES hints:nil];
+        }
+        
+    }
 }
 
 -(void)drawTexturedRoundedButtonInFrame:(NSRect)frame {
@@ -798,6 +792,7 @@
 	switch ([self imagePosition]) {
 			
 		case NSImageLeft:
+    default:
 			
 			//Make adjustments to horizontal placement
 			//Create Text Rect so text is drawn properly
@@ -874,6 +869,10 @@
 			
 		case NSImageOverlaps:
 			
+			break;
+
+		case NSNoImage:
+
 			break;
 	}
 	

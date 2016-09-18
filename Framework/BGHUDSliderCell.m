@@ -138,7 +138,8 @@
 }
 
 - (void)drawHorizontalBarInFrame:(NSRect)frame {
-	
+
+    frame = [self controlView].bounds;
 	// Adjust frame based on ControlSize
 	switch ([self controlSize]) {
 			
@@ -180,9 +181,9 @@
 				frame.origin.y = frame.origin.y + (((frame.origin.y + frame.size.height) /2) - 2.5f);
 			}
 			
-			frame.origin.x += 0.5f;
-			frame.origin.y += 0.5f;
-			frame.size.width -= 1;
+            frame.origin.x += 0.5f;
+            frame.origin.y += 0.5f;
+            frame.size.width -= 1;
 			frame.size.height = 5;
 			break;
 			
@@ -229,9 +230,20 @@
 	}
 }
 
+- (void)drawTickMarks {
+    if (self.isEnabled)
+        [[[[BGThemeManager keyedManager] themeForKey: self.themeKey] strokeColor] set];
+    else
+        [[[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledStrokeColor] set];
+    for (NSUInteger tm = 0; tm < self.numberOfTickMarks; tm++) {
+        NSRectFillUsingOperation([self rectOfTickMarkAtIndex:tm], NSCompositeSourceOver);
+    }
+}
+
 - (void)drawVerticalBarInFrame:(NSRect)frame {
 	
 	//Vertical Scroller
+    frame = [self controlView].bounds;
 	switch ([self controlSize]) {
 			
 		case NSRegularControlSize:
@@ -342,10 +354,10 @@
 			if([self numberOfTickMarks] != 0) {
 				
 				if([self tickMarkPosition] == NSTickMarkAbove) {
-					
+
 					frame.origin.y += 1;
 				}
-				
+
 				frame.origin.x += 1;
 				frame.size.height = 13.0f;
 				frame.size.width = 11.0f;
