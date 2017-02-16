@@ -385,9 +385,9 @@
         }
 		//Draw the image based on enabled state
 		if([self isEnabled]) {
-			[finalImage drawInRect: NSIntegralRect(imageRect) fromRect: NSZeroRect operation: NSCompositeCopy fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
+			[finalImage drawInRect: NSIntegralRect(imageRect) fromRect: NSZeroRect operation: NSCompositeSourceOver fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] alphaValue]];
 		} else {
-			[finalImage drawInRect: NSIntegralRect(imageRect) fromRect: NSZeroRect operation: NSCompositeCopy fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue]];
+			[finalImage drawInRect: NSIntegralRect(imageRect) fromRect: NSZeroRect operation: NSCompositeSourceOver fraction: [[[BGThemeManager keyedManager] themeForKey: self.themeKey] disabledAlphaValue]];
 		}
 	}
 }
